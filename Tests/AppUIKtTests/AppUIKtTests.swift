@@ -18,8 +18,8 @@ final class AppKtTests: XCTestCase, XCGradleHarness {
 
         // select device with: SKIP_TEST_DEVICE=emulator-5554
         // this avoids the error: adb: more than one device/emulator
-        var dev = ProcessInfo.processInfo.environment["SKIP_TEST_DEVICE"]
-        dev = dev ?? "emulator-5554"
+        let dev = ProcessInfo.processInfo.environment["SKIP_TEST_DEVICE"]
+        //dev = dev ?? "emulator-5554"
         if let device = dev {
             //try await gradle(actions: ["assembleDebug"], moduleName: "AppUIKtTests")
 

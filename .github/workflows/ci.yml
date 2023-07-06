@@ -41,10 +41,10 @@ jobs:
           brew install tree
 
       - name: Build AppDemoKt (SPM)
-        run: swift build
+        run: swift build -j 1
 
       - name: Test AppDemoKt (SPM)
-        run: swift test
+        run: swift test -j 1
 
       - name: Copy Android Artifacts
         run: |
