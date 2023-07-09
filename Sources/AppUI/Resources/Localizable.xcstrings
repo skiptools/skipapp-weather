@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Done" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -53,7 +54,11 @@
         }
       }
     },
+    "Hello, world!" : {
+
+    },
     "Recent" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
