@@ -47,7 +47,7 @@ let package = Package(
 
         // The Kotlin side of the app's user interface (Jetpack Compose)
         .target(name: "AppUIKt",
-            dependencies: ["AppUI", "AppModelKt", .product(name: "SkipUIKt", package: "skiphub")],
+            dependencies: ["AppUI", "AppModel", "AppModelKt", .product(name: "SkipUIKt", package: "skiphub")],
             resources: [.copy("Skip")],
             plugins: [.plugin(name: "transpile", package: "skip")]
         ),

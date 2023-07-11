@@ -59,13 +59,13 @@ enum AppTabs : String, CaseIterable {
             #if SKIP
             return Icons.Default.Home
             #else
-            return Image(systemName: "home")
+            return Image(systemName: "house")
             #endif
         case .search:
             #if SKIP
             return Icons.Default.Search
             #else
-            return Image(systemName: "search")
+            return Image(systemName: "magnifyingglass")
             #endif
         case .settings:
             #if SKIP
@@ -90,11 +90,55 @@ class Model : ObservableObject {
 
 public struct ContentView: View {
     @ObservedObject var model = Model()
+    @State private var selectedTab = AppTabs.home
 
     public init() {
     }
 
     public var body: some View {
+        appTabView()
+    }
+
+    func addRow() {
+        logger.info("Tapped add button")
+        model.things.append(Stuff.allThings[min(Stuff.allThings.count - 1, model.things.count)])
+    }
+
+    func makeRow(index: Int, thing: Thing) -> some View {
+        HStack {
+            Text("\(index + 1)").font(.caption)
+            Text("\(thing.string)").font(.body)
+            Spacer()
+            Text("\(thing.number, format: .number)").font(.callout)
+        }
+    }
+
+    func appTabView() -> some View {
+        TabView(selection: $selectedTab) {
+            ForEach(AppTabs.allCases, id: \.self) { tab in
+                selectedTabView(for: tab)
+                    .tabItem {
+                        Label {
+                            Text(tab.title)
+                        } icon: {
+                            tab.icon
+                        }
+
+                    }
+                    .tag(tab)
+            }
+        }
+    }
+
+    @ViewBuilder func selectedTabView(for tab: AppTabs) -> some View {
+        switch tab {
+        case .home: listView()
+        case .search: searchView()
+        case .settings: settingsView()
+        }
+    }
+
+    func listView() -> some View {
         NavigationView {
             List {
                 ForEach(Array(model.things.enumerated()), id: \.offset) { index, thing in
@@ -102,8 +146,11 @@ public struct ContentView: View {
                 }
             }
             .navigationTitle(Text(model.title))
+            #if os(iOS)
+            .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
-                ToolbarItem(placement: .navigation) {
+                ToolbarItem(placement: .automatic) {
                     Button(action: {
                         withAnimation {
                             addRow()
@@ -116,19 +163,13 @@ public struct ContentView: View {
         }
     }
 
-    func addRow() {
-        logger.info("Tapped add button")
-        model.things.append(Thing(string: "Just one more thing…", number: 1.0))
+    func searchView() -> some View {
+        Text("Web View")
     }
 
-    func makeRow(index: Int, thing: Thing) -> some View {
-        HStack {
-            Text("\(index)").font(.caption)
-            Text("\(thing.string)").font(.body)
-            Text("\(thing.number)").font(.callout)
-        }
+    func settingsView() -> some View {
+        Text("Form View")
     }
-
 }
 
 #else
@@ -169,36 +210,34 @@ public class MainActivity : AppCompatActivity {
 
         func addRow() {
             logger.info("Tapped add button")
-            rows.add(Thing(string: "Just one more thing…", number: 1.0))
+            rows.add(Stuff.allThings[min(Stuff.allThings.count - 1, model.things.count)])
         }
 
         Scaffold(topBar: {
             TopAppBar(title: {
                 Text(text: model.title, style: MaterialTheme.typography.h4)
+            },
+            actions: {
+                IconButton(onClick: {
+                    addRow()
+                }) {
+                    Icon(imageVector: Icons.Default.Add, contentDescription: "Add")
+                }
             })
         },
         bottomBar: {
-            BottomNavigation(modifier: Modifier.fillMaxWidth(), backgroundColor: MaterialTheme.colors.primary) {
+            BottomNavigation(modifier: Modifier.fillMaxWidth(), backgroundColor: MaterialTheme.colors.background, contentColor: MaterialTheme.colors.primary) {
+                // Create a tab bar with each of the possible tabs
                 AppTabs.allCases.forEachIndexed { index, tab in
-                    BottomNavigationItem(icon: {             Icon(imageVector: tab.icon, contentDescription: tab.title) },
+                    BottomNavigationItem(icon: { Icon(imageVector: tab.icon, contentDescription: tab.title) },
                      label: { Text(tab.title) },
                      selected: index == selectedTabIndex.value,
                      onClick = { selectedTabIndex.value = index }
                     )
                 }
             }
-        },
-        floatingActionButtonPosition: FabPosition.Center,
-        floatingActionButton: {
-            ExtendedFloatingActionButton(onClick: {
-                addRow()
-            }, text: {
-                Text("Add Thing")
-            }, icon: {
-                Icon(imageVector: Icons.Default.Add, contentDescription: "Add")
-            }, modifier: Modifier.navigationBarsPadding())
         }) { contentPadding in
-            LazyColumn(modifier: Modifier.padding(16.dp)) {
+            LazyColumn {
                 itemsIndexed(rows) { index, thing in
                     makeRow(index: index, thing: thing)
                 }
@@ -211,7 +250,7 @@ public class MainActivity : AppCompatActivity {
         Row(modifier: Modifier.padding(6.dp),
             verticalAlignment: Alignment.CenterVertically
         ) {
-            Text(text: "\(index)", style: MaterialTheme.typography.caption, textAlign: TextAlign.Start, modifier: Modifier.padding(6.dp))
+            Text(text: "\(index + 1)", style: MaterialTheme.typography.caption, textAlign: TextAlign.Start, modifier: Modifier.padding(6.dp))
             Text(text: "\(thing.string)", style: MaterialTheme.typography.body1, textAlign: TextAlign.Start)
             Text(text: "\(thing.number)", style: MaterialTheme.typography.body2, textAlign: TextAlign.End, modifier: Modifier.fillMaxWidth())
         }
