@@ -40,17 +40,20 @@ jobs:
           mkdir -p .build/skip-artifacts/
           brew install tree
 
-      - name: Build AppDemoKt (SPM)
+      - name: Build App (SPM)
         run: swift build -j 1
 
-      - name: Test AppDemoKt (SPM)
+      - name: Test App (SPM)
         run: swift test -j 1
 
       - name: Copy Android Artifacts
         run: |
+          gradle build --project-dir .build/plugins/outputs/skipapp/AppUIKt/skip-transpiler/ -PbuildDir=.build/AppUI --rerun-tasks --console=plain
+
           tree -I build -l .build/plugins/outputs
-          cp -a .build/plugins/outputs/skipapp/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/release/AppDemo-release-unsigned.apk .build/skip-artifacts/App-Android-Release.apk
-          cp -a .build/plugins/outputs/skipapp/AppDemoKtTests/skip-transpiler/AppDemo/.build/AppDemo/outputs/apk/debug/AppDemo-debug.apk .build/skip-artifacts/App-Android-Debug.apk
+
+          cp -a .build/plugins/outputs/skipapp/AppUIKt/skip-transpiler/AppUI/.build/AppUI/outputs/apk/release/AppUI-release-unsigned.apk .build/skip-artifacts/App-Android-Release.apk
+          cp -a .build/plugins/outputs/skipapp/AppUIKt/skip-transpiler/AppUI/.build/AppUI/outputs/apk/debug/AppUI-debug.apk .build/skip-artifacts/App-Android-Debug.apk
 
           cd .build/skip-artifacts/
 
