@@ -29,11 +29,10 @@ let package = Package(
         // The Kotlin side of the app's data model (transpiled from AppModel)
         .target(name: "AppModelKt",
             dependencies: [ "AppModel", .product(name: "SkipFoundationKt", package: "skiphub") ],
-            resources: [.copy("Skip")],
-            plugins: [.plugin(name: "transpile", package: "skip")]
-        ),
+            resources: [.process("Skip")],
+            plugins: [.plugin(name: "transpile", package: "skip")]),
         .testTarget(name: "AppModelKtTests",
-            dependencies: ["AppModelKt", .product(name: "SkipUnitKt", package: "skiphub")], resources: [.copy("Skip")], plugins: [
+            dependencies: ["AppModelKt", .product(name: "SkipUnitKt", package: "skiphub")], resources: [.process("Skip")], plugins: [
             .plugin(name: "transpile", package: "skip")
         ]),
 
@@ -48,11 +47,11 @@ let package = Package(
         // The Kotlin side of the app's user interface (Jetpack Compose)
         .target(name: "AppUIKt",
             dependencies: ["AppUI", "AppModel", "AppModelKt", .product(name: "SkipUIKt", package: "skiphub")],
-            resources: [.copy("Skip")],
+            resources: [.process("Skip")],
             plugins: [.plugin(name: "transpile", package: "skip")]
         ),
         .testTarget(name: "AppUIKtTests",
-            dependencies: ["AppUIKt", .product(name: "SkipUnitKt", package: "skiphub")], resources: [.copy("Skip")],
+            dependencies: ["AppUIKt", .product(name: "SkipUnitKt", package: "skiphub")], resources: [.process("Skip")],
             plugins: [.plugin(name: "transpile", package: "skip")]),
     ]
 )
