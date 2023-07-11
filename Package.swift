@@ -16,6 +16,8 @@ let package = Package(
         .package(url: "https://github.com/skiptools/skiphub.git", from: "0.0.0"),
     ],
     targets: [
+        .executableTarget(name: "AndroidApp", dependencies: [ "AppUIKt", .product(name: "SkipDrive", package: "skiphub") ]),
+
         // The Swift side of the app's data model
         .target(name: "AppModel",
             resources: [.process("Resources")],
@@ -54,3 +56,10 @@ let package = Package(
             plugins: [.plugin(name: "transpile", package: "skip")]),
     ]
 )
+
+import class Foundation.ProcessInfo
+// For Skip library development in peer directories, run: SKIPLOCAL=.. xed Package.swift
+if let localPath = ProcessInfo.processInfo.environment["SKIPLOCAL"] {
+    package.dependencies[0] = .package(path: localPath + "/skip")
+    package.dependencies[1] = .package(path: localPath + "/skiphub")
+}

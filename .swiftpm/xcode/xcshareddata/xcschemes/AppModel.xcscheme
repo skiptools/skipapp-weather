@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1500"
+   LastUpgradeVersion = "1430"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "492F722F2A5B719C00C0CEA1"
-               BuildableName = "App (Android)"
-               BlueprintName = "App (Android)"
-               ReferencedContainer = "container:App.xcodeproj">
+               BlueprintIdentifier = "AppModel"
+               BuildableName = "AppModel"
+               BlueprintName = "AppModel"
+               ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,6 +28,18 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AppModelTests"
+               BuildableName = "AppModelTests"
+               BlueprintName = "AppModelTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -38,27 +50,7 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
-      allowLocationSimulation = "YES"
-      viewDebuggingEnabled = "No">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AndroidApp"
-            BuildableName = "AndroidApp"
-            BlueprintName = "AndroidApp"
-            ReferencedContainer = "container:">
-         </BuildableReference>
-      </BuildableProductRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "492F722F2A5B719C00C0CEA1"
-            BuildableName = "App (Android)"
-            BlueprintName = "App (Android)"
-            ReferencedContainer = "container:App.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      allowLocationSimulation = "YES">
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -66,23 +58,13 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "492F722F2A5B719C00C0CEA1"
-            BuildableName = "App (Android)"
-            BlueprintName = "App (Android)"
-            ReferencedContainer = "container:App.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "492F722F2A5B719C00C0CEA1"
-            BuildableName = "App (Android)"
-            BlueprintName = "App (Android)"
-            ReferencedContainer = "container:App.xcodeproj">
+            BlueprintIdentifier = "AppModel"
+            BuildableName = "AppModel"
+            BlueprintName = "AppModel"
+            ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
