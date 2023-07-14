@@ -16,7 +16,7 @@ let package = Package(
         .package(url: "https://github.com/skiptools/skiphub.git", from: "0.0.0"),
     ],
     targets: [
-        .executableTarget(name: "AndroidApp", dependencies: [ "AppUIKt", .product(name: "SkipDrive", package: "skiphub") ]),
+        .executableTarget(name: "AppDroid", dependencies: [ "AppUIKt", .product(name: "SkipDrive", package: "skiphub") ]),
 
         // The Swift side of the app's data model
         .target(name: "AppModel",
