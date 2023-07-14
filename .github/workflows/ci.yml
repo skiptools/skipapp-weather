@@ -73,7 +73,7 @@ jobs:
 
       - name: Test AppDemoKt (Xcode)
         if: false
-        run: xcodebuild test -skipPackagePluginValidation -configuration Debug -sdk "macosx" -destination "platform=macosx" -scheme "AppDemoKt"
+        run: xcodebuild test -workspace App.xcworkspace -skipPackagePluginValidation -configuration Debug -sdk "macosx" -destination "platform=macosx" -scheme "AppDemoKt"
 
       - name: Package iOS App
         run: |
@@ -86,9 +86,9 @@ jobs:
             # need to build and archive in separate steps to work around
             # skipcode creation timing
 
-            BUILT_PRODUCTS_DIR="bogus_for_skiptool" xcodebuild build -jobs 1 -skipPackagePluginValidation -archivePath ".build/${APPARTIFACT}.xcarchive" -configuration "${APPCONFIG}" -scheme 'Demo App' -sdk "${APPSDK}" -destination "generic/platform=${APPPLATFORM}" CODE_SIGNING_ALLOWED=NO
+            BUILT_PRODUCTS_DIR="bogus_for_skiptool" xcodebuild build -jobs 1 -workspace App.xcworkspace -skipPackagePluginValidation -archivePath ".build/${APPARTIFACT}.xcarchive" -configuration "${APPCONFIG}" -scheme 'App' -sdk "${APPSDK}" -destination "generic/platform=${APPPLATFORM}" CODE_SIGNING_ALLOWED=NO
 
-            BUILT_PRODUCTS_DIR="bogus_for_skiptool" xcodebuild archive -jobs 1 -skipPackagePluginValidation -archivePath ".build/${APPARTIFACT}.xcarchive" -configuration "${APPCONFIG}" -scheme 'Demo App' -sdk "${APPSDK}" -destination "generic/platform=${APPPLATFORM}" CODE_SIGNING_ALLOWED=NO
+            BUILT_PRODUCTS_DIR="bogus_for_skiptool" xcodebuild archive -jobs 1 -workspace App.xcworkspace -skipPackagePluginValidation -archivePath ".build/${APPARTIFACT}.xcarchive" -configuration "${APPCONFIG}" -scheme 'App' -sdk "${APPSDK}" -destination "generic/platform=${APPPLATFORM}" CODE_SIGNING_ALLOWED=NO
 
             cd .build/"${APPARTIFACT}".xcarchive/Products/
 
@@ -118,7 +118,6 @@ jobs:
         run: |
           COMMITDATE="$(git log -1 --format=%ad --date=iso-strict ${GITHUB_REF#refs/tags/})"
           ARTIFACTNAME="App-Android-Source.zip"
-          #tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/skipapp.output/AppDemoKt
           tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/
           cd .build/plugins/outputs/skipapp/AppDemoKtTests/skip-transpiler/
           # the zip exclude pattern does not seem to exclude these as advertised, so we delete them
