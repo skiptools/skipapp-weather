@@ -15,10 +15,10 @@ build:
                 # the path to the keystore used for signing
                 # default debug keystore created with:
                 # keytool -genkey -v -keystore debug.keystore -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 10000
-                - 'storeFile = file("debug.keystore")'
-                - 'storePassword = "android"'
-                - 'keyAlias = "androiddebugkey"'
-                - 'keyPassword = "android"'
+                #- 'storeFile = file("debug.keystore")'
+                #- 'storePassword = "android"'
+                #- 'keyAlias = "androiddebugkey"'
+                #- 'keyPassword = "android"'
 
         - block: 'defaultConfig'
           contents:
@@ -29,6 +29,6 @@ build:
           contents:
             - block: 'release'
               contents:
-                - 'signingConfig = signingConfigs.getByName("signing-demo")'
+                #- 'signingConfig = signingConfigs.getByName("signing-demo")'
                 - 'isMinifyEnabled = true'
                 - 'proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")'
