@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49070FB72A61E69600EC3110 /* AppUIKt in Frameworks */ = {isa = PBXBuildFile; productRef = 49070FB62A61E69600EC3110 /* AppUIKt */; };
 		49429E432A61DC3C00AA21A8 /* AppDroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49429E422A61DC3C00AA21A8 /* AppDroid.swift */; };
-		49429E552A61E02A00AA21A8 /* AppModel in Frameworks */ = {isa = PBXBuildFile; productRef = 49429E542A61E02A00AA21A8 /* AppModel */; };
-		49429E572A61E02A00AA21A8 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 49429E562A61E02A00AA21A8 /* AppUI */; };
 		49429E592A61E02A00AA21A8 /* SkipDrive in Frameworks */ = {isa = PBXBuildFile; productRef = 49429E582A61E02A00AA21A8 /* SkipDrive */; };
 		49813B532A521AA700612428 /* AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C472A52156300F06D93 /* AppUITests.swift */; };
 		49F90C2C2A52156200F06D93 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C2B2A52156200F06D93 /* AppMain.swift */; };
@@ -52,17 +51,17 @@
 
 /* Begin PBXFileReference section */
 		49429E402A61DC3C00AA21A8 /* AppDroid */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AppDroid; sourceTree = BUILT_PRODUCTS_DIR; };
-		49429E422A61DC3C00AA21A8 /* AppDroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDroid.swift; path = Sources/AppDroid/AppDroid.swift; sourceTree = SOURCE_ROOT; };
+		49429E422A61DC3C00AA21A8 /* AppDroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDroid.swift; sourceTree = "<group>"; };
 		49F90C282A52156200F06D93 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F90C2B2A52156200F06D93 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppMain.swift; path = Sources/App/AppMain.swift; sourceTree = SOURCE_ROOT; };
 		49F90C2F2A52156300F06D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sources/App/Assets.xcassets; sourceTree = "<group>"; };
 		49F90C312A52156300F06D93 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = App.entitlements; path = Sources/App/App.entitlements; sourceTree = "<group>"; };
 		49F90C332A52156300F06D93 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		49F90C392A52156300F06D93 /* AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		49F90C3D2A52156300F06D93 /* AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppTests.swift; path = Tests/AppTests/AppTests.swift; sourceTree = SOURCE_ROOT; };
+		49F90C3D2A52156300F06D93 /* AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTests.swift; sourceTree = "<group>"; };
 		49F90C432A52156300F06D93 /* AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		49F90C472A52156300F06D93 /* AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppUITests.swift; path = Tests/AppTests/AppUITests.swift; sourceTree = SOURCE_ROOT; };
-		49F90C492A52156300F06D93 /* AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppUITestsLaunchTests.swift; path = Tests/AppTests/AppUITestsLaunchTests.swift; sourceTree = SOURCE_ROOT; };
+		49F90C472A52156300F06D93 /* AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUITests.swift; sourceTree = "<group>"; };
+		49F90C492A52156300F06D93 /* AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,9 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49429E572A61E02A00AA21A8 /* AppUI in Frameworks */,
-				49429E552A61E02A00AA21A8 /* AppModel in Frameworks */,
 				49429E592A61E02A00AA21A8 /* SkipDrive in Frameworks */,
+				49070FB72A61E69600EC3110 /* AppUIKt in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,8 +105,9 @@
 			children = (
 				49429E422A61DC3C00AA21A8 /* AppDroid.swift */,
 			);
-			path = AppDroid;
-			sourceTree = "<group>";
+			name = AppDroid;
+			path = Sources/AppDroid;
+			sourceTree = SOURCE_ROOT;
 		};
 		49429E532A61E02A00AA21A8 /* Frameworks */ = {
 			isa = PBXGroup;
@@ -188,9 +187,8 @@
 			);
 			name = AppDroid;
 			packageProductDependencies = (
-				49429E542A61E02A00AA21A8 /* AppModel */,
-				49429E562A61E02A00AA21A8 /* AppUI */,
 				49429E582A61E02A00AA21A8 /* SkipDrive */,
+				49070FB62A61E69600EC3110 /* AppUIKt */,
 			);
 			productName = AppDroid;
 			productReference = 49429E402A61DC3C00AA21A8 /* AppDroid */;
@@ -296,9 +294,9 @@
 			projectRoot = "";
 			targets = (
 				49F90C272A52156200F06D93 /* App */,
+				49429E3F2A61DC3C00AA21A8 /* AppDroid */,
 				49F90C382A52156300F06D93 /* AppTests */,
 				49F90C422A52156300F06D93 /* AppUITests */,
-				49429E3F2A61DC3C00AA21A8 /* AppDroid */,
 			);
 		};
 /* End PBXProject section */
@@ -753,13 +751,9 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		49429E542A61E02A00AA21A8 /* AppModel */ = {
+		49070FB62A61E69600EC3110 /* AppUIKt */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = AppModel;
-		};
-		49429E562A61E02A00AA21A8 /* AppUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppUI;
+			productName = AppUIKt;
 		};
 		49429E582A61E02A00AA21A8 /* SkipDrive */ = {
 			isa = XCSwiftPackageProductDependency;

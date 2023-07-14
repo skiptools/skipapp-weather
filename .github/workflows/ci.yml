@@ -48,6 +48,8 @@ jobs:
 
       - name: Copy Android Artifacts
         run: |
+          tree -I build -l .build/plugins/outputs/
+
           gradle build --project-dir .build/plugins/outputs/skipapp/AppUIKt/skip-transpiler/ -PbuildDir=.build/AppUI --rerun-tasks --console=plain
 
           tree -I build -l .build/plugins/outputs

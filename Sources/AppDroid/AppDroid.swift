@@ -1,5 +1,4 @@
 import Foundation
-import AppUI
 import SkipDrive
 
 /// The name of the app's Swift target in the Package.swift
