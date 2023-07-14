@@ -156,6 +156,7 @@ func ContentView() -> Void {
             }
         }
     }) { contentPadding in
+        let modifier = Modifier.padding(contentPadding)
         AppTabView()
     }
 
