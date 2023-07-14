@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   skipapp:
-    runs-on: macos-latest
+    runs-on: macos-13
     steps:
       - name: Setup Java
         uses: actions/setup-java@v3
