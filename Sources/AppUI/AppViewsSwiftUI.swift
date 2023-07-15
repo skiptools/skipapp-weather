@@ -3,6 +3,7 @@ import Foundation
 import AppModel
 
 import SwiftUI
+import WebKit
 
 /// Returns the Icon for this tab.
 /// On iOS returns `SwiftUI.Image`
@@ -27,7 +28,7 @@ class Model : ObservableObject {
 
 public struct ContentView: View {
     @ObservedObject var model = Model()
-    @State private var selectedTab = AppTabs.home
+    @State private var selectedTab = AppTabs.allCases[0]
 
     public init() {
     }
@@ -99,11 +100,45 @@ public struct ContentView: View {
     }
 
     func searchView() -> some View {
-        Text(AppTabs.search.title)
+        #if !os(iOS)
+        // no UIViewRepresentable on macOS
+        Spacer()
+        #else
+        // an example of an embedded web view
+        struct WebView: UIViewRepresentable {
+            let url: URL
+            let cfg = WKWebViewConfiguration()
+
+            func makeUIView(context: Context) -> WKWebView {
+                WKWebView(frame: .zero, configuration: cfg)
+            }
+
+            func updateUIView(_ uiView: WKWebView, context: Context) {
+                uiView.load(URLRequest(url: url))
+            }
+        }
+
+        return WebView(url: URL(string: "https://skip.tools")!)
+        #endif
     }
 
     func settingsView() -> some View {
-        Text(AppTabs.settings.title)
+        struct SettingsForm : View {
+            @State var doubleValue = 0.0
+
+            var body: some View {
+                Form {
+                    Section {
+                        Slider(value: $doubleValue, in: 0...100) {
+                            Text("Slider")
+                        }
+                    } header: {
+                        Text("Settings")
+                    }
+                }
+            }
+        }
+        return SettingsForm()
     }
 }
 

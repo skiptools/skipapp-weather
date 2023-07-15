@@ -23,6 +23,8 @@ import AndroidxComposeFoundationLayout
 import AndroidxComposeFoundationLazy
 import AndroidxComposeFoundationLazy.items
 import AndroidxComposeFoundationLazy.itemsIndexed
+import AndroidxComposeUiViewinterop.AndroidView
+import AndroidWebkit.WebView
 
 /// Returns the Icon for this tab.
 /// On iOS returns `SwiftUI.Image`
@@ -51,8 +53,6 @@ public class AndroidAppMain : Application {
         super.onCreate()
         logger.info("starting app")
         logger.trace("external function: \(externalKotlinFunction())")
-
-        // this sets the global `ProcessInfo.processInfo.launchContext` property, which is needed by SkipFoundation
         ProcessInfo.launch(applicationContext)
     }
 }
@@ -74,7 +74,7 @@ public class MainActivity : AppCompatActivity {
 func ContentView() -> Void {
     let model = Stuff()
     let rows = remember { Stuff().things.toList().toMutableStateList() }
-    var selectedTab = remember { mutableStateOf(AppTabs.home) }
+    var selectedTab = remember { mutableStateOf(AppTabs.allCases[0]) }
 
     func addRow() {
         logger.info("Tapped add button")
@@ -104,9 +104,16 @@ func ContentView() -> Void {
 
     // SKIP INSERT: @Composable
     func SearchView() {
-        Row(verticalAlignment: Alignment.CenterVertically, horizontalArrangement: Arrangement.End) {
-            Text(text: AppTabs.search.title, style: MaterialTheme.typography.subtitle1, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
+        // SKIP INSERT: @Composable
+        func WebView(url: String) {
+            AndroidView(factory: { context in
+                WebView(context).apply {
+                    loadUrl(url)
+                }
+            })
         }
+
+        WebView("https://skip.tools")
     }
 
     // SKIP INSERT: @Composable
