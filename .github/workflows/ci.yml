@@ -46,7 +46,7 @@ jobs:
       - name: Test App (SPM)
         run: swift test -j 1
 
-      - name: Copy Android Artifacts
+      - name: Gradle Build
         run: |
           tree -I build -l .build/plugins/outputs/
 
