@@ -71,9 +71,9 @@ jobs:
           shasum -a 256 "${ARTIFACTNAME}" | tee "${ARTIFACTNAME}.sha256"
           cat "${ARTIFACTNAME}.sha256" >> checksums.txt
 
-      - name: Test AppDemoKt (Xcode)
+      - name: Test AppUIKt (Xcode)
         if: false
-        run: xcodebuild test -workspace App.xcworkspace -skipPackagePluginValidation -configuration Debug -sdk "macosx" -destination "platform=macosx" -scheme "AppDemoKt"
+        run: xcodebuild test -workspace App.xcworkspace -skipPackagePluginValidation -configuration Debug -sdk "macosx" -destination "platform=macosx" -scheme "AppUIKt"
 
       - name: Package iOS App
         run: |
