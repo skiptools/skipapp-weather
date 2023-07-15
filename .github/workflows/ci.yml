@@ -118,8 +118,11 @@ jobs:
         run: |
           COMMITDATE="$(git log -1 --format=%ad --date=iso-strict ${GITHUB_REF#refs/tags/})"
           ARTIFACTNAME="App-Android-Source.zip"
+
           tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/
-          cd .build/plugins/outputs/skipapp/AppDemoKtTests/skip-transpiler/
+          tree -I build -l .build/plugins/outputs/
+
+          cd .build/plugins/outputs/skipapp/AppUIKt/skip-transpiler/
           # the zip exclude pattern does not seem to exclude these as advertised, so we delete them
           rm -rf .gradle .build */.build
           # create the zip file with predictable timestamps for reproducible content
@@ -131,7 +134,6 @@ jobs:
           ls -lah "${ARTIFACTNAME}"
           shasum -a 256 "${ARTIFACTNAME}" | tee "${ARTIFACTNAME}.sha256"
           cat "${ARTIFACTNAME}.sha256" >> checksums.txt
-
 
       - name: "Create Release"
         if: startsWith(github.ref, 'refs/tags/')
