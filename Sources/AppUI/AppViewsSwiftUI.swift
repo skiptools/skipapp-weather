@@ -22,6 +22,8 @@ extension AppTabs {
     var icon: Image {
         switch self {
         case .home: return Image(systemName: "house")
+        case .device: return Image(systemName: "list.bullet")
+        case .favorites: return Image(systemName: "star")
         case .search: return Image(systemName: "magnifyingglass")
         case .settings: return Image(systemName: "gear")
         }
@@ -83,6 +85,8 @@ public struct ContentView: View {
     @ViewBuilder func selectedTabView(for tab: AppTabs) -> some View {
         switch tab {
         case .home: listView()
+        case .device: deviceView()
+        case .favorites: favoritesView()
         case .search: searchView()
         case .settings: settingsView()
         }
@@ -102,11 +106,19 @@ public struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .automatic) {
                     Button(action: { withAnimation { addRow() } }) {
-                        Image(systemName: "plus")
+                        Image(systemName: "plus.circle.fill")
                     }
                 }
             }
         }
+    }
+
+    func deviceView() -> some View {
+        Text(AppTabs.device.title)
+    }
+
+    func favoritesView() -> some View {
+        Text(AppTabs.favorites.title)
     }
 
     func searchView() -> some View {

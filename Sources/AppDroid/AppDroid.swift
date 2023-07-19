@@ -16,18 +16,8 @@ let packageName = "skipapp"
 @main public struct AndroidAppMain : GradleHarness {
     static func main() async throws {
         do {
-            print("Running AppDroid with arguments:", CommandLine.arguments)
-            let gradle = AndroidAppMain()
-
-            if CommandLine.arguments.dropFirst().first == "build" {
-                // the build is run as a script at the end of the Build Phases
-                print("Running Gradle build for app…")
-                try await gradle.assemble(appName: appName, packageName: packageName)
-            } else {
-                // otherwise, launch the built app
-                print("Launching App in Android Emulator (via Gradle)")
-                try await gradle.launch(appName: appName, appId: appId, packageName: packageName)
-            }
+            print("Launching App in Android Emulator (via Gradle)")
+            try await AndroidAppMain().launch(appName: appName, appId: appId, packageName: packageName)
         } catch {
             print("Error launching: \(error)")
             //print("\(#file):\(#line):\(#column): error: AppDroid: \(error.localizedDescription)")
@@ -37,4 +27,3 @@ let packageName = "skipapp"
     }
 }
 #endif
-

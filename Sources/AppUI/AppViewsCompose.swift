@@ -64,6 +64,8 @@ extension AppTabs {
 func iconForAppTab(tab: AppTabs) -> ImageVector {
     switch tab {
     case .home: return Icons.Default.Home
+    case .device: return Icons.Default.List
+    case .favorites: return Icons.Default.Star
     case .search: return Icons.Default.Search
     case .settings: return Icons.Default.Settings
     }
@@ -113,7 +115,7 @@ func ContentView() -> Void {
                 IconButton(onClick: {
                     addRow()
                 }) {
-                    Icon(imageVector: Icons.Default.Add, contentDescription: "Add")
+                    Icon(imageVector: Icons.Default.AddCircle, contentDescription: "Add")
                 }
             })
         }) { contentPadding in
@@ -128,6 +130,20 @@ func ContentView() -> Void {
     }
 
     // SKIP INSERT: @Composable
+    func DeviceView() {
+        Row(verticalAlignment: Alignment.CenterVertically, horizontalArrangement: Arrangement.End) {
+            Text(text: AppTabs.device.title, style: MaterialTheme.typography.subtitle1, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
+        }
+    }
+
+    // SKIP INSERT: @Composable
+    func FavoritesView() {
+        Row(verticalAlignment: Alignment.CenterVertically, horizontalArrangement: Arrangement.End) {
+            Text(text: AppTabs.favorites.title, style: MaterialTheme.typography.subtitle1, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
+        }
+    }
+
+    // SKIP INSERT: @Composable
     func SettingsView() {
         Row(verticalAlignment: Alignment.CenterVertically, horizontalArrangement: Arrangement.End) {
             Text(text: AppTabs.settings.title, style: MaterialTheme.typography.subtitle1, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
@@ -139,6 +155,8 @@ func ContentView() -> Void {
     func SelectedTabView(for tab: AppTabs) {
         switch tab {
         case .home: HomeView()
+        case .device: DeviceView()
+        case .favorites: FavoritesView()
         case .search: SearchView()
         case .settings: SettingsView()
         }
