@@ -176,9 +176,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49429E462A61DC3C00AA21A8 /* Build configuration list for PBXNativeTarget "AppDroid" */;
 			buildPhases = (
-				49429E4E2A61DD4900AA21A8 /* ShellScript */,
 				49429E3C2A61DC3C00AA21A8 /* Sources */,
 				49429E3D2A61DC3C00AA21A8 /* Frameworks */,
+				49429E4E2A61DD4900AA21A8 /* Gradle Build */,
 				49429E3E2A61DC3C00AA21A8 /* CopyFiles */,
 			);
 			buildRules = (
@@ -328,7 +328,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		49429E4E2A61DD4900AA21A8 /* ShellScript */ = {
+		49429E4E2A61DD4900AA21A8 /* Gradle Build */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -338,13 +338,14 @@
 			);
 			inputPaths = (
 			);
+			name = "Gradle Build";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\necho \"/etc/hosts:9:9: warning: Sample error that points to a line and column in /etc/hosts\"\nexit 0\n\n";
+			shellScript = "codesign -f -s - ${BUILT_PRODUCTS_DIR}/AppDroid\n${BUILT_PRODUCTS_DIR}/AppDroid build\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -461,7 +462,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -522,7 +523,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

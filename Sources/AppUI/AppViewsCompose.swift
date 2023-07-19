@@ -9,40 +9,21 @@ import AndroidxComposeRuntime
 import AndroidxComposeMaterial
 import AndroidxComposeMaterialIcons
 import AndroidxComposeMaterialIconsFilled
-import AndroidxComposeUiGeometry
-import AndroidxComposeUi
-import AndroidxComposeUiUnit
-import AndroidxComposeUiGraphics
-import AndroidxComposeUiGraphicsVector
-import AndroidxComposeUiLayout
-import AndroidxComposeUiText
-import AndroidxComposeUiTextStyle
 import AndroidxComposeFoundation
 import AndroidxComposeFoundationShape
 import AndroidxComposeFoundationLayout
 import AndroidxComposeFoundationLazy
 import AndroidxComposeFoundationLazy.items
 import AndroidxComposeFoundationLazy.itemsIndexed
-import AndroidxComposeUiViewinterop.AndroidView
-import AndroidWebkit.WebView
-
-/// Returns the Icon for this tab.
-/// On iOS returns `SwiftUI.Image`
-/// On Android returns `androidx.compose.ui.graphics.vector.ImageVector`
-extension AppTabs {
-    var icon: androidx.compose.ui.graphics.vector.ImageVector {
-        // call into a function because extensions don't being along imports
-        iconForAppTab(tab: self)
-    }
-}
-
-func iconForAppTab(tab: AppTabs) -> ImageVector {
-    switch tab {
-    case .home: return Icons.Default.Home
-    case .search: return Icons.Default.Search
-    case .settings: return Icons.Default.Settings
-    }
-}
+import AndroidxComposeUi
+import AndroidxComposeUiGeometry
+import AndroidxComposeUiGraphics
+import AndroidxComposeUiGraphicsVector
+import AndroidxComposeUiLayout
+import AndroidxComposeUiText
+import AndroidxComposeUiTextStyle
+import AndroidxComposeUiToolingPreview
+import AndroidxComposeUiUnit
 
 /// AndroidAppMain is the `android.app.Application` entry point, and must match `application android:name` in the AndroidMainfest.xml file
 public class AndroidAppMain : Application {
@@ -70,6 +51,26 @@ public class MainActivity : AppCompatActivity {
     }
 }
 
+/// Returns the Icon for this tab.
+/// On iOS returns `SwiftUI.Image`
+/// On Android returns `androidx.compose.ui.graphics.vector.ImageVector`
+extension AppTabs {
+    var icon: androidx.compose.ui.graphics.vector.ImageVector {
+        // call into a function because extensions don't being along imports
+        iconForAppTab(tab: self)
+    }
+}
+
+func iconForAppTab(tab: AppTabs) -> ImageVector {
+    switch tab {
+    case .home: return Icons.Default.Home
+    case .search: return Icons.Default.Search
+    case .settings: return Icons.Default.Settings
+    }
+}
+
+// SKIP INSERT: @Preview(name = "Light theme")
+// SKIP INSERT: @Preview(name = "Dark theme")
 // SKIP INSERT: @Composable
 func ContentView() -> Void {
     let model = Stuff()
@@ -103,17 +104,27 @@ func ContentView() -> Void {
     }
 
     // SKIP INSERT: @Composable
-    func SearchView() {
-        // SKIP INSERT: @Composable
-        func WebView(url: String) {
-            AndroidView(factory: { context in
-                WebView(context).apply {
-                    loadUrl(url)
+    func HomeView() {
+        Scaffold(topBar: {
+            TopAppBar(title: {
+                Text(text: model.title, style: MaterialTheme.typography.h6)
+            },
+            actions: {
+                IconButton(onClick: {
+                    addRow()
+                }) {
+                    Icon(imageVector: Icons.Default.Add, contentDescription: "Add")
                 }
             })
+        }) { contentPadding in
+            let modifier = Modifier.padding(contentPadding)
+            ListView()
         }
+    }
 
-        WebView("https://skip.tools")
+    // SKIP INSERT: @Composable
+    func SearchView() {
+        WebView(AppTabs.searchPage)
     }
 
     // SKIP INSERT: @Composable
@@ -127,7 +138,7 @@ func ContentView() -> Void {
     // SKIP INSERT: @Composable
     func SelectedTabView(for tab: AppTabs) {
         switch tab {
-        case .home: ListView()
+        case .home: HomeView()
         case .search: SearchView()
         case .settings: SettingsView()
         }
@@ -138,35 +149,28 @@ func ContentView() -> Void {
         SelectedTabView(for: selectedTab.value)
     }
 
+    let colors = isSystemInDarkTheme()
+        ? darkColors() // primary: primary, primaryVariant: primaryVariant, secondary: secondary, background: background)
+        : lightColors() // primary: primary, primaryVariant: primaryVariant, secondary: secondary, background: background)
 
-    Scaffold(topBar: {
-        TopAppBar(title: {
-            Text(text: model.title, style: MaterialTheme.typography.h6)
-        },
-        actions: {
-            IconButton(onClick: {
-                addRow()
-            }) {
-                Icon(imageVector: Icons.Default.Add, contentDescription: "Add")
+    MaterialTheme(colors: colors) {
+        Scaffold(bottomBar: {
+            BottomNavigation(modifier: Modifier.fillMaxWidth()) {
+                // Create a tab bar with each of the possible tabs
+                AppTabs.allCases.forEachIndexed { index, tab in
+                    BottomNavigationItem(icon: { Icon(imageVector: tab.icon, contentDescription: tab.title) },
+                                         label: { Text(tab.title) },
+                                         //selectedContentColor: tabColorOn,
+                                         //unselectedContentColor: tabColorOff,
+                                         selected: tab == selectedTab.value,
+                                         onClick: { selectedTab.value = tab }
+                    )
+                }
             }
-        })
-    },
-    bottomBar: {
-        BottomNavigation(modifier: Modifier.fillMaxWidth(), backgroundColor: MaterialTheme.colors.background, contentColor: MaterialTheme.colors.primary) {
-            // Create a tab bar with each of the possible tabs
-            AppTabs.allCases.forEachIndexed { index, tab in
-                BottomNavigationItem(icon: { Icon(imageVector: tab.icon, contentDescription: tab.title) },
-                 label: { Text(tab.title) },
-                 selected: tab == selectedTab.value,
-                 onClick = { selectedTab.value = tab }
-                )
-            }
+        }) { contentPadding in
+            let modifier = Modifier.padding(contentPadding)
+            AppTabView()
         }
-    }) { contentPadding in
-        let modifier = Modifier.padding(contentPadding)
-        AppTabView()
     }
-
 }
-
 #endif

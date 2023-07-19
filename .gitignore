@@ -1,6 +1,5 @@
-# Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+# the per-project hidden Skip.yml file
+.skip.yml
 
 ## User settings
 xcuserdata/

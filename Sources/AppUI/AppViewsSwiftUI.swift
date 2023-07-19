@@ -1,9 +1,19 @@
 #if !SKIP
 import Foundation
 import AppModel
-
 import SwiftUI
-import WebKit
+
+public protocol AppUIApp : App {
+}
+
+/// The entry point to the app, which simply loads the `ContentView` from the `AppUI` module.
+public extension AppUIApp {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
 
 /// Returns the Icon for this tab.
 /// On iOS returns `SwiftUI.Image`
@@ -104,21 +114,7 @@ public struct ContentView: View {
         // no UIViewRepresentable on macOS
         Spacer()
         #else
-        // an example of an embedded web view
-        struct WebView: UIViewRepresentable {
-            let url: URL
-            let cfg = WKWebViewConfiguration()
-
-            func makeUIView(context: Context) -> WKWebView {
-                WKWebView(frame: .zero, configuration: cfg)
-            }
-
-            func updateUIView(_ uiView: WKWebView, context: Context) {
-                uiView.load(URLRequest(url: url))
-            }
-        }
-
-        return WebView(url: URL(string: "https://skip.tools")!)
+        return WebView(url: AppTabs.searchPage)
         #endif
     }
 
