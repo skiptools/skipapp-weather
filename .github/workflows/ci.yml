@@ -58,7 +58,7 @@ jobs:
         run: |
           TAG="${GITHUB_REF#refs/tags/}"
           echo "Creating release: ${TAG}"
-          cd Packages/Skip/
+          cd Packages/Skip/artifacts/
 
           # clear vestigial AppUI-debug.apk
           rm -f *UI-*.*
@@ -83,5 +83,5 @@ jobs:
         uses: actions/upload-artifact@v3
         if: always()
         with: 
-          path: Packages/Skip/
+          path: Packages/Skip/artifacts/
 

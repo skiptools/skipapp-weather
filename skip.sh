@@ -7,7 +7,7 @@
 set -e
 set -o noglob
 
-SKIP_DESTDIR="Packages/Skip/"
+SKIP_DESTDIR="Packages/Skip/artifacts/"
 
 unset stop
 while test "$#" -gt 0 -a -z "$stop"; do
@@ -87,7 +87,7 @@ assemble_ipa() {
     echo "Assembling ipa…"
 
     build_ipa() {
-        ARCHIVE_PATH=".build/Skip/${APPCONFIG}/${APPARTIFACT}.xcarchive"
+        ARCHIVE_PATH=".build/Skip/artifacts/${APPCONFIG}/${APPARTIFACT}.xcarchive"
         BUILT_PRODUCTS_DIR="/tmp" xcodebuild -workspace App.xcworkspace -skipPackagePluginValidation -archivePath "${ARCHIVE_PATH}" -configuration "${APPCONFIG}" -scheme "App" -sdk "iphoneos" -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO MARKETING_VERSION="${SKIP_VERSION:-0.0.0}" archive
 
         cd "${ARCHIVE_PATH}"/Products/
