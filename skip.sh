@@ -88,7 +88,7 @@ assemble_ipa() {
 
     build_ipa() {
         ARCHIVE_PATH=".build/Skip/${APPCONFIG}/${APPARTIFACT}.xcarchive"
-        BUILT_PRODUCTS_DIR="/tmp" xcodebuild -workspace App.xcworkspace -skipPackagePluginValidation -archivePath "${ARCHIVE_PATH}" -configuration "${APPCONFIG}" -scheme "App" -sdk "iphoneos" -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO MARKETING_VERSION=1.0.1 archive
+        BUILT_PRODUCTS_DIR="/tmp" xcodebuild -workspace App.xcworkspace -skipPackagePluginValidation -archivePath "${ARCHIVE_PATH}" -configuration "${APPCONFIG}" -scheme "App" -sdk "iphoneos" -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO MARKETING_VERSION="${SKIP_VERSION:-0.0.0}" archive
 
         cd "${ARCHIVE_PATH}"/Products/
         mv "Applications" "Payload"
@@ -102,8 +102,6 @@ assemble_ipa() {
         mkdir -p "${SKIP_DESTDIR}"
         cp -av "${ARCHIVE_PATH}"/Products/"${APPARTIFACT}.ipa" "${SKIP_DESTDIR}"
     }
-
-    # build the debug version, or release version, or both
 
     if test -n "$SKIP_DEBUG" || ! test -n "$SKIP_RELEASE"; then
         APPARTIFACT="App-debug"

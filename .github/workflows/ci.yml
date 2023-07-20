@@ -24,10 +24,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build ipa
-        run: ./skip.sh --debug --release assemble-ipa
+        run: ./skip.sh --debug --release --version $(git describe --tags --abbrev=0 --match '[0-9]*\.[0-9]*\.[0-9]*' --first-parent) assemble-ipa
 
       - name: Build apk
-        run: ./skip.sh --debug --release assemble-apk
+        run: ./skip.sh --debug --release --version $(git describe --tags --abbrev=0 --match '[0-9]*\.[0-9]*\.[0-9]*' --first-parent) assemble-apk
 
       - name: Assemble Kotlin Source Release
         if: false
@@ -75,6 +75,7 @@ jobs:
           echo '```' >> relnotes.md
 
           gh release create "${TAG}" --prerelease --title "Release ${TAG}" -F relnotes.md
+          rm relnotes.md
           gh release upload "${TAG}" -- *.*
 
       - name: "Upload Build Artifacts"
