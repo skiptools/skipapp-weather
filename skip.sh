@@ -88,7 +88,7 @@ assemble_ipa() {
 
     build_ipa() {
         ARCHIVE_PATH=".build/Skip/${APPCONFIG}/${APPARTIFACT}.xcarchive"
-        BUILT_PRODUCTS_DIR="/tmp" xcodebuild -workspace App.xcworkspace -skipPackagePluginValidation -archivePath "${ARCHIVE_PATH}" -configuration "${APPCONFIG}" -scheme "App" -sdk "iphoneos" -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO archive
+        BUILT_PRODUCTS_DIR="/tmp" xcodebuild -workspace App.xcworkspace -skipPackagePluginValidation -archivePath "${ARCHIVE_PATH}" -configuration "${APPCONFIG}" -scheme "App" -sdk "iphoneos" -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO MARKETING_VERSION=1.0.1 archive
 
         cd "${ARCHIVE_PATH}"/Products/
         mv "Applications" "Payload"
