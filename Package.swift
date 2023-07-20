@@ -12,8 +12,8 @@ let package = Package(
         .library(name: "AppModelKt", targets: ["AppModelKt"]),
     ],
     dependencies: [
-        .package(url: "https://skip.tools/skiptools/skip.git", from: "0.0.0"),
-        .package(url: "https://github.com/skiptools/skiphub.git", from: "0.0.0"),
+        .package(url: "https://skip.tools/skiptools/skip.git", from: "0.5.13"),
+        .package(url: "https://github.com/skiptools/skiphub.git", from: "0.4.10"),
     ],
     targets: [
         .executableTarget(name: "AppDroid", dependencies: [ "AppUIKt", .product(name: "SkipDrive", package: "skip") ]),

@@ -43,6 +43,7 @@ public class MainActivity : AppCompatActivity {
     public init() {
     }
 
+    // SKIP INSERT: @ExperimentalMaterialApi
     public override func onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -73,6 +74,7 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
 
 // SKIP INSERT: @Preview(name = "Light theme")
 // SKIP INSERT: @Preview(name = "Dark theme")
+// SKIP INSERT: @ExperimentalMaterialApi
 // SKIP INSERT: @Composable
 func ContentView() -> Void {
     let model = Stuff()
@@ -95,12 +97,16 @@ func ContentView() -> Void {
         }
     }
 
-
     // SKIP INSERT: @Composable
     func ListView() {
         LazyColumn {
             itemsIndexed(rows) { index, thing in
-                RowView(index: index, thing: thing)
+                let state = rememberDismissState()
+                SwipeToDismiss(state: state, background: {
+
+                }) {
+                    RowView(index: index, thing: thing)
+                }
             }
         }
     }
@@ -149,7 +155,6 @@ func ContentView() -> Void {
             Text(text: AppTabs.settings.title, style: MaterialTheme.typography.subtitle1, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
         }
     }
-
 
     // SKIP INSERT: @Composable
     func SelectedTabView(for tab: AppTabs) {

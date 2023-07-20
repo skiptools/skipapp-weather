@@ -344,7 +344,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
+			shellPath = "/bin/sh -e";
 			shellScript = "${BUILT_PRODUCTS_DIR}/skipgradle\nln -f ${BUILT_PRODUCTS_DIR}/../../../SourcePackages/plugins/skipapp.output/AppUIKt/skip-transpiler/AppUI/.build/AppUI/outputs/apk/*/AppUI-*.apk Packages/Skip/\n";
 		};
 /* End PBXShellScriptBuildPhase section */
