@@ -20,14 +20,14 @@ jobs:
   skipapp:
     runs-on: macos-13
     steps:
-      - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
       - name: Checkout Repository
         uses: actions/checkout@v3
+
+      - name: Build ipa
+        run: ./skip.sh --debug --release assemble-ipa
+
+      - name: Build apk
+        run: ./skip.sh --debug --release assemble-apk
 
       - name: Setup skiptool
         run: SKIP_YES=yes sh <(curl https://skip.tools/setup.sh)
