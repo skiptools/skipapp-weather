@@ -60,6 +60,9 @@ jobs:
           echo "Creating release: ${TAG}"
           cd Packages/Skip/
 
+          # clear vestigial AppUI-debug.apk
+          rm -f *UI-*.*
+
           # verify all the artifact checksums
           shasum -a 256 *.* > checksums.txt
 
