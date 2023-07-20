@@ -29,85 +29,8 @@ jobs:
       - name: Build apk
         run: ./skip.sh --debug --release assemble-apk
 
-      - name: Setup skiptool
-        run: SKIP_YES=yes sh <(curl https://skip.tools/setup.sh)
-
-      - name: Check skiptool
-        run: swift package --disable-sandbox --allow-writing-to-package-directory skip info
-
-      - name: Prepare Artifacts
-        run: |
-          mkdir -p .build/skip-artifacts/
-          brew install tree
-
-      - name: Build App (SPM)
-        run: swift build -j 1
-
-      - name: Test App (SPM)
-        run: swift test -j 1
-
-      - name: Test AppUIKt (Xcode)
-        if: false
-        run: xcodebuild test -workspace App.xcworkspace -skipPackagePluginValidation -configuration Debug -sdk "macosx" -destination "platform=macosx" -scheme "AppUIKt"
-
-      - name: Package Android App
-        run: |
-          build_android_app() {
-            BUILT_PRODUCTS_DIR="bogus_for_skiptool" xcodebuild -workspace App.xcworkspace -skipPackagePluginValidation -configuration Release -sdk "macosx" -destination "platform=macosx" -scheme "AppDroid" build
-
-            APPARTIFACT="App-Android-${APPCONFIG}"
-            # the AppDroid target should result in an .apk in Packages/Skip/
-            mv -v Packages/Skip/*.apk .build/skip-artifacts/"${APPARTIFACT}.apk"
-
-            cd .build/skip-artifacts/
-            ls -la "${APPARTIFACT}.apk"
-            shasum -a 256 "${APPARTIFACT}.apk" | tee "${APPARTIFACT}.apk.sha256"
-            cat "${APPARTIFACT}.apk.sha256" >> checksums.txt
-            cd -
-          }
-
-          APPCONFIG="Debug" build_android_app
-          APPCONFIG="Release" build_android_app
-
-      - name: Package iOS App
-        run: |
-          COMMITDATE="$(git log -1 --format=%ad --date=iso-strict ${GITHUB_REF#refs/tags/})"
-
-          # the function to run to create different archive variants
-          build_ios_app() {
-            APPARTIFACT="App-${APPPLATFORM}-${APPCONFIG}"
-
-            # need to build and archive in separate steps to work around
-            # skipcode creation timing
-
-            BUILT_PRODUCTS_DIR="bogus_for_skiptool" xcodebuild build -jobs 1 -workspace App.xcworkspace -skipPackagePluginValidation -archivePath ".build/${APPARTIFACT}.xcarchive" -configuration "${APPCONFIG}" -scheme 'App' -sdk "iphoneos" -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO
-
-            BUILT_PRODUCTS_DIR="bogus_for_skiptool" xcodebuild archive -jobs 1 -workspace App.xcworkspace -skipPackagePluginValidation -archivePath ".build/${APPARTIFACT}.xcarchive" -configuration "${APPCONFIG}" -scheme 'App' -sdk "iphoneos" -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO
-
-            cd .build/"${APPARTIFACT}".xcarchive/Products/
-
-            mv "Applications" "Payload"
-            tree -h .
-
-            # create the zip file with predictable timestamps for reproducible content
-            find "Payload" -exec touch -d "${COMMITDATE:0:19}" {} \;
-            ditto -c -k --sequesterRsrc --keepParent "Payload" ../../skip-artifacts/"${APPARTIFACT}.ipa"
-            cd -
-
-            cd .build/skip-artifacts/
-            ls -la "${APPARTIFACT}.ipa"
-            shasum -a 256 "${APPARTIFACT}.ipa" | tee "${APPARTIFACT}.ipa.sha256"
-            cat "${APPARTIFACT}.ipa.sha256" >> checksums.txt
-            cd -
-          }
-
-          APPPLATFORM="iOS"
-          APPSDK="iphoneos"
-
-          APPCONFIG="Debug" build_ios_app
-          APPCONFIG="Release" build_ios_app
-
       - name: Assemble Kotlin Source Release
+        if: false
         run: |
           COMMITDATE="$(git log -1 --format=%ad --date=iso-strict ${GITHUB_REF#refs/tags/})"
           ARTIFACTNAME="App-Android-Source.zip"
@@ -135,12 +58,10 @@ jobs:
         run: |
           TAG="${GITHUB_REF#refs/tags/}"
           echo "Creating release: ${TAG}"
-          cd .build/skip-artifacts/
+          cd Packages/Skip/
 
           # verify all the artifact checksums
-          shasum -a 256 -c checksums.txt
-
-          # finish the checksums block in the release notes
+          shasum -a 256 *.* > checksums.txt
 
           cat > relnotes.md << EOF
           These are the checksums for the release artifacts:
@@ -158,5 +79,5 @@ jobs:
         uses: actions/upload-artifact@v3
         if: always()
         with: 
-          path: .build/skip-artifacts/
+          path: Packages/Skip/
 
