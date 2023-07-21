@@ -23,7 +23,7 @@ build:
         - block: 'defaultConfig'
           contents:
             - 'applicationId = "app.ui"'
-            - 'versionCode = if (project.hasProperty("versionCode")) { project.property("versionCode")?.toString()?.toInt() } else { 0 }'
+            - 'versionCode = if (project.hasProperty("versionCode")) { project.property("versionCode")?.toString()?.toInt() } else { 1 }'
             - 'versionName = if (project.hasProperty("versionName")) { project.property("versionName")?.toString() } else { "0.0.0" }'
         - block: 'buildTypes'
           contents:
