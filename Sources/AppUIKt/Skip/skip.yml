@@ -7,10 +7,10 @@ build:
         - 'id("com.android.library") version "8.0.1"'
     - block: 'android'
       contents:
-        - 'namespace = "app.ui"'
+        - 'namespace = if (project.hasProperty("applicationId")) { project.property("applicationId")?.toString() } else { "app.ui" }'
         - block: 'signingConfigs'
           contents:
-            - block: 'create("signing-demo")'
+            - block: 'create("app-signature")'
               contents:
                 # the path to the keystore used for signing
                 # default debug keystore created with:
@@ -22,13 +22,13 @@ build:
 
         - block: 'defaultConfig'
           contents:
-            - 'applicationId = "app.ui"'
-            - 'versionCode = if (project.hasProperty("versionCode")) { project.property("versionCode")?.toString()?.toInt() } else { 1 }'
-            - 'versionName = if (project.hasProperty("versionName")) { project.property("versionName")?.toString() } else { "0.0.0" }'
+            - 'applicationId = System.getenv("PRODUCT_BUNDLE_IDENTIFIER") ?: "app.ui"'
+            - 'versionCode = System.getenv("CURRENT_PROJECT_VERSION")?.toInt() ?: 1'
+            - 'versionName = System.getenv("MARKETING_VERSION") ?: "0.0.0"'
         - block: 'buildTypes'
           contents:
             - block: 'release'
               contents:
-                #- 'signingConfig = signingConfigs.getByName("signing-demo")'
+                #- 'signingConfig = signingConfigs.getByName("app-signature")'
                 - 'isMinifyEnabled = true'
                 - 'proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")'

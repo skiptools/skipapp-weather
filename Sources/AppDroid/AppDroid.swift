@@ -4,9 +4,6 @@ import SkipDrive
 /// The name of the app's Swift target in the Package.swift
 let appName = "AppUI"
 
-/// The name of the bundle, which must match the AndroidManifest.xml
-let appId = "app.ui"
-
 /// The name of the SPM package in which this app is bundled
 let packageName = "skipapp"
 
@@ -17,6 +14,11 @@ let packageName = "skipapp"
     static func main() async throws {
         do {
             print("Launching App in Android Emulator (via Gradle)")
+            guard let appId = ProcessInfo.processInfo.environment["PRODUCT_BUNDLE_IDENTIFIER"] else {
+                // Xcode should set this automatically from the App.xcconfig for you
+                fatalError("Environment variable PRODUCT_BUNDLE_IDENTIFIER must be set to app id")
+            }
+
             try await AndroidAppMain().launch(appName: appName, appId: appId, packageName: packageName)
         } catch {
             print("Error launching: \(error)")

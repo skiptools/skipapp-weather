@@ -52,6 +52,7 @@
 /* Begin PBXFileReference section */
 		49429E402A61DC3C00AA21A8 /* AppDroid */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AppDroid; sourceTree = BUILT_PRODUCTS_DIR; };
 		49429E422A61DC3C00AA21A8 /* AppDroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDroid.swift; sourceTree = "<group>"; };
+		496EB72F2A6AE4DE00C1253B /* App.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = App.xcconfig; sourceTree = "<group>"; };
 		49F90C282A52156200F06D93 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F90C2B2A52156200F06D93 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppMain.swift; path = Sources/App/AppMain.swift; sourceTree = SOURCE_ROOT; };
 		49F90C2F2A52156300F06D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sources/App/Assets.xcassets; sourceTree = "<group>"; };
@@ -119,6 +120,7 @@
 		49F90C1F2A52156200F06D93 = {
 			isa = PBXGroup;
 			children = (
+				496EB72F2A6AE4DE00C1253B /* App.xcconfig */,
 				49F90C2A2A52156200F06D93 /* App */,
 				49F90C3C2A52156300F06D93 /* AppTests */,
 				49429E412A61DC3C00AA21A8 /* AppDroid */,
@@ -345,7 +347,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "${BUILT_PRODUCTS_DIR}/skipgradle -PversionName=${MARKETING_VERSION} -PversionCode=${CURRENT_PROJECT_VERSION}\nmkdir -p Packages/Skip/artifacts/\nln -f ${BUILT_PRODUCTS_DIR}/../../../SourcePackages/plugins/skipapp.output/AppUIKt/skip-transpiler/AppUI/.build/AppUI/outputs/apk/*/*.apk Packages/Skip/artifacts/\n";
+			shellScript = "${BUILT_PRODUCTS_DIR}/skipgradle assemble${CONFIGURATION}\nmkdir -p Packages/Skip/artifacts/\nln -f ${BUILT_PRODUCTS_DIR}/../../../SourcePackages/plugins/skipapp.output/AppUIKt/skip-transpiler/AppUI/.build/AppUI/outputs/apk/*/*.apk Packages/Skip/artifacts/\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -427,6 +429,7 @@
 		};
 		49F90C4B2A52156300F06D93 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 496EB72F2A6AE4DE00C1253B /* App.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -459,7 +462,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -479,7 +481,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 0.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -490,6 +491,7 @@
 		};
 		49F90C4C2A52156300F06D93 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 496EB72F2A6AE4DE00C1253B /* App.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -522,7 +524,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -536,7 +537,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 0.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;

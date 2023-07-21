@@ -21,6 +21,7 @@ import AndroidxComposeUiGraphics
 import AndroidxComposeUiGraphicsVector
 import AndroidxComposeUiLayout
 import AndroidxComposeUiText
+import AndroidxComposeUiTextFont
 import AndroidxComposeUiTextStyle
 import AndroidxComposeUiToolingPreview
 import AndroidxComposeUiUnit
@@ -151,8 +152,28 @@ func ContentView() -> Void {
 
     // SKIP INSERT: @Composable
     func SettingsView() {
-        Row(verticalAlignment: Alignment.CenterVertically, horizontalArrangement: Arrangement.End) {
-            Text(text: AppTabs.settings.title, style: MaterialTheme.typography.subtitle1, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
+        Box(modifier: Modifier.fillMaxSize().padding(16.dp), contentAlignment: androidx.compose.ui.Alignment.Companion.Center) {
+            Column {
+                let context = androidx.compose.ui.platform.LocalContext.current
+                let applicationId = context.packageName
+                let packageInfo = context.packageManager.getPackageInfo(applicationId, 0)
+                let appName = context.packageManager.getApplicationLabel(packageInfo.applicationInfo).toString()
+                let versionName = packageInfo.versionName
+                let versionCode = packageInfo.versionCode
+
+                // SKIP INSERT: @Composable
+                func row(_ text: String, style: TextStyle) {
+                    Row(verticalAlignment: Alignment.CenterVertically, horizontalArrangement: Arrangement.End) {
+                        Text(text: text, style: style, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
+                    }
+                }
+
+                row(AppTabs.settings.title, style: MaterialTheme.typography.h3)
+                row("Name: \(appName)", style: MaterialTheme.typography.h6)
+                row("ID: \(applicationId)", style: MaterialTheme.typography.h6)
+                row("Version: \(versionName)", style: MaterialTheme.typography.h6)
+                row("Build: \(versionCode)", style: MaterialTheme.typography.h6)
+            }
         }
     }
 

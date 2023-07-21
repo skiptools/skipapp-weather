@@ -50,6 +50,13 @@
             ReferencedContainer = "container:App.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "PRODUCT_BUNDLE_IDENTIFIER"
+            value = "$(PRODUCT_BUNDLE_IDENTIFIER)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

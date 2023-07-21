@@ -131,22 +131,24 @@ public struct ContentView: View {
     }
 
     func settingsView() -> some View {
-        struct SettingsForm : View {
-            @State var doubleValue = 0.0
+        struct AppMetadataView: View {
+            // Get the app's information from the main bundle
+            let appDisplayName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? ""
+            let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
+            let appBuildNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? ""
+            let appBundleIdentifier = Bundle.main.bundleIdentifier ?? ""
 
             var body: some View {
-                Form {
-                    Section {
-                        Slider(value: $doubleValue, in: 0...100) {
-                            Text("Slider")
-                        }
-                    } header: {
-                        Text("Settings")
-                    }
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("App Name: \(appDisplayName)")
+                    Text("Version: \(appVersion)")
+                    Text("Build Number: \(appBuildNumber)")
+                    Text("Bundle Identifier: \(appBundleIdentifier)")
                 }
+                .padding()
             }
         }
-        return SettingsForm()
+        return AppMetadataView()
     }
 }
 
