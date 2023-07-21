@@ -168,7 +168,6 @@ func ContentView() -> Void {
                     }
                 }
 
-                row(AppTabs.settings.title, style: MaterialTheme.typography.h3)
                 row("Name: \(appName)", style: MaterialTheme.typography.h6)
                 row("ID: \(applicationId)", style: MaterialTheme.typography.h6)
                 row("Version: \(versionName)", style: MaterialTheme.typography.h6)

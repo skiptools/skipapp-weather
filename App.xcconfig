@@ -1,9 +1,9 @@
 // The configuration file for your Skip App (https://skip.tools)
 
-// PRODUCT_NAME is the app name
+// PRODUCT_NAME is the default title of the app
 PRODUCT_NAME = Skip App
 
-// PRODUCT_BUNDLE_IDENTIFIER
+// PRODUCT_BUNDLE_IDENTIFIER is the unique id for the app
 PRODUCT_BUNDLE_IDENTIFIER = app.ui
 
 // The semantic version for the app matching the git tag for the release
@@ -14,6 +14,18 @@ CURRENT_PROJECT_VERSION = 1
 
 // The category of the app should be one of: public.app-category.business, developer-tools, education, entertainment, finance, games, graphics-design, healthcare-fitness, lifestyle, medical, music, news, photography, productivity, reference, social-networking, sports, travel, utilities, video, weather
 APP_CATEGORY = public.app-category.utilities
+
+// this is used for Xcode's automatic plist generation
+INFOPLIST_KEY_CFBundleDisplayName = $(PRODUCT_NAME)
+
+// some other useful plist keys:
+//INFOPLIST_KEY_LSApplicationCategoryType
+//INFOPLIST_KEY_NSHumanReadableCopyright
+//INFOPLIST_KEY_NSCameraUsageDescription
+//INFOPLIST_KEY_NSContactsUsageDescription
+//INFOPLIST_KEY_NSLocationUsageDescription
+//INFOPLIST_KEY_UIStatusBarHidden
+//INFOPLIST_KEY_UIStatusBarStyle
 
 // On-device testing may need to override the bundle ID
 // PRODUCT_BUNDLE_IDENTIFIER[config=Debug][sdk=iphoneos*] = myorg.app.App-Name

@@ -26,33 +26,6 @@ while test "$#" -gt 0 -a -z "$stop"; do
             exit 1
         fi
         shift;shift;;
-    --appid)
-        PRODUCT_BUNDLE_IDENTIFIER="$2"
-        if test -z "$PRODUCT_BUNDLE_IDENTIFIER"; then
-            echo "skip.sh: error: --appid requires a bundle identifier string" >&2
-            exit 1
-        fi
-        shift;shift;;
-    --buildnum)
-        CURRENT_PROJECT_VERSION="$2"
-        if test -z "$CURRENT_PROJECT_VERSION"; then
-            echo "skip.sh: error: --buildnum requires a nonzero number" >&2
-            exit 1
-        fi
-        shift;shift;;
-    --version)
-        MARKETING_VERSION="$2"
-        if test -z "$MARKETING_VERSION"; then
-            echo "skip.sh: error: --version requires an argument" >&2
-            exit 1
-        fi
-        valid_semver_regex="^([0-9]+)\.([0-9]+)\.([0-9]+)(-([0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*))?(\+([0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*))?$"
-        if ! [[ $MARKETING_VERSION =~ $valid_semver_regex ]]; then
-            echo "skip.sh: error: --version requires valid semantic version x.y.z" >&2
-            exit 1
-        fi
-
-        shift;shift;;
     --clean)
         SKIP_CLEAN=1
         shift;;
@@ -116,7 +89,7 @@ assemble_ipa() {
 
     build_ipa() {
         ARCHIVE_PATH=".build/Skip/artifacts/${APPCONFIG}/${APPARTIFACT}.xcarchive"
-        BUILT_PRODUCTS_DIR="/tmp" xcodebuild -workspace App.xcworkspace -skipPackagePluginValidation -archivePath "${ARCHIVE_PATH}" -configuration "${APPCONFIG}" -scheme "App" -sdk "iphoneos" -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO MARKETING_VERSION="${MARKETING_VERSION:-0.0.0}" CURRENT_PROJECT_VERSION="${CURRENT_PROJECT_VERSION:-1}" PRODUCT_BUNDLE_IDENTIFIER=${PRODUCT_BUNDLE_IDENTIFIER:-"app.ui"} archive
+        BUILT_PRODUCTS_DIR="/tmp" xcodebuild -workspace App.xcworkspace -skipPackagePluginValidation -archivePath "${ARCHIVE_PATH}" -configuration "${APPCONFIG}" -scheme "App" -sdk "iphoneos" -destination "generic/platform=iOS" CODE_SIGNING_ALLOWED=NO archive
 
         cd "${ARCHIVE_PATH}"/Products/
         mv "Applications" "Payload"
@@ -148,7 +121,7 @@ assemble_apk() {
     echo "Assembling apk…"
 
     build_apk() {
-        BUILT_PRODUCTS_DIR="/tmp" xcodebuild -workspace App.xcworkspace -skipPackagePluginValidation -configuration ${APPCONFIG} -sdk "macosx" -destination "platform=macosx" -scheme "AppDroid" CODE_SIGNING_ALLOWED=NO MARKETING_VERSION="${MARKETING_VERSION:-0.0.0}" CURRENT_PROJECT_VERSION="${CURRENT_PROJECT_VERSION:-1}" PRODUCT_BUNDLE_IDENTIFIER=${PRODUCT_BUNDLE_IDENTIFIER:-"app.ui"} build
+        BUILT_PRODUCTS_DIR="/tmp" xcodebuild -workspace App.xcworkspace -skipPackagePluginValidation -configuration ${APPCONFIG} -sdk "macosx" -destination "platform=macosx" -scheme "AppDroid" CODE_SIGNING_ALLOWED=NO build
 
         APPARTIFACT="App-Android-${APPCONFIG}"
 
@@ -156,10 +129,8 @@ assemble_apk() {
         # fix the name of the release and debug apks
         if [ "${APPCONFIG}" == "Release" ]; then
             mv "${SKIP_DESTDIR}"/AppUI-release-unsigned.apk "${SKIP_DESTDIR}"/App.apk
-            aapt dump badging "${SKIP_DESTDIR}"/App.apk | head
         else
             mv "${SKIP_DESTDIR}"/AppUI-debug.apk "${SKIP_DESTDIR}"/App-debug.apk
-            aapt dump badging "${SKIP_DESTDIR}"/App-debug.apk | head
         fi
 
         ls -la "${SKIP_DESTDIR}"/

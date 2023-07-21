@@ -50,10 +50,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		49429E402A61DC3C00AA21A8 /* AppDroid */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AppDroid; sourceTree = BUILT_PRODUCTS_DIR; };
+		49429E402A61DC3C00AA21A8 /* Skip App */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Skip App"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49429E422A61DC3C00AA21A8 /* AppDroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDroid.swift; sourceTree = "<group>"; };
 		496EB72F2A6AE4DE00C1253B /* App.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = App.xcconfig; sourceTree = "<group>"; };
-		49F90C282A52156200F06D93 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		49F90C282A52156200F06D93 /* Skip App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skip App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F90C2B2A52156200F06D93 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppMain.swift; path = Sources/App/AppMain.swift; sourceTree = SOURCE_ROOT; };
 		49F90C2F2A52156300F06D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sources/App/Assets.xcassets; sourceTree = "<group>"; };
 		49F90C312A52156300F06D93 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = App.entitlements; path = Sources/App/App.entitlements; sourceTree = "<group>"; };
@@ -132,10 +132,10 @@
 		49F90C292A52156200F06D93 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				49F90C282A52156200F06D93 /* App.app */,
+				49F90C282A52156200F06D93 /* Skip App.app */,
 				49F90C392A52156300F06D93 /* AppTests.xctest */,
 				49F90C432A52156300F06D93 /* AppUITests.xctest */,
-				49429E402A61DC3C00AA21A8 /* AppDroid */,
+				49429E402A61DC3C00AA21A8 /* Skip App */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,7 +193,7 @@
 				49070FB62A61E69600EC3110 /* AppUIKt */,
 			);
 			productName = AppDroid;
-			productReference = 49429E402A61DC3C00AA21A8 /* AppDroid */;
+			productReference = 49429E402A61DC3C00AA21A8 /* Skip App */;
 			productType = "com.apple.product-type.tool";
 		};
 		49F90C272A52156200F06D93 /* App */ = {
@@ -214,7 +214,7 @@
 				49F90C592A5217DC00F06D93 /* AppUI */,
 			);
 			productName = App;
-			productReference = 49F90C282A52156200F06D93 /* App.app */;
+			productReference = 49F90C282A52156200F06D93 /* Skip App.app */;
 			productType = "com.apple.product-type.application";
 		};
 		49F90C382A52156300F06D93 /* AppTests */ = {
@@ -407,7 +407,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
@@ -420,7 +419,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -566,8 +564,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.4;
-				PRODUCT_BUNDLE_IDENTIFIER = app.App;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -599,8 +595,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.4;
-				PRODUCT_BUNDLE_IDENTIFIER = app.App;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
