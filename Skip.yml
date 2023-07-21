@@ -1,6 +1,6 @@
 # Main configuration file for Skip
 
-# Codebases over 15KB must have a valid Skip license.
+# Codebases over 20KB must have a valid Skip license.
 # Keys are specified with "skip-license" in Skip.yml or the (gitignored) .skip.yml
 # or in the SKIP_LICENSE environment variable for CI usage.
 #

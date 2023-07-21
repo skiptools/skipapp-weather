@@ -24,10 +24,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set MARKETING_VERSION
-        run: echo "MARKETING_VERSION=$(git describe --tags --abbrev=0 --match '[0-9]*\.[0-9]*\.[0-9]*' --first-parent)" >> $GITHUB_ENV
+        run: echo "MARKETING_VERSION = $(git describe --tags --abbrev=0 --match '[0-9]*\.[0-9]*\.[0-9]*' --first-parent)" >> App.xcconfig
 
       - name: Set PRODUCT_VERSION
-        run: echo "PRODUCT_VERSION=$(git rev-list --count HEAD)" >> $GITHUB_ENV
+        run: echo "PRODUCT_VERSION = $(git rev-list --count HEAD)" >> App.xcconfig
 
       - name: Build ipa
         run: ./skip.sh assemble-ipa
