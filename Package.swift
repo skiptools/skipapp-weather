@@ -48,7 +48,7 @@ let package = Package(
         .target(name: "AppUIKt",
             dependencies: ["AppUI", "AppModel", "AppModelKt", .product(name: "SkipUIKt", package: "skiphub")],
             resources: [.process("Skip")],
-            plugins: [.plugin(name: "transpile", package: "skip"), .plugin(name: "skipbuild", package: "skip")]
+            plugins: [.plugin(name: "transpile", package: "skip")]
         ),
         .testTarget(name: "AppUIKtTests",
             dependencies: ["AppUIKt", .product(name: "SkipUnitKt", package: "skiphub")], resources: [.process("Skip")],
