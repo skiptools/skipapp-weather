@@ -11,6 +11,8 @@
 		493A5C402A6B7F8300379601 /* AppModelKt in Frameworks */ = {isa = PBXBuildFile; productRef = 493A5C3F2A6B7F8300379601 /* AppModelKt */; };
 		493A5C422A6B7F8300379601 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 493A5C412A6B7F8300379601 /* AppUI */; };
 		493A5C442A6B7F8300379601 /* AppUIKt in Frameworks */ = {isa = PBXBuildFile; productRef = 493A5C432A6B7F8300379601 /* AppUIKt */; };
+		493A5C522A6B851600379601 /* AppModel in Frameworks */ = {isa = PBXBuildFile; productRef = 493A5C512A6B851600379601 /* AppModel */; };
+		493A5C542A6B851600379601 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 493A5C532A6B851600379601 /* AppUI */; };
 		49429E432A61DC3C00AA21A8 /* AppDroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49429E422A61DC3C00AA21A8 /* AppDroid.swift */; };
 		49429E592A61E02A00AA21A8 /* SkipDrive in Frameworks */ = {isa = PBXBuildFile; productRef = 49429E582A61E02A00AA21A8 /* SkipDrive */; };
 		49813B532A521AA700612428 /* AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C472A52156300F06D93 /* AppUITests.swift */; };
@@ -84,6 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				493A5C542A6B851600379601 /* AppUI in Frameworks */,
+				493A5C522A6B851600379601 /* AppModel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +225,8 @@
 			);
 			name = App;
 			packageProductDependencies = (
+				493A5C512A6B851600379601 /* AppModel */,
+				493A5C532A6B851600379601 /* AppUI */,
 			);
 			productName = App;
 			productReference = 49F90C282A52156200F06D93 /* Skip App.app */;
@@ -802,6 +808,14 @@
 		493A5C4B2A6B817000379601 /* AppUIKt */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppUIKt;
+		};
+		493A5C512A6B851600379601 /* AppModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppModel;
+		};
+		493A5C532A6B851600379601 /* AppUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppUI;
 		};
 		49429E582A61E02A00AA21A8 /* SkipDrive */ = {
 			isa = XCSwiftPackageProductDependency;
