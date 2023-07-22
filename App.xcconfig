@@ -18,22 +18,10 @@ APP_CATEGORY = public.app-category.utilities
 // this is used for Xcode's automatic plist generation
 INFOPLIST_KEY_CFBundleDisplayName = $(PRODUCT_NAME)
 
-// some other useful plist keys:
-//INFOPLIST_KEY_LSApplicationCategoryType
-//INFOPLIST_KEY_NSHumanReadableCopyright
-//INFOPLIST_KEY_NSCameraUsageDescription
-//INFOPLIST_KEY_NSContactsUsageDescription
-//INFOPLIST_KEY_NSLocationUsageDescription
-//INFOPLIST_KEY_UIStatusBarHidden
-//INFOPLIST_KEY_UIStatusBarStyle
-
 // On-device testing may need to override the bundle ID
 // PRODUCT_BUNDLE_IDENTIFIER[config=Debug][sdk=iphoneos*] = myorg.app.App-Name
 
-// FRAMEWORK_SEARCH_PATHS = $(inherited) $(PROJECT_DIR)
-// ONLY_ACTIVE_ARCH[config=Debug][sdk=*][arch=*] = YES
-
-// Development team ID for on-device and catalyst testing
+// Development team ID for on-device testing
 // DEVELOPMENT_TEAM = 
 
 IPHONEOS_DEPLOYMENT_TARGET = 16.0

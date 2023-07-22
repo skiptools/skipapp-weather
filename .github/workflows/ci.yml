@@ -33,7 +33,7 @@ jobs:
         run: ./skip.sh assemble-ipa
 
       - name: Build apk
-        run: ./skip.sh assemble-apk || ./skip.sh assemble-apk
+        run: ./skip.sh assemble-apk
 
       - name: Assemble Kotlin Source Release
         if: false
