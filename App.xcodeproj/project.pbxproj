@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		493A5C3E2A6B7F8300379601 /* AppModel in Frameworks */ = {isa = PBXBuildFile; productRef = 493A5C3D2A6B7F8300379601 /* AppModel */; };
 		493A5C402A6B7F8300379601 /* AppModelKt in Frameworks */ = {isa = PBXBuildFile; productRef = 493A5C3F2A6B7F8300379601 /* AppModelKt */; };
-		493A5C422A6B7F8300379601 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 493A5C412A6B7F8300379601 /* AppUI */; };
 		493A5C442A6B7F8300379601 /* AppUIKt in Frameworks */ = {isa = PBXBuildFile; productRef = 493A5C432A6B7F8300379601 /* AppUIKt */; };
 		493A5C522A6B851600379601 /* AppModel in Frameworks */ = {isa = PBXBuildFile; productRef = 493A5C512A6B851600379601 /* AppModel */; };
 		493A5C542A6B851600379601 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 493A5C532A6B851600379601 /* AppUI */; };
@@ -74,9 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				493A5C422A6B7F8300379601 /* AppUI in Frameworks */,
 				493A5C442A6B7F8300379601 /* AppUIKt in Frameworks */,
-				493A5C3E2A6B7F8300379601 /* AppModel in Frameworks */,
 				49429E592A61E02A00AA21A8 /* SkipDrive in Frameworks */,
 				493A5C402A6B7F8300379601 /* AppModelKt in Frameworks */,
 			);
@@ -194,17 +190,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				493A5C462A6B817000379601 /* PBXTargetDependency */,
-				493A5C482A6B817000379601 /* PBXTargetDependency */,
-				493A5C4A2A6B817000379601 /* PBXTargetDependency */,
-				493A5C4C2A6B817000379601 /* PBXTargetDependency */,
 			);
 			name = AppDroid;
 			packageProductDependencies = (
 				49429E582A61E02A00AA21A8 /* SkipDrive */,
-				493A5C3D2A6B7F8300379601 /* AppModel */,
 				493A5C3F2A6B7F8300379601 /* AppModelKt */,
-				493A5C412A6B7F8300379601 /* AppUI */,
 				493A5C432A6B7F8300379601 /* AppUIKt */,
 			);
 			productName = AppDroid;
@@ -403,22 +393,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		493A5C462A6B817000379601 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 493A5C452A6B817000379601 /* AppModel */;
-		};
-		493A5C482A6B817000379601 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 493A5C472A6B817000379601 /* AppModelKt */;
-		};
-		493A5C4A2A6B817000379601 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 493A5C492A6B817000379601 /* AppUI */;
-		};
-		493A5C4C2A6B817000379601 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 493A5C4B2A6B817000379601 /* AppUIKt */;
-		};
 		49F90C3B2A52156300F06D93 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 49F90C272A52156200F06D93 /* App */;
@@ -777,35 +751,11 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		493A5C3D2A6B7F8300379601 /* AppModel */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppModel;
-		};
 		493A5C3F2A6B7F8300379601 /* AppModelKt */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppModelKt;
 		};
-		493A5C412A6B7F8300379601 /* AppUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppUI;
-		};
 		493A5C432A6B7F8300379601 /* AppUIKt */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppUIKt;
-		};
-		493A5C452A6B817000379601 /* AppModel */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppModel;
-		};
-		493A5C472A6B817000379601 /* AppModelKt */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppModelKt;
-		};
-		493A5C492A6B817000379601 /* AppUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppUI;
-		};
-		493A5C4B2A6B817000379601 /* AppUIKt */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppUIKt;
 		};
