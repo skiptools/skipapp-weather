@@ -29,6 +29,9 @@ jobs:
       - name: Set PRODUCT_VERSION
         run: echo "PRODUCT_VERSION = $(git rev-list --count HEAD)" >> App.xcconfig
 
+      - name: Set COMMIT_DATE
+        run: echo "COMMIT_DATE=$(git log -1 --format=%ad --date=iso-strict ${GITHUB_REF#refs/tags/})" > $GITHUB_ENV
+
       - name: Build ipa
         run: ./skip.sh assemble-ipa
 
@@ -36,9 +39,7 @@ jobs:
         run: ./skip.sh assemble-apk || ./skip.sh assemble-apk || ./skip.sh assemble-apk || ./skip.sh assemble-apk
 
       - name: Assemble Kotlin Source Release
-        if: false
         run: |
-          COMMITDATE="$(git log -1 --format=%ad --date=iso-strict ${GITHUB_REF#refs/tags/})"
           ARTIFACTNAME="App-Android-Source.zip"
 
           tree -I build -l ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/
@@ -48,14 +49,8 @@ jobs:
           # the zip exclude pattern does not seem to exclude these as advertised, so we delete them
           rm -rf .gradle .build */.build
           # create the zip file with predictable timestamps for reproducible content
-          find . -exec touch -d "${COMMITDATE:0:19}" {} \;
-          zip -r ../../../../../skip-artifacts/"${ARTIFACTNAME}" . -x ".build" -x "*/.gradle" -x "*/.build" -x "*/build"
-          cd ../../../../../skip-artifacts/
-
-          unzip -t "${ARTIFACTNAME}"
-          ls -lah "${ARTIFACTNAME}"
-          shasum -a 256 "${ARTIFACTNAME}" | tee "${ARTIFACTNAME}.sha256"
-          cat "${ARTIFACTNAME}.sha256" >> checksums.txt
+          find . -exec touch -d "${COMMIT_DATE:0:19}" {} \;
+          zip -r ../../../../../Packages/Skip/artifacts/"${ARTIFACTNAME}" . -x ".build" -x "*/.gradle" -x "*/.build" -x "*/build"
 
       - name: "Create Release"
         if: startsWith(github.ref, 'refs/tags/')
