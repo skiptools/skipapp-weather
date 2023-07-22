@@ -29,6 +29,9 @@ jobs:
       - name: Set PRODUCT_VERSION
         run: echo "PRODUCT_VERSION = $(git rev-list --count HEAD)" >> App.xcconfig
 
+      - name: Test Model
+        run: BUILT_PRODUCTS_DIR=.build xcodebuild -scheme AppModelKt test
+
       - name: Build ipa
         run: ./skip.sh assemble-ipa
 
