@@ -91,7 +91,7 @@ assemble_ipa() {
 
     build_ipa() {
         ARCHIVE_PATH=".build/Skip/artifacts/${APPCONFIG}/${APPARTIFACT}.xcarchive"
-        BUILT_PRODUCTS_DIR=".build" xcodebuild -skipPackagePluginValidation -archivePath "${ARCHIVE_PATH}" -configuration "${APPCONFIG}" -scheme "App" -sdk "iphoneos" -destination "generic/platform=iOS" -jobs 1 archive CODE_SIGNING_ALLOWED=YES CODE_SIGNING_IDENTITY="-" CODE_SIGN_STYLE=Manual
+        BUILT_PRODUCTS_DIR=".build" xcodebuild -skipPackagePluginValidation -archivePath "${ARCHIVE_PATH}" -configuration "${APPCONFIG}" -scheme "App" -sdk "iphoneos" -destination "generic/platform=iOS" -jobs 1 archive CODE_SIGNING_ALLOWED=NO
 
         cd "${ARCHIVE_PATH}"/Products/
         mv "Applications" "Payload"
