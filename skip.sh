@@ -128,9 +128,9 @@ assemble_apk() {
         APPARTIFACT="App-Android-${APPCONFIG}"
 
         mkdir -p "${SKIP_DESTDIR}"
-        # fix the name of the release and debug apks
+        # fix the name of the default release and debug apks
         if [ "${APPCONFIG}" == "Release" ]; then
-            mv "${SKIP_DESTDIR}"/AppUI-release-unsigned.apk "${SKIP_DESTDIR}"/App.apk
+            mv "${SKIP_DESTDIR}"/AppUI-release.apk "${SKIP_DESTDIR}"/App.apk
         else
             mv "${SKIP_DESTDIR}"/AppUI-debug.apk "${SKIP_DESTDIR}"/App-debug.apk
         fi

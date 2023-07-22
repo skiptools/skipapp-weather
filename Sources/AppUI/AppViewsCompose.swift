@@ -170,7 +170,7 @@ func ContentView() -> Void {
 
                 row("Name: \(appName)", style: MaterialTheme.typography.h6)
                 row("ID: \(applicationId)", style: MaterialTheme.typography.h6)
-                row("Version: \(versionName)", style: MaterialTheme.typography.h6)
+                row("Version: \(versionName) \(BuildConfig.DEBUG ? "(debug)" : "(release)")", style: MaterialTheme.typography.h6)
                 row("Build: \(versionCode)", style: MaterialTheme.typography.h6)
             }
         }

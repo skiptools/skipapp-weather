@@ -8,28 +8,29 @@ build:
     - block: 'android'
       contents:
         - 'namespace = if (project.hasProperty("applicationId")) { project.property("applicationId")?.toString() } else { "app.ui" }'
-        - block: 'signingConfigs'
-          contents:
-            - block: 'create("app-signature")'
-              contents:
-                # the path to the keystore used for signing
-                # default debug keystore created with:
-                # keytool -genkey -v -keystore debug.keystore -alias androiddebugkey -storepass android -keypass android -keyalg RSA -keysize 2048 -validity 10000
-                #- 'storeFile = file("debug.keystore")'
-                #- 'storePassword = "android"'
-                #- 'keyAlias = "androiddebugkey"'
-                #- 'keyPassword = "android"'
-
         - block: 'defaultConfig'
           contents:
+            # transfer App.xcconfig configuration over to the Android metadata
             - 'applicationId = System.getenv("PRODUCT_BUNDLE_IDENTIFIER") ?: "app.ui"'
             - 'versionCode = System.getenv("CURRENT_PROJECT_VERSION")?.toInt() ?: 1'
             - 'versionName = System.getenv("MARKETING_VERSION") ?: "0.0.0"'
             - 'manifestPlaceholders["PRODUCT_NAME"] = System.getenv("PRODUCT_NAME") ?: "Skip App"'
+        - block: 'buildFeatures'
+          contents:
+            - 'buildConfig = true'
+        - block: 'signingConfigs'
+          contents:
+            - block: 'create("app-signature")'
+              contents:
+                # the path to the keystore used for signing; by default use the same as the auto-generated debug keystore
+                - 'storeFile = file("${System.getProperty("user.home")}/.android/debug.keystore")'
+                - 'keyAlias = "androiddebugkey"'
+                - 'storePassword = "android"'
+                - 'keyPassword = "android"'
         - block: 'buildTypes'
           contents:
             - block: 'release'
               contents:
-                #- 'signingConfig = signingConfigs.getByName("app-signature")'
+                - 'signingConfig = signingConfigs.getByName("app-signature")'
                 - 'isMinifyEnabled = true'
                 - 'proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")'
