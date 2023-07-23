@@ -9,21 +9,14 @@ PRODUCT_BUNDLE_IDENTIFIER = app.ui
 // The semantic version for the app matching the git tag for the release
 MARKETING_VERSION = 0.0.1
 
-// The monotonically increasing number specifying the internal app version
+// The monotonically increasing build number specifying the internal app version
 CURRENT_PROJECT_VERSION = 1
 
-// The category of the app should be one of: public.app-category.business, developer-tools, education, entertainment, finance, games, graphics-design, healthcare-fitness, lifestyle, medical, music, news, photography, productivity, reference, social-networking, sports, travel, utilities, video, weather
-APP_CATEGORY = public.app-category.utilities
-
-// this is used for Xcode's automatic plist generation
-INFOPLIST_KEY_CFBundleDisplayName = $(PRODUCT_NAME)
+IPHONEOS_DEPLOYMENT_TARGET = 16.0
+MACOSX_DEPLOYMENT_TARGET = 13.0
 
 // On-device testing may need to override the bundle ID
 // PRODUCT_BUNDLE_IDENTIFIER[config=Debug][sdk=iphoneos*] = myorg.app.App-Name
 
 // Development team ID for on-device testing
-// DEVELOPMENT_TEAM = 
-
-IPHONEOS_DEPLOYMENT_TARGET = 16.0
-MACOSX_DEPLOYMENT_TARGET = 13.0
-
+// DEVELOPMENT_TEAM =

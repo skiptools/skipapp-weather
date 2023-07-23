@@ -40,7 +40,7 @@ class Model : ObservableObject {
 
 public struct ContentView: View {
     @ObservedObject var model = Model()
-    @State private var selectedTab = AppTabs.allCases[0]
+    @State private var selectedTab = AppTabs.defaultTab
 
     public init() {
     }

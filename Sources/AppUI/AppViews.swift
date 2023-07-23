@@ -13,6 +13,9 @@ enum AppTabs : String, CaseIterable {
     case search
     case settings
 
+    /// The initial default tab shown in the app
+    static let defaultTab = AppTabs.favorites
+
     var title: String {
         switch self {
         case .home: return NSLocalizedString("Home", comment: "Home tab title")

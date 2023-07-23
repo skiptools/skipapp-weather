@@ -25,6 +25,9 @@ import AndroidxComposeUiTextFont
 import AndroidxComposeUiTextStyle
 import AndroidxComposeUiToolingPreview
 import AndroidxComposeUiUnit
+// SKIP INSERT: import kotlinx.coroutines.launch
+// SKIP INSERT: import kotlinx.coroutines.withContext
+// SKIP INSERT: import kotlinx.coroutines.Dispatchers
 
 /// AndroidAppMain is the `android.app.Application` entry point, and must match `application android:name` in the AndroidMainfest.xml file
 public class AndroidAppMain : Application {
@@ -80,7 +83,7 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
 func ContentView() -> Void {
     let model = Stuff()
     let rows = remember { Stuff().things.toList().toMutableStateList() }
-    var selectedTab = remember { mutableStateOf(AppTabs.allCases[0]) }
+    var selectedTab = remember { mutableStateOf(AppTabs.defaultTab) }
 
     func addRow() {
         logger.info("Tapped add button")
@@ -145,8 +148,41 @@ func ContentView() -> Void {
 
     // SKIP INSERT: @Composable
     func FavoritesView() {
+        let scope = rememberCoroutineScope()
+        var bytesDownloaded = remember { mutableStateOf(0) }
+
         Row(verticalAlignment: Alignment.CenterVertically, horizontalArrangement: Arrangement.End) {
-            Text(text: AppTabs.favorites.title, style: MaterialTheme.typography.subtitle1, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
+            //Text(text: AppTabs.favorites.title, style: MaterialTheme.typography.subtitle1, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
+            Column {
+                Button(onClick: {
+                    //let contents = java.net.URL("https://skip.tools").readText() // android.os.NetworkOnMainThreadException
+
+                    logger.log("button click")
+                    scope.launch {
+                        logger.log("in scope")
+
+                        withContext(Dispatchers.IO) {
+                            logger.log("dispatching HTTP request")
+
+                            //logger.log("contents: \(contents.length)")
+                            // TODO: fix default timeout
+                            // java.net.SocketTimeoutException: failed to connect to skip.tools/75.119.205.21 (port 443) from /10.0.2.16 (port 59564) after 60ms
+                            //let (data, response) = try await URLSession.shared.data(for: URLRequest(url: AppTabs.searchPage))
+                            //logger.log("response: \(response) data: \(data.count)")
+                            //bytesDownloaded.value = data.count
+
+                            let contents = java.net.URL(AppTabs.searchPage.absoluteString).readText()
+                            bytesDownloaded.value = contents.length
+                        }
+                    }
+                }) {
+                    Text("Fetch")
+                }
+            }
+
+            Column {
+                Text("Data: \(bytesDownloaded.value)")
+            }
         }
     }
 

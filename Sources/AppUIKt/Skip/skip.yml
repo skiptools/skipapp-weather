@@ -7,7 +7,7 @@ build:
         - 'id("com.android.library") version "8.0.1"'
     - block: 'android'
       contents:
-        - 'namespace = if (project.hasProperty("applicationId")) { project.property("applicationId")?.toString() } else { "app.ui" }'
+        - 'namespace = "app.ui"'
         - block: 'defaultConfig'
           contents:
             # transfer App.xcconfig configuration over to the Android metadata

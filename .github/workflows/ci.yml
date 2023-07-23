@@ -40,18 +40,11 @@ jobs:
 
       - name: Assemble Kotlin Source Release
         run: |
-          ARTIFACTNAME="App-Android-Source.zip"
-
-          #cd .build/plugins/outputs/skipapp/AppUIKt/skip-transpiler/
           cd ~/Library/Developer/Xcode/DerivedData/*/SourcePackages/plugins/skipapp.output/AppUIKt/skip-transpiler/
-
-          # the zip exclude pattern does not seem to exclude these as advertised, so we delete them
           rm -rf .gradle .build */.build
-          # create the zip file with predictable timestamps for reproducible content
+          # create the zip file with predictable timestamps for reproducibility
           find . -exec touch -d "${COMMIT_DATE:0:19}" {} \;
-          zip -r /tmp/"${ARTIFACTNAME}" . -x ".build" -x "*/.gradle" -x "*/.build" -x "*/build"
-          cd -
-          mv /tmp/"${ARTIFACTNAME}" Packages/Skip/artifacts/
+          zip -r ${OLDPWD}/Packages/Skip/artifacts/App-Android-Source.zip . -x ".build" -x "*/.gradle" -x "*/.build" -x "*/build"
 
       - name: "Create Release"
         if: startsWith(github.ref, 'refs/tags/')
