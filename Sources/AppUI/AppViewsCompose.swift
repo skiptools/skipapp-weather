@@ -162,21 +162,19 @@ func ContentView() -> Void {
                         logger.log("in scope")
 
                         withContext(Dispatchers.IO) {
-                            logger.log("dispatching HTTP request")
-
-                            //logger.log("contents: \(contents.length)")
-                            // TODO: fix default timeout
-                            // java.net.SocketTimeoutException: failed to connect to skip.tools/75.119.205.21 (port 443) from /10.0.2.16 (port 59564) after 60ms
-                            //let (data, response) = try await URLSession.shared.data(for: URLRequest(url: AppTabs.searchPage))
-                            //logger.log("response: \(response) data: \(data.count)")
-                            //bytesDownloaded.value = data.count
-
-                            let contents = java.net.URL(AppTabs.searchPage.absoluteString).readText()
-                            bytesDownloaded.value = contents.length
+                            do {
+                                logger.log("dispatching HTTP request")
+                                let (data, response) = try await URLSession.shared.data(for: URLRequest(url: AppTabs.searchPage))
+                                logger.log("response: \(response) data: \(data.count)")
+                                bytesDownloaded.value = data.count
+                            } catch {
+                                logger.error("error fetching data: \(error)")
+                                //error.printStackTrace()
+                            }
                         }
                     }
                 }) {
-                    Text("Fetch")
+                    AppText("Fetch")
                 }
             }
 

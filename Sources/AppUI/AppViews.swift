@@ -1,31 +1,27 @@
+// An example of common UI code shared between Compose and SwiftUI
 import Foundation
-import OSLog
-import AppModel
+#if SKIP
+import AndroidxComposeRuntime
 
-/// The logger to use for the app. Directs to the system log on Darwin and logcat on Android.
-let logger = Logger(subsystem: "app.ui", category: "AppUI")
+import AndroidxComposeMaterial.Text
+import AndroidxComposeFoundationLayout.Column
+import AndroidxComposeFoundationLayout.Row
 
-/// The tabs for the app.
-enum AppTabs : String, CaseIterable {
-    case home
-    case device
-    case favorites
-    case search
-    case settings
+typealias ComposableView = Void
+#else
+import SwiftUI
 
-    /// The initial default tab shown in the app
-    static let defaultTab = AppTabs.favorites
+typealias Column = VStack
+typealias Row = HStack
 
-    var title: String {
-        switch self {
-        case .home: return NSLocalizedString("Home", comment: "Home tab title")
-        case .device: return NSLocalizedString("Browse", comment: "Device tab title")
-        case .favorites: return NSLocalizedString("Favorites", comment: "Favorites tab title")
-        case .search: return NSLocalizedString("Search", comment: "Search tab title")
-        case .settings: return NSLocalizedString("Settings", comment: "Settings tab title")
+typealias ComposableView = View
+#endif
+
+// SKIP INSERT: @Composable
+func AppText(text: String) -> some ComposableView {
+    Column {
+        Row {
+            Text(text)
         }
     }
-
-    /// The default web page to load on the "search" page
-    static let searchPage: URL = URL(string: "https://skip.tools")!
 }
