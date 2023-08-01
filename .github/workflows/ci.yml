@@ -32,11 +32,14 @@ jobs:
       - name: Set COMMIT_DATE
         run: echo "COMMIT_DATE=$(git log -1 --format=%ad --date=iso-strict ${GITHUB_REF#refs/tags/})" > $GITHUB_ENV
 
+      - name: Run Tests
+        run: swift test
+
       - name: Build ipa
         run: ./skip.sh assemble-ipa
 
       - name: Build apk
-        run: ./skip.sh assemble-apk || ./skip.sh assemble-apk || ./skip.sh assemble-apk || ./skip.sh assemble-apk
+        run: ./skip.sh assemble-apk
 
       - name: Assemble Kotlin Source Release
         run: |

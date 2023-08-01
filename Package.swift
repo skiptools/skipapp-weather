@@ -12,11 +12,12 @@ let package = Package(
         .library(name: "AppModelKt", targets: ["AppModelKt"]),
     ],
     dependencies: [
-        .package(url: "https://skip.tools/skiptools/skip.git", from: "0.5.13"),
-        .package(url: "https://github.com/skiptools/skiphub.git", from: "0.4.10"),
+        .package(url: "https://skip.tools/skiptools/skip.git", from: "0.0.0"),
+        .package(url: "https://github.com/skiptools/skiphub.git", from: "0.0.0"),
     ],
     targets: [
-        .executableTarget(name: "AppDroid", dependencies: [ "AppUIKt", .product(name: "SkipDrive", package: "skip") ]),
+        .executableTarget(name: "AppDroid",
+            dependencies: ["AppUIKt", .product(name: "SkipDrive", package: "skip")]),
 
         // The Swift side of the app's data model
         .target(name: "AppModel",
@@ -28,13 +29,13 @@ let package = Package(
 
         // The Kotlin side of the app's data model (transpiled from AppModel)
         .target(name: "AppModelKt",
-            dependencies: [ "AppModel", .product(name: "SkipFoundationKt", package: "skiphub") ],
+            dependencies: [ "AppModel", .product(name: "SkipUIKt", package: "skiphub") ],
             resources: [.process("Skip")],
             plugins: [.plugin(name: "transpile", package: "skip")]),
         .testTarget(name: "AppModelKtTests",
-            dependencies: ["AppModelKt", .product(name: "SkipUnitKt", package: "skiphub")], resources: [.process("Skip")], plugins: [
-            .plugin(name: "transpile", package: "skip")
-        ]),
+            dependencies: ["AppModelKt", .product(name: "SkipUnitKt", package: "skiphub")],
+            resources: [.process("Skip")],
+            plugins: [.plugin(name: "transpile", package: "skip")]),
 
         // The Swift side of the app's user interface (SwiftUI)
         .target(name: "AppUI",
@@ -48,8 +49,7 @@ let package = Package(
         .target(name: "AppUIKt",
             dependencies: ["AppUI", "AppModel", "AppModelKt", .product(name: "SkipUIKt", package: "skiphub")],
             resources: [.process("Skip")],
-            plugins: [.plugin(name: "transpile", package: "skip"), .plugin(name: "skipbuild", package: "skip")]
-        ),
+            plugins: [.plugin(name: "transpile", package: "skip"), .plugin(name: "skipbuild", package: "skip")]),
         .testTarget(name: "AppUIKtTests",
             dependencies: ["AppUIKt", .product(name: "SkipUnitKt", package: "skiphub")], resources: [.process("Skip")],
             plugins: [.plugin(name: "transpile", package: "skip")]),
