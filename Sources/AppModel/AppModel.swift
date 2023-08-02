@@ -1,5 +1,8 @@
 import Foundation
 import Combine
+import OSLog
+
+let logger = Logger(subsystem: "app.ui", category: "AppUI")
 
 // A sample app model
 public class Stuff {
@@ -38,6 +41,9 @@ public extension Stuff {
 }
 /// A lat/lon location (in degrees), with an optional altitude (in meters).
 public struct Location : Codable {
+    // Boston
+    public static let `default` = Location(latitude: 42.36, longitude: -71.05)
+
     public var latitude: Double
     public var longitude: Double
     public var altitude: Double?
@@ -76,6 +82,7 @@ public struct Location : Codable {
     public func fetchWeather() async throws -> Int {
         let (lat, lon) = location.coordinates(fractionalDigits: 4)
         let url = URL(string: "https://api.open-meteo.com/v1/forecast?latitude=\(lat)&longitude=\(lon)&current_weather=true")!
+        logger.info("fetching URL: \(url.absoluteString)")
         var request = URLRequest(url: url)
         request.setValue(Self.userAgent, forHTTPHeaderField: "User-Agent")
         let (data, response) = try await URLSession.shared.data(for: request)

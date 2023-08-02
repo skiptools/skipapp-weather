@@ -1,6 +1,24 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@" : {
+
+    },
+    "%lld" : {
+
+    },
+    "App Name: %@" : {
+
+    },
+    "Browse" : {
+      "comment" : "Device tab title"
+    },
+    "Build Number: %@" : {
+
+    },
+    "Bundle Identifier: %@" : {
+
+    },
     "Done" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -54,8 +72,11 @@
         }
       }
     },
-    "Hello, world!" : {
-
+    "Favorites" : {
+      "comment" : "Favorites tab title"
+    },
+    "Home" : {
+      "comment" : "Home tab title"
     },
     "Recent" : {
       "extractionState" : "stale",
@@ -109,6 +130,15 @@
           }
         }
       }
+    },
+    "Search" : {
+      "comment" : "Search tab title"
+    },
+    "Settings" : {
+      "comment" : "Settings tab title"
+    },
+    "Version: %@" : {
+
     }
   },
   "version" : "1.0"

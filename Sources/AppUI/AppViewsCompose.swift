@@ -2,7 +2,9 @@
 import Foundation
 import AppModel
 
+import Android
 import AndroidApp
+import AndroidContent.Context
 import AndroidxAppcompatApp
 import AndroidxActivityCompose
 import AndroidxComposeRuntime
@@ -15,19 +17,19 @@ import AndroidxComposeFoundationLayout
 import AndroidxComposeFoundationLazy
 import AndroidxComposeFoundationLazy.items
 import AndroidxComposeFoundationLazy.itemsIndexed
+import AndroidxComposeFoundationText
 import AndroidxComposeUi
 import AndroidxComposeUiGeometry
 import AndroidxComposeUiGraphics
 import AndroidxComposeUiGraphicsVector
 import AndroidxComposeUiLayout
+import AndroidxComposeUiPlatform
 import AndroidxComposeUiText
 import AndroidxComposeUiTextFont
+import AndroidxComposeUiTextInput
 import AndroidxComposeUiTextStyle
 import AndroidxComposeUiToolingPreview
 import AndroidxComposeUiUnit
-// SKIP INSERT: import kotlinx.coroutines.launch
-// SKIP INSERT: import kotlinx.coroutines.withContext
-// SKIP INSERT: import kotlinx.coroutines.Dispatchers
 
 /// AndroidAppMain is the `android.app.Application` entry point, and must match `application android:name` in the AndroidMainfest.xml file
 public class AndroidAppMain : Application {
@@ -53,6 +55,19 @@ public class MainActivity : AppCompatActivity {
         setContent {
             ContentView()
         }
+
+        let permissions = listOf(
+            Manifest.permission.ACCESS_COARSE_LOCATION
+            //Manifest.permission.CAMERA,
+            //Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        )
+
+        let requestTag = 1 // TODO: handle with onRequestPermissionsResult
+        androidx.core.app.ActivityCompat.requestPermissions(self, permissions.toTypedArray(), requestTag)
+    }
+
+    public override func onRequestPermissionsResult(requestCode: Int, permissions: kotlin.Array<String>, grantResults: IntArray) {
+        logger.info("onRequestPermissionsResult: \(requestCode)")
     }
 }
 
@@ -147,41 +162,115 @@ func ContentView() -> Void {
     }
 
     // SKIP INSERT: @Composable
-    func FavoritesView() {
-        let scope = rememberCoroutineScope()
-        var bytesDownloaded = remember { mutableStateOf(0) }
+    func WeatherView() {
+        let ctx: Context = LocalContext.current
 
-        Row(verticalAlignment: Alignment.CenterVertically, horizontalArrangement: Arrangement.End) {
-            //Text(text: AppTabs.favorites.title, style: MaterialTheme.typography.subtitle1, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
-            Column {
+        var weather = remember {
+            mutableStateOf(
+                WeatherCondition(location: Location.default)
+            )
+        }
+
+        @MainActor func fetchLocation(ctx: Context) async throws {
+            logger.info("getting location…")
+            let (lat, lon) = try await fetchCurrentLocation(ctx)
+            logger.info("location: \(lat) \(lon)")
+            weather.value.location.latitude = lat
+            weather.value.location.longitude = lon
+        }
+
+        func fetchWeather() async throws {
+            let w: WeatherCondition = weather.value
+            let response = try await w.fetchWeather()
+            if response != 200 {
+                logger.log("error response: \(response)")
+            } else {
+                logger.log("fetched temperature: \(weather.value.temperature)")
+            }
+        }
+
+        Column(horizontalAlignment: Alignment.CenterHorizontally, modifier: Modifier.fillMaxSize().padding(16.dp)) {
+            Row {
+                Text(text: "Weather", style: MaterialTheme.typography.h4, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
+            }
+
+            // SKIP INSERT: @Composable
+            func latLonField(lat: Bool) {
+                TextField(
+                    value: lat ? weather.value.location.latitude.description : weather.value.location.longitude.description,
+                    onValueChange: { newValue in
+                        logger.log("setting \(lat ? "latitude" : "longitude") to: \(newValue)")
+                        if lat {
+                            weather.value.location.latitude = Double(newValue) ?? 0.0
+                        } else {
+                            weather.value.location.longitude = Double(newValue) ?? 0.0
+                        }
+                    },
+                    label: {
+                        Text(lat ? "Latitude" : "Longitude")
+                    },
+                    keyboardOptions: KeyboardOptions(keyboardType: KeyboardType.Number)
+                )
+            }
+
+            Row {
+                latLonField(lat: true)
+            }
+
+            Row {
+                latLonField(lat: false)
+            }
+
+            Row {
                 Button(onClick: {
-                    //let contents = java.net.URL("https://skip.tools").readText() // android.os.NetworkOnMainThreadException
-
-                    logger.log("button click")
-                    scope.launch {
-                        logger.log("in scope")
-
-                        withContext(Dispatchers.IO) {
-                            do {
-                                logger.log("dispatching HTTP request")
-                                let (data, response) = try await URLSession.shared.data(for: URLRequest(url: AppTabs.searchPage))
-                                logger.log("response: \(response) data: \(data.count)")
-                                bytesDownloaded.value = data.count
-                            } catch {
-                                logger.error("error fetching data: \(error)")
-                                //error.printStackTrace()
-                            }
+                    Task {
+                        do {
+                            try await fetchLocation(ctx)
+                        } catch {
+                            logger.error("error fetching location: \(error)")
+                            //error.printStackTrace()
                         }
                     }
                 }) {
-                    AppText("Fetch")
+                    AppText("Current Location")
                 }
             }
 
-            Column {
-                Text("Data: \(bytesDownloaded.value)")
+
+            Row {
+                Button(onClick: {
+                    Task {
+                        do {
+                            try await fetchWeather()
+                        } catch {
+                            logger.error("error fetching data: \(error)")
+                            //error.printStackTrace()
+                        }
+                    }
+                }) {
+                    AppText("Fetch Weather")
+                }
+            }
+
+            if let temp = weather.value.temperature {
+                Row {
+                    Text(text: "Temperature", style: MaterialTheme.typography.h5, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
+                }
+
+                Row {
+                    Text(text: "\((temp * 9.0 / 5.0) + 32.0)°F", style: MaterialTheme.typography.h6, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
+
+                }
+                Row {
+                    Text(text: "\(temp)°C", style: MaterialTheme.typography.h6, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
+                }
             }
         }
+    }
+
+    // SKIP INSERT: @Composable
+    func FavoritesView() {
+        WeatherView()
     }
 
     // SKIP INSERT: @Composable
