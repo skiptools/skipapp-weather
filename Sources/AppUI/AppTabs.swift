@@ -20,9 +20,9 @@ enum AppTabs : String, CaseIterable {
     var title: String {
         switch self {
         case .home: return NSLocalizedString("Home", comment: "Home tab title")
-        case .device: return NSLocalizedString("Browse", comment: "Device tab title")
-        case .favorites: return NSLocalizedString("Favorites", comment: "Favorites tab title")
-        case .search: return NSLocalizedString("Search", comment: "Search tab title")
+        case .device: return NSLocalizedString("Weather", comment: "Weather tab title")
+        case .favorites: return NSLocalizedString("SkipUI", comment: "Favorites tab title")
+        case .search: return NSLocalizedString("Web", comment: "Search tab title")
         case .settings: return NSLocalizedString("Settings", comment: "Settings tab title")
         }
     }

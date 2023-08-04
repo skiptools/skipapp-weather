@@ -1,7 +1,7 @@
 #if !SKIP
 import Foundation
 import AppModel
-import SwiftUI
+import SkipUI
 
 public protocol AppUIApp : App {
 }
@@ -117,8 +117,8 @@ public struct ContentView: View {
         Text(AppTabs.device.title)
     }
 
-    func favoritesView() -> some View {
-        Text(AppTabs.favorites.title)
+    func favoritesView() -> some SkipView {
+        FavoritesLabelView()
     }
 
     func searchView() -> some View {

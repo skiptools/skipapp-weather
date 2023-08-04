@@ -155,13 +155,6 @@ func ContentView() -> Void {
     }
 
     // SKIP INSERT: @Composable
-    func DeviceView() {
-        Row(verticalAlignment: Alignment.CenterVertically, horizontalArrangement: Arrangement.End) {
-            Text(text: AppTabs.device.title, style: MaterialTheme.typography.subtitle1, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
-        }
-    }
-
-    // SKIP INSERT: @Composable
     func WeatherView() {
         let ctx: Context = LocalContext.current
 
@@ -191,7 +184,7 @@ func ContentView() -> Void {
 
         Column(horizontalAlignment: Alignment.CenterHorizontally, modifier: Modifier.fillMaxSize().padding(16.dp)) {
             Row {
-                Text(text: "Weather", style: MaterialTheme.typography.h4, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
+                Text(text: "Weather", style: MaterialTheme.typography.h4, modifier: Modifier.fillMaxWidth())
             }
 
             // SKIP INSERT: @Composable
@@ -232,7 +225,7 @@ func ContentView() -> Void {
                         }
                     }
                 }) {
-                    AppText("Current Location")
+                    Text("Current Location")
                 }
             }
 
@@ -248,7 +241,7 @@ func ContentView() -> Void {
                         }
                     }
                 }) {
-                    AppText("Fetch Weather")
+                    Text("Fetch Weather")
                 }
             }
 
@@ -269,8 +262,13 @@ func ContentView() -> Void {
     }
 
     // SKIP INSERT: @Composable
-    func FavoritesView() {
+    func DeviceView() {
         WeatherView()
+    }
+
+    // SKIP INSERT: @Composable
+    func FavoritesView() {
+        FavoritesLabelView().eval()
     }
 
     // SKIP INSERT: @Composable
@@ -312,7 +310,9 @@ func ContentView() -> Void {
 
     // SKIP INSERT: @Composable
     func AppTabView() {
-        SelectedTabView(for: selectedTab.value)
+        Box(modifier: Modifier.fillMaxSize().wrapContentSize(Alignment.Center)) {
+            SelectedTabView(for: selectedTab.value)
+        }
     }
 
     let colors = isSystemInDarkTheme()

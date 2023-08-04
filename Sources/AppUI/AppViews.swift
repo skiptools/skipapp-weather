@@ -1,27 +1,27 @@
-// An example of common UI code shared between Compose and SwiftUI
-import Foundation
-#if SKIP
-import AndroidxComposeRuntime
+import SkipUI
 
-import AndroidxComposeMaterial.Text
-import AndroidxComposeFoundationLayout.Column
-import AndroidxComposeFoundationLayout.Row
-
-typealias ComposableView = Void
-#else
-import SwiftUI
-
-typealias Column = VStack
-typealias Row = HStack
-
-typealias ComposableView = View
-#endif
-
-// SKIP INSERT: @Composable
-func AppText(text: String) -> some ComposableView {
-    Column {
-        Row {
-            Text(text)
+public struct FavoritesLabelView: SkipView {
+    // SKIP NOWARN
+    // SKIP INSERT: @androidx.compose.runtime.Composable
+    @SkipBuilder public func view() -> some SkipView {
+        SkipHStack {
+            SkipText(text: "L1:").eval()
+            SkipHStack {
+                SkipText(text: "L2:").eval()
+                SkipHStack {
+                    SkipText(text: "L3:").eval()
+                    SkipHStack {
+                        SkipText(text: "L4:").eval()
+                        SkipHStack {
+                            SkipText(text: "L5:").eval()
+                            SkipHStack {
+                                SkipText(text: "L6:").eval()
+                                SkipText(text: AppTabs.favorites.title).eval()
+                            }.eval()
+                        }.eval()
+                    }.eval()
+                }.eval()
+            }.eval()
         }
     }
 }

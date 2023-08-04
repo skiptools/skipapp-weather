@@ -67,7 +67,6 @@ public struct Location : Codable {
     /// The User-Agent header when making requests
     static let userAgent = "Demo App"
 
-
     @Published public var location: Location
     @Published public var temperature: Double?
     @Published public var lastUpdated: Date?
@@ -92,7 +91,6 @@ public struct Location : Codable {
         return (response as? HTTPURLResponse)?.statusCode ?? 0
     }
 }
-
 
 struct WeatherResponse : Hashable, Codable {
     var latitude: Double // e.g.: 42.36515

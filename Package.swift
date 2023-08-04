@@ -13,7 +13,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://skip.tools/skiptools/skip.git", from: "0.0.0"),
-        .package(url: "https://github.com/skiptools/skiphub.git", from: "0.0.0"),
+        .package(url: "https://skip.tools/skiptools/skiphub.git", from: "0.0.0"),
     ],
     targets: [
         .executableTarget(name: "AppDroid",
@@ -39,7 +39,7 @@ let package = Package(
 
         // The Swift side of the app's user interface (SwiftUI)
         .target(name: "AppUI",
-            dependencies: ["AppModel"],
+            dependencies: ["AppModel", .product(name: "SkipUI", package: "skiphub")],
             resources: [.process("Resources")],
             plugins: [.plugin(name: "preflight", package: "skip")]),
         .testTarget(name: "AppUITests", dependencies: ["AppUI"],

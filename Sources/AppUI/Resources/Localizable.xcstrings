@@ -10,9 +10,6 @@
     "App Name: %@" : {
 
     },
-    "Browse" : {
-      "comment" : "Device tab title"
-    },
     "Build Number: %@" : {
 
     },
@@ -72,9 +69,6 @@
         }
       }
     },
-    "Favorites" : {
-      "comment" : "Favorites tab title"
-    },
     "Home" : {
       "comment" : "Home tab title"
     },
@@ -131,14 +125,20 @@
         }
       }
     },
-    "Search" : {
-      "comment" : "Search tab title"
-    },
     "Settings" : {
       "comment" : "Settings tab title"
     },
+    "SkipUI" : {
+      "comment" : "Favorites tab title"
+    },
     "Version: %@" : {
 
+    },
+    "Weather" : {
+      "comment" : "Weather tab title"
+    },
+    "Web" : {
+      "comment" : "Search tab title"
     }
   },
   "version" : "1.0"
