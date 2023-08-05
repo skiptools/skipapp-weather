@@ -1,42 +1,58 @@
 import SkipUI
-
+// SKIP INSERT: import androidx.compose.runtime.*
 public struct SkipUISampleView: SkipView {
-    // SKIP NOWARN
-    // SKIP INSERT: @androidx.compose.runtime.Composable
-    @SkipBuilder public func view() -> some SkipView {
+    // SKIP REPLACE: var sliderValue by mutableStateOf(50.0f)
+    @State var sliderValue: Float = 50.0
+
+    // SKIP INSERT: @Composable
+    public func view() -> some SkipView {
         SkipVStack {
             SkipHStack {
-                SkipText(text: "Tab 1:").eval()
-                SkipText(text: AppTabs.allCases[0].title).eval()
+                SkipText(text: "Label:").eval()
+                SkipText(text: AppTabs.defaultTab.title).eval()
             }.eval()
-            SkipHStack {
-                SkipText(text: "Tab 2:").eval()
-                SkipText(text: AppTabs.allCases[1].title).eval()
-            }.eval()
-            SkipHStack {
-                SkipText(text: "Tab 3:").eval()
-                SkipText(text: AppTabs.allCases[2].title).eval()
-            }.eval()
-            SkipHStack {
-                SkipText(text: "Tab 4:").eval()
-                SkipText(text: AppTabs.allCases[3].title).eval()
-            }.eval()
-            SkipHStack {
-                SkipText(text: "Tab 5:").eval()
-                SkipText(text: AppTabs.allCases[4].title).eval()
-            }.eval()
-            #if !SKIP
+
+            #if SKIP
+            androidx.compose.material.Text(text: "Custom Compose View",
+                color: androidx.compose.ui.graphics.Color(0xFFFFA500),
+                style: androidx.compose.material.MaterialTheme.typography.h5
+            )
+            #else
             SwiftUIAdapterView {
-                SwiftUI.Text("Any SwiftUI View")
+                SwiftUI.Text("Custom SwiftUI View")
                     .foregroundStyle(SwiftUI.Color.orange)
                     .font(SwiftUI.Font.title)
             }.eval()
+            #endif
+
+            #if SKIP
+            androidx.compose.material.Slider(
+                value: Float(sliderValue),
+                onValueChange: { sliderValue = $0 },
+                valueRange: Float(0.0)...Float(100.0)
+            )
             #else
-            ComposeAdapterFunction {
-                androidx.compose.material.Text(text: "Any Compose View",
-                    color: androidx.compose.ui.graphics.Color(0xFFFFA500),
-                    style: androidx.compose.material.MaterialTheme.typography.h5
-                )
+            SwiftUIAdapterView {
+                Slider(value: $sliderValue, in: 0.0...100.0)
+            }.eval()
+            #endif
+
+            SkipText(text: "Slider: \(Int(sliderValue))%").eval()
+
+            #if SKIP
+            androidx.compose.material.Button(enabled: sliderValue != Float(50.0), onClick: {
+                sliderValue = Float(50.0)
+            }) {
+                androidx.compose.material.Text("Reset")
+            }
+            #else
+            SwiftUIAdapterView {
+                Button(action: {
+                    sliderValue = 50.0
+                }, label: {
+                    Text("Reset")
+                })
+                .disabled(sliderValue == 50.0)
             }.eval()
             #endif
         }

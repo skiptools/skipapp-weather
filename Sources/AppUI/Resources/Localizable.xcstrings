@@ -7,9 +7,6 @@
     "%lld" : {
 
     },
-    "Any SwiftUI View" : {
-
-    },
     "App Name: %@" : {
 
     },
@@ -17,6 +14,9 @@
 
     },
     "Bundle Identifier: %@" : {
+
+    },
+    "Custom SwiftUI View" : {
 
     },
     "Done" : {
@@ -127,6 +127,9 @@
           }
         }
       }
+    },
+    "Reset" : {
+
     },
     "Settings" : {
       "comment" : "Settings tab title"
