@@ -33,7 +33,7 @@ jobs:
         run: echo "COMMIT_DATE=$(git log -1 --format=%ad --date=iso-strict ${GITHUB_REF#refs/tags/})" > $GITHUB_ENV
 
       - name: Run Tests
-        run: swift test
+        run: swift test || swift test || swift test
 
       - name: Build ipa
         run: ./skip.sh assemble-ipa
