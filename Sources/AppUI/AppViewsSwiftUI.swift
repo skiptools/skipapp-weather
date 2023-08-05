@@ -118,7 +118,10 @@ public struct ContentView: View {
     }
 
     func favoritesView() -> some SkipView {
-        SkipUISampleView()
+        SkipVStack {
+            SkipUISampleView(label: "SwiftUI").eval()
+            //SkipUISampleView().eval()
+        }.eval()
     }
 
     func searchView() -> some View {

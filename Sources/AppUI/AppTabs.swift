@@ -16,7 +16,6 @@ enum AppTabs : String, CaseIterable {
     case search
     case settings
 
-
     var title: String {
         switch self {
         case .home: return NSLocalizedString("Home", comment: "Home tab title")

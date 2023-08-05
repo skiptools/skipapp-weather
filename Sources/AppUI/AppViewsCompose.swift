@@ -164,8 +164,9 @@ func ContentView() -> Void {
             )
         }
 
-        @MainActor func fetchLocation(ctx: Context) async throws {
+        @MainActor func fetchLocation(_ ctx: Context) async throws {
             logger.info("getting location…")
+            // SKIP NOWARN
             let (lat, lon) = try await fetchCurrentLocation(ctx)
             logger.info("location: \(lat) \(lon)")
             weather.value.location.latitude = lat
@@ -268,7 +269,10 @@ func ContentView() -> Void {
 
     // SKIP INSERT: @Composable
     func FavoritesView() {
-        SkipUISampleView().eval()
+        Column {
+            SkipUISampleView(label: "Compose").eval()
+            //SkipUISampleView().eval()
+        }
     }
 
     // SKIP INSERT: @Composable
