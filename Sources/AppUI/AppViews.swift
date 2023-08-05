@@ -1,27 +1,44 @@
 import SkipUI
 
-public struct FavoritesLabelView: SkipView {
+public struct SkipUISampleView: SkipView {
     // SKIP NOWARN
     // SKIP INSERT: @androidx.compose.runtime.Composable
     @SkipBuilder public func view() -> some SkipView {
-        SkipHStack {
-            SkipText(text: "L1:").eval()
+        SkipVStack {
             SkipHStack {
-                SkipText(text: "L2:").eval()
-                SkipHStack {
-                    SkipText(text: "L3:").eval()
-                    SkipHStack {
-                        SkipText(text: "L4:").eval()
-                        SkipHStack {
-                            SkipText(text: "L5:").eval()
-                            SkipHStack {
-                                SkipText(text: "L6:").eval()
-                                SkipText(text: AppTabs.favorites.title).eval()
-                            }.eval()
-                        }.eval()
-                    }.eval()
-                }.eval()
+                SkipText(text: "Tab 1:").eval()
+                SkipText(text: AppTabs.allCases[0].title).eval()
             }.eval()
+            SkipHStack {
+                SkipText(text: "Tab 2:").eval()
+                SkipText(text: AppTabs.allCases[1].title).eval()
+            }.eval()
+            SkipHStack {
+                SkipText(text: "Tab 3:").eval()
+                SkipText(text: AppTabs.allCases[2].title).eval()
+            }.eval()
+            SkipHStack {
+                SkipText(text: "Tab 4:").eval()
+                SkipText(text: AppTabs.allCases[3].title).eval()
+            }.eval()
+            SkipHStack {
+                SkipText(text: "Tab 5:").eval()
+                SkipText(text: AppTabs.allCases[4].title).eval()
+            }.eval()
+            #if !SKIP
+            SwiftUIAdapterView {
+                SwiftUI.Text("Any SwiftUI View")
+                    .foregroundStyle(SwiftUI.Color.orange)
+                    .font(SwiftUI.Font.title)
+            }.eval()
+            #else
+            ComposeAdapterFunction {
+                androidx.compose.material.Text(text: "Any Compose View",
+                    color: androidx.compose.ui.graphics.Color(0xFFFFA500),
+                    style: androidx.compose.material.MaterialTheme.typography.h5
+                )
+            }.eval()
+            #endif
         }
     }
 }

@@ -268,7 +268,7 @@ func ContentView() -> Void {
 
     // SKIP INSERT: @Composable
     func FavoritesView() {
-        FavoritesLabelView().eval()
+        SkipUISampleView().eval()
     }
 
     // SKIP INSERT: @Composable

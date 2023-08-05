@@ -118,7 +118,7 @@ public struct ContentView: View {
     }
 
     func favoritesView() -> some SkipView {
-        FavoritesLabelView()
+        SkipUISampleView()
     }
 
     func searchView() -> some View {
