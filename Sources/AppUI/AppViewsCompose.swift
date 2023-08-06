@@ -270,8 +270,8 @@ func ContentView() -> Void {
     // SKIP INSERT: @Composable
     func FavoritesView() {
         Column {
-            SkipUISampleView(label: "Compose").eval()
-            //SkipUISampleView().eval()
+            SkipUISampleView(label: "Compose").eval(style: skip.ui.Style())
+            //SkipUISampleView(label: "Compose").eval(style: skip.ui.Style())
         }
     }
 

@@ -128,9 +128,6 @@
         }
       }
     },
-    "Reset" : {
-
-    },
     "Settings" : {
       "comment" : "Settings tab title"
     },

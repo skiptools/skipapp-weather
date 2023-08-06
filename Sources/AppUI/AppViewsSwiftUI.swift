@@ -117,11 +117,11 @@ public struct ContentView: View {
         Text(AppTabs.device.title)
     }
 
-    func favoritesView() -> some SkipView {
+    func favoritesView() -> some View {
         SkipVStack {
-            SkipUISampleView(label: "SwiftUI").eval()
+            SkipUISampleView(label: "SwiftUI").eval(style: Style())
             //SkipUISampleView().eval()
-        }.eval()
+        }.eval(style: Style())
     }
 
     func searchView() -> some View {
