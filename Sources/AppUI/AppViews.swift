@@ -1,8 +1,5 @@
 import SkipUI
 // SKIP INSERT: import androidx.compose.runtime.*
-// SKIP INSERT: import androidx.compose.ui.*
-// SKIP INSERT: import androidx.compose.ui.unit.*
-// SKIP INSERT: import androidx.compose.foundation.layout.*
 
 public struct SkipUISampleView: SkipView {
     public var style = Style()
@@ -18,12 +15,16 @@ public struct SkipUISampleView: SkipView {
     @State var sliderValue2: Float = 100.0
 
     // SKIP INSERT: return object : SkipView {
-    // SKIP INSERT: override var style = Style()
 
     // SKIP NOWARN
     // SKIP INSERT: @Composable
     @SkipBuilder public func view() -> some SkipView {
+        innerView()
+    }
 
+    // SKIP NOWARN
+    // SKIP INSERT: @Composable
+    @SkipBuilder private func innerView() -> some SkipView {
         SkipVStack {
             SkipHStack {
                 SkipText(label + ": ").eval(style: style)
@@ -41,7 +42,7 @@ public struct SkipUISampleView: SkipView {
                     .font(SwiftUI.Font.title)
             }.eval(style: style)
             #else
-            androidx.compose.material.Text(text: "Custom Compose View",
+            androidx.compose.material.Text(modifier: style.modifier, text: "Custom Compose View",
                 color: androidx.compose.ui.graphics.Color(0xFFFFA500),
                 style: androidx.compose.material.MaterialTheme.typography.h5
             )
@@ -63,13 +64,15 @@ public struct SkipUISampleView: SkipView {
             }.eval(style: style)
             #else
             androidx.compose.material.Slider(
+                modifier: style.modifier,
                 value: Float(sliderValue1),
                 onValueChange: { sliderValue1 = $0 },
                 valueRange: Float(0.0)...Float(100.0)
             )
             #endif
 
-            SkipText("Slider 1: \(Int(sliderValue1))%").eval(style: style)
+            SkipText("Slider 1: \(Int(sliderValue1))%")
+                .eval(style: style.opacity(Double(sliderValue1) / 100.0))
 
             #if canImport(SwiftUI)
             SwiftUIAdapterView {
@@ -77,13 +80,15 @@ public struct SkipUISampleView: SkipView {
             }.eval(style: style)
             #else
             androidx.compose.material.Slider(
+                modifier: style.modifier,
                 value: Float(sliderValue2),
                 onValueChange: { sliderValue2 = $0 },
                 valueRange: Float(0.0)...Float(100.0)
             )
             #endif
 
-            SkipText("Slider 2: \(Int(sliderValue2))%").eval(style: style)
+            SkipText("Slider 2: \(Int(sliderValue2))%")
+                .eval(style: style.opacity(Double(sliderValue2) / 100.0))
         }
     }
 
