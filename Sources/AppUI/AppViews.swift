@@ -18,13 +18,13 @@ public struct SkipUISampleView: SkipView {
 
     // SKIP NOWARN
     // SKIP INSERT: @Composable
-    @SkipBuilder public func view() -> some SkipView {
-        innerView()
+    public func view() -> some SkipView {
+        return innerView()//.eval(style: style)
     }
 
     // SKIP NOWARN
     // SKIP INSERT: @Composable
-    @SkipBuilder private func innerView() -> some SkipView {
+    private func innerView() -> some SkipView {
         SkipVStack {
             SkipHStack {
                 SkipText(label + ": ").eval(style: style)
