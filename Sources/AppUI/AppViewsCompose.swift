@@ -206,15 +206,8 @@ func ContentView() -> Void {
                     keyboardOptions: KeyboardOptions(keyboardType: KeyboardType.Number)
                 )
             }
-
-            Row {
-                latLonField(lat: true)
-            }
-
-            Row {
-                latLonField(lat: false)
-            }
-
+            Row { latLonField(lat: true) }
+            Row { latLonField(lat: false) }
             Row {
                 Button(onClick: {
                     Task {
@@ -225,9 +218,7 @@ func ContentView() -> Void {
                             //error.printStackTrace()
                         }
                     }
-                }) {
-                    Text("Current Location")
-                }
+                }) { Text("Current Location") }
             }
 
 
@@ -241,23 +232,13 @@ func ContentView() -> Void {
                             //error.printStackTrace()
                         }
                     }
-                }) {
-                    Text("Fetch Weather")
-                }
+                }) { Text("Fetch Weather") }
             }
 
             if let temp = weather.value.temperature {
-                Row {
-                    Text(text: "Temperature", style: MaterialTheme.typography.h5, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
-                }
-
-                Row {
-                    Text(text: "\((temp * 9.0 / 5.0) + 32.0)°F", style: MaterialTheme.typography.h6, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
-
-                }
-                Row {
-                    Text(text: "\(temp)°C", style: MaterialTheme.typography.h6, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
-                }
+                Row { Text(text: "Temperature", style: MaterialTheme.typography.h5, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth()) }
+                Row { Text(text: "\((temp * 9.0 / 5.0) + 32.0)°F", style: MaterialTheme.typography.h6, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth()) }
+                Row { Text(text: "\(temp)°C", style: MaterialTheme.typography.h6, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth()) }
             }
         }
     }

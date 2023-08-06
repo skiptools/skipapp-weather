@@ -28,19 +28,24 @@ public struct SkipUISampleView: SkipView {
         SkipVStack {
             SkipText("Welcome To SkipUI")
                 .eval(style: style.font(.largeTitle))
+            SkipText("native component demo screen")
+                .eval(style: style.font(.subheadline).color(.indigo))
 
             SkipHStack {
                 SkipText(label + ": ").eval()
                 SkipText(AppTabs.defaultTab.title).eval()
-                SkipZStack {
-                    SkipText("O").eval(style: style.font(.title))
-                    SkipText("O").eval(style: style.font(.title2))
-                    SkipText("O").eval(style: style.font(.title3))
-                }.eval()
             }.eval()
 
-            SkipDivider().eval()
-
+            SkipGroup {
+                SkipDivider().eval()
+                SkipZStack {
+                    SkipText("O").eval(style: style.font(.title).color(.red))
+                    SkipText("O").eval(style: style.font(.title2).color(.white))
+                    SkipText("O").eval(style: style.font(.title3).color(.blue))
+                }.eval()
+                SkipDivider().eval()
+            }.eval()
+            
             SkipButton(action: {
                 logger.info("reset button tapped")
                 sliderValue1 = Float(0.0)
