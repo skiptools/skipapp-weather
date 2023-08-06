@@ -19,49 +19,40 @@ public struct SkipUISampleView: SkipView {
     // SKIP NOWARN
     // SKIP INSERT: @Composable
     public func view() -> some SkipView {
-        return innerView()//.eval(style: style)
+        return innerView()
     }
 
     // SKIP NOWARN
     // SKIP INSERT: @Composable
     private func innerView() -> some SkipView {
         SkipVStack {
+            SkipText("Welcome To SkipUI")
+                .eval(style: style.font(.largeTitle))
+
             SkipHStack {
-                SkipText(label + ": ").eval(style: style)
-                SkipText(AppTabs.defaultTab.title).eval(style: style)
+                SkipText(label + ": ").eval()
+                SkipText(AppTabs.defaultTab.title).eval()
                 SkipZStack {
-                    SkipText("T").eval(style: style)
-                    SkipText("U").eval(style: style)
-                }.eval(style: style)
-            }.eval(style: style)
+                    SkipText("O").eval(style: style.font(.title))
+                    SkipText("O").eval(style: style.font(.title2))
+                    SkipText("O").eval(style: style.font(.title3))
+                }.eval()
+            }.eval()
 
-            #if canImport(SwiftUI)
-            SwiftUIAdapterView {
-                SwiftUI.Text("Custom SwiftUI View")
-                    .foregroundStyle(SwiftUI.Color.orange)
-                    .font(SwiftUI.Font.title)
-            }.eval(style: style)
-            #else
-            androidx.compose.material.Text(modifier: style.modifier, text: "Custom Compose View",
-                color: androidx.compose.ui.graphics.Color(0xFFFFA500),
-                style: androidx.compose.material.MaterialTheme.typography.h5
-            )
-            #endif
-
-            SkipDivider().eval(style: style)
+            SkipDivider().eval()
 
             SkipButton(action: {
+                logger.info("reset button tapped")
                 sliderValue1 = Float(0.0)
                 sliderValue2 = Float(100.0)
             }, label: {
-                SkipText("Reset").eval(style: style)
-            }).eval(style: style)
-
+                SkipText("Reset").eval()
+            }).eval()
 
             #if canImport(SwiftUI)
             SwiftUIAdapterView {
                 Slider(value: $sliderValue1, in: 0.0...100.0)
-            }.eval(style: style)
+            }.eval()
             #else
             androidx.compose.material.Slider(
                 modifier: style.modifier,
@@ -77,7 +68,7 @@ public struct SkipUISampleView: SkipView {
             #if canImport(SwiftUI)
             SwiftUIAdapterView {
                 Slider(value: $sliderValue2, in: 0.0...100.0)
-            }.eval(style: style)
+            }.eval()
             #else
             androidx.compose.material.Slider(
                 modifier: style.modifier,
@@ -89,6 +80,20 @@ public struct SkipUISampleView: SkipView {
 
             SkipText("Slider 2: \(Int(sliderValue2))%")
                 .eval(style: style.opacity(Double(sliderValue2) / 100.0))
+
+
+            #if canImport(SwiftUI)
+            SwiftUIAdapterView {
+                SwiftUI.Text("Custom SwiftUI View")
+                    .foregroundStyle(SwiftUI.Color.orange)
+                    .font(SwiftUI.Font.title)
+            }.eval()
+            #else
+            androidx.compose.material.Text(modifier: style.modifier, text: "Custom Compose View",
+                color: androidx.compose.ui.graphics.Color(0xFFFFA500),
+                style: androidx.compose.material.MaterialTheme.typography.h5
+            )
+            #endif
         }
     }
 
