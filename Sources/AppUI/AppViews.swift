@@ -4,14 +4,16 @@
 // under the terms of the GNU Lesser General Public License 3.0
 // as published by the Free Software Foundation https://fsf.org
 import Foundation
-
-#if !SKIP
-import SwiftUI
-extension View { func eval() -> Self { self } } // performs @Composable invoke in Kotlin
-#else
+#if SKIP || canImport(SkipUI)
 import SkipUI
-// SKIP INSERT: import androidx.compose.runtime.* // needed for remember/getValue/setValue
+#else
+import SwiftUI
 #endif
+
+// SKIP INSERT: import androidx.compose.runtime.* // needed for remember/getValue/setValue
+// SKIP INSERT: import androidx.compose.runtime.saveable.* // needed for rememberSaveable/restore
+
+extension View { func eval() -> Self { self } } // performs @Composable invoke in Kotlin
 
 struct SkipSampleView: View {
     /// The title of the view
@@ -25,8 +27,8 @@ struct SkipSampleView: View {
     // SKIP INSERT: @Composable override fun view(): SkipView { return object : SkipView {
 
     // …and now that we are inside a @Composable context, and we can use `remember` for our local state
-    // SKIP REPLACE: var sliderValue by remember { mutableStateOf(defaultValue) }
-    @State var sliderValue = defaultValue
+    // SKIP REPLACE: var sliderValue by rememberSaveable { mutableStateOf(defaultValue) }
+    @State private var sliderValue = defaultValue
 
     #if canImport(SwiftUI)
     var body: some View {
@@ -79,6 +81,7 @@ struct SkipSampleView: View {
                     Task {
                         repeat {
                             withAnimation {
+                                // TODO: Double.random(in: 0.0...100.0)
                                 var random = SystemRandomNumberGenerator()
                                 func rnd() -> Double { Double(random.next()) / Double(UInt64.max) }
                                 sliderValue = rnd() * 100.0
@@ -101,7 +104,7 @@ struct SkipSampleView: View {
                     Text("Reset")
                         .eval()
                 })
-                //#if !SKIP // per-target customization mechanism, except error: “Skip does not support this Swift syntax [postfixIfConfigExpr]”
+                //#if canImport(SwiftUI) // per-target customization mechanism, except error: “Skip does not support this Swift syntax [postfixIfConfigExpr]”
                 //.buttonStyle(.borderedProminent)
                 //#endif
 
@@ -114,16 +117,21 @@ struct SkipSampleView: View {
                     .background(.gray)
                     .eval()
                 ZStack {
-                    //Circle().fill(Color.white).opacity(0.3).eval()
+                    #if !SKIP
+                    //Circle().eval()
+                    #endif
+
                     VStack {
                         HStack {
                             ZStack { }
                                 .frame(width: sliderValue, height: sliderValue)
                                 .background(.purple)
+                                .opacity(0.8)
                                 .eval()
                             ZStack { }
                                 .frame(width: sliderValue, height: sliderValue)
                                 .background(.orange)
+                                .opacity(0.9)
                                 .eval()
                         }
                         .eval()
@@ -131,10 +139,12 @@ struct SkipSampleView: View {
                             ZStack { }
                                 .frame(width: sliderValue, height: sliderValue)
                                 .background(.green)
+                                .opacity(0.7)
                                 .eval()
                             ZStack { }
                                 .frame(width: sliderValue, height: sliderValue)
                                 .background(.red)
+                                .opacity(0.5)
                                 .eval()
                         }
                         .eval()

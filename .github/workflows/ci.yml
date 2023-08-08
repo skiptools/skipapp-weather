@@ -36,7 +36,7 @@ jobs:
         run: swift test || swift test || swift test
 
       - name: Build ipa
-        run: ./skip.sh assemble-ipa
+        run: SKIPTRIM=1 ./skip.sh assemble-ipa
 
       - name: Build apk
         run: ./skip.sh assemble-apk || ./skip.sh assemble-apk || ./skip.sh assemble-apk || ./skip.sh assemble-apk || ./skip.sh assemble-apk || ./skip.sh assemble-apk

@@ -1,6 +1,11 @@
 // swift-tools-version: 5.8
 import PackageDescription
 
+import class Foundation.ProcessInfo
+
+// A dependency that can be eliminated for release builds
+var SKIPDEBUG = TargetDependencyCondition.when(platforms: ProcessInfo.processInfo.environment["SKIPTRIM"] == nil ? [.iOS] : [.android /* i.e., never */])
+
 let package = Package(
     name: "App",
     defaultLocalization: "en",
@@ -39,7 +44,7 @@ let package = Package(
 
         // The Swift side of the app's user interface (SwiftUI)
         .target(name: "AppUI",
-            dependencies: ["AppModel", .product(name: "SkipUI", package: "skiphub")],
+            dependencies: ["AppModel", .product(name: "SkipUI", package: "skiphub", condition: SKIPDEBUG)],
             resources: [.process("Resources")],
             plugins: [.plugin(name: "preflight", package: "skip")]),
         .testTarget(name: "AppUITests", dependencies: ["AppUI"],
@@ -56,9 +61,9 @@ let package = Package(
     ]
 )
 
-import class Foundation.ProcessInfo
 // For Skip library development in peer directories, run: SKIPLOCAL=.. xed Package.swift
 if let localPath = ProcessInfo.processInfo.environment["SKIPLOCAL"] {
     package.dependencies[0] = .package(path: localPath + "/skip")
     package.dependencies[1] = .package(path: localPath + "/skiphub")
 }
+

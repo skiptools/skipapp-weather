@@ -13,6 +13,7 @@ import AndroidContent.Context
 import AndroidxAppcompatApp
 import AndroidxActivityCompose
 import AndroidxComposeRuntime
+import AndroidxComposeRuntimeSaveable
 import AndroidxComposeMaterial
 //import AndroidxComposeMaterial3
 import AndroidxComposeMaterialIcons
@@ -103,7 +104,7 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
 func ContentView() -> Void {
     let model = Stuff()
     let rows = remember { Stuff().things.toList().toMutableStateList() }
-    var selectedTab = remember { mutableStateOf(AppTabs.defaultTab) }
+    var selectedTab = rememberSaveable { mutableStateOf(AppTabs.defaultTab) }
 
     func addRow() {
         logger.info("Tapped add button")
@@ -158,6 +159,7 @@ func ContentView() -> Void {
     func WeatherView() {
         let ctx: Context = LocalContext.current
 
+        // crashes when we try to use rememberSaveable
         var weather = remember {
             mutableStateOf(
                 WeatherCondition(location: Location.default)
