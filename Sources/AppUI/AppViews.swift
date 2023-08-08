@@ -3,16 +3,16 @@
 // This is free software: you can redistribute and/or modify it
 // under the terms of the GNU Lesser General Public License 3.0
 // as published by the Free Software Foundation https://fsf.org
-import SwiftUI
-//import SkipUI
+//import SwiftUI
+import SkipUI
 // SKIP INSERT: import androidx.compose.runtime.*
 
 //let _ = SkipUIPublicModuleName()
 
 #if !SKIP
 extension SwiftUI.View {
-    func eval() -> Self { self } // SwiftUI
-//    func eval() -> SwiftUIAdapterView<Self> { SwiftUIAdapterView { self } } // SkipUI
+//    func eval() -> Self { self } // SwiftUI
+    func eval() -> SwiftUIAdapterView<Self> { SwiftUIAdapterView { self } } // SkipUI
 }
 #endif
 
