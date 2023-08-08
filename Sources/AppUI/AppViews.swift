@@ -64,16 +64,8 @@ struct SkipSampleView: View {
                 .frame(height: 100.0)
                 .eval()
 
-            #if !SKIP
             Slider(value: Binding(get: { sliderValue }, set: { sliderValue = $0 }), in: 0.0...100.0)
                 .eval()
-            #else
-            androidx.compose.material.Slider(
-                value: Float(sliderValue),
-                onValueChange: { sliderValue = Double($0) },
-                valueRange: Float(0.0)...Float(100.0)
-            )
-            #endif
 
             Text("Slider: \(Int(sliderValue))%")
                 .font(.title)
@@ -87,6 +79,8 @@ struct SkipSampleView: View {
                     Task {
                         repeat {
                             withAnimation {
+                                var random = SystemRandomNumberGenerator()
+                                func rnd() -> Double { Double(random.next()) / Double(UInt64.max) }
                                 sliderValue = rnd() * 100.0
                             }
                             try await Task.sleep(nanoseconds: 1_000_000 * 300) // 300ms
@@ -120,6 +114,7 @@ struct SkipSampleView: View {
                     .background(.gray)
                     .eval()
                 ZStack {
+                    //Circle().fill(Color.white).opacity(0.3).eval()
                     VStack {
                         HStack {
                             ZStack { }
@@ -145,10 +140,6 @@ struct SkipSampleView: View {
                         .eval()
                     }
                     .eval()
-                    Text("o")
-                        .font(.largeTitle)
-                        .foregroundStyle(.white)
-                        .eval()
                 }
                 .rotationEffect(.degrees((sliderValue / 100.0) * 360.0))
                 .frame(height: 250.0)
@@ -162,7 +153,7 @@ struct SkipSampleView: View {
             #if !SKIP
             Text("Custom SwiftUI View")
                 .foregroundStyle(.orange)
-                .font(.title)
+                .font(.title2)
                 .eval()
             #else
             androidx.compose.material.Text(text: "Custom Compose View",
@@ -175,8 +166,3 @@ struct SkipSampleView: View {
 
     // SKIP INSERT: } } // end: @Composable override fun view(): SkipView
 }
-
-var random = SystemRandomNumberGenerator()
-/// returns a random number from 0.0 to 1.0
-func rnd() -> Double { Double(random.next()) / Double(UInt64.max) }
-
