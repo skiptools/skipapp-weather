@@ -3,34 +3,30 @@
 // This is free software: you can redistribute and/or modify it
 // under the terms of the GNU Lesser General Public License 3.0
 // as published by the Free Software Foundation https://fsf.org
-//import SwiftUI
-import SkipUI
-// SKIP INSERT: import androidx.compose.runtime.*
-
-//let _ = SkipUIPublicModuleName()
+import Foundation
 
 #if !SKIP
-extension SwiftUI.View {
-//    func eval() -> Self { self } // SwiftUI
-    func eval() -> SwiftUIAdapterView<Self> { SwiftUIAdapterView { self } } // SkipUI
-}
+import SwiftUI
+extension View { func eval() -> Self { self } } // performs @Composable invoke in Kotlin
+#else
+import SkipUI
+// SKIP INSERT: import androidx.compose.runtime.* // needed for remember/getValue/setValue
 #endif
 
 struct SkipSampleView: View {
     /// The title of the view
     let label: String
 
-    // in Kotlin, all @State and @StateObject instances are nested within an anonymous inner SkipView instance that is constructed by the @Composable view() function (because `remember` is itself @Composable and cannot be called from a constructor)
+    /// The default slider value
+    static let defaultValue = 50.0
 
-    /* SKIP INSERT:
-    @Composable override fun view(): SkipView {
-        return object : SkipView {
-     */
+    // Move all @State/@StateObject/@ObservedObject properties into a nested anonymous inner SkipView constructed from a @Composable view() function, thereby enabling the use of `remember` to track state
 
-    // now we are inside a @Composable context, and we can use `remember`
+    // SKIP INSERT: @Composable override fun view(): SkipView { return object : SkipView {
 
-    // SKIP REPLACE: var sliderValue by remember { mutableStateOf(50.0) }
-    @State var sliderValue = 50.0
+    // …and now that we are inside a @Composable context, and we can use `remember` for our local state
+    // SKIP REPLACE: var sliderValue by remember { mutableStateOf(defaultValue) }
+    @State var sliderValue = defaultValue
 
     #if canImport(SwiftUI)
     var body: some View {
@@ -38,12 +34,13 @@ struct SkipSampleView: View {
     }
     #endif
 
+    // SKIP NOWARN
     // SKIP INSERT: @Composable
-    func view() -> some View {
-        return VStack {
+    @ViewBuilder func view() -> some View {
+        VStack {
             Text("Welcome To SkipUI")
                 .font(.largeTitle)
-                .foregroundStyle(.white)
+                .foregroundStyle(.mint)
                 .eval()
 
             Text("native component demo screen")
@@ -54,11 +51,11 @@ struct SkipSampleView: View {
             HStack {
                 Text(label + ": ")
                     .font(.subheadline)
-                    .foregroundStyle(.mint)
+                    .foregroundStyle(.cyan)
                     .eval()
                 Text(AppTabs.defaultTab.title)
                     .font(.headline)
-                    .foregroundStyle(.mint)
+                    .foregroundStyle(.teal)
                     .eval()
             }
             .eval()
@@ -67,8 +64,8 @@ struct SkipSampleView: View {
                 .frame(height: 100.0)
                 .eval()
 
-            #if canImport(SwiftUI)
-            Slider(value: $sliderValue, in: 0.0...100.0)
+            #if !SKIP
+            Slider(value: Binding(get: { sliderValue }, set: { sliderValue = $0 }), in: 0.0...100.0)
                 .eval()
             #else
             androidx.compose.material.Slider(
@@ -84,39 +81,64 @@ struct SkipSampleView: View {
                 .opacity(Double(sliderValue) / 100.0)
                 .eval()
 
-            Button(action: {
-                logger.info("reset button tapped")
-                sliderValue = 50.0
-            }, label: {
-                Text("Reset")
-                    .eval()
-            })
+            HStack {
+                Button(action: {
+                    logger.info("dance button tapped")
+                    Task {
+                        repeat {
+                            withAnimation {
+                                sliderValue = rnd() * 100.0
+                            }
+                            try await Task.sleep(nanoseconds: 1_000_000 * 300) // 300ms
+                        } while sliderValue != Self.defaultValue
+                    }
+                }, label: {
+                    Text("Dance")
+                        .eval()
+                })
+                .eval()
+
+                Button(action: {
+                    logger.info("reset button tapped")
+                    withAnimation {
+                        sliderValue = Self.defaultValue
+                    }
+                }, label: {
+                    Text("Reset")
+                        .eval()
+                })
+                //#if !SKIP // per-target customization mechanism, except error: “Skip does not support this Swift syntax [postfixIfConfigExpr]”
+                //.buttonStyle(.borderedProminent)
+                //#endif
+
+                .eval()
+            }
             .eval()
 
-            Group { // red, white, and blue "O"s of different sizes
+            VStack {
                 Divider()
-                    .background(.green)
+                    .background(.gray)
                     .eval()
                 ZStack {
                     VStack {
                         HStack {
                             ZStack { }
-                                .frame(width: 30.0, height: 30.0)
+                                .frame(width: sliderValue, height: sliderValue)
                                 .background(.purple)
                                 .eval()
                             ZStack { }
-                                .frame(width: 30.0, height: 30.0)
+                                .frame(width: sliderValue, height: sliderValue)
                                 .background(.orange)
                                 .eval()
                         }
                         .eval()
                         HStack {
                             ZStack { }
-                                .frame(width: 30.0, height: 30.0)
+                                .frame(width: sliderValue, height: sliderValue)
                                 .background(.green)
                                 .eval()
                             ZStack { }
-                                .frame(width: 30.0, height: 30.0)
+                                .frame(width: sliderValue, height: sliderValue)
                                 .background(.red)
                                 .eval()
                         }
@@ -129,14 +151,15 @@ struct SkipSampleView: View {
                         .eval()
                 }
                 .rotationEffect(.degrees((sliderValue / 100.0) * 360.0))
+                .frame(height: 250.0)
                 .eval()
                 Divider()
-                    .background(.green)
+                    .background(.gray)
                     .eval()
             }
             .eval()
 
-            #if canImport(SwiftUI)
+            #if !SKIP
             Text("Custom SwiftUI View")
                 .foregroundStyle(.orange)
                 .font(.title)
@@ -150,6 +173,10 @@ struct SkipSampleView: View {
         }
     }
 
-    // SKIP INSERT: } // end: return object : SkipView
-    // SKIP INSERT: } // end: @Composable override fun view(): SkipView
+    // SKIP INSERT: } } // end: @Composable override fun view(): SkipView
 }
+
+var random = SystemRandomNumberGenerator()
+/// returns a random number from 0.0 to 1.0
+func rnd() -> Double { Double(random.next()) / Double(UInt64.max) }
+
