@@ -1,6 +1,9 @@
+// Copyright 2023 Skip
+//
+// This is free software: you can redistribute and/or modify it
+// under the terms of the GNU Lesser General Public License 3.0
+// as published by the Free Software Foundation https://fsf.org
 import Foundation
-
-// An example of a custom Skip WebView for both Compose and SwiftUI.
 #if SKIP
 import AndroidWebkit
 import AndroidxComposeRuntime
@@ -19,8 +22,6 @@ func WebView(url: URL, enableJavaScript: Bool = javaScriptEnabled) {
 #elseif canImport(UIKit)
 import WebKit
 import SwiftUI
-
-// an example of an embedded web view
 struct WebView: UIViewRepresentable {
     let url: URL
     let cfg = WKWebViewConfiguration()

@@ -1,7 +1,12 @@
+// Copyright 2023 Skip
+//
+// This is free software: you can redistribute and/or modify it
+// under the terms of the GNU Lesser General Public License 3.0
+// as published by the Free Software Foundation https://fsf.org
 #if !SKIP
 import Foundation
 import AppModel
-import SkipUI
+import SwiftUI
 
 public protocol AppUIApp : App {
 }
@@ -118,10 +123,10 @@ public struct ContentView: View {
     }
 
     func favoritesView() -> some View {
-        SkipVStack {
-            SkipUISampleView(label: "SwiftUI").eval(style: Style())
-            //SkipUISampleView().eval()
-        }.eval(style: Style())
+        //SkipVStack {
+        SkipSampleView(label: "SwiftUI")
+            //SkipSampleView().eval()
+        //}.eval(style: Style())
     }
 
     func searchView() -> some View {

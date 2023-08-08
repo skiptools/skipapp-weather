@@ -1,76 +1,148 @@
-import SkipUI
+// Copyright 2023 Skip
+//
+// This is free software: you can redistribute and/or modify it
+// under the terms of the GNU Lesser General Public License 3.0
+// as published by the Free Software Foundation https://fsf.org
+import SwiftUI
+//import SkipUI
 // SKIP INSERT: import androidx.compose.runtime.*
 
-public struct SkipUISampleView: SkipView {
-    public var style = Style()
+//let _ = SkipUIPublicModuleName()
+
+#if !SKIP
+extension SwiftUI.View {
+    func eval() -> Self { self } // SwiftUI
+//    func eval() -> SwiftUIAdapterView<Self> { SwiftUIAdapterView { self } } // SkipUI
+}
+#endif
+
+struct SkipSampleView: View {
+    /// The title of the view
     let label: String
 
-    // SKIP INSERT: @Composable override fun view(): SkipView {
+    // in Kotlin, all @State and @StateObject instances are nested within an anonymous inner SkipView instance that is constructed by the @Composable view() function (because `remember` is itself @Composable and cannot be called from a constructor)
+
+    /* SKIP INSERT:
+    @Composable override fun view(): SkipView {
+        return object : SkipView {
+     */
+
+    // now we are inside a @Composable context, and we can use `remember`
+
     // SKIP REPLACE: var sliderValue by remember { mutableStateOf(50.0) }
-    @State var sliderValue = 50.0 // nested in an anonymous inner class returned from view() in Kotlin
-    // SKIP INSERT: return object : SkipView {
+    @State var sliderValue = 50.0
 
-    // SKIP NOWARN
-    // SKIP INSERT: @Composable
-    public func view() -> some SkipView {
-        return innerView()
+    #if canImport(SwiftUI)
+    var body: some View {
+        view()
     }
+    #endif
 
-    // SKIP NOWARN
     // SKIP INSERT: @Composable
-    private func innerView() -> some SkipView {
-        SkipVStack {
-            SkipText("Welcome To SkipUI")
-                .eval(style: style.font(.largeTitle))
-            SkipText("native component demo screen")
-                .eval(style: style.font(.title).color(.indigo))
+    func view() -> some View {
+        return VStack {
+            Text("Welcome To SkipUI")
+                .font(.largeTitle)
+                .foregroundStyle(.white)
+                .eval()
 
-            SkipHStack {
-                SkipText(label + ": ").eval(style: style.font(.subheadline))
-                SkipText(AppTabs.defaultTab.title).eval(style: style.font(.headline))
-            }.eval()
+            Text("native component demo screen")
+                .font(.title)
+                .foregroundStyle(.indigo)
+                .eval()
 
-            SkipGroup { // red, white, and blue "O"s of different sizes
-                SkipDivider().eval()
-                SkipZStack {
-                    SkipText("O").eval(style: style.font(.title).color(.red))
-                    SkipText("O").eval(style: style.font(.title2).color(.white))
-                    SkipText("O").eval(style: style.font(.title3).color(.blue))
-                }.eval()
-                SkipDivider().eval()
-            }.eval()
+            HStack {
+                Text(label + ": ")
+                    .font(.subheadline)
+                    .foregroundStyle(.mint)
+                    .eval()
+                Text(AppTabs.defaultTab.title)
+                    .font(.headline)
+                    .foregroundStyle(.mint)
+                    .eval()
+            }
+            .eval()
+
+            Spacer()
+                .frame(height: 100.0)
+                .eval()
 
             #if canImport(SwiftUI)
-            SwiftUIAdapterView {
-                Slider(value: $sliderValue, in: 0.0...100.0)
-            }.eval()
+            Slider(value: $sliderValue, in: 0.0...100.0)
+                .eval()
             #else
             androidx.compose.material.Slider(
-                modifier: style.modifier,
                 value: Float(sliderValue),
                 onValueChange: { sliderValue = Double($0) },
                 valueRange: Float(0.0)...Float(100.0)
             )
             #endif
 
-            SkipText("Slider: \(Int(sliderValue))%")
-                .eval(style: style.opacity(Double(sliderValue) / 100.0))
+            Text("Slider: \(Int(sliderValue))%")
+                .font(.title)
+                .foregroundStyle(.orange)
+                .opacity(Double(sliderValue) / 100.0)
+                .eval()
 
-            SkipButton(action: {
+            Button(action: {
                 logger.info("reset button tapped")
                 sliderValue = 50.0
             }, label: {
-                SkipText("Reset").eval()
-            }).eval()
+                Text("Reset")
+                    .eval()
+            })
+            .eval()
+
+            Group { // red, white, and blue "O"s of different sizes
+                Divider()
+                    .background(.green)
+                    .eval()
+                ZStack {
+                    VStack {
+                        HStack {
+                            ZStack { }
+                                .frame(width: 30.0, height: 30.0)
+                                .background(.purple)
+                                .eval()
+                            ZStack { }
+                                .frame(width: 30.0, height: 30.0)
+                                .background(.orange)
+                                .eval()
+                        }
+                        .eval()
+                        HStack {
+                            ZStack { }
+                                .frame(width: 30.0, height: 30.0)
+                                .background(.green)
+                                .eval()
+                            ZStack { }
+                                .frame(width: 30.0, height: 30.0)
+                                .background(.red)
+                                .eval()
+                        }
+                        .eval()
+                    }
+                    .eval()
+                    Text("o")
+                        .font(.largeTitle)
+                        .foregroundStyle(.white)
+                        .eval()
+                }
+                .rotationEffect(.degrees((sliderValue / 100.0) * 360.0))
+                .eval()
+                Divider()
+                    .background(.green)
+                    .eval()
+            }
+            .eval()
 
             #if canImport(SwiftUI)
-            SwiftUIAdapterView {
-                SwiftUI.Text("Custom SwiftUI View")
-                    .foregroundStyle(SwiftUI.Color.orange)
-                    .font(SwiftUI.Font.title)
-            }.eval()
+            Text("Custom SwiftUI View")
+                .foregroundStyle(.orange)
+                .font(.title)
+                .eval()
             #else
-            androidx.compose.material.Text(modifier: style.modifier, text: "Custom Compose View",
+            androidx.compose.material.Text(text: "Custom Compose View",
                 color: androidx.compose.ui.graphics.Color(0xFFFFA500),
                 style: androidx.compose.material.MaterialTheme.typography.h5
             )

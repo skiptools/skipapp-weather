@@ -1,3 +1,8 @@
+// Copyright 2023 Skip
+//
+// This is free software: you can redistribute and/or modify it
+// under the terms of the GNU Lesser General Public License 3.0
+// as published by the Free Software Foundation https://fsf.org
 #if SKIP
 import Foundation
 import AppModel
@@ -9,6 +14,7 @@ import AndroidxAppcompatApp
 import AndroidxActivityCompose
 import AndroidxComposeRuntime
 import AndroidxComposeMaterial
+//import AndroidxComposeMaterial3
 import AndroidxComposeMaterialIcons
 import AndroidxComposeMaterialIconsFilled
 import AndroidxComposeFoundation
@@ -53,7 +59,9 @@ public class MainActivity : AppCompatActivity {
     public override func onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ContentView()
+            androidx.compose.material3.MaterialTheme(colorScheme: androidx.compose.material3.darkColorScheme()) {
+                ContentView()
+            }
         }
 
         let permissions = listOf(
@@ -91,9 +99,6 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
     }
 }
 
-// SKIP INSERT: @Preview(name = "Light theme")
-// SKIP INSERT: @Preview(name = "Dark theme")
-// SKIP INSERT: @ExperimentalMaterialApi
 // SKIP INSERT: @Composable
 func ContentView() -> Void {
     let model = Stuff()
@@ -120,12 +125,7 @@ func ContentView() -> Void {
     func ListView() {
         LazyColumn {
             itemsIndexed(rows) { index, thing in
-                let state = rememberDismissState()
-                SwipeToDismiss(state: state, background: {
-
-                }) {
-                    RowView(index: index, thing: thing)
-                }
+                RowView(index: index, thing: thing)
             }
         }
     }
@@ -251,8 +251,7 @@ func ContentView() -> Void {
     // SKIP INSERT: @Composable
     func FavoritesView() {
         Column {
-            SkipUISampleView(label: "Compose").eval(style: skip.ui.Style())
-            //SkipUISampleView(label: "Compose").eval(style: skip.ui.Style())
+            SkipSampleView(label: "Compose").eval(style: skip.ui.Style())
         }
     }
 
@@ -301,8 +300,8 @@ func ContentView() -> Void {
     }
 
     let colors = isSystemInDarkTheme()
-        ? darkColors() // primary: primary, primaryVariant: primaryVariant, secondary: secondary, background: background)
-        : lightColors() // primary: primary, primaryVariant: primaryVariant, secondary: secondary, background: background)
+        ? darkColors()
+        : lightColors()
 
     MaterialTheme(colors: colors) {
         Scaffold(bottomBar: {
@@ -311,8 +310,6 @@ func ContentView() -> Void {
                 AppTabs.allCases.forEachIndexed { index, tab in
                     BottomNavigationItem(icon: { Icon(imageVector: tab.icon, contentDescription: tab.title) },
                                          label: { Text(tab.title) },
-                                         //selectedContentColor: tabColorOn,
-                                         //unselectedContentColor: tabColorOff,
                                          selected: tab == selectedTab.value,
                                          onClick: { selectedTab.value = tab }
                     )
