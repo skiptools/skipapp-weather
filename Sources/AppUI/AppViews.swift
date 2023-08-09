@@ -4,11 +4,7 @@
 // under the terms of the GNU Lesser General Public License 3.0
 // as published by the Free Software Foundation https://fsf.org
 import Foundation
-#if SKIP || canImport(SkipUI)
-import SkipUI
-#else
 import SwiftUI
-#endif
 
 // SKIP INSERT: import androidx.compose.runtime.* // needed for remember/getValue/setValue
 // SKIP INSERT: import androidx.compose.runtime.saveable.* // needed for rememberSaveable/restore
@@ -99,7 +95,6 @@ struct SkipSampleView: View {
                 //#if canImport(SwiftUI) // per-target customization mechanism, except error: “Skip does not support this Swift syntax [postfixIfConfigExpr]”
                 //.buttonStyle(.borderedProminent)
                 //#endif
-
                 .eval()
             }
             .eval()
