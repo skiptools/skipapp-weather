@@ -156,7 +156,32 @@ public struct ContentView: View {
                 .padding()
             }
         }
+
+        struct StateToggleContainer: View {
+            @State var counterToggle = false
+
+            var body: some View {
+                HStack {
+                    Button("Toggle", action: { counterToggle = !counterToggle })
+                    if counterToggle {
+                        StateToggleView().id(true)
+                    } else {
+                        StateToggleView().id(false)
+                    }
+                }
+            }
+        }
+
+        struct StateToggleView: View {
+            @State var countState = 0
+            var body: some View {
+                Button("Counter: \(countState)", action: { countState += 1 })
+
+            }
+        }
+
         return AppMetadataView()
+//        return StateToggleContainer()
     }
 }
 

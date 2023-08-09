@@ -16,6 +16,9 @@
     "Bundle Identifier: %@" : {
 
     },
+    "Counter: %lld" : {
+
+    },
     "Custom SwiftUI View" : {
 
     },
@@ -144,6 +147,9 @@
       "comment" : "Favorites tab title"
     },
     "Slider: %lld%%" : {
+
+    },
+    "Toggle" : {
 
     },
     "Version: %@" : {

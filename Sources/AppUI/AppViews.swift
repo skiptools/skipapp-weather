@@ -30,24 +30,16 @@ struct SkipSampleView: View {
     // SKIP REPLACE: var sliderValue by rememberSaveable { mutableStateOf(defaultValue) }
     @State private var sliderValue = defaultValue
 
-    #if canImport(SwiftUI)
-    var body: some View {
-        view()
-    }
-    #endif
+    // SKIP INSERT: @Composable override fun view(): SkipView { return body() }
 
-    // SKIP NOWARN
-    // SKIP INSERT: @Composable
-    @ViewBuilder func view() -> some View {
+    @ViewBuilder var body: some View {
         VStack {
             Text("Welcome To SkipUI")
                 .font(.largeTitle)
-                .foregroundStyle(.mint)
-                .eval()
-
+                .eval() // should no longer be needed
+            
             Text("native component demo screen")
                 .font(.title)
-                .foregroundStyle(.indigo)
                 .eval()
 
             HStack {
@@ -63,7 +55,7 @@ struct SkipSampleView: View {
             .eval()
 
             Spacer()
-                .frame(height: 100.0)
+                .frame(height: 50.0)
                 .eval()
 
             Slider(value: Binding(get: { sliderValue }, set: { sliderValue = $0 }), in: 0.0...100.0)
@@ -80,12 +72,12 @@ struct SkipSampleView: View {
                     logger.info("dance button tapped")
                     Task {
                         repeat {
-                            withAnimation {
+                            //withAnimation {
                                 // TODO: Double.random(in: 0.0...100.0)
                                 var random = SystemRandomNumberGenerator()
                                 func rnd() -> Double { Double(random.next()) / Double(UInt64.max) }
                                 sliderValue = rnd() * 100.0
-                            }
+                            //}
                             try await Task.sleep(nanoseconds: 1_000_000 * 300) // 300ms
                         } while sliderValue != Self.defaultValue
                     }
@@ -151,7 +143,7 @@ struct SkipSampleView: View {
                     }
                     .eval()
                 }
-                .rotationEffect(.degrees((sliderValue / 100.0) * 360.0))
+                .rotationEffect(.degrees(((sliderValue / 100.0) * 360.0) + 45.0))
                 .frame(height: 250.0)
                 .eval()
                 Divider()

@@ -14,8 +14,10 @@ import AndroidxAppcompatApp
 import AndroidxActivityCompose
 import AndroidxComposeRuntime
 import AndroidxComposeRuntimeSaveable
-import AndroidxComposeMaterial
-//import AndroidxComposeMaterial3
+import AndroidxComposeMaterial3
+//import AndroidxComposeMaterial3.darkColorScheme
+//import AndroidxComposeMaterial3.dynamicDarkColorScheme
+//import AndroidxComposeMaterial3.dynamicLightColorScheme
 import AndroidxComposeMaterialIcons
 import AndroidxComposeMaterialIconsFilled
 import AndroidxComposeFoundation
@@ -37,6 +39,7 @@ import AndroidxComposeUiTextInput
 import AndroidxComposeUiTextStyle
 import AndroidxComposeUiToolingPreview
 import AndroidxComposeUiUnit
+import AndroidxNavigationCompose.rememberNavController
 
 /// AndroidAppMain is the `android.app.Application` entry point, and must match `application android:name` in the AndroidMainfest.xml file
 public class AndroidAppMain : Application {
@@ -56,12 +59,15 @@ public class MainActivity : AppCompatActivity {
     public init() {
     }
 
-    // SKIP INSERT: @ExperimentalMaterialApi
+    // SKIP INSERT: @ExperimentalMaterial3Api
     public override func onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            androidx.compose.material3.MaterialTheme(colorScheme: androidx.compose.material3.darkColorScheme()) {
-                ContentView()
+            MaterialTheme(colorScheme: lightColorScheme()) {
+                let saveableStateHolder = rememberSaveableStateHolder()
+                saveableStateHolder.SaveableStateProvider("ABC") {
+                    ContentView()
+                }
             }
         }
 
@@ -100,10 +106,12 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
     }
 }
 
+// SKIP INSERT: @ExperimentalMaterial3Api
 // SKIP INSERT: @Composable
 func ContentView() -> Void {
     let model = Stuff()
     let rows = remember { Stuff().things.toList().toMutableStateList() }
+    // SKIP REPLACE: var selectedTab by rememberSaveable { mutableStateOf(AppTabs.defaultTab) }
     var selectedTab = rememberSaveable { mutableStateOf(AppTabs.defaultTab) }
 
     func addRow() {
@@ -116,9 +124,9 @@ func ContentView() -> Void {
         Row(modifier: Modifier.padding(6.dp),
             verticalAlignment: Alignment.CenterVertically
         ) {
-            Text(text: "\(index + 1)", style: MaterialTheme.typography.caption, textAlign: TextAlign.Start, modifier: Modifier.padding(6.dp))
-            Text(text: "\(thing.string)", style: MaterialTheme.typography.body1, textAlign: TextAlign.Start)
-            Text(text: "\(thing.number)", style: MaterialTheme.typography.body2, textAlign: TextAlign.End, modifier: Modifier.fillMaxWidth())
+            Text(text: "\(index + 1)", style: MaterialTheme.typography.bodySmall, textAlign: TextAlign.Start, modifier: Modifier.padding(6.dp))
+            Text(text: "\(thing.string)", style: MaterialTheme.typography.bodyMedium, textAlign: TextAlign.Start)
+            Text(text: "\(thing.number)", style: MaterialTheme.typography.bodySmall, textAlign: TextAlign.End, modifier: Modifier.fillMaxWidth())
         }
     }
 
@@ -131,11 +139,12 @@ func ContentView() -> Void {
         }
     }
 
+    // SKIP INSERT: @ExperimentalMaterial3Api
     // SKIP INSERT: @Composable
     func HomeView() {
         Scaffold(topBar: {
             TopAppBar(title: {
-                Text(text: model.title, style: MaterialTheme.typography.h6)
+                Text(text: model.title, style: MaterialTheme.typography.headlineSmall)
             },
             actions: {
                 IconButton(onClick: {
@@ -187,7 +196,7 @@ func ContentView() -> Void {
 
         Column(horizontalAlignment: Alignment.CenterHorizontally, modifier: Modifier.fillMaxSize().padding(16.dp)) {
             Row {
-                Text(text: "Weather", style: MaterialTheme.typography.h4, modifier: Modifier.fillMaxWidth())
+                Text(text: "Weather", style: MaterialTheme.typography.headlineMedium, modifier: Modifier.fillMaxWidth())
             }
 
             // SKIP INSERT: @Composable
@@ -238,9 +247,9 @@ func ContentView() -> Void {
             }
 
             if let temp = weather.value.temperature {
-                Row { Text(text: "Temperature", style: MaterialTheme.typography.h5, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth()) }
-                Row { Text(text: "\((temp * 9.0 / 5.0) + 32.0)°F", style: MaterialTheme.typography.h6, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth()) }
-                Row { Text(text: "\(temp)°C", style: MaterialTheme.typography.h6, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth()) }
+                Row { Text(text: "Temperature", style: MaterialTheme.typography.headlineMedium, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth()) }
+                Row { Text(text: "\((temp * 9.0 / 5.0) + 32.0)°F", style: MaterialTheme.typography.headlineSmall, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth()) }
+                Row { Text(text: "\(temp)°C", style: MaterialTheme.typography.headlineSmall, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth()) }
             }
         }
     }
@@ -275,45 +284,58 @@ func ContentView() -> Void {
                     }
                 }
 
-                row("Name: \(appName)", style: MaterialTheme.typography.h6)
-                row("ID: \(applicationId)", style: MaterialTheme.typography.h6)
-                row("Version: \(versionName) \(BuildConfig.DEBUG ? "(debug)" : "(release)")", style: MaterialTheme.typography.h6)
-                row("Build: \(versionCode)", style: MaterialTheme.typography.h6)
+                /*
+                 public final class BuildConfig {
+                   public static final boolean DEBUG = Boolean.parseBoolean("true");
+                   public static final String APPLICATION_ID = "com.example.emptycompose";
+                   public static final String BUILD_TYPE = "debug";
+                   public static final int VERSION_CODE = 1;
+                   public static final String VERSION_NAME = "1.0";
+                 }
+                 */
+                row("Name: \(appName)", style: MaterialTheme.typography.headlineSmall)
+                row("ID: \(applicationId)", style: MaterialTheme.typography.headlineSmall)
+                row("Version: \(versionName) \(BuildConfig.DEBUG ? "(debug)" : "(release)")", style: MaterialTheme.typography.headlineSmall)
+                row("Build: \(versionCode)", style: MaterialTheme.typography.headlineSmall)
             }
         }
     }
 
+    // SKIP INSERT: @ExperimentalMaterial3Api
     // SKIP INSERT: @Composable
-    func SelectedTabView(for tab: AppTabs) {
-        switch tab {
-        case .home: HomeView()
-        case .device: DeviceView()
-        case .favorites: FavoritesView()
-        case .search: SearchView()
-        case .settings: SettingsView()
+    func NavigationScaffold() {
+        let navController = rememberNavController()
+
+        // SKIP INSERT: @ExperimentalMaterial3Api
+        // SKIP INSERT: @Composable
+        func SelectedTabView(for tab: AppTabs) {
+            switch tab {
+            case .home: HomeView()
+            case .device: DeviceView()
+            case .favorites: FavoritesView()
+            case .search: SearchView()
+            case .settings: SettingsView()
+            }
         }
-    }
-
-    // SKIP INSERT: @Composable
-    func AppTabView() {
-        Box(modifier: Modifier.fillMaxSize().wrapContentSize(Alignment.Center)) {
-            SelectedTabView(for: selectedTab.value)
+        
+        // SKIP INSERT: @ExperimentalMaterial3Api
+        // SKIP INSERT: @Composable
+        func AppTabView() {
+            Box(modifier: Modifier.fillMaxSize().wrapContentSize(Alignment.Center)) {
+                SelectedTabView(for: selectedTab)
+            }
         }
-    }
 
-    let colors = isSystemInDarkTheme()
-        ? darkColors()
-        : lightColors()
-
-    MaterialTheme(colors: colors) {
         Scaffold(bottomBar: {
-            BottomNavigation(modifier: Modifier.fillMaxWidth()) {
+            NavigationBar(modifier: Modifier.fillMaxWidth()) {
                 // Create a tab bar with each of the possible tabs
                 AppTabs.allCases.forEachIndexed { index, tab in
-                    BottomNavigationItem(icon: { Icon(imageVector: tab.icon, contentDescription: tab.title) },
-                                         label: { Text(tab.title) },
-                                         selected: tab == selectedTab.value,
-                                         onClick: { selectedTab.value = tab }
+                    NavigationBarItem(icon: { Icon(imageVector: tab.icon, contentDescription: tab.title) }, label: { Text(tab.title) }, selected: tab == selectedTab, onClick: {
+                            selectedTab = tab
+//                                navController.navigate("XXX") {
+//                                    selectedTab = tab
+//                                }
+                        }
                     )
                 }
             }
@@ -322,5 +344,84 @@ func ContentView() -> Void {
             AppTabView()
         }
     }
+
+    // SKIP INSERT: @ExperimentalMaterial3Api
+    // SKIP INSERT: @Composable
+    func ThemedNavigationScaffold() {
+        let context: Context = LocalContext.current
+        let darkMode = isSystemInDarkTheme()
+
+        //let colors = darkMode ? darkColors() : lightColors()
+        let colorScheme = darkMode ? dynamicDarkColorScheme(context) : dynamicLightColorScheme(context)
+
+        var typography = Typography(
+            /* Other default text styles to override
+            bodyLarge = TextStyle(
+                fontFamily = FontFamily.Default,
+                fontWeight = FontWeight.Normal,
+                fontSize = 16.sp,
+                lineHeight = 24.sp,
+                letterSpacing = 0.5.sp
+            )
+            titleLarge = TextStyle(
+                fontFamily = FontFamily.Default,
+                fontWeight = FontWeight.Normal,
+                fontSize = 22.sp,
+                lineHeight = 28.sp,
+                letterSpacing = 0.sp
+            ),
+            labelSmall = TextStyle(
+                fontFamily = FontFamily.Default,
+                fontWeight = FontWeight.Medium,
+                fontSize = 11.sp,
+                lineHeight = 16.sp,
+                letterSpacing = 0.5.sp
+            )
+            */
+        )
+
+        MaterialTheme(colorScheme: colorScheme, typography: typography) {
+            NavigationScaffold()
+        }
+    }
+
+    ThemedNavigationScaffold()
+
+
+    // SKIP INSERT: @Composable
+    func Counter() {
+        // SKIP INSERT: //var counterToggle by mutableStateOf(false)
+        // SKIP INSERT: //var counterToggle by remember { mutableStateOf(false) }
+        // SKIP INSERT: var counterToggle by rememberSaveable { mutableStateOf(false) }
+
+        Button(onClick: {
+            counterToggle = !counterToggle
+        }) { Text("Toggle") }
+
+
+        // SKIP INSERT: @Composable
+        func CounterView(label: String, visible: Bool) {
+            // SKIP INSERT: //var countState by mutableStateOf(0)
+            // SKIP INSERT: //var countState by remember { mutableStateOf(0) }
+            // SKIP INSERT: var countState by rememberSaveable { mutableStateOf(0) }
+
+            Button(onClick: {
+                countState++
+            }) {
+                // The composite key is a unique identifier for a Composable function and its inputs. It is automatically generated by Compose based on the structure of the Composable function and the values of its input parameters. The composite key is used by Compose to efficiently track changes and update only the necessary parts of the UI.
+
+                Text("\(label) \(androidx.compose.runtime.currentCompositeKeyHash): \(countState)", color: visible ? Color.White : Color.Yellow)
+            }
+        }
+
+        Spacer(modifier: Modifier.padding(20.dp))
+
+        Column {
+            CounterView(label: "Counter A", visible: counterToggle)
+            CounterView(label: "Counter B", visible: !counterToggle)
+        }
+    }
+
+    //Counter()
 }
 #endif
