@@ -160,6 +160,8 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
 
     @ViewBuilder func WeatherView() {
         let ctx: Context = LocalContext.current
+        var latitude = rememberSaveable { mutableStateOf(0.0) }
+        var longitude = rememberSaveable { mutableStateOf(0.0) }
 
         // crashes when we try to use rememberSaveable
         var weather = remember {
@@ -170,11 +172,13 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
 
         @MainActor func fetchLocation(_ ctx: Context) async throws {
             logger.info("getting location…")
+            weather.value.location.latitude = latitude.value
+            weather.value.location.longitude = longitude.value
             // SKIP NOWARN
             let (lat, lon) = try await fetchCurrentLocation(ctx)
             logger.info("location: \(lat) \(lon)")
-            weather.value.location.latitude = lat
-            weather.value.location.longitude = lon
+            latitude.value = lat
+            longitude.value = lon
         }
 
         func fetchWeather() async throws {
@@ -194,13 +198,13 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
 
             @ViewBuilder func latLonField(lat: Bool) {
                 TextField(
-                    value: lat ? weather.value.location.latitude.description : weather.value.location.longitude.description,
+                    value: lat ? latitude.value.description : longitude.value.description,
                     onValueChange: { newValue in
                         logger.log("setting \(lat ? "latitude" : "longitude") to: \(newValue)")
                         if lat {
-                            weather.value.location.latitude = Double(newValue) ?? 0.0
+                            latitude.value = Double(newValue) ?? 0.0
                         } else {
-                            weather.value.location.longitude = Double(newValue) ?? 0.0
+                            longitude.value = Double(newValue) ?? 0.0
                         }
                     },
                     label: {
