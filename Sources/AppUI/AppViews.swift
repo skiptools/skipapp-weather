@@ -113,12 +113,10 @@ struct SkipSampleView: View {
                             ZStack { }
                                 .frame(width: sliderValue, height: sliderValue)
                                 .background(.purple)
-                                .opacity(0.8)
                                 .eval()
                             ZStack { }
                                 .frame(width: sliderValue, height: sliderValue)
                                 .background(.orange)
-                                .opacity(0.9)
                                 .eval()
                         }
                         .eval()
@@ -126,12 +124,10 @@ struct SkipSampleView: View {
                             ZStack { }
                                 .frame(width: sliderValue, height: sliderValue)
                                 .background(.green)
-                                .opacity(0.7)
                                 .eval()
                             ZStack { }
                                 .frame(width: sliderValue, height: sliderValue)
                                 .background(.red)
-                                .opacity(0.5)
                                 .eval()
                         }
                         .eval()

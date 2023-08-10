@@ -15,9 +15,6 @@ import AndroidxActivityCompose
 import AndroidxComposeRuntime
 import AndroidxComposeRuntimeSaveable
 import AndroidxComposeMaterial3
-//import AndroidxComposeMaterial3.darkColorScheme
-//import AndroidxComposeMaterial3.dynamicDarkColorScheme
-//import AndroidxComposeMaterial3.dynamicLightColorScheme
 import AndroidxComposeMaterialIcons
 import AndroidxComposeMaterialIconsFilled
 import AndroidxComposeFoundation
@@ -65,10 +62,10 @@ public class MainActivity : AppCompatActivity {
         super.onCreate(savedInstanceState)
         setContent {
             MaterialTheme(colorScheme: lightColorScheme()) {
-                let saveableStateHolder = rememberSaveableStateHolder()
-                saveableStateHolder.SaveableStateProvider("ABC") {
+                //let saveableStateHolder = rememberSaveableStateHolder()
+                //saveableStateHolder.SaveableStateProvider("ABC") {
                     ContentView()
-                }
+                //}
             }
         }
 
@@ -108,26 +105,22 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
 }
 
 // SKIP INSERT: @ExperimentalMaterial3Api
-// SKIP INSERT: @Composable
-func ContentView() -> Void {
+@ViewBuilder func ContentView() {
     let model = Stuff()
 
-
     // SKIP INSERT: @ExperimentalMaterial3Api
-    // SKIP INSERT: @Composable
-    func HomeView() {
+    @ViewBuilder func HomeView() {
         let rows = remember { Stuff().things.toList().toMutableStateList() }
+        // java.lang.IllegalArgumentException: androidx.compose.runtime.snapshots.SnapshotStateList@76feae6 cannot be saved using the current SaveableStateRegistry. The default implementation only supports types which can be stored inside the Bundle. Please consider implementing a custom Saver for this class and pass it to rememberSaveable().
+        // let rows = rememberSaveable { Stuff().things.toList().toMutableStateList() }
 
         func addRow() {
             logger.info("Tapped add button")
             rows.add(Stuff.allThings[min(Stuff.allThings.count - 1, Array(rows).count)])
         }
 
-        // SKIP INSERT: @Composable
-        func ListView() {
-
-            // SKIP INSERT: @Composable
-            func RowView(index: Int, thing: Thing) -> Void {
+        @ViewBuilder func ListView() {
+            @ViewBuilder func RowView(index: Int, thing: Thing) {
                 Row(modifier: Modifier.padding(6.dp),
                     verticalAlignment: Alignment.CenterVertically
                 ) {
@@ -161,13 +154,11 @@ func ContentView() -> Void {
         }
     }
 
-    // SKIP INSERT: @Composable
-    func SearchView() {
+    @ViewBuilder func SearchView() {
         WebView(AppTabs.searchPage)
     }
 
-    // SKIP INSERT: @Composable
-    func WeatherView() {
+    @ViewBuilder func WeatherView() {
         let ctx: Context = LocalContext.current
 
         // crashes when we try to use rememberSaveable
@@ -201,8 +192,7 @@ func ContentView() -> Void {
                 Text(text: "Weather", style: MaterialTheme.typography.headlineMedium, modifier: Modifier.fillMaxWidth())
             }
 
-            // SKIP INSERT: @Composable
-            func latLonField(lat: Bool) {
+            @ViewBuilder func latLonField(lat: Bool) {
                 TextField(
                     value: lat ? weather.value.location.latitude.description : weather.value.location.longitude.description,
                     onValueChange: { newValue in
@@ -256,20 +246,17 @@ func ContentView() -> Void {
         }
     }
 
-    // SKIP INSERT: @Composable
-    func DeviceView() {
+    @ViewBuilder func DeviceView() {
         WeatherView()
     }
 
-    // SKIP INSERT: @Composable
-    func FavoritesView() {
+    @ViewBuilder func FavoritesView() {
         Column {
             SkipSampleView(label: "Compose").eval(style: skip.ui.Style())
         }
     }
 
-    // SKIP INSERT: @Composable
-    func CounterStateView() {
+    @ViewBuilder func CounterStateView() {
         //var counterToggle = mutableStateOf(false)
         //var counterToggle = remember { mutableStateOf(false) }
         var counterToggle = rememberSaveable { mutableStateOf(false) }
@@ -279,8 +266,7 @@ func ContentView() -> Void {
         }) { Text("Toggle") }
 
 
-        // SKIP INSERT: @Composable
-        func CounterView(label: String, visible: Bool) {
+        @ViewBuilder func CounterView(label: String, visible: Bool) {
             //var countState = mutableStateOf(0)
             //var countState = remember { mutableStateOf(0) }
             var countState = rememberSaveable { mutableStateOf(0) }
@@ -302,8 +288,7 @@ func ContentView() -> Void {
         }
     }
 
-    // SKIP INSERT: @Composable
-    func SettingsView() {
+    @ViewBuilder func SettingsView() {
         Box(modifier: Modifier.fillMaxSize().padding(16.dp), contentAlignment: androidx.compose.ui.Alignment.Companion.Center) {
             Column {
                 let context = androidx.compose.ui.platform.LocalContext.current
@@ -313,8 +298,7 @@ func ContentView() -> Void {
                 let versionName = packageInfo.versionName
                 let versionCode = packageInfo.versionCode
 
-                // SKIP INSERT: @Composable
-                func row(_ text: String, style: TextStyle) {
+                @ViewBuilder func row(_ text: String, style: TextStyle) {
                     Row(verticalAlignment: Alignment.CenterVertically, horizontalArrangement: Arrangement.End) {
                         Text(text: text, style: style, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
                     }
@@ -340,12 +324,10 @@ func ContentView() -> Void {
     }
 
     // SKIP INSERT: @ExperimentalMaterial3Api
-    // SKIP INSERT: @Composable
-    func NavigationScaffold() {
+    @ViewBuilder func NavigationScaffold() {
         let navController = rememberNavController()
 
-        // SKIP INSERT: @Composable
-        func currentRoute(_ navController: NavHostController) -> String? {
+        @ViewBuilder func currentRoute(_ navController: NavHostController) -> String? {
             // In your BottomNavigation composable, get the current NavBackStackEntry using the currentBackStackEntryAsState() function. This entry gives you access to the current NavDestination. The selected state of each BottomNavigationItem can then be determined by comparing the item's route with the route of the current destination and its parent destinations (to handle cases when you are using nested navigation) via the NavDestination hierarchy.
             navController.currentBackStackEntryAsState().value?.destination?.route
         }
@@ -386,13 +368,16 @@ func ContentView() -> Void {
     }
 
     // SKIP INSERT: @ExperimentalMaterial3Api
-    // SKIP INSERT: @Composable
-    func ThemedNavigationScaffold() {
+    @ViewBuilder func ThemedNavigationScaffold() {
         let context: Context = LocalContext.current
         let darkMode = isSystemInDarkTheme()
+        // Dynamic color is available on Android 12+
+        let dynamicColor = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S
 
         //let colors = darkMode ? darkColors() : lightColors()
-        let colorScheme = darkMode ? dynamicDarkColorScheme(context) : dynamicLightColorScheme(context)
+        let colorScheme = dynamicColor
+            ? (darkMode ? dynamicDarkColorScheme(context) : dynamicLightColorScheme(context))
+            : (darkMode ? darkColorScheme() : lightColorScheme())
 
         var typography = Typography(
             /* Other default text styles to override
