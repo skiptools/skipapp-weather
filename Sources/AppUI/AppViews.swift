@@ -153,7 +153,7 @@ struct SkipSampleView: View {
                 .font(.title2)
                 .eval()
             #else
-            androidx.compose.material.Text(text: "Custom Compose View",
+            androidx.compose.material3.Text(text: "Custom Compose View",
                 color: androidx.compose.ui.graphics.Color(0xFFFFA500),
                 style: androidx.compose.material.MaterialTheme.typography.h5
             )

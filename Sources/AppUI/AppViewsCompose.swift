@@ -39,7 +39,8 @@ import AndroidxComposeUiTextInput
 import AndroidxComposeUiTextStyle
 import AndroidxComposeUiToolingPreview
 import AndroidxComposeUiUnit
-import AndroidxNavigationCompose.rememberNavController
+import AndroidxNavigation
+import AndroidxNavigationCompose
 
 /// AndroidAppMain is the `android.app.Application` entry point, and must match `application android:name` in the AndroidMainfest.xml file
 public class AndroidAppMain : Application {
@@ -110,37 +111,39 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
 // SKIP INSERT: @Composable
 func ContentView() -> Void {
     let model = Stuff()
-    let rows = remember { Stuff().things.toList().toMutableStateList() }
-    var selectedTab = rememberSaveable { mutableStateOf(AppTabs.defaultTab) }
 
-    func addRow() {
-        logger.info("Tapped add button")
-        rows.add(Stuff.allThings[min(Stuff.allThings.count - 1, Array(rows).count)])
-    }
-
-    // SKIP INSERT: @Composable
-    func RowView(index: Int, thing: Thing) -> Void {
-        Row(modifier: Modifier.padding(6.dp),
-            verticalAlignment: Alignment.CenterVertically
-        ) {
-            Text(text: "\(index + 1)", style: MaterialTheme.typography.bodySmall, textAlign: TextAlign.Start, modifier: Modifier.padding(6.dp))
-            Text(text: "\(thing.string)", style: MaterialTheme.typography.bodyMedium, textAlign: TextAlign.Start)
-            Text(text: "\(thing.number)", style: MaterialTheme.typography.bodySmall, textAlign: TextAlign.End, modifier: Modifier.fillMaxWidth())
-        }
-    }
-
-    // SKIP INSERT: @Composable
-    func ListView() {
-        LazyColumn {
-            itemsIndexed(rows) { index, thing in
-                RowView(index: index, thing: thing)
-            }
-        }
-    }
 
     // SKIP INSERT: @ExperimentalMaterial3Api
     // SKIP INSERT: @Composable
     func HomeView() {
+        let rows = remember { Stuff().things.toList().toMutableStateList() }
+
+        func addRow() {
+            logger.info("Tapped add button")
+            rows.add(Stuff.allThings[min(Stuff.allThings.count - 1, Array(rows).count)])
+        }
+
+        // SKIP INSERT: @Composable
+        func ListView() {
+
+            // SKIP INSERT: @Composable
+            func RowView(index: Int, thing: Thing) -> Void {
+                Row(modifier: Modifier.padding(6.dp),
+                    verticalAlignment: Alignment.CenterVertically
+                ) {
+                    Text(text: "\(index + 1)", style: MaterialTheme.typography.bodySmall, textAlign: TextAlign.Start, modifier: Modifier.padding(6.dp))
+                    Text(text: "\(thing.string)", style: MaterialTheme.typography.bodyMedium, textAlign: TextAlign.Start)
+                    Text(text: "\(thing.number)", style: MaterialTheme.typography.bodySmall, textAlign: TextAlign.End, modifier: Modifier.fillMaxWidth())
+                }
+            }
+
+            LazyColumn {
+                itemsIndexed(rows) { index, thing in
+                    RowView(index: index, thing: thing)
+                }
+            }
+        }
+
         Scaffold(topBar: {
             TopAppBar(title: {
                 Text(text: model.title, style: MaterialTheme.typography.headlineSmall)
@@ -341,43 +344,44 @@ func ContentView() -> Void {
     func NavigationScaffold() {
         let navController = rememberNavController()
 
-        // SKIP INSERT: @ExperimentalMaterial3Api
         // SKIP INSERT: @Composable
-        func SelectedTabView(for tab: AppTabs) {
-            switch tab {
-            case .home: HomeView()
-            case .device: DeviceView()
-            case .favorites: FavoritesView()
-            case .search: SearchView()
-            case .settings: SettingsView()
-            }
-        }
-        
-        // SKIP INSERT: @ExperimentalMaterial3Api
-        // SKIP INSERT: @Composable
-        func AppTabView() {
-            Box(modifier: Modifier.fillMaxSize().wrapContentSize(Alignment.Center)) {
-                SelectedTabView(for: selectedTab.value)
-            }
-            
+        func currentRoute(_ navController: NavHostController) -> String? {
+            // In your BottomNavigation composable, get the current NavBackStackEntry using the currentBackStackEntryAsState() function. This entry gives you access to the current NavDestination. The selected state of each BottomNavigationItem can then be determined by comparing the item's route with the route of the current destination and its parent destinations (to handle cases when you are using nested navigation) via the NavDestination hierarchy.
+            navController.currentBackStackEntryAsState().value?.destination?.route
         }
 
         Scaffold(bottomBar: {
             NavigationBar(modifier: Modifier.fillMaxWidth()) {
-                // Create a tab bar with each of the possible tabs
                 AppTabs.allCases.forEachIndexed { index, tab in
-                    NavigationBarItem(icon: { Icon(imageVector: tab.icon, contentDescription: tab.title) }, label: { Text(tab.title) }, selected: tab == selectedTab.value, onClick: {
-                            selectedTab.value = tab
-//                                navController.navigate("XXX") {
-//                                    selectedTab.value = tab
-//                                }
+                    NavigationBarItem(icon: { Icon(imageVector: tab.icon, contentDescription: tab.title) }, label: { Text(tab.title) }, selected: tab.rawValue == currentRoute(navController), onClick: {
+                            navController.navigate(tab.rawValue) {
+                                popUpTo(navController.graph.startDestinationId) {
+                                    saveState = true
+                                }
+                                // Avoid multiple copies of the same destination when reselecting the same item
+                                launchSingleTop = true
+                                // Restore state when reselecting a previously selected item
+                                restoreState = true
+                            }
                         }
                     )
                 }
             }
         }) { contentPadding in
             let modifier = Modifier.padding(contentPadding)
-            AppTabView()
+            NavHost(navController, startDestination: AppTabs.defaultTab.rawValue) {
+                AppTabs.allCases.forEachIndexed { index, tab in
+                    composable(tab.rawValue) {
+                        switch tab {
+                        case AppTabs.home: HomeView()
+                        case AppTabs.device: DeviceView()
+                        case AppTabs.favorites: FavoritesView()
+                        case AppTabs.search: SearchView()
+                        case AppTabs.settings: SettingsView()
+                        }
+                    }
+                }
+            }
         }
     }
 
