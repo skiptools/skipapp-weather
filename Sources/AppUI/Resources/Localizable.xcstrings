@@ -7,6 +7,9 @@
     "%lld" : {
 
     },
+    "Animate" : {
+
+    },
     "App Name: %@" : {
 
     },
@@ -20,9 +23,6 @@
 
     },
     "Custom SwiftUI View" : {
-
-    },
-    "Dance" : {
 
     },
     "Done" : {

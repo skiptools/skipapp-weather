@@ -60,12 +60,16 @@ public class MainActivity : AppCompatActivity {
     // SKIP INSERT: @ExperimentalMaterial3Api
     public override func onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
+        if let savedInstanceState = savedInstanceState {
+            logger.log("onCreate: SKIPKEY: \(savedInstanceState.getString("SKIPKEY"))")
+        } else {
+            logger.log("onCreate")
+        }
+
         setContent {
-            MaterialTheme(colorScheme: lightColorScheme()) {
-                //let saveableStateHolder = rememberSaveableStateHolder()
-                //saveableStateHolder.SaveableStateProvider("ABC") {
-                    ContentView()
-                //}
+            let saveableStateHolder = rememberSaveableStateHolder()
+            saveableStateHolder.SaveableStateProvider("ABC") {
+                ContentView()
             }
         }
 
@@ -77,6 +81,51 @@ public class MainActivity : AppCompatActivity {
 
         let requestTag = 1 // TODO: handle with onRequestPermissionsResult
         androidx.core.app.ActivityCompat.requestPermissions(self, permissions.toTypedArray(), requestTag)
+    }
+
+    public override func onSaveInstanceState(bundle: android.os.Bundle) {
+        logger.log("onSaveInstanceState: \(bundle)")
+        bundle.putString("SKIPKEY", Date().description)
+        logger.log("onSaveInstanceState: SKIPKEY: \(bundle.getString("SKIPKEY"))")
+        super.onSaveInstanceState(bundle)
+    }
+
+    public override func onRestoreInstanceState(bundle: android.os.Bundle) {
+        // Usually you restore your state in onCreate(). It is possible to restore it in onRestoreInstanceState() as well, but not very common. (onRestoreInstanceState() is called after onStart(), whereas onCreate() is called before onStart().
+        logger.log("onRestoreInstanceState: \(bundle)")
+        super.onRestoreInstanceState(bundle)
+        logger.log("onRestoreInstanceState: SKIPKEY: \(bundle.getString("SKIPKEY"))")
+    }
+
+    
+    public override func onRestart() {
+        logger.log("onRestart")
+        super.onRestart()
+    }
+
+    public override func onStart() {
+        logger.log("onStart")
+        super.onStart()
+    }
+
+    public override func onResume() {
+        logger.log("onResume")
+        super.onResume()
+    }
+
+    public override func onPause() {
+        logger.log("onPause")
+        super.onPause()
+    }
+
+    public override func onStop() {
+        logger.log("onStop")
+        super.onStop()
+    }
+
+    public override func onDestroy() {
+        logger.log("onDestroy")
+        super.onDestroy()
     }
 
     public override func onRequestPermissionsResult(requestCode: Int, permissions: kotlin.Array<String>, grantResults: IntArray) {
