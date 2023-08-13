@@ -74,14 +74,15 @@ struct SkipSampleView: View {
                         sliderValue = rnd()
                         //}
 
+                        let sliderChange = 0.3
                         repeat {
                             repeat {
-                                sliderValue += 1.0
-                                try await Task.sleep(nanoseconds: 1_000_000 * 16) // 16ms=60fps
+                                sliderValue += sliderChange
+                                try await Task.sleep(nanoseconds: 1_000_000 * 16) // 16ms ~= 60fps
                             } while sliderValue < 99.0 && sliderValue != Self.defaultValue
                             while sliderValue > 1.0 && sliderValue != Self.defaultValue {
-                                sliderValue -= 1.0
-                                try await Task.sleep(nanoseconds: 1_000_000 * 16) // 16ms=60fps
+                                sliderValue -= sliderChange
+                                try await Task.sleep(nanoseconds: 1_000_000 * 16) // 16ms ~= 60fps
                             }
                         } while sliderValue != Self.defaultValue
                     }
@@ -117,13 +118,22 @@ struct SkipSampleView: View {
 
                 // create 4 layers of the 4-colored squared with different rotations
                 let colors = ZStack {
-                    FourColorView(width: colorWidth, rotation: .degrees(((sliderValue / 100.0) * 360.0) + (90.0 * 0.0)), c1: .indigo, c2: .blue, c3: .yellow, c4: .green)
+                    FourColorView(width: colorWidth, rotation: .degrees(((sliderValue * 1.00 / 100.0) * 360.0) + (90.0 * 0.00)), c1: .indigo, c2: .blue, c3: .yellow, c4: .green)
                         .eval()
                     FourColorView(width: colorWidth, rotation: .degrees(((sliderValue * 0.75 / 100.0) * 360.0) + (90.0 * 0.25)), c1: .red, c2: .purple, c3: .orange, c4: .mint)
                         .eval()
                     FourColorView(width: colorWidth, rotation: .degrees(((sliderValue * 0.50 / 100.0) * 360.0) + (90.0 * 0.50)), c1: .yellow, c2: .red, c3: .brown, c4: .cyan)
                         .eval()
                     FourColorView(width: colorWidth, rotation: .degrees(((sliderValue * 0.25 / 100.0) * 360.0) + (90.0 * 0.75)), c1: .orange, c2: .pink, c3: .teal, c4: .purple)
+                        .eval()
+
+                    FourColorView(width: colorWidth, rotation: .degrees(((sliderValue * 0.25 / 100.0) * 360.0) + (90.0 * 0.00)), c1: .red, c2: .green, c3: .purple, c4: .orange)
+                        .eval()
+                    FourColorView(width: colorWidth, rotation: .degrees(((sliderValue * 0.50 / 100.0) * 360.0) + (90.0 * 0.25)), c1: .yellow, c2: .orange, c3: .pink, c4: .indigo)
+                        .eval()
+                    FourColorView(width: colorWidth, rotation: .degrees(((sliderValue * 0.75 / 100.0) * 360.0) + (90.0 * 0.50)), c1: .brown, c2: .teal, c3: .cyan, c4: .gray)
+                        .eval()
+                    FourColorView(width: colorWidth, rotation: .degrees(((sliderValue * 1.00 / 100.0) * 360.0) + (90.0 * 0.75)), c1: .cyan, c2: .orange, c3: .teal, c4: .pink)
                         .eval()
                 }
                 .frame(width: cellWidth, height: cellWidth)
@@ -225,7 +235,7 @@ struct FourColorView: View {
             }
             .eval()
         }
-        .opacity(0.5)
+        .opacity(0.4)
         .rotationEffect(rotation)
     }
 
