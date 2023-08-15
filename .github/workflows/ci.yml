@@ -31,7 +31,7 @@ jobs:
           # create the source zip file with predictable timestamps for reproducibility
           find . -exec touch -d "${COMMIT_DATE:0:19}" {} \;
           mkdir -p Packages/Skip/artifacts/
-          zip -r Packages/Skip/artifacts/App-Source.zip . -x Packages
+          zip -r Packages/Skip/artifacts/App-Source.zip . -x "Packages/*" -x ".git/*" -x ".build/*"
 
       - name: Set MARKETING_VERSION
         run: echo "MARKETING_VERSION = $(git describe --tags --abbrev=0 --match '[0-9]*\.[0-9]*\.[0-9]*' --first-parent)" >> App.xcconfig
