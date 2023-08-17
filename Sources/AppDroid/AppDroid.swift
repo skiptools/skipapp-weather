@@ -14,10 +14,13 @@ let packageName = "skipapp"
     static func main() async throws {
         do {
             print("Launching App in Android Emulator (via Gradle)")
-            guard let appId = ProcessInfo.processInfo.environment["PRODUCT_BUNDLE_IDENTIFIER"] else {
-                // Xcode should set this automatically from the App.xcconfig for you
-                fatalError("Environment variable PRODUCT_BUNDLE_IDENTIFIER must be set to app id")
-            }
+            let appId = ProcessInfo.processInfo.environment["PRODUCT_BUNDLE_IDENTIFIER"] ?? "app.ui"
+
+            // Xcode should set PRODUCT_BUNDLE_IDENTIFIER automatically from the App.xcconfig for you
+            //for (key, value) in ProcessInfo.processInfo.environment.sorted(by: { $0.key < $1.key }) {
+            //    print("  env: \(key)=\(value)")
+            //}
+            //fatalError("Environment variable PRODUCT_BUNDLE_IDENTIFIER must be set to app id")
 
             try await AndroidAppMain().launch(appName: appName, appId: appId, packageName: packageName)
         } catch {
