@@ -154,11 +154,13 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
 }
 
 // SKIP INSERT: @ExperimentalMaterial3Api
-@ViewBuilder func ContentView() {
+// SKIP INSERT: @Composable
+func ContentView() {
     let model = Stuff()
 
     // SKIP INSERT: @ExperimentalMaterial3Api
-    @ViewBuilder func HomeView() {
+    // SKIP INSERT: @Composable
+    func HomeView() {
         let rows = remember { Stuff().things.toList().toMutableStateList() }
         // java.lang.IllegalArgumentException: androidx.compose.runtime.snapshots.SnapshotStateList@76feae6 cannot be saved using the current SaveableStateRegistry. The default implementation only supports types which can be stored inside the Bundle. Please consider implementing a custom Saver for this class and pass it to rememberSaveable().
         // let rows = rememberSaveable { Stuff().things.toList().toMutableStateList() }
@@ -168,8 +170,10 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
             rows.add(Stuff.allThings[min(Stuff.allThings.count - 1, Array(rows).count)])
         }
 
-        @ViewBuilder func ListView() {
-            @ViewBuilder func RowView(index: Int, thing: Thing) {
+        // SKIP INSERT: @Composable
+        func ListView() {
+            // SKIP INSERT: @Composable
+            func RowView(index: Int, thing: Thing) {
                 Row(modifier: Modifier.padding(6.dp),
                     verticalAlignment: Alignment.CenterVertically
                 ) {
@@ -203,11 +207,13 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
         }
     }
 
-    @ViewBuilder func SearchView() {
+    // SKIP INSERT: @Composable
+    func SearchView() {
         WebView(AppTabs.searchPage)
     }
 
-    @ViewBuilder func WeatherView() {
+    // SKIP INSERT: @Composable
+    func WeatherView() {
         let ctx: Context = LocalContext.current
         var latitude = rememberSaveable { mutableStateOf(0.0) }
         var longitude = rememberSaveable { mutableStateOf(0.0) }
@@ -245,7 +251,8 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
                 Text(text: "Weather", style: MaterialTheme.typography.headlineMedium, modifier: Modifier.fillMaxWidth())
             }
 
-            @ViewBuilder func latLonField(lat: Bool) {
+            // SKIP INSERT: @Composable
+            func latLonField(lat: Bool) {
                 TextField(
                     value: lat ? latitude.value.description : longitude.value.description,
                     onValueChange: { newValue in
@@ -299,17 +306,20 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
         }
     }
 
-    @ViewBuilder func DeviceView() {
+    // SKIP INSERT: @Composable
+    func DeviceView() {
         WeatherView()
     }
 
-    @ViewBuilder func FavoritesView() {
+    // SKIP INSERT: @Composable
+    func FavoritesView() {
         Column {
             SkipSampleView(label: "Compose").eval(style: skip.ui.Style())
         }
     }
 
-    @ViewBuilder func CounterStateView() {
+    // SKIP INSERT: @Composable
+    func CounterStateView() {
         //var counterToggle = mutableStateOf(false)
         //var counterToggle = remember { mutableStateOf(false) }
         var counterToggle = rememberSaveable { mutableStateOf(false) }
@@ -319,7 +329,8 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
         }) { Text("Toggle") }
 
 
-        @ViewBuilder func CounterView(label: String, visible: Bool) {
+        // SKIP INSERT: @Composable
+        func CounterView(label: String, visible: Bool) {
             //var countState = mutableStateOf(0)
             //var countState = remember { mutableStateOf(0) }
             var countState = rememberSaveable { mutableStateOf(0) }
@@ -341,7 +352,8 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
         }
     }
 
-    @ViewBuilder func SettingsView() {
+    // SKIP INSERT: @Composable
+    func SettingsView() {
         Box(modifier: Modifier.fillMaxSize().padding(16.dp), contentAlignment: androidx.compose.ui.Alignment.Companion.Center) {
             Column {
                 let context = androidx.compose.ui.platform.LocalContext.current
@@ -351,7 +363,8 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
                 let versionName = packageInfo.versionName
                 let versionCode = packageInfo.versionCode
 
-                @ViewBuilder func row(_ text: String, style: TextStyle) {
+                // SKIP INSERT: @Composable
+                func row(_ text: String, style: TextStyle) {
                     Row(verticalAlignment: Alignment.CenterVertically, horizontalArrangement: Arrangement.End) {
                         Text(text: text, style: style, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
                     }
@@ -377,10 +390,12 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
     }
 
     // SKIP INSERT: @ExperimentalMaterial3Api
-    @ViewBuilder func NavigationScaffold() {
+    // SKIP INSERT: @Composable
+    func NavigationScaffold() {
         let navController = rememberNavController()
 
-        @ViewBuilder func currentRoute(_ navController: NavHostController) -> String? {
+        // SKIP INSERT: @Composable
+        func currentRoute(_ navController: NavHostController) -> String? {
             // In your BottomNavigation composable, get the current NavBackStackEntry using the currentBackStackEntryAsState() function. This entry gives you access to the current NavDestination. The selected state of each BottomNavigationItem can then be determined by comparing the item's route with the route of the current destination and its parent destinations (to handle cases when you are using nested navigation) via the NavDestination hierarchy.
             navController.currentBackStackEntryAsState().value?.destination?.route
         }
@@ -421,7 +436,8 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
     }
 
     // SKIP INSERT: @ExperimentalMaterial3Api
-    @ViewBuilder func ThemedNavigationScaffold() {
+    // SKIP INSERT: @Composable
+    func ThemedNavigationScaffold() {
         let context: Context = LocalContext.current
         let darkMode = isSystemInDarkTheme()
         // Dynamic color is available on Android 12+
