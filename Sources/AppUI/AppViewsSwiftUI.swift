@@ -123,10 +123,7 @@ public struct ContentView: View {
     }
 
     func favoritesView() -> some View {
-        //SkipVStack {
         SkipSampleView(label: "SwiftUI")
-            //SkipSampleView().eval()
-        //}.eval(style: Style())
     }
 
     func searchView() -> some View {
