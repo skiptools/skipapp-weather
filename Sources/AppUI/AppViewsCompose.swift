@@ -282,7 +282,7 @@ func ContentView() {
                             //error.printStackTrace()
                         }
                     }
-                }) { Text("Current Location") }
+                }) { androidx.compose.material3.Text("Current Location") }
             }
 
 
@@ -296,7 +296,7 @@ func ContentView() {
                             //error.printStackTrace()
                         }
                     }
-                }) { Text("Fetch Weather") }
+                }) { androidx.compose.material3.Text("Fetch Weather") }
             }
 
             if let temp = weather.value.temperature {
@@ -327,7 +327,7 @@ func ContentView() {
 
         Button(onClick: {
             counterToggle.value = !counterToggle.value
-        }) { Text("Toggle") }
+        }) { androidx.compose.material3.Text("Toggle") }
 
 
         // SKIP INSERT: @Composable

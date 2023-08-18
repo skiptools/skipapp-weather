@@ -27,6 +27,9 @@ struct SkipSampleView: View {
                 Text(AppTabs.defaultTab.title)
                     .font(.headline)
                     .foregroundStyle(.teal)
+                    #if !SKIP
+                    .bold()
+                    #endif
             }
 
             Spacer()
