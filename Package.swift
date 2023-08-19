@@ -17,6 +17,9 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://source.skip.tools/skip.git", from: "0.0.0"),
+        .package(url: "https://source.skip.tools/skip-unit.git", from: "0.0.0"),
+        .package(url: "https://source.skip.tools/skip-lib.git", from: "0.0.0"),
+        .package(url: "https://source.skip.tools/skip-foundation.git", from: "0.0.0"),
         .package(url: "https://source.skip.tools/skiphub.git", from: "0.0.0"),
     ],
     targets: [
@@ -28,22 +31,38 @@ let package = Package(
             resources: [.process("Resources")],
             plugins: [.plugin(name: "preflight", package: "skip")]),
         .testTarget(name: "AppModelTests",
-            dependencies: ["AppModel"],
+            dependencies: [
+                "AppModel",
+            ],
             plugins: [.plugin(name: "preflight", package: "skip")]),
 
         // The Kotlin side of the app's data model (transpiled from AppModel)
         .target(name: "AppModelKt",
-            dependencies: [ "AppModel", .product(name: "SkipUIKt", package: "skiphub") ],
+            dependencies: [
+                "AppModel",
+                .product(name: "SkipUnitKt", package: "skip-unit"),
+                .product(name: "SkipLibKt", package: "skip-lib"),
+                .product(name: "SkipFoundationKt", package: "skip-foundation"),
+                .product(name: "SkipUIKt", package: "skiphub"),
+            ],
             resources: [.process("Skip")],
             plugins: [.plugin(name: "transpile", package: "skip")]),
         .testTarget(name: "AppModelKtTests",
-            dependencies: ["AppModelKt", .product(name: "SkipUnitKt", package: "skiphub")],
+            dependencies: [
+                "AppModelKt",
+                .product(name: "SkipUnitKt", package: "skip-unit"),
+                .product(name: "SkipLibKt", package: "skip-lib"),
+                .product(name: "SkipFoundationKt", package: "skip-foundation"),
+                .product(name: "SkipUIKt", package: "skiphub"),
+            ],
             resources: [.process("Skip")],
             plugins: [.plugin(name: "transpile", package: "skip")]),
 
         // The Swift side of the app's user interface (SwiftUI)
         .target(name: "AppUI",
-            dependencies: ["AppModel", .product(name: "SkipUI", package: "skiphub", condition: SKIPDEBUG)],
+            dependencies: [
+                "AppModel",
+            ],
             resources: [.process("Resources")],
             plugins: [.plugin(name: "preflight", package: "skip")]),
         .testTarget(name: "AppUITests", dependencies: ["AppUI"],
@@ -51,18 +70,22 @@ let package = Package(
 
         // The Kotlin side of the app's user interface (Jetpack Compose)
         .target(name: "AppUIKt",
-            dependencies: ["AppUI", "AppModel", "AppModelKt", .product(name: "SkipUIKt", package: "skiphub")],
+            dependencies: [
+                "AppUI",
+                "AppModel",
+                "AppModelKt",
+                .product(name: "SkipUIKt", package: "skiphub"),
+                .product(name: "SkipUnitKt", package: "skip-unit"),
+                .product(name: "SkipLibKt", package: "skip-lib"),
+                .product(name: "SkipFoundationKt", package: "skip-foundation"),
+            ],
             resources: [.process("Skip")],
             plugins: [.plugin(name: "transpile", package: "skip"), .plugin(name: "skipbuild", package: "skip")]),
         .testTarget(name: "AppUIKtTests",
-            dependencies: ["AppUIKt", .product(name: "SkipUnitKt", package: "skiphub")], resources: [.process("Skip")],
+            dependencies: [
+                "AppUIKt",
+                .product(name: "SkipUnitKt", package: "skip-unit"),
+            ], resources: [.process("Skip")],
             plugins: [.plugin(name: "transpile", package: "skip")]),
     ]
 )
-
-// For Skip library development in peer directories, run: SKIPLOCAL=.. xed Package.swift
-if let localPath = ProcessInfo.processInfo.environment["SKIPLOCAL"] {
-    package.dependencies[0] = .package(path: localPath + "/skip")
-    package.dependencies[1] = .package(path: localPath + "/skiphub")
-}
-
