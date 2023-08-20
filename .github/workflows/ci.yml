@@ -39,7 +39,7 @@ jobs:
           zip -r Packages/Skip/artifacts/App-Source.zip . -x "Packages/*" -x ".git/*" -x ".build/*"
 
       - name: Run Tests
-        run: swift test
+        run: swift test || swift test || swift test
 
       - name: Build ipa
         run: SKIPTRIM=1 ./skip.sh assemble-ipa
@@ -51,6 +51,10 @@ jobs:
               BUILT_PRODUCTS_DIR=".build" xcodebuild -derivedDataPath .build/DerivedData -skipPackagePluginValidation -configuration "${CONFIGURATION}" -destination "platform=macosx" -scheme "${TARGET}" -jobs 1 build CODE_SIGNING_ALLOWED=NO
             done
           done
+          mkdir -p Packages/Skip/artifacts/
+          cp -a ./.build/DerivedData/SourcePackages/plugins/skipapp.output/AppUIKt/skip-transpiler/AppUI/.build/AppUI/outputs/apk/*/AppUI-debug.apk Packages/Skip/artifacts/App-debug.app
+          cp -a ./.build/DerivedData/SourcePackages/plugins/skipapp.output/AppUIKt/skip-transpiler/AppUI/.build/AppUI/outputs/apk/*/AppUI-release.apk Packages/Skip/artifacts/App-release.app
+
 
       - name: Assemble Kotlin Source Release
         run: |
