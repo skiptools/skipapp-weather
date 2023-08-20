@@ -11,6 +11,8 @@
 		493A5C542A6B851600379601 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 493A5C532A6B851600379601 /* AppUI */; };
 		49429E432A61DC3C00AA21A8 /* AppDroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49429E422A61DC3C00AA21A8 /* AppDroid.swift */; };
 		49429E592A61E02A00AA21A8 /* SkipDrive in Frameworks */ = {isa = PBXBuildFile; productRef = 49429E582A61E02A00AA21A8 /* SkipDrive */; };
+		494315EA2A91AA3100CDA717 /* AppModel in Frameworks */ = {isa = PBXBuildFile; productRef = 494315E92A91AA3100CDA717 /* AppModel */; };
+		494315EC2A91AA3100CDA717 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 494315EB2A91AA3100CDA717 /* AppUI */; };
 		49813B532A521AA700612428 /* AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C472A52156300F06D93 /* AppUITests.swift */; };
 		49F90C2C2A52156200F06D93 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C2B2A52156200F06D93 /* AppMain.swift */; };
 		49F90C302A52156300F06D93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F90C2F2A52156300F06D93 /* Assets.xcassets */; };
@@ -70,6 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				494315EC2A91AA3100CDA717 /* AppUI in Frameworks */,
+				494315EA2A91AA3100CDA717 /* AppModel in Frameworks */,
 				49429E592A61E02A00AA21A8 /* SkipDrive in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,6 +196,8 @@
 			name = AppDroid;
 			packageProductDependencies = (
 				49429E582A61E02A00AA21A8 /* SkipDrive */,
+				494315E92A91AA3100CDA717 /* AppModel */,
+				494315EB2A91AA3100CDA717 /* AppUI */,
 			);
 			productName = AppDroid;
 			productReference = 49429E402A61DC3C00AA21A8 /* Skip App */;
@@ -765,6 +771,14 @@
 		49429E582A61E02A00AA21A8 /* SkipDrive */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SkipDrive;
+		};
+		494315E92A91AA3100CDA717 /* AppModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppModel;
+		};
+		494315EB2A91AA3100CDA717 /* AppUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

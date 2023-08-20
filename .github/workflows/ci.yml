@@ -39,13 +39,13 @@ jobs:
           zip -r Packages/Skip/artifacts/App-Source.zip . -x "Packages/*" -x ".git/*" -x ".build/*"
 
       - name: Run Tests
-        run: swift test || swift test || swift test
+        run: swift test
 
       - name: Build ipa
         run: SKIPTRIM=1 ./skip.sh assemble-ipa
 
       - name: Build apk
-        run: ./skip.sh assemble-apk || ./skip.sh assemble-apk || ./skip.sh assemble-apk || ./skip.sh assemble-apk || ./skip.sh assemble-apk || ./skip.sh assemble-apk
+        run: ./skip.sh assemble-apk
 
       - name: Assemble Kotlin Source Release
         run: |
