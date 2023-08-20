@@ -91,7 +91,7 @@ assemble_ipa() {
 
     build_ipa() {
         ARCHIVE_PATH=".build/Skip/artifacts/${APPCONFIG}/${APPARTIFACT}.xcarchive"
-        BUILT_PRODUCTS_DIR=".build" xcodebuild -skipPackagePluginValidation -archivePath "${ARCHIVE_PATH}" -configuration "${APPCONFIG}" -scheme "App" -sdk "iphoneos" -destination "generic/platform=iOS" -jobs 1 archive CODE_SIGNING_ALLOWED=NO SKIPTRIM=1
+        BUILT_PRODUCTS_DIR=".build" xcodebuild -derivedDataPath .build -skipPackagePluginValidation -archivePath "${ARCHIVE_PATH}" -configuration "${APPCONFIG}" -scheme "App" -sdk "iphoneos" -destination "generic/platform=iOS" -jobs 1 archive CODE_SIGNING_ALLOWED=NO SKIPTRIM=1
 
         cd "${ARCHIVE_PATH}"/Products/
         mv "Applications" "Payload"
@@ -123,7 +123,7 @@ assemble_apk() {
     echo "Assembling apk…"
 
     build_apk() {
-        BUILT_PRODUCTS_DIR=".build" xcodebuild -skipPackagePluginValidation -configuration ${APPCONFIG} -sdk "macosx" -destination "platform=macosx" -scheme "AppDroid" -jobs 1 build CODE_SIGNING_ALLOWED=NO
+        BUILT_PRODUCTS_DIR=".build" xcodebuild -derivedDataPath .build -skipPackagePluginValidation -configuration ${APPCONFIG} -sdk "macosx" -destination "platform=macosx" -scheme "AppDroid" -jobs 1 build CODE_SIGNING_ALLOWED=NO
 
         APPARTIFACT="App-Android-${APPCONFIG}"
 

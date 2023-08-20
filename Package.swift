@@ -39,7 +39,6 @@ let package = Package(
         // The Kotlin side of the app's data model (transpiled from AppModel)
         .target(name: "AppModelKt",
             dependencies: [
-                "AppModel",
                 .product(name: "SkipUnitKt", package: "skip-unit"),
                 .product(name: "SkipLibKt", package: "skip-lib"),
                 .product(name: "SkipFoundationKt", package: "skip-foundation"),
