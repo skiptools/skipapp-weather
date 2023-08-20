@@ -40,7 +40,6 @@ let package = Package(
         .target(name: "AppModelKt",
             dependencies: [
                 "AppModel",
-                .product(name: "SkipUnitKt", package: "skip-unit"),
                 .product(name: "SkipLibKt", package: "skip-lib"),
                 .product(name: "SkipFoundationKt", package: "skip-foundation"),
                 .product(name: "SkipUIKt", package: "skiphub"),
@@ -71,11 +70,8 @@ let package = Package(
         // The Kotlin side of the app's user interface (Jetpack Compose)
         .target(name: "AppUIKt",
             dependencies: [
-                "AppUI",
-                "AppModel",
                 "AppModelKt",
                 .product(name: "SkipUIKt", package: "skiphub"),
-                .product(name: "SkipUnitKt", package: "skip-unit"),
                 .product(name: "SkipLibKt", package: "skip-lib"),
                 .product(name: "SkipFoundationKt", package: "skip-foundation"),
             ],
