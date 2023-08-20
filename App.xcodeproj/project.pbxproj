@@ -13,6 +13,7 @@
 		49429E592A61E02A00AA21A8 /* SkipDrive in Frameworks */ = {isa = PBXBuildFile; productRef = 49429E582A61E02A00AA21A8 /* SkipDrive */; };
 		49813B532A521AA700612428 /* AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C472A52156300F06D93 /* AppUITests.swift */; };
 		4990AB3E2A91B00F005777FD /* AppUIKt in Frameworks */ = {isa = PBXBuildFile; productRef = 4990AB3D2A91B00F005777FD /* AppUIKt */; };
+		4990AB422A91C57D005777FD /* AppModelKt in Frameworks */ = {isa = PBXBuildFile; productRef = 4990AB412A91C57D005777FD /* AppModelKt */; };
 		49F90C2C2A52156200F06D93 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C2B2A52156200F06D93 /* AppMain.swift */; };
 		49F90C302A52156300F06D93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F90C2F2A52156300F06D93 /* Assets.xcassets */; };
 		49F90C342A52156300F06D93 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F90C332A52156300F06D93 /* Preview Assets.xcassets */; };
@@ -37,24 +38,13 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		49429E3E2A61DC3C00AA21A8 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		493609562A6B7EAE00C401E2 /* skipapp */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = skipapp; path = .; sourceTree = "<group>"; };
 		49429E402A61DC3C00AA21A8 /* Skip App */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Skip App"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49429E422A61DC3C00AA21A8 /* AppDroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDroid.swift; sourceTree = "<group>"; };
 		496EB72F2A6AE4DE00C1253B /* App.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = App.xcconfig; sourceTree = "<group>"; };
 		4990AB3B2A91AFC5005777FD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		4990AB3F2A91C35B005777FD /* AppUI-debug.apk */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AppUI-debug.apk"; path = "../../../../../Users/marc/Library/Developer/Xcode/DerivedData/Skip-bpposubzdofmucbxcexcfbtuhfpc/SourcePackages/plugins/skipapp.output/AppUIKt/skip-transpiler/AppUI/.build/AppUI/outputs/apk/debug/AppUI-debug.apk"; sourceTree = "<group>"; };
 		49F90C282A52156200F06D93 /* Skip App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skip App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F90C2B2A52156200F06D93 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppMain.swift; path = Sources/App/AppMain.swift; sourceTree = SOURCE_ROOT; };
 		49F90C2F2A52156300F06D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sources/App/Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +64,7 @@
 			files = (
 				49429E592A61E02A00AA21A8 /* SkipDrive in Frameworks */,
 				4990AB3E2A91B00F005777FD /* AppUIKt in Frameworks */,
+				4990AB422A91C57D005777FD /* AppModelKt in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +114,7 @@
 		49F90C1F2A52156200F06D93 = {
 			isa = PBXGroup;
 			children = (
+				4990AB3F2A91C35B005777FD /* AppUI-debug.apk */,
 				496EB72F2A6AE4DE00C1253B /* App.xcconfig */,
 				493609562A6B7EAE00C401E2 /* skipapp */,
 				49F90C2A2A52156200F06D93 /* App */,
@@ -185,7 +177,6 @@
 				49429E3C2A61DC3C00AA21A8 /* Sources */,
 				49429E3D2A61DC3C00AA21A8 /* Frameworks */,
 				49429E4E2A61DD4900AA21A8 /* Gradle Build */,
-				49429E3E2A61DC3C00AA21A8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -195,6 +186,7 @@
 			packageProductDependencies = (
 				49429E582A61E02A00AA21A8 /* SkipDrive */,
 				4990AB3D2A91B00F005777FD /* AppUIKt */,
+				4990AB412A91C57D005777FD /* AppModelKt */,
 			);
 			productName = AppDroid;
 			productReference = 49429E402A61DC3C00AA21A8 /* Skip App */;
@@ -756,6 +748,10 @@
 		4990AB3D2A91B00F005777FD /* AppUIKt */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppUIKt;
+		};
+		4990AB412A91C57D005777FD /* AppModelKt */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppModelKt;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
