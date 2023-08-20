@@ -1,9 +1,5 @@
 // swift-tools-version: 5.8
 import PackageDescription
-import class Foundation.ProcessInfo
-
-// A dependency that can be eliminated for release builds
-var SKIPDEBUG = TargetDependencyCondition.when(platforms: ProcessInfo.processInfo.environment["SKIPTRIM"] == nil ? [.iOS, .macOS] : [.macOS])
 
 let package = Package(
     name: "App",
