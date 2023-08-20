@@ -53,6 +53,7 @@ let package = Package(
                 .product(name: "SkipLibKt", package: "skip-lib"),
                 .product(name: "SkipFoundationKt", package: "skip-foundation"),
                 .product(name: "SkipUIKt", package: "skiphub"),
+                .product(name: "SkipUnit", package: "skip-unit"),
             ],
             resources: [.process("Skip")],
             plugins: [.plugin(name: "transpile", package: "skip")]),
@@ -81,6 +82,7 @@ let package = Package(
             dependencies: [
                 "AppUIKt",
                 .product(name: "SkipUnitKt", package: "skip-unit"),
+                .product(name: "SkipUnit", package: "skip-unit"),
             ], resources: [.process("Skip")],
             plugins: [.plugin(name: "transpile", package: "skip")]),
     ]
