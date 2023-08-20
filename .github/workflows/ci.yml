@@ -42,7 +42,23 @@ jobs:
         run: swift test || swift test || swift test
 
       - name: Build ipa
-        run: SKIPTRIM=1 ./skip.sh assemble-ipa
+        run: |
+          for CONFIGURATION in "Debug" "Release"; do
+            APPARTIFACT="App"
+            ARCHIVE_PATH=".build/Skip/artifacts/${APPCONFIG}/${APPARTIFACT}.xcarchive"
+            BUILT_PRODUCTS_DIR=".build" xcodebuild -derivedDataPath .build/DerivedData -skipPackagePluginValidation -archivePath "${ARCHIVE_PATH}" -configuration "${CONFIGURATION}" -scheme "App" -sdk "iphoneos" -destination "generic/platform=iOS" -jobs 1 archive CODE_SIGNING_ALLOWED=NO
+            cd "${ARCHIVE_PATH}"/Products/
+            find . -type f
+            mv "Applications" "Payload"
+            # create zip file with reproducible timestamps
+            find "Payload" -exec touch -t 197001010000 {} \;
+            ditto -c -k --sequesterRsrc --keepParent "Payload" "${APPARTIFACT}-${CONFIGURATION}.ipa"
+
+            cd -
+            mkdir -p Packages/Skip/artifacts
+            cp -av "${ARCHIVE_PATH}"/Products/"${APPARTIFACT}-{CONFIGURATION}.ipa" Packages/Skip/artifacts
+            ls -la Packages/Skip/artifacts/
+          done
 
       - name: Build apk
         run: |
