@@ -9,7 +9,7 @@ import AndroidWebkit
 import AndroidxComposeRuntime
 import AndroidxComposeUiViewinterop.AndroidView
 
-// SKIP INSERT: @Composable
+@Composable
 func WebView(url: URL, enableJavaScript: Bool = javaScriptEnabled) {
     AndroidView(factory: { context in
         WebView(context).apply {

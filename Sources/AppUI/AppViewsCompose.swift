@@ -58,7 +58,7 @@ public class MainActivity : AppCompatActivity {
     public init() {
     }
 
-    // SKIP INSERT: @ExperimentalMaterial3Api
+    @ExperimentalMaterial3Api
     public override func onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
         if let savedInstanceState = savedInstanceState {
@@ -154,7 +154,7 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
     }
 }
 
-// SKIP INSERT: @ExperimentalMaterial3Api
+@ExperimentalMaterial3Api
 @Composable func ContentView() {
     let model = Stuff()
 
@@ -377,7 +377,7 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
         }
     }
 
-    // SKIP INSERT: @ExperimentalMaterial3Api
+    @ExperimentalMaterial3Api
     @Composable func NavigationScaffold() {
         let navController = rememberNavController()
 
@@ -421,7 +421,7 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
         }
     }
 
-    // SKIP INSERT: @ExperimentalMaterial3Api
+    @ExperimentalMaterial3Api
     @Composable func ThemedNavigationScaffold() {
         let context: Context = LocalContext.current
         let darkMode = isSystemInDarkTheme()

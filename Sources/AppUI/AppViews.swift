@@ -1,4 +1,4 @@
-// Copyright 2023 Skip
+// Copyright 20222 Skip
 //
 // This is free software: you can redistribute and/or modify it
 // under the terms of the GNU Lesser General Public License 3.0
@@ -129,10 +129,12 @@ struct SkipSampleView: View {
                     .foregroundStyle(.orange)
                     .font(.title2)
 #else
-                androidx.compose.material3.Text(text: "Custom Compose View",
-                    color: androidx.compose.ui.graphics.Color(0xFFFFA500),
-                    style: androidx.compose.material.MaterialTheme.typography.h5
-                )
+                ComposeView { _ in
+                    androidx.compose.material3.Text(text: "Custom Compose View",
+                        color: androidx.compose.ui.graphics.Color(0xFFFFA500),
+                        style: androidx.compose.material.MaterialTheme.typography.h5
+                    )
+                }
 #endif
             }
             .opacity(Double(sliderValue) / 100.0)
