@@ -40,6 +40,7 @@ let package = Package(
         .target(name: "AppModelKt",
             dependencies: [
                 "AppModel",
+                .product(name: "SkipUnitKt", package: "skip-unit"),
                 .product(name: "SkipLibKt", package: "skip-lib"),
                 .product(name: "SkipFoundationKt", package: "skip-foundation"),
                 .product(name: "SkipUIKt", package: "skiphub"),
@@ -49,10 +50,6 @@ let package = Package(
         .testTarget(name: "AppModelKtTests",
             dependencies: [
                 "AppModelKt",
-                .product(name: "SkipUnitKt", package: "skip-unit"),
-                .product(name: "SkipLibKt", package: "skip-lib"),
-                .product(name: "SkipFoundationKt", package: "skip-foundation"),
-                .product(name: "SkipUIKt", package: "skiphub"),
                 .product(name: "SkipUnit", package: "skip-unit"),
             ],
             resources: [.process("Skip")],
@@ -72,16 +69,16 @@ let package = Package(
         .target(name: "AppUIKt",
             dependencies: [
                 "AppModelKt",
-                .product(name: "SkipUIKt", package: "skiphub"),
+                .product(name: "SkipUnitKt", package: "skip-unit"),
                 .product(name: "SkipLibKt", package: "skip-lib"),
                 .product(name: "SkipFoundationKt", package: "skip-foundation"),
+                .product(name: "SkipUIKt", package: "skiphub"),
             ],
             resources: [.process("Skip")],
             plugins: [.plugin(name: "transpile", package: "skip"), .plugin(name: "skipbuild", package: "skip")]),
         .testTarget(name: "AppUIKtTests",
             dependencies: [
                 "AppUIKt",
-                .product(name: "SkipUnitKt", package: "skip-unit"),
                 .product(name: "SkipUnit", package: "skip-unit"),
             ], resources: [.process("Skip")],
             plugins: [.plugin(name: "transpile", package: "skip")]),
