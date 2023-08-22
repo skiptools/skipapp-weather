@@ -7,6 +7,9 @@
     "%lld" : {
 
     },
+    "Angle: %lld°" : {
+
+    },
     "Animate" : {
 
     },
@@ -81,9 +84,6 @@
     "Home" : {
       "comment" : "Home tab title"
     },
-    "native component demo screen" : {
-
-    },
     "Recent" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -146,9 +146,6 @@
     "SkipUI" : {
       "comment" : "Favorites tab title"
     },
-    "Slider: %lld%%" : {
-
-    },
     "Toggle" : {
 
     },
@@ -162,6 +159,9 @@
       "comment" : "Search tab title"
     },
     "Welcome to SkipUI" : {
+
+    },
+    "Widgets: %lld" : {
 
     }
   },

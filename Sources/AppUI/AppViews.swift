@@ -9,66 +9,47 @@ import SwiftUI
 
 struct SkipSampleView: View {
     let label: String
+    @State var widgetCount = 4.0
+    @State var widgetRotation = Self.maxWidgetRotation
 
-    static let defaultSliderValue = 100.0
-    @State var sliderValue = Self.defaultSliderValue
+    static let maxWidgetRotation = 100.0
+
 
     var body: some View {
-        VStack {
+        VStack(spacing: 4.0) {
             Text("Welcome to SkipUI")
                 .font(.largeTitle)
-            Text("native component demo screen")
-                .font(.title)
+//            Text("native component demo screen")
+//                .font(.title)
 
-            HStack {
-                Text(label + ": ")
-                    .font(.subheadline)
-                    .foregroundStyle(.gray)
-                Text(AppTabs.defaultTab.title)
-                    .font(.headline)
-                    .foregroundStyle(.teal)
-                    #if !SKIP
-                    .bold()
-                    #endif
+//            HStack {
+//                Text(label + ": ")
+//                    .font(.subheadline)
+//                    .foregroundStyle(.gray)
+//                Text(AppTabs.defaultTab.title)
+//                    .font(.headline)
+//                    .foregroundStyle(.teal)
+//                    #if !SKIP
+//                    .bold()
+//                    #endif
+//            }
+
+            Spacer().frame(height: 10.0)
+
+            VStack {
+                HStack {
+                    Slider(value: $widgetRotation, in: 0.0...100.0)
+                }
+                Text("Angle: \(Int(widgetRotation * 3.6))°")
+                    .font(.title3)
             }
 
-            Spacer()
-                .frame(height: 50.0)
-
-            Slider(value: $sliderValue, in: 0.0...100.0)
-
-            Text("Slider: \(Int(sliderValue))%")
-                .font(.title)
-                .foregroundStyle(.red)
-
-            HStack {
-                Button(action: {
-                    logger.info("Animate button tapped")
-                    Task {
-                        let sliderChange = 0.3
-                        repeat {
-                            repeat {
-                                sliderValue += sliderChange
-                                try await Task.sleep(nanoseconds: 1_000_000 * 16) // 16ms ~= 60fps
-                            } while sliderValue < 99.0 && sliderValue != Self.defaultSliderValue
-                            while sliderValue > 1.0 && sliderValue != Self.defaultSliderValue {
-                                sliderValue -= sliderChange
-                                try await Task.sleep(nanoseconds: 1_000_000 * 16) // 16ms ~= 60fps
-                            }
-                        } while sliderValue != Self.defaultSliderValue
-                    }
-                }, label: {
-                    Text("Animate")
-                })
-
-                Button(action: {
-                    logger.info("Reset button tapped")
-                    withAnimation {
-                        sliderValue = Self.defaultSliderValue
-                    }
-                }, label: {
-                    Text("Reset")
-                })
+            VStack {
+                HStack {
+                    Slider(value: $widgetCount, in: 1.0...8.0)
+                }
+                Text("Widgets: \(4 * 16 * Int(widgetCount))")
+                    .font(.title3)
             }
 
             let cellWidth = 80.0
@@ -76,19 +57,36 @@ struct SkipSampleView: View {
                 Divider()
                     .background(.gray)
 
-                let colorWidth = cellWidth * sliderValue / 100.0
+                let colorWidth = cellWidth * widgetRotation / 100.0
+                let opacity = 1.0 - (Double(Int(widgetCount)) * 0.1)
 
                 // Create 4 layers of the 4-colored squared with different rotations
                 let colors = ZStack {
-                    FourColorView(width: colorWidth, rotation: .degrees(((sliderValue * 1.00 / 100.0) * 360.0) + (90.0 * 0.00)), c1: .indigo, c2: .blue, c3: .yellow, c4: .green)
-                    FourColorView(width: colorWidth, rotation: .degrees(((sliderValue * 0.75 / 100.0) * 360.0) + (90.0 * 0.25)), c1: .red, c2: .purple, c3: .orange, c4: .mint)
-                    FourColorView(width: colorWidth, rotation: .degrees(((sliderValue * 0.50 / 100.0) * 360.0) + (90.0 * 0.50)), c1: .yellow, c2: .red, c3: .brown, c4: .cyan)
-                    FourColorView(width: colorWidth, rotation: .degrees(((sliderValue * 0.25 / 100.0) * 360.0) + (90.0 * 0.75)), c1: .orange, c2: .pink, c3: .teal, c4: .purple)
+                    if widgetCount > 0.0 {
+                        FourColorView(width: colorWidth, opacity: opacity, rotation: .degrees(((widgetRotation * 1.00 / 100.0) * 360.0) + (90.0 * 0.00)), c1: .indigo, c2: .blue, c3: .yellow, c4: .green)
+                    }
+                    if widgetCount > 1.0 {
+                        FourColorView(width: colorWidth, opacity: opacity, rotation: .degrees(((widgetRotation * 0.75 / 100.0) * 360.0) + (90.0 * 0.25)), c1: .red, c2: .purple, c3: .orange, c4: .mint)
+                    }
+                    if widgetCount > 2.0 {
+                        FourColorView(width: colorWidth, opacity: opacity, rotation: .degrees(((widgetRotation * 0.50 / 100.0) * 360.0) + (90.0 * 0.50)), c1: .yellow, c2: .red, c3: .brown, c4: .cyan)
+                    }
+                    if widgetCount > 3.0 {
+                        FourColorView(width: colorWidth, opacity: opacity, rotation: .degrees(((widgetRotation * 0.25 / 100.0) * 360.0) + (90.0 * 0.75)), c1: .orange, c2: .pink, c3: .teal, c4: .purple)
+                    }
 
-                    FourColorView(width: colorWidth, rotation: .degrees(((sliderValue * 0.25 / 100.0) * 360.0) + (90.0 * 0.00)), c1: .red, c2: .green, c3: .purple, c4: .orange)
-                    FourColorView(width: colorWidth, rotation: .degrees(((sliderValue * 0.50 / 100.0) * 360.0) + (90.0 * 0.25)), c1: .yellow, c2: .orange, c3: .pink, c4: .indigo)
-                    FourColorView(width: colorWidth, rotation: .degrees(((sliderValue * 0.75 / 100.0) * 360.0) + (90.0 * 0.50)), c1: .brown, c2: .teal, c3: .cyan, c4: .gray)
-                    FourColorView(width: colorWidth, rotation: .degrees(((sliderValue * 1.00 / 100.0) * 360.0) + (90.0 * 0.75)), c1: .cyan, c2: .orange, c3: .teal, c4: .pink)
+                    if widgetCount > 4.0 {
+                        FourColorView(width: colorWidth, opacity: opacity, rotation: .degrees(((widgetRotation * 0.25 / 100.0) * 360.0) + (90.0 * 0.00)), c1: .red, c2: .green, c3: .purple, c4: .orange)
+                    }
+                    if widgetCount > 5.0 {
+                        FourColorView(width: colorWidth, opacity: opacity, rotation: .degrees(((widgetRotation * 0.50 / 100.0) * 360.0) + (90.0 * 0.25)), c1: .yellow, c2: .orange, c3: .pink, c4: .indigo)
+                    }
+                    if widgetCount > 6.0 {
+                        FourColorView(width: colorWidth, opacity: opacity, rotation: .degrees(((widgetRotation * 0.75 / 100.0) * 360.0) + (90.0 * 0.50)), c1: .brown, c2: .teal, c3: .cyan, c4: .gray)
+                    }
+                    if widgetCount > 7.0 {
+                        FourColorView(width: colorWidth, opacity: opacity, rotation: .degrees(((widgetRotation * 1.00 / 100.0) * 360.0) + (90.0 * 0.75)), c1: .cyan, c2: .orange, c3: .teal, c4: .pink)
+                    }
                 }
                 .frame(width: cellWidth, height: cellWidth)
 
@@ -123,6 +121,39 @@ struct SkipSampleView: View {
                     .background(.gray)
             }
 
+            HStack {
+                Button(action: {
+                    logger.info("Animate button tapped")
+                    Task {
+                        widgetRotation = min(99.0, 100.0)
+
+                        let sliderChange = 0.3
+                        repeat {
+                            repeat {
+                                widgetRotation += sliderChange
+                                try await Task.sleep(nanoseconds: 1_000_000 * 16) // 16ms ~= 60fps
+                            } while widgetRotation < 99.0 && widgetRotation != Self.maxWidgetRotation
+                            while widgetRotation > 1.0 && widgetRotation != Self.maxWidgetRotation {
+                                widgetRotation -= sliderChange
+                                try await Task.sleep(nanoseconds: 1_000_000 * 16) // 16ms ~= 60fps
+                            }
+                        } while widgetRotation != Self.maxWidgetRotation
+                    }
+                }, label: {
+                    Text("Animate")
+                })
+
+                Button(action: {
+                    logger.info("Reset button tapped")
+                    withAnimation {
+                        widgetRotation = Self.maxWidgetRotation
+                    }
+                }, label: {
+                    Text("Reset")
+                })
+            }
+
+
             ZStack {
 #if !SKIP
                 Text("Custom SwiftUI View")
@@ -137,7 +168,7 @@ struct SkipSampleView: View {
                 }
 #endif
             }
-            .opacity(Double(sliderValue) / 100.0)
+            .opacity(Double(widgetRotation) / 100.0)
         }
     }
 }
@@ -145,6 +176,7 @@ struct SkipSampleView: View {
 /// Four colored squares arranged in a grid using a ZStack, HStack, and VStack.
 struct FourColorView: View {
     let width: CGFloat
+    let opacity: CGFloat
     let rotation: Angle
     let c1: Color
     let c2: Color
@@ -168,7 +200,7 @@ struct FourColorView: View {
                 }
             }
         }
-        .opacity(0.4)
+        .opacity(opacity)
         .rotationEffect(rotation)
     }
 }
