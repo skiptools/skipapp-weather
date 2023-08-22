@@ -342,7 +342,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "${BUILT_PRODUCTS_DIR}/skipgradle assemble${CONFIGURATION}\nmkdir -p Packages/Skip/artifacts/\nln -f ${BUILD_ROOT}/../../SourcePackages/plugins/skipapp.output/AppUIKt/skip-transpiler/AppUI/.build/AppUI/outputs/apk/*/*.apk Packages/Skip/artifacts/\n";
+			shellScript = "${BUILT_PRODUCTS_DIR}/skip gradle --package skipapp --module AppUI assemble${CONFIGURATION}\nmkdir -p Packages/Skip/artifacts/\nln -f ${BUILD_ROOT}/../../SourcePackages/plugins/skipapp.output/AppUIKt/skip-transpiler/AppUI/.build/AppUI/outputs/apk/*/*.apk Packages/Skip/artifacts/\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

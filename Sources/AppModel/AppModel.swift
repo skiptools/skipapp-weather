@@ -9,8 +9,10 @@ public class Stuff {
     public var title = "Ahoy, Skipper!"
     public var things: [Thing] = []
 
-    public init() {
-        things.append(Thing(string: "App Success Checklist", number: 0.0))
+    public init(count: Int = 10_000) {
+        for i in 1...count {
+            things.append(Thing(string: "App Success Checklist", number: Double(i)))
+        }
     }
 }
 
