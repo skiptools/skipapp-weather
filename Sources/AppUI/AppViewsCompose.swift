@@ -172,7 +172,7 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
         @Composable func ListView() {
             @Composable func RowView(index: Int, thing: Thing) {
                 Row(modifier: Modifier.padding(6.dp),
-                    verticalAlignment: Alignment.CenterVertically
+                    verticalAlignment: androidx.compose.ui.Alignment.CenterVertically
                 ) {
                     androidx.compose.material3.Text(text: "\(index + 1)", style: MaterialTheme.typography.bodyMedium, textAlign: TextAlign.Start, modifier: Modifier.padding(6.dp))
                     androidx.compose.material3.Text(text: "\(thing.string)", style: MaterialTheme.typography.bodyLarge, textAlign: TextAlign.Start)
@@ -241,7 +241,7 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
             }
         }
 
-        Column(horizontalAlignment: Alignment.CenterHorizontally, modifier: Modifier.fillMaxSize().padding(16.dp)) {
+        Column(horizontalAlignment: androidx.compose.ui.Alignment.CenterHorizontally, modifier: Modifier.fillMaxSize().padding(16.dp)) {
             Row {
                 androidx.compose.material3.Text(text: "Weather", style: MaterialTheme.typography.headlineMedium, modifier: Modifier.fillMaxWidth())
             }
@@ -353,7 +353,7 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
                 let versionCode = packageInfo.versionCode
 
                 @Composable func row(_ text: String, style: TextStyle) {
-                    Row(verticalAlignment: Alignment.CenterVertically, horizontalArrangement: Arrangement.End) {
+                    Row(verticalAlignment: androidx.compose.ui.Alignment.CenterVertically, horizontalArrangement: Arrangement.End) {
                         androidx.compose.material3.Text(text: text, style: style, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth())
                     }
                 }
