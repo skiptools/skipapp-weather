@@ -10,8 +10,22 @@ public class Stuff {
     public var things: [Thing] = []
 
     public init(count: Int = 10_000) {
+        #if SKIP
+        //let fmt = android.icu.text.RuleBasedNumberFormat(java.util.Locale.getDefault())
+        #else
+        let fmt = NumberFormatter()
+        fmt.numberStyle = NumberFormatter.Style.spellOut
+        #endif
+
         for i in 1...count {
-            things.append(Thing(string: "App Success Checklist", number: Double(i)))
+            #if SKIP
+            //let numstr = fmt.format(i)
+            let numstr = "\(i)"
+            #else
+            let numstr = fmt.string(from: i as NSNumber) ?? ""
+            #endif
+
+            things.append(Thing(string: "Item \(numstr)", number: Double(i)))
         }
     }
 }

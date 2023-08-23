@@ -372,7 +372,7 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
                 row("Version: \(versionName) \(BuildConfig.DEBUG ? "(debug)" : "(release)")", style: MaterialTheme.typography.headlineSmall)
                 row("Build: \(versionCode)", style: MaterialTheme.typography.headlineSmall)
 
-                CounterStateView()
+                //CounterStateView()
             }
         }
     }
