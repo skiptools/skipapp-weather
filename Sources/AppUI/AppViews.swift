@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SkipSampleView: View {
     let label: String
-    @State var widgetCount = 4.0
-    @State var widgetRotation = Self.maxWidgetRotation
+    @State var widgetCount = 5.0
+    @State var widgetRotation = Self.maxWidgetRotation / 2.0
 
     static let maxWidgetRotation = 100.0
 
@@ -41,7 +41,11 @@ struct SkipSampleView: View {
                     Slider(value: $widgetRotation, in: 0.0...100.0)
                 }
                 Text("Angle: \(Int(widgetRotation * 3.6))°")
-                    .font(.title3)
+                    .font(Font.title3
+                        #if !SKIP
+                        .monospacedDigit() // fixed-width digits on iOS
+                        #endif
+                    )
             }
 
             VStack {
@@ -49,7 +53,11 @@ struct SkipSampleView: View {
                     Slider(value: $widgetCount, in: 1.0...8.0)
                 }
                 Text("Widgets: \(4 * 16 * Int(widgetCount))")
-                    .font(.title3)
+                    .font(.title3
+                        #if !SKIP
+                        .monospacedDigit() // fixed-width digits on iOS
+                        #endif
+                    )
             }
 
             let cellWidth = 80.0
