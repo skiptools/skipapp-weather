@@ -12,27 +12,105 @@ struct SkipSampleView: View {
     @State var widgetCount = 5.0
     @State var widgetRotation = Self.maxWidgetRotation / 2.0
 
+//    struct ListItem {
+//        let i: Int
+//        let s: String
+//    }
+//    func items() -> [ListItem] {
+//        var items: [ListItem] = []
+//        for i in 0..<100 {
+//            items.append(ListItem(i: i, s: "Item \(i)"))
+//        }
+//        return items
+//    }
+//
+//    var body: some View {
+//        List {
+//            Group {
+//                Text("Row 1")
+//                Text("Row 2")
+//            }
+//            VStack {
+//                Text("Row 3")
+//                Text("Row 4")
+//            }
+//        }
+
+//        List(0..<100) {
+//            Text("Row \($0)")
+//        }
+
+//        List(items(), id: \.i) {
+//            Text($0.s)
+//        }
+//    }
+
+//    @State var tapCount = 0
+//    var body: some View {
+//        ScrollView {
+//            VStack {
+//                Text("Button")
+//                    .font(.title)
+//                Divider()
+//                Button(action: { tapCount += 1 }) {
+//                    Text("Tap count: \(tapCount)")
+//                }
+//                Button("Tap count: \(tapCount)") {
+//                    tapCount += 1
+//                }
+//            }
+//        }
+//    }
+
+//    var body: some View {
+//        ScrollView {
+//            VStack {
+//                Text("Font")
+//                    .font(.title)
+//                Divider()
+//
+//                Text("Plain")
+//                Text("Bold").bold()
+//                Text("Italic").italic()
+//                Text("Title bold italic").font(.title).bold().italic()
+//                Group {
+//                    Text("Thin footnote container")
+//                    Text("Overridden to title font").font(.title)
+//                }
+//                .font(.footnote).fontWeight(.thin)
+//            }
+//        }
+//    }
+
+//    var body: some View {
+//        ScrollView {
+//            VStack {
+//                Text("Color")
+//                    .font(.title)
+//                Divider()
+//                
+//                Color.red
+//                    .frame(width: 100.0, height: 100.0)
+//                Color.red
+//                    .opacity(0.5)
+//                    .frame(width: 100.0, height: 100.0)
+//                Color(red: 1.0, green: 0.0, blue: 0.0)
+//                    .frame(width: 100.0, height: 100.0)
+//                Color(white: 0.5, opacity: 1.0)
+//                    .frame(width: 100.0, height: 100.0)
+//                Color.accentColor
+//                    .frame(width: 100.0, height: 100.0)
+//            }
+//        }
+//    }
+
     static let maxWidgetRotation = 100.0
 
-    
+>>>>>>> ddf4b36 (Update with latest tests and SkipUI changes)
     var body: some View {
         VStack(spacing: 4.0) {
             Text("Welcome to SkipUI")
                 .font(.largeTitle)
-//            Text("native component demo screen")
-//                .font(.title)
-
-//            HStack {
-//                Text(label + ": ")
-//                    .font(.subheadline)
-//                    .foregroundStyle(.gray)
-//                Text(AppTabs.defaultTab.title)
-//                    .font(.headline)
-//                    .foregroundStyle(.teal)
-//                    #if !SKIP
-//                    .bold()
-//                    #endif
-//            }
 
             Spacer().frame(height: 10.0)
 

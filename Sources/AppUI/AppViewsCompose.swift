@@ -305,7 +305,7 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
     }
 
     @Composable func FavoritesView() {
-        Column {
+        Box(modifier: Modifier.fillMaxSize(), contentAlignment: androidx.compose.ui.Alignment.Center) {
             SkipSampleView(label: "Compose").Compose()
         }
     }
