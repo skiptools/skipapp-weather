@@ -158,7 +158,7 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
 @Composable func ContentView() {
     let model = Stuff()
 
-    // SKIP INSERT: @ExperimentalMaterial3Api
+    @ExperimentalMaterial3Api
     @Composable func HomeView() {
         let rows = remember { Stuff().things.toList().toMutableStateList() }
         // java.lang.IllegalArgumentException: androidx.compose.runtime.snapshots.SnapshotStateList@76feae6 cannot be saved using the current SaveableStateRegistry. The default implementation only supports types which can be stored inside the Bundle. Please consider implementing a custom Saver for this class and pass it to rememberSaveable().
@@ -304,8 +304,8 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
         WeatherView()
     }
 
-    @Composable func FavoritesView() {
-        Box(modifier: Modifier.fillMaxSize(), contentAlignment: androidx.compose.ui.Alignment.Center) {
+    @Composable func FavoritesView(modifier: Modifier) {
+        Box(modifier: Modifier.fillMaxSize().then(modifier), contentAlignment: androidx.compose.ui.Alignment.Center) {
             SkipSampleView(label: "Compose").Compose()
         }
     }
@@ -411,7 +411,7 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
                         switch tab {
                         case AppTabs.home: HomeView()
                         case AppTabs.device: DeviceView()
-                        case AppTabs.favorites: FavoritesView()
+                        case AppTabs.favorites: FavoritesView(modifier: modifier)
                         case AppTabs.search: SearchView()
                         case AppTabs.settings: SettingsView()
                         }
