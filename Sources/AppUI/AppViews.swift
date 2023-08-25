@@ -14,7 +14,7 @@ struct SkipSampleView: View {
 
     static let maxWidgetRotation = 100.0
 
-
+    
     var body: some View {
         VStack(spacing: 4.0) {
             Text("Welcome to SkipUI")
