@@ -5,6 +5,7 @@
 // as published by the Free Software Foundation https://fsf.org
 
 import Foundation
+import Observation
 import SwiftUI
 
 struct SkipSampleView: View {
@@ -201,27 +202,27 @@ struct SkipSampleView: View {
     //        }
     //    }
 
-    //    var body: some View {
-    //        ScrollView {
-    //            VStack {
-    //                Text("Spacer")
-    //                    .font(.title)
-    //                Divider()
-    //                HStack {
-    //                    Text("First")
-    //                    Spacer()
-    //                    Text("Last")
-    //                }
-    //                HStack {
-    //                    Text("First")
-    //                    Spacer()
-    //                        .frame(width: 100.0)
-    //                    Text("Last")
-    //                }
-    //            }
-    //            .padding()
-    //        }
-    //    }
+//        var body: some View {
+//            ScrollView {
+//                VStack {
+//                    Text("Spacer")
+//                        .font(.title)
+//                    Divider()
+//                    HStack {
+//                        Text("First")
+//                        Spacer()
+//                        Text("Last")
+//                    }
+//                    HStack {
+//                        Text("First")
+//                        Spacer()
+//                            .frame(width: 100.0)
+//                        Text("Last")
+//                    }
+//                }
+//                .padding()
+//            }
+//        }
 
     //    @State var tapCount = 0
     //    var body: some View {
@@ -241,26 +242,26 @@ struct SkipSampleView: View {
     //        }
     //    }
 
-    //    var body: some View {
-    //        ScrollView {
-    //            VStack {
-    //                Text("Font")
-    //                    .font(.title)
-    //                Divider()
-    //
-    //                Text("Plain")
-    //                Text("Bold").bold()
-    //                Text("Italic").italic()
-    //                Text("Title bold italic").font(.title).bold().italic()
-    //                Group {
-    //                    Text("Thin footnote container")
-    //                    Text("Overridden to title font").font(.title)
-    //                }
-    //                .font(.footnote).fontWeight(.thin)
-    //            }
-    //            .padding()
-    //        }
-    //    }
+//        var body: some View {
+//            ScrollView {
+//                VStack {
+//                    Text("Font")
+//                        .font(.title)
+//                    Divider()
+//    
+//                    Text("Plain")
+//                    Text("Bold").bold()
+//                    Text("Italic").italic()
+//                    Text("Title bold italic").font(.title).bold().italic()
+//                    VStack {
+//                        Text("Thin footnote container")
+//                        Text("Overridden to title font").font(.title)
+//                    }
+//                    .font(.footnote).fontWeight(.thin)
+//                }
+//                .padding()
+//            }
+//        }
 
     //    var body: some View {
     //        ScrollView {
@@ -310,6 +311,65 @@ struct SkipSampleView: View {
     //            .padding()
     //        }
     //    }
+
+//    var body: some View {
+//        if #available(iOS 17.0, macOS 14.0, *) {
+//            ObservablesOuterView()
+//                .environmentObject(TestEnvironmentObject(text: "initialEnvironment"))
+//        } else {
+//            Text("iOS 17 / macOS 14 required")
+//        }
+//    }
+//    class TestEnvironmentObject: ObservableObject {
+//        @Published var text: String
+//        init(text: String) {
+//            self.text = text
+//        }
+//    }
+//    @available(iOS 17.0, macOS 14.0, *)
+//    @Observable class TestObservable {
+//        var text = ""
+//        init(text: String) {
+//            self.text = text
+//        }
+//    }
+//    @available(iOS 17.0, macOS 14.0, *)
+//    struct ObservablesOuterView: View {
+//        @State var stateObject = TestObservable(text: "initialState")
+//        @EnvironmentObject var environmentObject: TestEnvironmentObject
+//        var body: some View {
+//            VStack {
+//                Text(stateObject.text)
+//                Text(environmentObject.text)
+//                ObservablesObservableView(observable: stateObject)
+//                    .border(Color.red)
+//                ObservablesBindingView(text: $stateObject.text)
+//                    .border(Color.blue)
+//            }
+//        }
+//    }
+//    @available(iOS 17.0, macOS 14.0, *)
+//    struct ObservablesObservableView: View {
+//        let observable: TestObservable
+//        @EnvironmentObject var environmentObject: TestEnvironmentObject
+//        var body: some View {
+//            Text(observable.text)
+//            Text(environmentObject.text)
+//            Button("Button") {
+//                observable.text = "observableState"
+//                environmentObject.text = "observableEnvironment"
+//            }
+//        }
+//    }
+//    struct ObservablesBindingView: View {
+//        @Binding var text: String
+//        var body: some View {
+//            Button("Button") {
+//                text = "bindingState"
+//            }
+//            .accessibilityIdentifier("binding-button")
+//        }
+//    }
 }
 
 /// Four colored squares arranged in a grid using a ZStack, HStack, and VStack.
