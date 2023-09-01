@@ -1,10 +1,26 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%@" : {
+    "%lf°C" : {
 
     },
-    "%lld" : {
+    "%lld – %lld °C" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld – %2$lld °C"
+          }
+        }
+      }
+    },
+    "%lld%% Sunny" : {
+
+    },
+    "%lld°C" : {
+
+    },
+    "☆" : {
 
     },
     "Angle: %lld°" : {
@@ -21,6 +37,9 @@
     },
     "Bundle Identifier: %@" : {
 
+    },
+    "Cities" : {
+      "comment" : "Home tab title"
     },
     "Counter: %lld" : {
 
@@ -81,8 +100,8 @@
         }
       }
     },
-    "Home" : {
-      "comment" : "Home tab title"
+    "Live" : {
+      "comment" : "Search tab title"
     },
     "Recent" : {
       "extractionState" : "stale",
@@ -154,9 +173,6 @@
     },
     "Weather" : {
       "comment" : "Weather tab title"
-    },
-    "Web" : {
-      "comment" : "Search tab title"
     },
     "Welcome to SkipUI" : {
 

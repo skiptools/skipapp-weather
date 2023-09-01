@@ -3,10 +3,45 @@
 // This is free software: you can redistribute and/or modify it
 // under the terms of the GNU Lesser General Public License 3.0
 // as published by the Free Software Foundation https://fsf.org
-
 import Foundation
 import Observation
 import SwiftUI
+import AppModel
+
+struct CitiesListView : View {
+    var body: some View {
+        //NavigationStack {
+
+        // LOGCAT> 08-30 22:16:32.316 17646 17646 E AndroidRuntime: java.lang.IllegalArgumentException: Type of the key app.model.Location@3b5ead3b is not supported. On Android you can only use types which can be stored inside the Bundle.
+        //return List(City.allCases, id: \.location) { city in
+
+        return List(City.allCases, id: \.location.latitude) { city in
+            rowView(city: city)
+        }
+        //.navigationTitle(Text("World Cities"))
+        //}
+    }
+
+    private func rowView(city: City) -> some View {
+        HStack(alignment: .center) {
+            Text("☆").font(.title).foregroundStyle(Color.gray)
+
+            VStack(alignment: .leading) {
+                Text(city.cityName).font(.headline)
+                Text(city.countryName).font(.subheadline)
+            }
+            Spacer()
+            //Divider() // on Android this is horizontal
+            VStack(alignment: .trailing) {
+                Text("\(Int(city.averageTempWinter)) – \(Int(city.averageTempSummer)) °C")
+                    .font(.caption)
+                Text("\(Int((Double(city.sunnyDays) / 360.0) * 100.0))% Sunny")
+                    .font(.caption2)
+            }
+            .frame(width: 80.0)
+        }
+    }
+}
 
 struct SkipSampleView: View {
     let label: String
@@ -165,211 +200,6 @@ struct SkipSampleView: View {
             .opacity(Double(widgetRotation) / 100.0)
         }
     }
-
-    //    struct ListItem {
-    //        let i: Int
-    //        let s: String
-    //    }
-    //    func items() -> [ListItem] {
-    //        var items: [ListItem] = []
-    //        for i in 0..<100 {
-    //            items.append(ListItem(i: i, s: "Item \(i)"))
-    //        }
-    //        return items
-    //    }
-    //    var body: some View {
-    //        List(items(), id: \.i) {
-    //            Text($0.s)
-    //        }
-    //    }
-
-    //    var body: some View {
-    //        List(0..<100) {
-    //            Text("Row \($0)")
-    //        }
-    //    }
-
-    //    var body: some View {
-    //        List {
-    //            Group {
-    //                Text("Row 1")
-    //                Text("Row 2")
-    //            }
-    //            VStack {
-    //                Text("Row 3a")
-    //                Text("Row 3b")
-    //            }
-    //        }
-    //    }
-
-//        var body: some View {
-//            ScrollView {
-//                VStack {
-//                    Text("Spacer")
-//                        .font(.title)
-//                    Divider()
-//                    HStack {
-//                        Text("First")
-//                        Spacer()
-//                        Text("Last")
-//                    }
-//                    HStack {
-//                        Text("First")
-//                        Spacer()
-//                            .frame(width: 100.0)
-//                        Text("Last")
-//                    }
-//                }
-//                .padding()
-//            }
-//        }
-
-    //    @State var tapCount = 0
-    //    var body: some View {
-    //        ScrollView {
-    //            VStack {
-    //                Text("Button")
-    //                    .font(.title)
-    //                Divider()
-    //                Button(action: { tapCount += 1 }) {
-    //                    Text("Tap count: \(tapCount)")
-    //                }
-    //                Button("Tap count: \(tapCount)") {
-    //                    tapCount += 1
-    //                }
-    //            }
-    //            .padding()
-    //        }
-    //    }
-
-//        var body: some View {
-//            ScrollView {
-//                VStack {
-//                    Text("Font")
-//                        .font(.title)
-//                    Divider()
-//    
-//                    Text("Plain")
-//                    Text("Bold").bold()
-//                    Text("Italic").italic()
-//                    Text("Title bold italic").font(.title).bold().italic()
-//                    VStack {
-//                        Text("Thin footnote container")
-//                        Text("Overridden to title font").font(.title)
-//                    }
-//                    .font(.footnote).fontWeight(.thin)
-//                }
-//                .padding()
-//            }
-//        }
-
-    //    var body: some View {
-    //        ScrollView {
-    //            VStack {
-    //                Text("Color")
-    //                    .font(.title)
-    //                Divider()
-    //
-    //                Color.red
-    //                    .frame(width: 100.0, height: 100.0)
-    //                Color.red
-    //                    .opacity(0.5)
-    //                    .frame(width: 100.0, height: 100.0)
-    //                Color(red: 1.0, green: 0.0, blue: 0.0)
-    //                    .frame(width: 100.0, height: 100.0)
-    //                Color(white: 0.5, opacity: 1.0)
-    //                    .frame(width: 100.0, height: 100.0)
-    //                Color.accentColor
-    //                    .frame(width: 100.0, height: 100.0)
-    //            }
-    //            .padding()
-    //        }
-    //    }
-
-    //    var body: some View {
-    //        ScrollView {
-    //            VStack {
-    //                Text("Border & Padding")
-    //                    .font(.title)
-    //                Divider()
-    //
-    //                Color.red
-    //                    .frame(width: 100.0, height: 100.0)
-    //                    .border(Color.black)
-    //                Color.red
-    //                    .frame(width: 100.0, height: 100.0)
-    //                    .padding()
-    //                    .border(Color.black)
-    //                Color.red
-    //                    .frame(width: 100.0, height: 100.0)
-    //                    .padding([.top, .leading], 32.0)
-    //                    .border(Color.black)
-    //                Color.red
-    //                    .frame(width: 100.0, height: 100.0)
-    //                    .border(Color.blue, width: 5.0)
-    //            }
-    //            .padding()
-    //        }
-    //    }
-
-//    var body: some View {
-//        if #available(iOS 17.0, macOS 14.0, *) {
-//            ObservablesOuterView()
-//                .environmentObject(TestEnvironmentObject(text: "initialEnvironment"))
-//        } else {
-//            Text("iOS 17 / macOS 14 required")
-//        }
-//    }
-//    class TestEnvironmentObject: ObservableObject {
-//        @Published var text: String
-//        init(text: String) {
-//            self.text = text
-//        }
-//    }
-//    @available(iOS 17.0, macOS 14.0, *)
-//    @Observable class TestObservable {
-//        var text = ""
-//        init(text: String) {
-//            self.text = text
-//        }
-//    }
-//    @available(iOS 17.0, macOS 14.0, *)
-//    struct ObservablesOuterView: View {
-//        @State var stateObject = TestObservable(text: "initialState")
-//        @EnvironmentObject var environmentObject: TestEnvironmentObject
-//        var body: some View {
-//            VStack {
-//                Text(stateObject.text)
-//                Text(environmentObject.text)
-//                ObservablesObservableView(observable: stateObject)
-//                    .border(Color.red)
-//                ObservablesBindingView(text: $stateObject.text)
-//                    .border(Color.blue)
-//            }
-//        }
-//    }
-//    @available(iOS 17.0, macOS 14.0, *)
-//    struct ObservablesObservableView: View {
-//        let observable: TestObservable
-//        @EnvironmentObject var environmentObject: TestEnvironmentObject
-//        var body: some View {
-//            Text(observable.text)
-//            Text(environmentObject.text)
-//            Button("Button") {
-//                observable.text = "observableState"
-//                environmentObject.text = "observableEnvironment"
-//            }
-//        }
-//    }
-//    struct ObservablesBindingView: View {
-//        @Binding var text: String
-//        var body: some View {
-//            Button("Button") {
-//                text = "bindingState"
-//            }
-//            .accessibilityIdentifier("binding-button")
-//        }
-//    }
 }
 
 /// Four colored squares arranged in a grid using a ZStack, HStack, and VStack.

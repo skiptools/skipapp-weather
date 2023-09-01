@@ -148,7 +148,7 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
     switch tab {
     case .home: return Icons.Default.Home
     case .device: return Icons.Default.List
-    case .favorites: return Icons.Default.Star
+    //case .favorites: return Icons.Default.Star
     case .search: return Icons.Default.Search
     case .settings: return Icons.Default.Settings
     }
@@ -160,48 +160,7 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
 
     @ExperimentalMaterial3Api
     @Composable func HomeView() {
-        let rows = remember { Stuff().things.toList().toMutableStateList() }
-        // java.lang.IllegalArgumentException: androidx.compose.runtime.snapshots.SnapshotStateList@76feae6 cannot be saved using the current SaveableStateRegistry. The default implementation only supports types which can be stored inside the Bundle. Please consider implementing a custom Saver for this class and pass it to rememberSaveable().
-        // let rows = rememberSaveable { Stuff().things.toList().toMutableStateList() }
-
-        func addRow() {
-            logger.info("Tapped add button")
-            rows.add(Stuff.allThings[min(Stuff.allThings.count - 1, Array(rows).count)])
-        }
-
-        @Composable func ListView() {
-            @Composable func RowView(index: Int, thing: Thing) {
-                Row(modifier: Modifier.padding(6.dp),
-                    verticalAlignment: androidx.compose.ui.Alignment.CenterVertically
-                ) {
-                    androidx.compose.material3.Text(text: "\(index + 1)", style: MaterialTheme.typography.bodyMedium, textAlign: TextAlign.Start, modifier: Modifier.padding(6.dp))
-                    androidx.compose.material3.Text(text: "\(thing.string)", style: MaterialTheme.typography.bodyLarge, textAlign: TextAlign.Start)
-                    androidx.compose.material3.Text(text: "\(Int(thing.number))", style: MaterialTheme.typography.bodyMedium, textAlign: TextAlign.End, modifier: Modifier.fillMaxWidth())
-                }
-            }
-
-            LazyColumn {
-                itemsIndexed(rows) { index, thing in
-                    RowView(index: index, thing: thing)
-                }
-            }
-        }
-
-        Scaffold(topBar: {
-            TopAppBar(title: {
-                androidx.compose.material3.Text(text: model.title, style: MaterialTheme.typography.headlineSmall)
-            },
-            actions: {
-                IconButton(onClick: {
-                    addRow()
-                }) {
-                    Icon(imageVector: Icons.Default.AddCircle, contentDescription: "Add")
-                }
-            })
-        }) { contentPadding in
-            let modifier = Modifier.padding(contentPadding)
-            ListView()
-        }
+        CitiesListView().Compose()
     }
 
     @Composable func SearchView() {
@@ -411,7 +370,7 @@ func iconForAppTab(tab: AppTabs) -> ImageVector {
                         switch tab {
                         case AppTabs.home: HomeView()
                         case AppTabs.device: DeviceView()
-                        case AppTabs.favorites: FavoritesView(modifier: modifier)
+                        //case AppTabs.favorites: FavoritesView(modifier: modifier)
                         case AppTabs.search: SearchView()
                         case AppTabs.settings: SettingsView()
                         }

@@ -28,7 +28,7 @@ extension AppTabs {
         switch self {
         case .home: return Image(systemName: "house")
         case .device: return Image(systemName: "list.bullet")
-        case .favorites: return Image(systemName: "star")
+        //case .favorites: return Image(systemName: "star")
         case .search: return Image(systemName: "magnifyingglass")
         case .settings: return Image(systemName: "gear")
         }
@@ -36,7 +36,6 @@ extension AppTabs {
 }
 
 class Model : ObservableObject {
-    @Published var title = "Ahoy, Skipper!"
     @Published var things: [Thing] = Stuff().things
 
     init() {
@@ -52,20 +51,6 @@ public struct ContentView: View {
 
     public var body: some View {
         appTabView()
-    }
-
-    func addRow() {
-        logger.info("Tapped add button")
-        model.things.append(Stuff.allThings[min(Stuff.allThings.count - 1, model.things.count)])
-    }
-
-    func rowView(index: Int, thing: Thing) -> some View {
-        HStack {
-            Text("\(index + 1)").font(.caption)
-            Text("\(thing.string)").font(.body)
-            Spacer()
-            Text("\(thing.number, format: .number)").font(.callout)
-        }
     }
 
     func appTabView() -> some View {
@@ -89,32 +74,11 @@ public struct ContentView: View {
 
     @ViewBuilder func selectedTabView(for tab: AppTabs) -> some View {
         switch tab {
-        case .home: listView()
+        case .home: CitiesListView()
         case .device: deviceView()
-        case .favorites: favoritesView()
+        //case .favorites: favoritesView()
         case .search: searchView()
         case .settings: settingsView()
-        }
-    }
-
-    func listView() -> some View {
-        NavigationStack {
-            List {
-                ForEach(Array(model.things.enumerated()), id: \.offset) { index, thing in
-                    rowView(index: index, thing: thing)
-                }
-            }
-            .navigationTitle(Text(model.title))
-            #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
-            #endif
-            .toolbar {
-                ToolbarItem(placement: .automatic) {
-                    Button(action: { withAnimation { addRow() } }) {
-                        Image(systemName: "plus.circle.fill")
-                    }
-                }
-            }
         }
     }
 

@@ -1,6 +1,69 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Accra" : {
+
+    },
+    "Amsterdam" : {
+
+    },
+    "Argentina" : {
+
+    },
+    "Athens" : {
+
+    },
+    "Auckland" : {
+
+    },
+    "Australia" : {
+
+    },
+    "Bangkok" : {
+
+    },
+    "Barcelona" : {
+
+    },
+    "Berlin" : {
+
+    },
+    "Birmingham" : {
+
+    },
+    "Boston" : {
+
+    },
+    "Brazil" : {
+
+    },
+    "Buenos Aires" : {
+
+    },
+    "Canada" : {
+
+    },
+    "Cape Town" : {
+
+    },
+    "Chicago" : {
+
+    },
+    "Colombia" : {
+
+    },
+    "Copenhagen" : {
+
+    },
+    "Czech Republic" : {
+
+    },
+    "Delhi" : {
+
+    },
+    "Denmark" : {
+
+    },
     "Done" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -54,6 +117,129 @@
         }
       }
     },
+    "Dublin" : {
+
+    },
+    "Edinburgh" : {
+
+    },
+    "France" : {
+
+    },
+    "Germany" : {
+
+    },
+    "Ghana" : {
+
+    },
+    "Glasgow" : {
+
+    },
+    "Greece" : {
+
+    },
+    "Houston" : {
+
+    },
+    "India" : {
+
+    },
+    "Ireland" : {
+
+    },
+    "Israel" : {
+
+    },
+    "Istanbul" : {
+
+    },
+    "Italy" : {
+
+    },
+    "Japan" : {
+
+    },
+    "Johannesburg" : {
+
+    },
+    "Kuala Lumpur" : {
+
+    },
+    "Lisbon" : {
+
+    },
+    "London" : {
+
+    },
+    "Los Angeles" : {
+
+    },
+    "Lyon" : {
+
+    },
+    "Madrid" : {
+
+    },
+    "Malaysia" : {
+
+    },
+    "Manchester" : {
+
+    },
+    "Manila" : {
+
+    },
+    "Marrakech" : {
+
+    },
+    "Medellín" : {
+
+    },
+    "Melbourne" : {
+
+    },
+    "Mexico" : {
+
+    },
+    "Mexico City" : {
+
+    },
+    "Miami" : {
+
+    },
+    "Montreal" : {
+
+    },
+    "Morocco" : {
+
+    },
+    "Mumbai" : {
+
+    },
+    "Netherlands" : {
+
+    },
+    "New York" : {
+
+    },
+    "New Zealand" : {
+
+    },
+    "Paris" : {
+
+    },
+    "Philippines" : {
+
+    },
+    "Porto" : {
+
+    },
+    "Portugal" : {
+
+    },
+    "Prague" : {
+
+    },
     "Recent" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -106,6 +292,63 @@
           }
         }
       }
+    },
+    "Rio de Janeiro" : {
+
+    },
+    "Rome" : {
+
+    },
+    "San Francisco" : {
+
+    },
+    "São Paulo" : {
+
+    },
+    "Singapore" : {
+
+    },
+    "South Africa" : {
+
+    },
+    "Spain" : {
+
+    },
+    "Stockholm" : {
+
+    },
+    "Sweden" : {
+
+    },
+    "Sydney" : {
+
+    },
+    "Taipei" : {
+
+    },
+    "Taiwan" : {
+
+    },
+    "Tel Aviv" : {
+
+    },
+    "Thailand" : {
+
+    },
+    "Tokyo" : {
+
+    },
+    "Toronto" : {
+
+    },
+    "Turkey" : {
+
+    },
+    "United Kingdom" : {
+
+    },
+    "United States" : {
+
     }
   },
   "version" : "1.0"
