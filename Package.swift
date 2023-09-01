@@ -12,11 +12,11 @@ let package = Package(
         .library(name: "AppModelKt", targets: ["AppModelKt"]),
     ],
     dependencies: [
-        .package(url: "https://source.skip.tools/skip.git", from: "0.6.4"),
-        .package(url: "https://source.skip.tools/skip-unit.git", from: "0.1.0"),
-        .package(url: "https://source.skip.tools/skip-lib.git", from: "0.2.0"),
-        .package(url: "https://source.skip.tools/skip-foundation.git", from: "0.0.14"),
-        .package(url: "https://source.skip.tools/skip-ui.git", from: "0.0.11"),
+        .package(url: "https://source.skip.tools/skip.git", from: "0.6.11"),
+        .package(url: "https://source.skip.tools/skip-unit.git", from: "0.1.3"),
+        .package(url: "https://source.skip.tools/skip-lib.git", from: "0.2.4"),
+        .package(url: "https://source.skip.tools/skip-foundation.git", from: "0.0.17"),
+        .package(url: "https://source.skip.tools/skip-ui.git", from: "0.0.14"),
     ],
     targets: [
         .executableTarget(name: "AppDroid",
