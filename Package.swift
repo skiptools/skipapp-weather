@@ -25,12 +25,12 @@ let package = Package(
         // The Swift side of the app's data model
         .target(name: "AppModel",
             resources: [.process("Resources")],
-            plugins: [.plugin(name: "preflight", package: "skip")]),
+            plugins: [.plugin(name: "skippy", package: "skip")]),
         .testTarget(name: "AppModelTests",
             dependencies: [
                 "AppModel",
             ],
-            plugins: [.plugin(name: "preflight", package: "skip")]),
+            plugins: [.plugin(name: "skippy", package: "skip")]),
 
         // The Kotlin side of the app's data model (transpiled from AppModel)
         .target(name: "AppModelKt",
@@ -56,9 +56,9 @@ let package = Package(
                 "AppModel",
             ],
             resources: [.process("Resources")],
-            plugins: [.plugin(name: "preflight", package: "skip")]),
+            plugins: [.plugin(name: "skippy", package: "skip")]),
         .testTarget(name: "AppUITests", dependencies: ["AppUI"],
-            plugins: [.plugin(name: "preflight", package: "skip")]),
+            plugins: [.plugin(name: "skippy", package: "skip")]),
 
         // The Kotlin side of the app's user interface (Jetpack Compose)
         .target(name: "AppUIKt",
@@ -70,7 +70,7 @@ let package = Package(
                 .product(name: "SkipUIKt", package: "skip-ui"),
             ],
             resources: [.process("Skip")],
-            plugins: [.plugin(name: "transpile", package: "skip"), .plugin(name: "skipbuild", package: "skip")]),
+            plugins: [.plugin(name: "transpile", package: "skip")]),
         .testTarget(name: "AppUIKtTests",
             dependencies: [
                 "AppUIKt",
