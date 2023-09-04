@@ -174,7 +174,7 @@
 			buildPhases = (
 				49429E3C2A61DC3C00AA21A8 /* Sources */,
 				49429E3D2A61DC3C00AA21A8 /* Frameworks */,
-				49429E4E2A61DD4900AA21A8 /* Gradle Build */,
+				49429E4E2A61DD4900AA21A8 /* Build APK */,
 			);
 			buildRules = (
 			);
@@ -325,7 +325,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		49429E4E2A61DD4900AA21A8 /* Gradle Build */ = {
+		49429E4E2A61DD4900AA21A8 /* Build APK */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -335,7 +335,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Gradle Build";
+			name = "Build APK";
 			outputFileListPaths = (
 			);
 			outputPaths = (
