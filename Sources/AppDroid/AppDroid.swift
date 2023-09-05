@@ -1,3 +1,4 @@
+#if canImport(SkipDrive)
 import Foundation
 import SkipDrive
 
@@ -8,7 +9,6 @@ let appName = "AppUI"
 let packageName = "skipapp"
 
 // Android app launcher for Skip app
-#if os(macOS)
 @available(macOS 13, macCatalyst 16, *)
 @main public struct AndroidAppMain : GradleHarness {
     static func main() async throws {
