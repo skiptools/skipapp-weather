@@ -179,10 +179,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				49978E652A930F330088CCC1 /* PBXTargetDependency */,
-				49978E672A930F330088CCC1 /* PBXTargetDependency */,
-				49978E692A930F330088CCC1 /* PBXTargetDependency */,
-				49978E6B2A930F330088CCC1 /* PBXTargetDependency */,
 			);
 			name = AppDroid;
 			packageProductDependencies = (
@@ -383,22 +379,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		49978E652A930F330088CCC1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 49978E642A930F330088CCC1 /* AppModel */;
-		};
-		49978E672A930F330088CCC1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 49978E662A930F330088CCC1 /* AppModelKt */;
-		};
-		49978E692A930F330088CCC1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 49978E682A930F330088CCC1 /* AppUI */;
-		};
-		49978E6B2A930F330088CCC1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 49978E6A2A930F330088CCC1 /* AppUIKt */;
-		};
 		49F90C3B2A52156300F06D93 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 49F90C272A52156200F06D93 /* App */;
@@ -762,22 +742,6 @@
 		493A5C532A6B851600379601 /* AppUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppUI;
-		};
-		49978E642A930F330088CCC1 /* AppModel */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppModel;
-		};
-		49978E662A930F330088CCC1 /* AppModelKt */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppModelKt;
-		};
-		49978E682A930F330088CCC1 /* AppUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppUI;
-		};
-		49978E6A2A930F330088CCC1 /* AppUIKt */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppUIKt;
 		};
 		499C08B32AA8004E00C1626F /* AppModel */ = {
 			isa = XCSwiftPackageProductDependency;
