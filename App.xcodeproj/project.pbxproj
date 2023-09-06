@@ -282,6 +282,9 @@
 				Base,
 			);
 			mainGroup = 49F90C1F2A52156200F06D93;
+			packageReferences = (
+				49087B482AA90500009B5B7F /* XCRemoteSwiftPackageReference "skip" */,
+			);
 			productRefGroup = 49F90C292A52156200F06D93 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -398,7 +401,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
@@ -411,7 +413,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -733,6 +734,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		49087B482AA90500009B5B7F /* XCRemoteSwiftPackageReference "skip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://source.skip.tools/skip.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		493A5C512A6B851600379601 /* AppModel */ = {

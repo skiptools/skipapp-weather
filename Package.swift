@@ -23,7 +23,7 @@ let package = Package(
                 resources: [.process("Resources")],
                 plugins: [.plugin(name: "skipstone", package: "skip")]),
         .testTarget(name: "AppModelTests",
-                dependencies: ["AppModel", .product(name: "SkipUI", package: "skip-ui", condition: .when(platforms: [.macOS]))],
+                dependencies: ["AppModel", .product(name: "SkipTest", package: "skip", condition: .when(platforms: [.macOS]))],
                 plugins: [.plugin(name: "skipstone", package: "skip")]),
 
         // The Swift side of the app's user interface (SwiftUI)

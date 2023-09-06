@@ -1,7 +1,6 @@
 #if canImport(SkipDrive)
 import Foundation
 import SkipDrive
-import XCTest
 
 /// The name of the app's Swift target in the Package.swift
 let appName = "AppUI"
@@ -14,7 +13,6 @@ let packageName = "skipapp"
 @main public struct AndroidAppMain : GradleHarness {
     static func main() async throws {
         do {
-            let _ = XCTest()
             print("Launching App in Android Emulator (via Gradle)")
             let appId = ProcessInfo.processInfo.environment["PRODUCT_BUNDLE_IDENTIFIER"] ?? "app.ui"
 
