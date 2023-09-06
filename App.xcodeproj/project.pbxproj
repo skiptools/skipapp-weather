@@ -10,10 +10,10 @@
 		493A5C522A6B851600379601 /* AppModel in Frameworks */ = {isa = PBXBuildFile; productRef = 493A5C512A6B851600379601 /* AppModel */; };
 		493A5C542A6B851600379601 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 493A5C532A6B851600379601 /* AppUI */; };
 		49429E432A61DC3C00AA21A8 /* AppDroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49429E422A61DC3C00AA21A8 /* AppDroid.swift */; };
-		49429E592A61E02A00AA21A8 /* SkipDrive in Frameworks */ = {isa = PBXBuildFile; productRef = 49429E582A61E02A00AA21A8 /* SkipDrive */; };
 		49813B532A521AA700612428 /* AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C472A52156300F06D93 /* AppUITests.swift */; };
 		499C08B42AA8004E00C1626F /* AppModel in Frameworks */ = {isa = PBXBuildFile; productRef = 499C08B32AA8004E00C1626F /* AppModel */; };
 		499C08B62AA8004E00C1626F /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 499C08B52AA8004E00C1626F /* AppUI */; };
+		499C08B92AA8B6CF00C1626F /* SkipDrive in Frameworks */ = {isa = PBXBuildFile; productRef = 499C08B82AA8B6CF00C1626F /* SkipDrive */; };
 		49F90C2C2A52156200F06D93 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C2B2A52156200F06D93 /* AppMain.swift */; };
 		49F90C302A52156300F06D93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F90C2F2A52156300F06D93 /* Assets.xcassets */; };
 		49F90C342A52156300F06D93 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F90C332A52156300F06D93 /* Preview Assets.xcassets */; };
@@ -63,7 +63,7 @@
 			files = (
 				499C08B62AA8004E00C1626F /* AppUI in Frameworks */,
 				499C08B42AA8004E00C1626F /* AppModel in Frameworks */,
-				49429E592A61E02A00AA21A8 /* SkipDrive in Frameworks */,
+				499C08B92AA8B6CF00C1626F /* SkipDrive in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,9 +186,9 @@
 			);
 			name = AppDroid;
 			packageProductDependencies = (
-				49429E582A61E02A00AA21A8 /* SkipDrive */,
 				499C08B32AA8004E00C1626F /* AppModel */,
 				499C08B52AA8004E00C1626F /* AppUI */,
+				499C08B82AA8B6CF00C1626F /* SkipDrive */,
 			);
 			productName = AppDroid;
 			productReference = 49429E402A61DC3C00AA21A8 /* Skip App */;
@@ -342,7 +342,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "skip gradle --package skipapp --module AppUI assemble${CONFIGURATION}\nmkdir -p Skip/build/artifacts/\nln -f ${BUILD_ROOT}/../../SourcePackages/plugins/skipapp.output/AppUIKt/skipstone/AppUI/.build/AppUI/outputs/apk/*/*.apk Skip/build/artifacts/\n";
+			shellScript = "${BUILT_PRODUCTS_DIR}/skip gradle --package skipapp --module AppUI assemble${CONFIGURATION}\nmkdir -p Skip/build/artifacts/\nln -f ${BUILD_ROOT}/../../SourcePackages/plugins/skipapp.output/AppUI/skipstone/AppUI/.build/AppUI/outputs/apk/*/*.apk Skip/build/artifacts/\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -759,10 +759,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = AppUI;
 		};
-		49429E582A61E02A00AA21A8 /* SkipDrive */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SkipDrive;
-		};
 		49978E642A930F330088CCC1 /* AppModel */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppModel;
@@ -786,6 +782,10 @@
 		499C08B52AA8004E00C1626F /* AppUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppUI;
+		};
+		499C08B82AA8B6CF00C1626F /* SkipDrive */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SkipDrive;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
