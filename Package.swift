@@ -15,8 +15,7 @@ let package = Package(
     ],
     targets: [
         .executableTarget(name: "AppDroid",
-                          dependencies: ["AppUI", .product(name: "SkipDrive", package: "skip")],
-                          linkerSettings: [.linkedFramework("XCTest", .when(platforms: [.iOS, .macOS, .tvOS, .watchOS]))]),
+                dependencies: ["AppUI", .product(name: "SkipDrive", package: "skip")]),
 
         // The Swift side of the app's data model
         .target(name: "AppModel",
@@ -24,20 +23,16 @@ let package = Package(
                 resources: [.process("Resources")],
                 plugins: [.plugin(name: "skipstone", package: "skip")]),
         .testTarget(name: "AppModelTests",
-                    dependencies: [
-                        "AppModel",
-                        .product(name: "SkipUI", package: "skip-ui")
-                    ],
-                    plugins: [.plugin(name: "skipstone", package: "skip")]),
+                dependencies: ["AppModel", .product(name: "SkipUI", package: "skip-ui", condition: .when(platforms: [.macOS]))],
+                plugins: [.plugin(name: "skipstone", package: "skip")]),
 
         // The Swift side of the app's user interface (SwiftUI)
         .target(name: "AppUI",
-                dependencies: [
-                    "AppModel",
-                ],
+                dependencies: ["AppModel"],
                 resources: [.process("Resources")],
                 plugins: [.plugin(name: "skipstone", package: "skip")]),
-        .testTarget(name: "AppUITests", dependencies: ["AppUI"],
-                    plugins: [.plugin(name: "skipstone", package: "skip")]),
+        .testTarget(name: "AppUITests", 
+                dependencies: ["AppUI"],
+                plugins: [.plugin(name: "skipstone", package: "skip")]),
     ]
 )
