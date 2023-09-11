@@ -341,7 +341,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "mkdir -p Skip/build/artifacts/\nmkdir -p Skip/build/kotlin/\nPATH=${BUILT_PRODUCTS_DIR}:${PATH}:/opt/homebrew/bin/:/usr/local/homebrew/bin\nwhich skip\nskip gradle --package skipapp --module AppUI assemble${CONFIGURATION}\nln -sf ${BUILD_ROOT}/../../SourcePackages/plugins/skipapp.output/AppUI/skipstone/AppUI/.build/AppUI/outputs/apk/*/*.apk Skip/build/artifacts/\nln -sf ${BUILD_ROOT}/../../SourcePackages/plugins/skipapp.output/AppUI/skipstone Skip/build/kotlin/AppUI\nln -sf ${BUILD_ROOT}/../../SourcePackages/plugins/skipapp.output/AppModel/skipstone Skip/build/kotlin/AppModel\n";
+			shellScript = "mkdir -p Skip/build/artifacts/\nPATH=${BUILT_PRODUCTS_DIR}:${PATH}:/opt/homebrew/bin/:/usr/local/homebrew/bin\nwhich skip\nskip gradle --package skipapp --module AppUI assemble${CONFIGURATION}\nln -sf ${BUILD_ROOT}/../../SourcePackages/plugins/skipapp.output/AppUI/skipstone/AppUI/.build/AppUI/outputs/apk/*/*.apk Skip/build/artifacts/\nln -sf ${BUILD_ROOT}/../../SourcePackages/plugins/skipapp.output Skip/build/\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
