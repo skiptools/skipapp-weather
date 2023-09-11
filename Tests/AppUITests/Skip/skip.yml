@@ -1,0 +1,6 @@
+build:
+  contents:
+    - block: 'plugins'
+      # remove the com.android.application type from AppUI and place it back as a com.android.library in order to run unit tests
+      remove:
+        - 'id("com.android.library") version "8.1.0"'
