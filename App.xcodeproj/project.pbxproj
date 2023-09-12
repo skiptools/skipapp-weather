@@ -341,7 +341,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nSOURCE_PACKAGES=${BUILD_ROOT}/../../SourcePackages\necho \"Running AppDroid script for: ${PROJECT}\"\nmkdir -p Skip/build/artifacts/\n# Add local skip tool path first to use skip executable that matches the plugin version\n# Then for local builds add the BUILT_PRODUCTS_DIR\n# Then fall back to homebrew's paths\nPATH=${SOURCE_PACKAGES}/artifacts/skip/skip/skip.artifactbundle/macos/:${BUILT_PRODUCTS_DIR}:${PATH}:/opt/homebrew/bin/:/usr/local/homebrew/bin\nwhich skip\nskip version\nskip gradle --package \"${PROJECT}\" --module AppUI assemble${CONFIGURATION}\nln -f ${SOURCE_PACKAGES}/plugins/*.output/*/skipstone/*/.build/*/outputs/apk/*/*.apk Skip/build/artifacts/\nln -sf ${SOURCE_PACKAGES}/plugins/${PROJECT}.output Skip/build/${PROJECT}.output\n";
+			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nSOURCE_PACKAGES=${BUILD_ROOT}/../../SourcePackages\necho \"Running AppDroid script for: ${PROJECT}\"\nmkdir -p Skip/build/artifacts/\n# Add local skip tool path first to use skip executable that matches the plugin version\n# Then for local builds add the BUILT_PRODUCTS_DIR\n# Then fall back to homebrew's paths\nPATH=${SOURCE_PACKAGES}/artifacts/skip/skip/skip.artifactbundle/macos/:${BUILT_PRODUCTS_DIR}:${PATH}:/opt/homebrew/bin/:/usr/local/homebrew/bin\nwhich skip\nskip version\nskip gradle --package \"${PROJECT}\" --module AppUI assemble${CONFIGURATION}\nln -f ${SOURCE_PACKAGES}/plugins/*.output/*/skipstone/*/.build/*/outputs/apk/*/*.apk Skip/build/artifacts/\nln -sfh ${SOURCE_PACKAGES}/plugins/${PROJECT}.output Skip/build/${PROJECT}.output\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
