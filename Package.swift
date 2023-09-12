@@ -18,7 +18,7 @@ let package = Package(
         .library(name: "AppModel", targets: ["AppModel"]),
     ],
     dependencies: [
-        .package(url: "https://source.skip.tools/skip.git", from: "0.6.60"),
+        .package(url: "https://source.skip.tools/skip.git", from: "0.6.63"),
         .package(url: "https://source.skip.tools/skip-model.git", from: "0.0.6"),
         .package(url: "https://source.skip.tools/skip-ui.git", from: "0.1.21"),
     ],
