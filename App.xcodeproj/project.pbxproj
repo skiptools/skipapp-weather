@@ -6,9 +6,25 @@
 	objectVersion = 56;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		49CAB4F02AB0D6E6009BD60F /* SkipApp */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 49CAB4F12AB0D6E6009BD60F /* Build configuration list for PBXAggregateTarget "SkipApp" */;
+			buildPhases = (
+				49A3F5D32AB203B4002A4D5F /* Build Android APK */,
+				49A3F5D42AB203D8002A4D5F /* Run Android APK */,
+			);
+			dependencies = (
+				493B47502AB0F6B1007F7F3D /* PBXTargetDependency */,
+			);
+			name = SkipApp;
+			productName = Aggregate;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		493A5C522A6B851600379601 /* AppModel in Frameworks */ = {isa = PBXBuildFile; productRef = 493A5C512A6B851600379601 /* AppModel */; };
-		493A5C542A6B851600379601 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 493A5C532A6B851600379601 /* AppUI */; };
+		493FD71D2AB2377500E08F76 /* AppModel in Frameworks */ = {isa = PBXBuildFile; productRef = 493FD71C2AB2377500E08F76 /* AppModel */; };
+		493FD71F2AB2377500E08F76 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 493FD71E2AB2377500E08F76 /* AppUI */; };
 		49429E432A61DC3C00AA21A8 /* AppDroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49429E422A61DC3C00AA21A8 /* AppDroid.swift */; };
 		49813B532A521AA700612428 /* AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C472A52156300F06D93 /* AppUITests.swift */; };
 		499C08B42AA8004E00C1626F /* AppModel in Frameworks */ = {isa = PBXBuildFile; productRef = 499C08B32AA8004E00C1626F /* AppModel */; };
@@ -22,6 +38,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		493B474F2AB0F6B1007F7F3D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49F90C202A52156200F06D93 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 49F90C272A52156200F06D93;
+			remoteInfo = App;
+		};
 		49F90C3A2A52156300F06D93 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 49F90C202A52156200F06D93 /* Project object */;
@@ -38,25 +61,54 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		493B47442AB0F59C007F7F3D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		493FD7172AB236CD00E08F76 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		493609562A6B7EAE00C401E2 /* skipapp */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = skipapp; path = .; sourceTree = "<group>"; };
-		49429E402A61DC3C00AA21A8 /* Skip App */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Skip App"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49429E422A61DC3C00AA21A8 /* AppDroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDroid.swift; sourceTree = "<group>"; };
 		496EB72F2A6AE4DE00C1253B /* App.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = App.xcconfig; sourceTree = "<group>"; };
-		4990AB3B2A91AFC5005777FD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		49F90C282A52156200F06D93 /* Skip App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skip App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49CC15D42AB209A200AE2718 /* Skip App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skip App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49CC15D52AB209BC00AE2718 /* Skip App */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Skip App"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49CC15D62AB209BC00AE2718 /* AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		49CC15D72AB209BC00AE2718 /* AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		49CC15D82AB209BC00AE2718 /* AndroidRunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AndroidRunner; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F90C2B2A52156200F06D93 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppMain.swift; path = Sources/App/AppMain.swift; sourceTree = SOURCE_ROOT; };
 		49F90C2F2A52156300F06D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sources/App/Assets.xcassets; sourceTree = "<group>"; };
 		49F90C312A52156300F06D93 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = App.entitlements; path = Sources/App/App.entitlements; sourceTree = "<group>"; };
 		49F90C332A52156300F06D93 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		49F90C392A52156300F06D93 /* AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F90C3D2A52156300F06D93 /* AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTests.swift; sourceTree = "<group>"; };
-		49F90C432A52156300F06D93 /* AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F90C472A52156300F06D93 /* AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUITests.swift; sourceTree = "<group>"; };
 		49F90C492A52156300F06D93 /* AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		493B47432AB0F59C007F7F3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		49429E3D2A61DC3C00AA21A8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -71,8 +123,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				493A5C542A6B851600379601 /* AppUI in Frameworks */,
-				493A5C522A6B851600379601 /* AppModel in Frameworks */,
+				493FD71F2AB2377500E08F76 /* AppUI in Frameworks */,
+				493FD71D2AB2377500E08F76 /* AppModel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +145,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		493FD7142AB236CD00E08F76 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		49429E412A61DC3C00AA21A8 /* AppDroid */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,14 +161,6 @@
 			path = Sources/AppDroid;
 			sourceTree = SOURCE_ROOT;
 		};
-		49429E532A61E02A00AA21A8 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4990AB3B2A91AFC5005777FD /* XCTest.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		49F90C1F2A52156200F06D93 = {
 			isa = PBXGroup;
 			children = (
@@ -118,21 +169,22 @@
 				49F90C2A2A52156200F06D93 /* App */,
 				49F90C3C2A52156300F06D93 /* AppTests */,
 				49429E412A61DC3C00AA21A8 /* AppDroid */,
-				49F90C292A52156200F06D93 /* Products */,
-				49429E532A61E02A00AA21A8 /* Frameworks */,
+                                49F90C292A52156200F06D93 /* Products */,
+				493FD7142AB236CD00E08F76 /* Frameworks */,
+                        );
+                        sourceTree = "<group>";
+                };
+                49F90C292A52156200F06D93 /* Products */ = {
+                        isa = PBXGroup;
+                        children = (
+				49CC15D42AB209A200AE2718 /* Skip App.app */,
+				49CC15D52AB209BC00AE2718 /* Skip App */,
+				49CC15D62AB209BC00AE2718 /* AppTests.xctest */,
+				49CC15D72AB209BC00AE2718 /* AppUITests.xctest */,
+				49CC15D82AB209BC00AE2718 /* AndroidRunner */,
 			);
 			sourceTree = "<group>";
-		};
-		49F90C292A52156200F06D93 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				49F90C282A52156200F06D93 /* Skip App.app */,
-				49F90C392A52156300F06D93 /* AppTests.xctest */,
-				49F90C432A52156300F06D93 /* AppUITests.xctest */,
-				49429E402A61DC3C00AA21A8 /* Skip App */,
-			);
-			name = Products;
-			sourceTree = "<group>";
+                        name = Products;
 		};
 		49F90C2A2A52156200F06D93 /* App */ = {
 			isa = PBXGroup;
@@ -168,6 +220,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		493B47452AB0F59C007F7F3D /* AndroidRunner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 493B474A2AB0F59C007F7F3D /* Build configuration list for PBXNativeTarget "AndroidRunner" */;
+			buildPhases = (
+				493B47422AB0F59C007F7F3D /* Sources */,
+				493B47432AB0F59C007F7F3D /* Frameworks */,
+				493B47442AB0F59C007F7F3D /* CopyFiles */,
+				49FB9E1D2AB1040300695C18 /* Build APK */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				494A0FEE2AB10F52008696B6 /* PBXTargetDependency */,
+			);
+			name = AndroidRunner;
+			productName = AndroidRunner;
+			productReference = 49CC15D82AB209BC00AE2718 /* AndroidRunner */;
+			productType = "com.apple.product-type.tool";
+		};
 		49429E3F2A61DC3C00AA21A8 /* AppDroid */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49429E462A61DC3C00AA21A8 /* Build configuration list for PBXNativeTarget "AppDroid" */;
@@ -175,6 +246,7 @@
 				49429E3C2A61DC3C00AA21A8 /* Sources */,
 				49429E3D2A61DC3C00AA21A8 /* Frameworks */,
 				49429E4E2A61DD4900AA21A8 /* Build APK */,
+				49CC15D92AB20C9500AE2718 /* APPDROID TARGET */,
 			);
 			buildRules = (
 			);
@@ -187,16 +259,18 @@
 				499C08B82AA8B6CF00C1626F /* SkipDrive */,
 			);
 			productName = AppDroid;
-			productReference = 49429E402A61DC3C00AA21A8 /* Skip App */;
+			productReference = 49CC15D52AB209BC00AE2718 /* Skip App */;
 			productType = "com.apple.product-type.tool";
 		};
 		49F90C272A52156200F06D93 /* App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49F90C4D2A52156300F06D93 /* Build configuration list for PBXNativeTarget "App" */;
 			buildPhases = (
+				49A3F5D52AB20656002A4D5F /* Show Environment */,
 				49F90C242A52156200F06D93 /* Sources */,
 				49F90C252A52156200F06D93 /* Frameworks */,
 				49F90C262A52156200F06D93 /* Resources */,
+				493FD7172AB236CD00E08F76 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -204,11 +278,11 @@
 			);
 			name = App;
 			packageProductDependencies = (
-				493A5C512A6B851600379601 /* AppModel */,
-				493A5C532A6B851600379601 /* AppUI */,
+				493FD71C2AB2377500E08F76 /* AppModel */,
+				493FD71E2AB2377500E08F76 /* AppUI */,
 			);
 			productName = App;
-			productReference = 49F90C282A52156200F06D93 /* Skip App.app */;
+			productReference = 49CC15D42AB209A200AE2718 /* Skip App.app */;
 			productType = "com.apple.product-type.application";
 		};
 		49F90C382A52156300F06D93 /* AppTests */ = {
@@ -226,7 +300,7 @@
 			);
 			name = AppTests;
 			productName = AppTests;
-			productReference = 49F90C392A52156300F06D93 /* AppTests.xctest */;
+			productReference = 49CC15D62AB209BC00AE2718 /* AppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		49F90C422A52156300F06D93 /* AppUITests */ = {
@@ -244,7 +318,7 @@
 			);
 			name = AppUITests;
 			productName = AppUITests;
-			productReference = 49F90C432A52156300F06D93 /* AppUITests.xctest */;
+			productReference = 49CC15D72AB209BC00AE2718 /* AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -254,11 +328,17 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					493B47452AB0F59C007F7F3D = {
+						CreatedOnToolsVersion = 15.0;
+					};
 					49429E3F2A61DC3C00AA21A8 = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					49CAB4F02AB0D6E6009BD60F = {
+						CreatedOnToolsVersion = 15.0;
 					};
 					49F90C272A52156200F06D93 = {
 						CreatedOnToolsVersion = 15.0;
@@ -285,14 +365,16 @@
 			packageReferences = (
 				49087B482AA90500009B5B7F /* XCRemoteSwiftPackageReference "skip" */,
 			);
-			productRefGroup = 49F90C292A52156200F06D93 /* Products */;
+			productRefGroup = 49F90C1F2A52156200F06D93;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				49F90C272A52156200F06D93 /* App */,
+				49CAB4F02AB0D6E6009BD60F /* SkipApp */,
 				49429E3F2A61DC3C00AA21A8 /* AppDroid */,
 				49F90C382A52156300F06D93 /* AppTests */,
 				49F90C422A52156300F06D93 /* AppUITests */,
+				493B47452AB0F59C007F7F3D /* AndroidRunner */,
 			);
 		};
 /* End PBXProject section */
@@ -341,11 +423,112 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nSOURCE_PACKAGES=${BUILD_ROOT}/../../SourcePackages\necho \"Running AppDroid script for: ${PROJECT}\"\nmkdir -p Skip/build/artifacts/\n# Add local skip tool path first to use skip executable that matches the plugin version\n# Then for local builds add the BUILT_PRODUCTS_DIR\n# Then fall back to homebrew's paths\nPATH=${SOURCE_PACKAGES}/artifacts/skip/skip/skip.artifactbundle/macos/:${BUILT_PRODUCTS_DIR}:${PATH}:/opt/homebrew/bin/:/usr/local/homebrew/bin\nwhich skip\nskip version\nskip gradle --package \"${PROJECT}\" --module AppUI assemble${CONFIGURATION}\nln -f ${SOURCE_PACKAGES}/plugins/*.output/*/skipstone/*/.build/*/outputs/apk/*/*.apk Skip/build/artifacts/\nln -sfh ${SOURCE_PACKAGES}/plugins/${PROJECT}.output Skip/build/${PROJECT}.output\n";
+			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nexport ANDROID_HOME=${ANDROID_HOME:-~/Library/Android/sdk}\nSOURCE_PACKAGES=${BUILD_ROOT}/../../SourcePackages\necho \"Running AppDroid script for: ${PROJECT}\"\nmkdir -p Skip/build/artifacts/\n# Add local skip tool path first to use skip executable that matches the plugin version\n# Then for local builds add the BUILT_PRODUCTS_DIR\n# Then fall back to homebrew's paths\nPATH=${SOURCE_PACKAGES}/artifacts/skip/skip/skip.artifactbundle/macos/:${BUILT_PRODUCTS_DIR}:${PATH}:/opt/homebrew/bin/:/usr/local/homebrew/bin\nwhich skip\nskip version\nskip gradle --package \"${PROJECT}\" --module AppUI assemble${CONFIGURATION}\nln -f ${SOURCE_PACKAGES}/plugins/*.output/*/skipstone/*/.build/*/outputs/apk/*/*.apk Skip/build/artifacts/\nln -sfh ${SOURCE_PACKAGES}/plugins/${PROJECT}.output Skip/build/${PROJECT}.output\n";
+		};
+		49A3F5D32AB203B4002A4D5F /* Build Android APK */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Android APK";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh -e";
+			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nSRCPKG=${BUILD_ROOT}/../../SourcePackages\necho \"Running AppDroid script for: ${PROJECT}\"\nmkdir -p Skip/build/artifacts/\n# Add local skip tool path first to use skip executable that matches the plugin version\n# Then for local builds add the BUILT_PRODUCTS_DIR\n# Then fall back to homebrew's paths\nPATH=${SRCPKG}/artifacts/skip/skip/skip.artifactbundle/macos/:${BUILT_PRODUCTS_DIR}:${PATH}:/opt/homebrew/bin/:/usr/local/bin/\nwhich skip\nskip gradle --package \"${PROJECT}\" --module AppUI assemble${CONFIGURATION}\ncd Skip/build/\nln -sfh ${SRCPKG}/plugins/${PROJECT}.output ${PROJECT}.output\ncd artifacts/\n#ln -f ${SRCPKG}/plugins/*.output/*/skipstone/*/build/outputs/apk/*/*.apk .\nln -f ${SRCPKG}/plugins/*.output/*/skipstone/*/.build/*/outputs/apk/*/*.apk .\n";
+		};
+		49A3F5D42AB203D8002A4D5F /* Run Android APK */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Android APK";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh -e";
+			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nSRCPKG=${BUILD_ROOT}/../../SourcePackages\necho \"Running app: AppUI-${CONFIGURATION}.apk\"\nPATH=${SRCPKG}/artifacts/skip/skip/skip.artifactbundle/macos/:${BUILT_PRODUCTS_DIR}:${PATH}:/opt/homebrew/bin/:/usr/local/bin\nadb install -t -r -d -g Skip/build/artifacts/AppUI-${CONFIGURATION}.apk\nadb shell am start-activity -S -W -n app.ui/.MainActivity\n";
+		};
+		49A3F5D52AB20656002A4D5F /* Show Environment */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Show Environment";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/bin/sh -e";
+			shellScript = "env | sort > /tmp/App.env\n";
+		};
+		49CC15D92AB20C9500AE2718 /* APPDROID TARGET */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "APPDROID TARGET";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo APPDROID TARGET\n\n";
+		};
+		49FB9E1D2AB1040300695C18 /* Build APK */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build APK";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo Build APK Script Phase\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		493B47422AB0F59C007F7F3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		49429E3C2A61DC3C00AA21A8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -382,6 +565,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		493B47502AB0F6B1007F7F3D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 49F90C272A52156200F06D93 /* App */;
+			targetProxy = 493B474F2AB0F6B1007F7F3D /* PBXContainerItemProxy */;
+		};
+		494A0FEE2AB10F52008696B6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 494A0FED2AB10F52008696B6 /* AppDroid */;
+		};
 		49F90C3B2A52156300F06D93 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 49F90C272A52156200F06D93 /* App */;
@@ -395,6 +587,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		493B474B2AB0F59C007F7F3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		493B474C2AB0F59C007F7F3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		49429E442A61DC3C00AA21A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -416,6 +632,26 @@
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		49CAB4F22AB0D6E6009BD60F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_TARGET = YES;
+			};
+			name = Debug;
+		};
+		49CAB4F32AB0D6E6009BD60F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_TARGET = YES;
 			};
 			name = Release;
 		};
@@ -477,6 +713,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				SKIP_TARGET = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -533,6 +770,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				SKIP_TARGET = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -556,12 +794,13 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.4;
 				SDKROOT = auto;
+				SKIP_TARGET = NO;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -587,12 +826,13 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.4;
 				SDKROOT = auto;
+				SKIP_TARGET = NO;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -688,11 +928,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		493B474A2AB0F59C007F7F3D /* Build configuration list for PBXNativeTarget "AndroidRunner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				493B474B2AB0F59C007F7F3D /* Debug */,
+				493B474C2AB0F59C007F7F3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		49429E462A61DC3C00AA21A8 /* Build configuration list for PBXNativeTarget "AppDroid" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				49429E442A61DC3C00AA21A8 /* Debug */,
 				49429E452A61DC3C00AA21A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49CAB4F12AB0D6E6009BD60F /* Build configuration list for PBXAggregateTarget "SkipApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49CAB4F22AB0D6E6009BD60F /* Debug */,
+				49CAB4F32AB0D6E6009BD60F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -747,13 +1005,17 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		493A5C512A6B851600379601 /* AppModel */ = {
+		493FD71C2AB2377500E08F76 /* AppModel */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppModel;
 		};
-		493A5C532A6B851600379601 /* AppUI */ = {
+		493FD71E2AB2377500E08F76 /* AppUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppUI;
+		};
+		494A0FED2AB10F52008696B6 /* AppDroid */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppDroid;
 		};
 		499C08B32AA8004E00C1626F /* AppModel */ = {
 			isa = XCSwiftPackageProductDependency;

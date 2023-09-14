@@ -1,27 +1,30 @@
+// An example of wrapping a custom iOS UIView and Android View
+// using SwiftUI.UIViewRepresentable
+// and androidx.compose.ui.viewinterop.AndroidView
 import Foundation
 #if SKIP
 import AndroidWebkit
 import AndroidxComposeRuntime
 import AndroidxComposeUiViewinterop.AndroidView
 
-@Composable
-func WebView(url: URL, enableJavaScript: Bool = javaScriptEnabled) {
-    AndroidView(factory: { context in
-        WebView(context).apply {
-            webViewClient = WebViewClient()
-            settings.javaScriptEnabled = enableJavaScript
-            loadUrl(url.absoluteString)
-        }
+@Composable func WebView(url: URL, enableJavaScript: Bool = true) {
+    AndroidView(factory: { ctx in
+        let webView = WebView(ctx)
+        webView.webViewClient = WebViewClient()
+        webView.settings.javaScriptEnabled = enableJavaScript
+        webView.loadUrl(url.absoluteString)
+        return webView
     })
 }
 #elseif canImport(UIKit)
 import WebKit
 import SwiftUI
+
 struct WebView: UIViewRepresentable {
     let url: URL
     let cfg = WKWebViewConfiguration()
 
-    init(url: URL, enableJavaScript: Bool = javaScriptEnabled) {
+    init(url: URL, enableJavaScript: Bool = true) {
         self.url = url
         cfg.defaultWebpagePreferences.allowsContentJavaScript = enableJavaScript
     }
@@ -35,7 +38,3 @@ struct WebView: UIViewRepresentable {
     }
 }
 #endif
-
-/// Whether JavaScript should be enabled by default in embedded web views.
-let javaScriptEnabled = true
-

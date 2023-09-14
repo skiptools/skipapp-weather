@@ -15,18 +15,9 @@ let packageName = "skipapp-weather"
         do {
             print("Launching App in Android Emulator (via Gradle)")
             let appId = ProcessInfo.processInfo.environment["PRODUCT_BUNDLE_IDENTIFIER"] ?? "app.ui"
-
-            // Xcode should set PRODUCT_BUNDLE_IDENTIFIER automatically from the App.xcconfig for you
-            //for (key, value) in ProcessInfo.processInfo.environment.sorted(by: { $0.key < $1.key }) {
-            //    print("  env: \(key)=\(value)")
-            //}
-            //fatalError("Environment variable PRODUCT_BUNDLE_IDENTIFIER must be set to app id")
-
             try await AndroidAppMain().launch(appName: appName, appId: appId, packageName: packageName)
         } catch {
             print("Error launching: \(error)")
-            //print("\(#file):\(#line):\(#column): error: AppDroid: \(error.localizedDescription)")
-            //throw error // results in a fatalError
             exit(1)
         }
     }

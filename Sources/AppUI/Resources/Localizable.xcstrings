@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%lf°C" : {
+    "%@" : {
 
     },
     "%lld – %lld °C" : {
@@ -17,9 +17,6 @@
     "%lld%% Sunny" : {
 
     },
-    "%lld°C" : {
-
-    },
     "☆" : {
 
     },
@@ -29,20 +26,11 @@
     "Animate" : {
 
     },
-    "App Name: %@" : {
-
-    },
-    "Build Number: %@" : {
-
-    },
-    "Bundle Identifier: %@" : {
+    "Celsius" : {
 
     },
     "Cities" : {
       "comment" : "Home tab title"
-    },
-    "Counter: %lld" : {
-
     },
     "Custom SwiftUI View" : {
 
@@ -100,8 +88,20 @@
         }
       }
     },
-    "Live" : {
-      "comment" : "Search tab title"
+    "Fetch Weather" : {
+
+    },
+    "Lat:" : {
+
+    },
+    "Latitude" : {
+
+    },
+    "Lon:" : {
+
+    },
+    "Longitude" : {
+
     },
     "Recent" : {
       "extractionState" : "stale",
@@ -159,20 +159,25 @@
     "Reset" : {
 
     },
+    "Search" : {
+      "comment" : "Search tab title"
+    },
     "Settings" : {
       "comment" : "Settings tab title"
     },
-    "SkipUI" : {
-      "comment" : "Favorites tab title"
-    },
-    "Toggle" : {
-
-    },
-    "Version: %@" : {
+    "Unable to parse coordinates" : {
 
     },
     "Weather" : {
-      "comment" : "Weather tab title"
+      "comment" : "Weather tab title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WeatherXXX"
+          }
+        }
+      }
     },
     "Welcome to SkipUI" : {
 

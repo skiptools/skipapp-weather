@@ -5,9 +5,9 @@ let skip = true
 let skipPlugin = skip ? [Target.PluginUsage.plugin(name: "skipstone", package: "skip")] : []
 let skipCondition = TargetDependencyCondition.when(platforms: skip ? [.macOS] : [])
 
-let skipTest = Target.Dependency.product(name: "SkipTest", package: "skip", condition: skipCondition)
-let skipModel = Target.Dependency.product(name: "SkipModel", package: "skip-model", condition: skipCondition)
-let skipUI = Target.Dependency.product(name: "SkipUI", package: "skip-ui", condition: skipCondition)
+let skipTest = Target.Dependency.product(name: "SkipTest", package: "skip") // , condition: skipCondition)
+let skipModel = Target.Dependency.product(name: "SkipModel", package: "skip-model") // , condition: skipCondition)
+let skipUI = Target.Dependency.product(name: "SkipUI", package: "skip-ui") // , condition: skipCondition)
 
 let package = Package(
     name: "App",
@@ -18,9 +18,9 @@ let package = Package(
         .library(name: "AppModel", targets: ["AppModel"]),
     ],
     dependencies: [
-        .package(url: "https://source.skip.tools/skip.git", from: "0.6.63"),
-        .package(url: "https://source.skip.tools/skip-model.git", from: "0.0.6"),
-        .package(url: "https://source.skip.tools/skip-ui.git", from: "0.1.21"),
+        .package(url: "https://source.skip.tools/skip.git", from: "0.6.70"),
+        .package(url: "https://source.skip.tools/skip-model.git", from: "0.2.0"),
+        .package(url: "https://source.skip.tools/skip-ui.git", from: "0.1.22"),
     ],
     targets: [
         .executableTarget(name: "AppDroid", dependencies: ["AppUI", .product(name: "SkipDrive", package: "skip")]),
