@@ -5,6 +5,7 @@ struct WeatherView : View {
     @State var latitude: String = ""
     @State var longitude: String = ""
     @State var error: String = ""
+    @State var temperature: Double = Double.nan
 
     var body: some View {
         VStack {
@@ -41,12 +42,11 @@ struct WeatherView : View {
                     .font(.headline)
                     .foregroundStyle(Color.red)
             } else {
-                // if let temp = weather.value.temperature {
-                //    Row { androidx.compose.material3.Text(text: "Temperature", style: MaterialTheme.typography.headlineMedium, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth()) }
-                //    Row { androidx.compose.material3.Text(text: "\((temp * 9.0 / 5.0) + 32.0)°F", style: MaterialTheme.typography.headlineSmall, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth()) }
-                // Row { androidx.compose.material3.Text(text: "\(temp)°C", style: MaterialTheme.typography.headlineSmall, textAlign: TextAlign.Center, modifier: Modifier.fillMaxWidth()) }
-                // }
-
+                if !temperature.isNaN {
+                    Text("Temperature: \(Int(temperature))°")
+                        .font(.largeTitle)
+                        .foregroundStyle(temperature < 15.0 ? Color.blue : temperature > 30.0 ? Color.red : Color.green)
+                }
             }
             Spacer()
         }
@@ -64,6 +64,9 @@ struct WeatherView : View {
         let location = Location(latitude: lat, longitude: lon)
         let condition = await WeatherCondition(location: location)
         let result = try await condition.fetchWeather()
+        if let temperature = await condition.temperature {
+            self.temperature = temperature
+        }
         logger.log("fetched weather: \(result)")
     }
 }

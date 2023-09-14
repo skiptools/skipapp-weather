@@ -165,19 +165,14 @@
     "Settings" : {
       "comment" : "Settings tab title"
     },
+    "Temperature: %lld°" : {
+
+    },
     "Unable to parse coordinates" : {
 
     },
     "Weather" : {
-      "comment" : "Weather tab title",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "WeatherXXX"
-          }
-        }
-      }
+      "comment" : "Weather tab title"
     },
     "Welcome to SkipUI" : {
 
