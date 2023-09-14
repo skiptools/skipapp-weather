@@ -13,7 +13,7 @@ struct ContentView: View {
                         Label {
                             Text(tab.title)
                         } icon: {
-                            tab.icon
+                            tab.icon()
                         }
                     }
                     .tag(tab)
@@ -87,7 +87,7 @@ import AndroidxNavigationCompose
         Scaffold(bottomBar: {
             NavigationBar(modifier: Modifier.fillMaxWidth()) {
                 AppTabs.allCases.forEachIndexed { index, tab in
-                    NavigationBarItem(icon: { Icon(imageVector: tab.icon, contentDescription: tab.title.value) }, label: { androidx.compose.material3.Text(tab.title.value) }, selected: tab.rawValue == currentRoute(navController), onClick: {
+                    NavigationBarItem(icon: { tab.icon() }, label: { androidx.compose.material3.Text(tab.title.value) }, selected: tab.rawValue == currentRoute(navController), onClick: {
                             navController.navigate(tab.rawValue) {
                                 popUpTo(navController.graph.startDestinationId) {
                                     saveState = true
