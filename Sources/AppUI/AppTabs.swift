@@ -1,6 +1,6 @@
 import Foundation
-import OSLog
 import SwiftUI
+import OSLog
 
 /// The logger to use for the app. Directs to the oslog on Darwin and logcat on Android.
 let logger = Logger(subsystem: "app.ui", category: "AppUI")
@@ -8,7 +8,7 @@ let logger = Logger(subsystem: "app.ui", category: "AppUI")
 /// The tabs for the app.
 enum AppTabs : String, CaseIterable {
     /// The initial default tab shown in the app
-    static let defaultTab = AppTabs.content
+    static let defaultTab = AppTabs.home
 
     case home
     case content

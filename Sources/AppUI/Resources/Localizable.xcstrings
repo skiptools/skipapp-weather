@@ -29,9 +29,6 @@
     "Celsius" : {
 
     },
-    "Cities" : {
-      "comment" : "Home tab title"
-    },
     "Custom SwiftUI View" : {
 
     },
@@ -101,6 +98,9 @@
 
     },
     "Longitude" : {
+
+    },
+    "PLACES" : {
 
     },
     "Recent" : {

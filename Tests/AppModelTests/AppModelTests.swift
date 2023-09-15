@@ -2,6 +2,10 @@ import XCTest
 @testable import AppModel
 
 class AppModelTests: XCTestCase {
+    func testFailure() {
+        XCTAssertEqual(1, 1)
+    }
+
     func testCoordinateRounding() throws {
         let location = Location(latitude: 42.36515, longitude: -71.0618)
         XCTAssertEqual(42.365, location.coordinates(fractionalDigits: 3).latitude)

@@ -169,22 +169,22 @@
 				49F90C2A2A52156200F06D93 /* App */,
 				49F90C3C2A52156300F06D93 /* AppTests */,
 				49429E412A61DC3C00AA21A8 /* AppDroid */,
-                                49F90C292A52156200F06D93 /* Products */,
+				49F90C292A52156200F06D93 /* Products */,
 				493FD7142AB236CD00E08F76 /* Frameworks */,
-                        );
-                        sourceTree = "<group>";
-                };
-                49F90C292A52156200F06D93 /* Products */ = {
-                        isa = PBXGroup;
-                        children = (
+			);
+			sourceTree = "<group>";
+		};
+		49F90C292A52156200F06D93 /* Products */ = {
+			isa = PBXGroup;
+			children = (
 				49CC15D42AB209A200AE2718 /* Skip App.app */,
 				49CC15D52AB209BC00AE2718 /* Skip App */,
 				49CC15D62AB209BC00AE2718 /* AppTests.xctest */,
 				49CC15D72AB209BC00AE2718 /* AppUITests.xctest */,
 				49CC15D82AB209BC00AE2718 /* AndroidRunner */,
 			);
+			name = Products;
 			sourceTree = "<group>";
-                        name = Products;
 		};
 		49F90C2A2A52156200F06D93 /* App */ = {
 			isa = PBXGroup;
