@@ -26,14 +26,10 @@ let package = Package(
         .package(url: "https://source.skip.tools/skip-ui.git", from: "0.1.22"),
     ],
     targets: [
-        // The Swift side of the app's data model
         .target(name: "AppModel", dependencies: skipModel, resources: [.process("Resources")], plugins: skipPlugin),
         .testTarget(name: "AppModelTests", dependencies: ["AppModel"] + skipTest, plugins: skipPlugin),
-
-        // The Swift side of the app's user interface (SwiftUI)
         .target(name: "AppUI", dependencies: ["AppModel"] + skipUI, resources: [.process("Resources")], plugins: skipPlugin),
         .testTarget(name: "AppUITests", dependencies: ["AppUI"] + skipTest, plugins: skipPlugin),
-
         .executableTarget(name: "AppDroid", dependencies: ["AppUI"] + skipDrive),
     ]
 )

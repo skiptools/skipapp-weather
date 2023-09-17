@@ -1,24 +1,9 @@
 // An example of wrapping a custom iOS UIView and Android View
 // using SwiftUI.UIViewRepresentable
 // and androidx.compose.ui.viewinterop.AndroidView
-import Foundation
-#if SKIP
-import AndroidWebkit
-import AndroidxComposeRuntime
-import AndroidxComposeUiViewinterop.AndroidView
-
-@Composable func WebView(url: URL, enableJavaScript: Bool = true) {
-    AndroidView(factory: { ctx in
-        let webView = WebView(ctx)
-        webView.webViewClient = WebViewClient()
-        webView.settings.javaScriptEnabled = enableJavaScript
-        webView.loadUrl(url.absoluteString)
-        return webView
-    })
-}
-#elseif canImport(UIKit)
-import WebKit
 import SwiftUI
+#if canImport(UIKit)
+import WebKit
 
 struct WebView: UIViewRepresentable {
     let url: URL
@@ -36,5 +21,16 @@ struct WebView: UIViewRepresentable {
     func updateUIView(_ uiView: WKWebView, context: Context) {
         uiView.load(URLRequest(url: url))
     }
+}
+#elseif SKIP
+@Composable func WebView(url: URL, enableJavaScript: Bool = true) {
+    androidx.compose.ui.viewinterop.AndroidView(factory: { ctx in
+        let webView = android.webkit.WebView(ctx)
+        webView.webViewClient = android.webkit.WebViewClient()
+        webView.settings.javaScriptEnabled = enableJavaScript
+        return webView
+    }, update: { webView in
+        webView.loadUrl(url.absoluteString)
+    })
 }
 #endif
