@@ -8,7 +8,7 @@ let logger = Logger(subsystem: "app.ui", category: "AppUI")
 /// The tabs for the app.
 enum AppTabs : String, CaseIterable {
     /// The initial default tab shown in the app
-    static let defaultTab = AppTabs.content
+    static let defaultTab = AppTabs.home
 
     case home
     case content
@@ -21,6 +21,15 @@ enum AppTabs : String, CaseIterable {
         case .content: return LocalizedStringKey("Weather")
         case .search: return LocalizedStringKey("Search")
         case .settings: return LocalizedStringKey("Settings")
+        }
+    }
+
+    var icon: Image {
+        switch self {
+        case .home: return Image(systemName: "house")
+        case .content: return Image(systemName: "star")
+        case .search: return Image(systemName: "magnifyingglass")
+        case .settings: return Image(systemName: "gear")
         }
     }
 
