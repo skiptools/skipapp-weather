@@ -11,7 +11,7 @@ struct ContentView: View {
                 selectedTabView(for: tab)
                     .tabItem {
                         Label {
-                            Text(tab.title)
+                            Text(tab.title, bundle: .module)
                         } icon: {
                             tab.icon
                         }
@@ -34,12 +34,7 @@ struct ContentView: View {
     }
 
     func searchView() -> some View {
-        #if !os(iOS)
-        // no UIViewRepresentable on macOS
-        Spacer()
-        #else
-        return WebView(url: AppTabs.searchPage)
-        #endif
+        WebView(url: AppTabs.searchPage)
     }
 
     func graphicsView() -> some View {
@@ -48,20 +43,18 @@ struct ContentView: View {
 }
 
 #else
-
-import AndroidContent.Context
-import AndroidxComposeRuntime
-import AndroidxComposeMaterial3
-import AndroidxComposeFoundation
-import AndroidxComposeFoundationShape
-import AndroidxComposeFoundationLayout
-import AndroidxComposeFoundationText
-import AndroidxComposeUi
-import AndroidxComposeUiLayout
-import AndroidxComposeUiPlatform
-import AndroidxNavigation
-import AndroidxNavigationCompose
-
+import android.content.Context
+import androidx.compose.runtime.__
+import androidx.compose.material3.__
+import androidx.compose.foundation.__
+import androidx.compose.foundation.shape.__
+import androidx.compose.foundation.layout.__
+import androidx.compose.foundation.text.__
+import androidx.compose.ui.__
+import androidx.compose.ui.layout.__
+import androidx.compose.ui.platform.__
+import androidx.navigation.__
+import androidx.navigation.compose.__
 
 @ExperimentalMaterial3Api
 @Composable func ContentView() {

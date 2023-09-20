@@ -442,7 +442,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nSRCPKG=${BUILD_ROOT}/../../SourcePackages\necho \"Running AppDroid script for: ${PROJECT}\"\nmkdir -p Skip/build/artifacts/\n# Add local skip tool path first to use skip executable that matches the plugin version\n# Then for local builds add the BUILT_PRODUCTS_DIR\n# Then fall back to homebrew's paths\nexport PATH=${SRCPKG}/artifacts/skip/skip/skip.artifactbundle/macos/:${BUILT_PRODUCTS_DIR}:${PATH}:/opt/homebrew/bin/:/usr/local/bin/\nexport ANDROID_HOME=${ANDROID_HOME:-${HOME}/Library/Android/sdk}\nwhich skip\nskip gradle --package \"${PROJECT}\" --module AppUI assemble${CONFIGURATION}\ncd Skip/build/\nln -sfh ${SRCPKG}/plugins/${PROJECT}.output ${PROJECT}.output\ncd artifacts/\n#ln -f ${SRCPKG}/plugins/*.output/*/skipstone/*/build/outputs/apk/*/*.apk .\nln -f ${SRCPKG}/plugins/*.output/*/skipstone/*/.build/*/outputs/apk/*/*.apk .\n";
+			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nSRCPKG=${BUILD_ROOT}/../../SourcePackages\necho \"Running AppDroid script for: ${PROJECT}\"\nmkdir -p Skip/build/artifacts/\n# Add local skip tool path first to use skip executable that matches the plugin version\n# Then for local builds add the BUILT_PRODUCTS_DIR\n# Then fall back to homebrew's paths\nexport PATH=${SRCPKG}/artifacts/skip/skip/skip.artifactbundle/macos/:${BUILT_PRODUCTS_DIR}:${PATH}:/opt/homebrew/bin/:/usr/local/bin/\nexport ANDROID_HOME=${ANDROID_HOME:-${HOME}/Library/Android/sdk}\nwhich skip\nskip gradle --package \"${PROJECT}\" --module AppUI assemble${CONFIGURATION}\ncd Skip/build/\nln -sfh ${SRCPKG}/plugins/*.output .\ncd artifacts/\n#ln -f ${SRCPKG}/plugins/*.output/*/skipstone/*/build/outputs/apk/*/*.apk .\nln -f ${SRCPKG}/plugins/*.output/*/skipstone/*/.build/*/outputs/apk/*/*.apk .\n";
 		};
 		49A3F5D42AB203D8002A4D5F /* Run Android APK */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -461,7 +461,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nSRCPKG=${BUILD_ROOT}/../../SourcePackages\necho \"Running app: AppUI-${CONFIGURATION}.apk\"\nPATH=${SRCPKG}/artifacts/skip/skip/skip.artifactbundle/macos/:${BUILT_PRODUCTS_DIR}:${PATH}:/opt/homebrew/bin/:/usr/local/bin\nadb install -t -r -d -g Skip/build/artifacts/AppUI-${CONFIGURATION}.apk\nadb shell am start-activity -S -W -n app.ui/.MainActivity\n";
+			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nSRCPKG=${BUILD_ROOT}/../../SourcePackages\necho \"Running app: AppUI-${CONFIGURATION}.apk\"\nPATH=${SRCPKG}/artifacts/skip/skip/skip.artifactbundle/macos/:${BUILT_PRODUCTS_DIR}:${PATH}:/opt/homebrew/bin/:/usr/local/bin\n#echo \"/dev/null:0:0: error: Error message\"\nadb install -t -r -d -g Skip/build/artifacts/AppUI-${CONFIGURATION}.apk\nadb shell am start-activity -S -W -n app.ui/.MainActivity\n";
 		};
 		49A3F5D52AB20656002A4D5F /* Show Environment */ = {
 			isa = PBXShellScriptBuildPhase;
