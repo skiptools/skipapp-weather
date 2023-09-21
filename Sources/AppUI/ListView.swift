@@ -3,10 +3,25 @@ import Observation
 import SwiftUI
 import AppModel
 
+struct ListTabView: View {
+    var body: some View {
+        NavigationStack {
+            ListView()
+            //~~~ pass in from tab?
+//                .navigationTitle("Cities")
+                .navigationDestination(for: String.self) { _ in
+                    Text("HERE")
+                }
+        }
+    }
+}
+
 struct ListView : View {
     var body: some View {
         List(City.allCases, id: \.location.latitude) { city in
-            rowView(city: city)
+            NavigationLink(value: "link") {
+                rowView(city: city)
+            }
         }
     }
 

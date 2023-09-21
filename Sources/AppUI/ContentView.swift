@@ -26,7 +26,7 @@ struct ContentView: View {
 
     @ViewBuilder func selectedTabView(for tab: AppTabs) -> some View {
         switch tab {
-        case .home: ListView()
+        case .home: ListTabView()
         case .content: WeatherView()
         case .search: searchView()
         case .settings: SettingsView()
@@ -90,7 +90,7 @@ import androidx.navigation.compose.__
                 AppTabs.allCases.forEachIndexed { index, tab in
                     composable(tab.rawValue) {
                         switch tab {
-                        case AppTabs.home: ListView().Compose(context: context)
+                        case AppTabs.home: ListTabView().Compose(context: context)
                         case AppTabs.content: WeatherView().Compose(context: context)
                         case AppTabs.search: searchView(modifier: context.modifier)
                         case AppTabs.settings: SettingsView().Compose(context: context)
