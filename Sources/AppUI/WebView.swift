@@ -43,13 +43,13 @@ struct WebView: NSViewRepresentable {
     }
 }
 #elseif SKIP
-@Composable func WebView(url: URL, enableJavaScript: Bool = true) {
+@Composable func WebView(url: URL, enableJavaScript: Bool = true, modifier: androidx.compose.ui.Modifier) {
     androidx.compose.ui.viewinterop.AndroidView(factory: { ctx in
         let webView = android.webkit.WebView(ctx)
         webView.webViewClient = android.webkit.WebViewClient()
         webView.settings.javaScriptEnabled = enableJavaScript
         return webView
-    }, update: { webView in
+    }, modifier: modifier, update: { webView in
         webView.loadUrl(url.absoluteString)
     })
 }

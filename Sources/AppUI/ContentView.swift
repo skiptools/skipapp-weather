@@ -1,7 +1,7 @@
 import SwiftUI
 
 #if !SKIP
-/// The of the app: a tabbed view with tabs for each of the `AppTabs` enum.
+/// The content of the app: a tabbed view with tabs for each of the `AppTabs` enum.
 struct ContentView: View {
     @State private var selectedTab = AppTabs.defaultTab
 
@@ -36,10 +36,6 @@ struct ContentView: View {
     func searchView() -> some View {
         WebView(url: AppTabs.searchPage)
     }
-
-    func graphicsView() -> some View {
-        GraphicsView(label: "SwiftUI")
-    }
 }
 
 #else
@@ -47,8 +43,8 @@ import android.content.Context
 import androidx.compose.runtime.__
 import androidx.compose.material3.__
 import androidx.compose.foundation.__
-import androidx.compose.foundation.shape.__
 import androidx.compose.foundation.layout.__
+import androidx.compose.foundation.shape.__
 import androidx.compose.foundation.text.__
 import androidx.compose.ui.__
 import androidx.compose.ui.layout.__
@@ -58,14 +54,8 @@ import androidx.navigation.compose.__
 
 @ExperimentalMaterial3Api
 @Composable func ContentView() {
-    @Composable func searchView() {
-        WebView(AppTabs.searchPage)
-    }
-
-    @Composable func graphicsView(modifier: Modifier) {
-        Box(modifier: Modifier.fillMaxSize().then(modifier), contentAlignment: androidx.compose.ui.Alignment.Center) {
-            GraphicsView(label: "Compose").Compose()
-        }
+    @Composable func searchView(modifier: Modifier) {
+        WebView(AppTabs.searchPage, modifier: modifier)
     }
 
     @ExperimentalMaterial3Api
@@ -95,15 +85,15 @@ import androidx.navigation.compose.__
                 }
             }
         }) { contentPadding in
-            let modifier = Modifier.padding(contentPadding)
+            let context = ComposeContext(modifier: Modifier.padding(contentPadding))
             NavHost(navController, startDestination: AppTabs.defaultTab.rawValue) {
                 AppTabs.allCases.forEachIndexed { index, tab in
                     composable(tab.rawValue) {
                         switch tab {
-                        case AppTabs.home: ListView().Compose()
-                        case AppTabs.content: WeatherView().Compose()
-                        case AppTabs.search: searchView()
-                        case AppTabs.settings: SettingsView().Compose()
+                        case AppTabs.home: ListView().Compose(context: context)
+                        case AppTabs.content: WeatherView().Compose(context: context)
+                        case AppTabs.search: searchView(modifier: context.modifier)
+                        case AppTabs.settings: SettingsView().Compose(context: context)
                         }
                     }
                 }
@@ -123,8 +113,7 @@ import androidx.navigation.compose.__
             ? (darkMode ? dynamicDarkColorScheme(context) : dynamicLightColorScheme(context))
             : (darkMode ? darkColorScheme() : lightColorScheme())
 
-        var typography = Typography(
-        )
+        var typography = Typography()
 
         MaterialTheme(colorScheme: colorScheme, typography: typography) {
             NavigationScaffold()
@@ -132,7 +121,6 @@ import androidx.navigation.compose.__
     }
 
     ThemedNavigationScaffold()
-
 }
 #endif
 
