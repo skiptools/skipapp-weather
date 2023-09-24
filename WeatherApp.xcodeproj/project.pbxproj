@@ -23,13 +23,12 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		493FD71D2AB2377500E08F76 /* AppModel in Frameworks */ = {isa = PBXBuildFile; productRef = 493FD71C2AB2377500E08F76 /* AppModel */; };
-		493FD71F2AB2377500E08F76 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 493FD71E2AB2377500E08F76 /* AppUI */; };
 		49429E432A61DC3C00AA21A8 /* AppDroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49429E422A61DC3C00AA21A8 /* AppDroid.swift */; };
 		49813B532A521AA700612428 /* AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C472A52156300F06D93 /* AppUITests.swift */; };
 		499C08B42AA8004E00C1626F /* AppModel in Frameworks */ = {isa = PBXBuildFile; productRef = 499C08B32AA8004E00C1626F /* AppModel */; };
 		499C08B62AA8004E00C1626F /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 499C08B52AA8004E00C1626F /* AppUI */; };
 		499C08B92AA8B6CF00C1626F /* SkipDrive in Frameworks */ = {isa = PBXBuildFile; productRef = 499C08B82AA8B6CF00C1626F /* SkipDrive */; };
+		49F7D6402ABB43C100141E09 /* WeatherAppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 49F7D63F2ABB43C100141E09 /* WeatherAppUI */; };
 		49F90C2C2A52156200F06D93 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C2B2A52156200F06D93 /* AppMain.swift */; };
 		49F90C302A52156300F06D93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F90C2F2A52156300F06D93 /* Assets.xcassets */; };
 		49F90C342A52156300F06D93 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F90C332A52156300F06D93 /* Preview Assets.xcassets */; };
@@ -87,8 +86,8 @@
 		493609562A6B7EAE00C401E2 /* skipapp */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = skipapp; path = .; sourceTree = "<group>"; };
 		49429E422A61DC3C00AA21A8 /* AppDroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDroid.swift; sourceTree = "<group>"; };
 		496EB72F2A6AE4DE00C1253B /* App.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = App.xcconfig; sourceTree = "<group>"; };
-		49CC15D42AB209A200AE2718 /* Skip App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skip App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		49CC15D52AB209BC00AE2718 /* Skip App */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Skip App"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49CC15D42AB209A200AE2718 /* Weather App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49CC15D52AB209BC00AE2718 /* Weather App */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Weather App"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49CC15D62AB209BC00AE2718 /* AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49CC15D72AB209BC00AE2718 /* AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49CC15D82AB209BC00AE2718 /* AndroidRunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AndroidRunner; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,8 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				493FD71F2AB2377500E08F76 /* AppUI in Frameworks */,
-				493FD71D2AB2377500E08F76 /* AppModel in Frameworks */,
+				49F7D6402ABB43C100141E09 /* WeatherAppUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,8 +175,8 @@
 		49F90C292A52156200F06D93 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				49CC15D42AB209A200AE2718 /* Skip App.app */,
-				49CC15D52AB209BC00AE2718 /* Skip App */,
+				49CC15D42AB209A200AE2718 /* Weather App.app */,
+				49CC15D52AB209BC00AE2718 /* Weather App */,
 				49CC15D62AB209BC00AE2718 /* AppTests.xctest */,
 				49CC15D72AB209BC00AE2718 /* AppUITests.xctest */,
 				49CC15D82AB209BC00AE2718 /* AndroidRunner */,
@@ -246,7 +244,6 @@
 				49429E3C2A61DC3C00AA21A8 /* Sources */,
 				49429E3D2A61DC3C00AA21A8 /* Frameworks */,
 				49429E4E2A61DD4900AA21A8 /* Build APK */,
-				49CC15D92AB20C9500AE2718 /* APPDROID TARGET */,
 			);
 			buildRules = (
 			);
@@ -259,7 +256,7 @@
 				499C08B82AA8B6CF00C1626F /* SkipDrive */,
 			);
 			productName = AppDroid;
-			productReference = 49CC15D52AB209BC00AE2718 /* Skip App */;
+			productReference = 49CC15D52AB209BC00AE2718 /* Weather App */;
 			productType = "com.apple.product-type.tool";
 		};
 		49F90C272A52156200F06D93 /* App */ = {
@@ -278,11 +275,10 @@
 			);
 			name = App;
 			packageProductDependencies = (
-				493FD71C2AB2377500E08F76 /* AppModel */,
-				493FD71E2AB2377500E08F76 /* AppUI */,
+				49F7D63F2ABB43C100141E09 /* WeatherAppUI */,
 			);
 			productName = App;
-			productReference = 49CC15D42AB209A200AE2718 /* Skip App.app */;
+			productReference = 49CC15D42AB209A200AE2718 /* Weather App.app */;
 			productType = "com.apple.product-type.application";
 		};
 		49F90C382A52156300F06D93 /* AppTests */ = {
@@ -353,7 +349,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 49F90C232A52156200F06D93 /* Build configuration list for PBXProject "App" */;
+			buildConfigurationList = 49F90C232A52156200F06D93 /* Build configuration list for PBXProject "WeatherApp" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -439,15 +435,16 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(SRCROOT)/Skip/build/artifacts/${PROJECT_NAME}UI-${CONFIGURATION}.apk",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nSRCPKG=${BUILD_ROOT}/../../SourcePackages\necho \"Running AppDroid script for: ${PROJECT}\"\nmkdir -p Skip/build/artifacts/\n# Add local skip tool path first to use skip executable that matches the plugin version\n# Then for local builds add the BUILT_PRODUCTS_DIR\n# Then fall back to homebrew's paths\nexport PATH=${SRCPKG}/artifacts/skip/skip/skip.artifactbundle/macos/:${BUILT_PRODUCTS_DIR}:${PATH}:/opt/homebrew/bin/:/usr/local/bin/\nexport ANDROID_HOME=${ANDROID_HOME:-${HOME}/Library/Android/sdk}\nwhich skip\nskip gradle --package \"${PROJECT}\" --module AppUI assemble${CONFIGURATION}\ncd Skip/build/\nln -sfh ${SRCPKG}/plugins/*.output .\ncd artifacts/\n#ln -f ${SRCPKG}/plugins/*.output/*/skipstone/*/build/outputs/apk/*/*.apk .\nln -f ${SRCPKG}/plugins/*.output/*/skipstone/*/.build/*/outputs/apk/*/*.apk .\n";
+			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nSRCPKG=${BUILD_ROOT}/../../SourcePackages\necho \"Building APK for: ${PROJECT}\"\n# Add local skip tool path first to use skip executable that matches the plugin version\n# Then for local builds add the BUILT_PRODUCTS_DIR\n# Then fall back to homebrew's paths\nexport PATH=${BUILD_ROOT}/Debug:${SRCPKG}/artifacts/skip/skip/skip.artifactbundle/macos:${PATH}:/opt/homebrew/bin:/usr/local/bin\nexport ANDROID_HOME=${ANDROID_HOME:-${HOME}/Library/Android/sdk}\nwhich skip\nmkdir -p Skip/build/artifacts/\nskip gradle --package \"${PROJECT}\" --module ${PROJECT_NAME}UI assemble${CONFIGURATION}\ncd Skip/build/\nln -sfh ${SRCPKG}/plugins/*.output .\ncd artifacts/\n#ln -f ${SRCPKG}/plugins/*.output/*/skipstone/*/build/outputs/apk/*/*.apk .\nln -f ${SRCPKG}/plugins/*.output/*/skipstone/*/.build/*/outputs/apk/*/*.apk .\n\n# this is the expected output file, so ensure that it exists\nls -lah ${SRCROOT}/Skip/build/artifacts/${PROJECT_NAME}UI-${CONFIGURATION}.apk\n";
 		};
 		49A3F5D42AB203D8002A4D5F /* Run Android APK */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -461,7 +458,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nSRCPKG=${BUILD_ROOT}/../../SourcePackages\necho \"Running app: AppUI-${CONFIGURATION}.apk\"\nPATH=${SRCPKG}/artifacts/skip/skip/skip.artifactbundle/macos/:${BUILT_PRODUCTS_DIR}:${PATH}:/opt/homebrew/bin/:/usr/local/bin\n#echo \"/dev/null:0:0: error: Error message\"\nadb install -t -r -d -g Skip/build/artifacts/AppUI-${CONFIGURATION}.apk\nadb shell am start-activity -S -W -n app.ui/.MainActivity\n";
+			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nSRCPKG=${BUILD_ROOT}/../../SourcePackages\necho \"Running app: ${PROJECT_NAME}UI-${CONFIGURATION}.apk\"\n# Add local skip tool path first to use skip executable that matches the plugin version\n# Then for local builds add the BUILT_PRODUCTS_DIR\n# Then fall back to homebrew's paths\nexport PATH=${BUILD_ROOT}/Debug:${SRCPKG}/artifacts/skip/skip/skip.artifactbundle/macos:${PATH}:/opt/homebrew/bin:/usr/local/bin\n\n#echo \"/dev/null:0:0: error: Error message\"\necho \"Running: adb install -t -r -d -g Skip/build/artifacts/${PROJECT_NAME}UI-${CONFIGURATION}.apk\"\nskip adb install -t -r -d -g Skip/build/artifacts/${PROJECT_NAME}UI-${CONFIGURATION}.apk\necho \"Running: adb shell am start-activity -S -W -n ${PRODUCT_BUNDLE_IDENTIFIER}/.MainActivity\"\nskip adb shell am start-activity -S -W -n ${PRODUCT_BUNDLE_IDENTIFIER}/.MainActivity\n";
 		};
 		49A3F5D52AB20656002A4D5F /* Show Environment */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -481,25 +478,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
 			shellScript = "env | sort > /tmp/App.env\n";
-		};
-		49CC15D92AB20C9500AE2718 /* APPDROID TARGET */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "APPDROID TARGET";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "echo APPDROID TARGET\n\n";
 		};
 		49FB9E1D2AB1040300695C18 /* Build APK */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -955,7 +933,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		49F90C232A52156200F06D93 /* Build configuration list for PBXProject "App" */ = {
+		49F90C232A52156200F06D93 /* Build configuration list for PBXProject "WeatherApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				49F90C4B2A52156300F06D93 /* Debug */,
@@ -1005,14 +983,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		493FD71C2AB2377500E08F76 /* AppModel */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppModel;
-		};
-		493FD71E2AB2377500E08F76 /* AppUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppUI;
-		};
 		494A0FED2AB10F52008696B6 /* AppDroid */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppDroid;
@@ -1028,6 +998,10 @@
 		499C08B82AA8B6CF00C1626F /* SkipDrive */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SkipDrive;
+		};
+		49F7D63F2ABB43C100141E09 /* WeatherAppUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WeatherAppUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

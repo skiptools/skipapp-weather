@@ -1,4 +1,5 @@
-#if os(macOS)
+#if canImport(SkipTest) && os(macOS)
+import XCTest
 import SkipTest
 
 /// This test case will run the transpiled tests for the Skip module.

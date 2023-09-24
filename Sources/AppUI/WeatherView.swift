@@ -1,5 +1,5 @@
 import SwiftUI
-import AppModel
+import WeatherAppModel
 
 struct WeatherNavigationView: View {
     let title: LocalizedStringKey

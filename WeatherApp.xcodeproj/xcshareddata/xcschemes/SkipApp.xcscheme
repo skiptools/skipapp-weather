@@ -17,7 +17,7 @@
                BlueprintIdentifier = "49CAB4F02AB0D6E6009BD60F"
                BuildableName = "SkipApp"
                BlueprintName = "SkipApp"
-               ReferencedContainer = "container:App.xcodeproj">
+               ReferencedContainer = "container:WeatherApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,18 +44,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "49F90C272A52156200F06D93"
-            BuildableName = "Skip App.app"
+            BuildableName = "Weather App.app"
             BlueprintName = "App"
-            ReferencedContainer = "container:App.xcodeproj">
+            ReferencedContainer = "container:WeatherApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "SKIP_TARGET"
-            value = "YES"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -69,7 +62,7 @@
             BlueprintIdentifier = "49CAB4F02AB0D6E6009BD60F"
             BuildableName = "SkipApp"
             BlueprintName = "SkipApp"
-            ReferencedContainer = "container:App.xcodeproj">
+            ReferencedContainer = "container:WeatherApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

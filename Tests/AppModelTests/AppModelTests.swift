@@ -1,5 +1,5 @@
 import XCTest
-@testable import AppModel
+@testable import WeatherAppModel
 
 class AppModelTests: XCTestCase {
     func testFailure() {

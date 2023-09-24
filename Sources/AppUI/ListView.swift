@@ -1,7 +1,7 @@
 import Foundation
 import Observation
 import SwiftUI
-import AppModel
+import WeatherAppModel
 
 struct ListNavigationView: View {
     let title: LocalizedStringKey

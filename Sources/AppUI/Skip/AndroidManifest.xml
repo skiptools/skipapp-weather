@@ -8,14 +8,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing" android:value="false" />
-<!--    android:configChanges="orientation|screenSize"-->
+    <!-- android:configChanges="orientation|screenSize"-->
 
     <application
         android:label="${PRODUCT_NAME}"
-        android:name="app.ui.AndroidAppMain"
+        android:name="${PRODUCT_BUNDLE_IDENTIFIER}.AndroidAppMain"
         android:allowBackup="true">
         <activity
-            android:name="app.ui.MainActivity"
+            android:name="${PRODUCT_BUNDLE_IDENTIFIER}.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
             android:windowSoftInputMode="adjustResize">

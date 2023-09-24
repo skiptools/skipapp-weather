@@ -1,11 +1,15 @@
 // swift-tools-version: 5.8
 import PackageDescription
+import Foundation
 
-import class Foundation.ProcessInfo
+let modulePrefix = "WeatherApp"
 
-// Disable Skip by setting NOSKIP
-let skip = ProcessInfo.processInfo.environment["NOSKIP"] == nil
+let appUI = modulePrefix + "UI"
+let appUITest = modulePrefix + "UITests"
+let appModel = modulePrefix + "Model"
+let appModelTest = modulePrefix + "ModelTests"
 
+let skip = ProcessInfo.processInfo.environment["NOSKIP"] == nil // NOSKIP=1 env disables skip
 let skipPlugin = skip ? [Target.PluginUsage.plugin(name: "skipstone", package: "skip")] : []
 let skipTest = skip ? [Target.Dependency.product(name: "SkipTest", package: "skip")] : []
 let skipModel = skip ? [Target.Dependency.product(name: "SkipModel", package: "skip-model")] : []
@@ -13,12 +17,12 @@ let skipUI = skip ? [Target.Dependency.product(name: "SkipUI", package: "skip-ui
 let skipDrive = skip ? [Target.Dependency.product(name: "SkipDrive", package: "skip")] : []
 
 let package = Package(
-    name: "App",
+    name: modulePrefix,
     defaultLocalization: "en",
     platforms: [.macOS("13"), .iOS("16")],
     products: [
-        .library(name: "AppUI", targets: ["AppUI"]),
-        .library(name: "AppModel", targets: ["AppModel"]),
+        .library(name: appUI, targets: [appUI]),
+        .library(name: appModel, targets: [appModel]),
     ],
     dependencies: !skip ? [] : [
         .package(url: "https://source.skip.tools/skip.git", from: "0.6.71"),
@@ -26,10 +30,9 @@ let package = Package(
         .package(url: "https://source.skip.tools/skip-ui.git", from: "0.2.4"),
     ],
     targets: [
-        .target(name: "AppModel", dependencies: skipModel, resources: [.process("Resources")], plugins: skipPlugin),
-        .testTarget(name: "AppModelTests", dependencies: ["AppModel"] + skipTest, plugins: skipPlugin),
-        .target(name: "AppUI", dependencies: ["AppModel"] + skipUI, resources: [.process("Resources")], plugins: skipPlugin),
-        .testTarget(name: "AppUITests", dependencies: ["AppUI"] + skipTest, plugins: skipPlugin),
-        .executableTarget(name: "AppDroid", dependencies: ["AppUI"] + skipDrive),
+        .target(name: appModel, dependencies: skipModel, path: "Sources/AppModel", resources: [.process("Resources")], plugins: skipPlugin),
+        .testTarget(name: appModelTest, dependencies: [.target(name: appModel)] + skipTest, path: "Tests/AppModelTests", plugins: skipPlugin),
+        .target(name: appUI, dependencies: [.target(name: appModel)] + skipUI, path: "Sources/AppUI", resources: [.process("Resources")], plugins: skipPlugin),
+        .testTarget(name: appUITest, dependencies: [.target(name: appUI)] + skipTest, path: "Tests/AppUITests", plugins: skipPlugin),
     ]
 )

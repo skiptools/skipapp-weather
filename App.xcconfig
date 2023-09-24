@@ -1,10 +1,10 @@
 // The configuration file for your Skip App (https://skip.tools)
 
 // PRODUCT_NAME is the default title of the app
-PRODUCT_NAME = Skip App
+PRODUCT_NAME = Weather App
 
 // PRODUCT_BUNDLE_IDENTIFIER is the unique id for the app
-PRODUCT_BUNDLE_IDENTIFIER = app.ui
+PRODUCT_BUNDLE_IDENTIFIER = weather.app.ui
 
 // The semantic version for the app matching the git tag for the release
 MARKETING_VERSION = 0.0.1

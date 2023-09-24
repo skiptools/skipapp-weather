@@ -1,7 +1,7 @@
 import Foundation
 import Observation
 import SwiftUI
-import AppModel
+import WeatherAppModel
 
 struct GraphicsView: View {
     let label: String

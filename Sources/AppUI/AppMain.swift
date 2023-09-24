@@ -1,6 +1,6 @@
-import AppModel
 import Foundation
 import SwiftUI
+import WeatherAppModel
 
 #if !SKIP
 public protocol AppUIApp : App {
@@ -14,38 +14,19 @@ public extension AppUIApp {
         }
     }
 }
-
 #else
 import android.__
 import android.app.__
 import android.content.Context
-import androidx.appcompat.app.__
-import androidx.activity.compose.__
-import androidx.compose.foundation.__
-import androidx.compose.foundation.layout.__
-import androidx.compose.foundation.lazy.__
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.__
-import androidx.compose.foundation.text.__
-import androidx.compose.material.icons.__
-import androidx.compose.material.icons.filled.__
-import androidx.compose.material3.__
+import androidx.compose.__
 import androidx.compose.runtime.__
 import androidx.compose.runtime.saveable.__
+import androidx.compose.material3.__
+import androidx.compose.foundation.__
 import androidx.compose.ui.__
-import androidx.compose.ui.geometry.__
-import androidx.compose.ui.graphics.__
-import androidx.compose.ui.graphics.vector.__
-import androidx.compose.ui.layout.__
-import androidx.compose.ui.platform.__
-import androidx.compose.ui.text.__
-import androidx.compose.ui.text.__
-import androidx.compose.ui.text.font.__
-import androidx.compose.ui.text.input.__
-import androidx.compose.ui.text.style.__
-import androidx.compose.ui.tooling.preview.__
 import androidx.compose.ui.unit.__
+import androidx.appcompat.app.__
+import androidx.activity.compose.__
 import androidx.navigation.__
 import androidx.navigation.compose.__
 

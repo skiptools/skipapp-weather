@@ -1,4 +1,4 @@
-package app.ui
+package weather.app.ui
 
 import android.Manifest
 import android.content.Context
@@ -34,9 +34,7 @@ suspend fun fetchCurrentLocation(context: Context): Pair<Double, Double> = withC
             }
 
             override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
-
             //override fun onProviderEnabled(provider: String?) {}
-
             //override fun onProviderDisabled(provider: String?) {}
         }
 
