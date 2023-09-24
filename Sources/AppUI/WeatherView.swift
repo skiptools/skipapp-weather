@@ -1,6 +1,17 @@
 import SwiftUI
 import AppModel
 
+struct WeatherNavigationView: View {
+    let title: LocalizedStringKey
+
+    var body: some View {
+        NavigationStack {
+            WeatherView()
+                .navigationTitle(Text(title, bundle: .module))
+        }
+    }
+}
+
 struct WeatherView : View {
     @State var latitude: String = ""
     @State var longitude: String = ""
@@ -9,8 +20,6 @@ struct WeatherView : View {
 
     var body: some View {
         VStack {
-            Text("Weather")
-                .font(.largeTitle)
             HStack {
                 Text("Lat:")
                 TextField(text: $latitude) {
@@ -26,13 +35,7 @@ struct WeatherView : View {
 
             Button("Fetch Weather") {
                 Task {
-                    do {
-                        self.error = "" // clear the current error
-                        try await updateWeather()
-                    } catch {
-                        // set the error message label on failure
-                        self.error = "\(error)"
-                    }
+                    await updateWeather()
                 }
             }
             .buttonStyle(.borderedProminent)
@@ -54,9 +57,28 @@ struct WeatherView : View {
         .textFieldStyle(.roundedBorder)
         #endif
         .padding()
+        .task {
+            // Update immediately if we were constructed with a location
+            if !latitude.isEmpty && !longitude.isEmpty {
+                await updateWeather()
+            }
+        }
     }
 
-    func updateWeather() async throws {
+    func updateWeather() async {
+        do {
+            self.error = "" // clear the current error
+            let condition = try await fetchWeather()
+            if let temperature = await condition.temperature {
+                self.temperature = temperature
+            }
+        } catch {
+            // set the error message label on failure
+            self.error = "\(error)"
+        }
+    }
+
+    func fetchWeather() async throws -> WeatherCondition {
         guard let lat = Double(self.latitude), let lon = Double(self.longitude) else {
             throw AppError(description: "Unable to parse coordinates")
         }
@@ -64,10 +86,8 @@ struct WeatherView : View {
         let location = Location(latitude: lat, longitude: lon)
         let condition = await WeatherCondition(location: location)
         let result = try await condition.fetchWeather()
-        if let temperature = await condition.temperature {
-            self.temperature = temperature
-        }
         logger.log("fetched weather: \(result)")
+        return condition
     }
 }
 

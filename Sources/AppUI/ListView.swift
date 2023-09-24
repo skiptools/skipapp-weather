@@ -3,14 +3,16 @@ import Observation
 import SwiftUI
 import AppModel
 
-struct ListTabView: View {
+struct ListNavigationView: View {
+    let title: LocalizedStringKey
+
     var body: some View {
         NavigationStack {
             ListView()
-            //~~~ pass in from tab?
-//                .navigationTitle("Cities")
-                .navigationDestination(for: String.self) { _ in
-                    Text("HERE")
+                .navigationTitle(Text(title, bundle: .module))
+                .navigationDestination(for: City.self) { city in
+                    WeatherView(latitude: String(city.location.latitude), longitude: String(city.location.longitude))
+                        .navigationTitle(Text(city.cityName))
                 }
         }
     }
@@ -19,7 +21,7 @@ struct ListTabView: View {
 struct ListView : View {
     var body: some View {
         List(City.allCases, id: \.location.latitude) { city in
-            NavigationLink(value: "link") {
+            NavigationLink(value: city) {
                 rowView(city: city)
             }
         }

@@ -26,6 +26,16 @@ public struct City {
     public let sunnyDays: Int
 }
 
+extension City: Hashable {
+    public static func ==(lhs: City, rhs: City) -> Bool {
+        return lhs.cityName.key == rhs.cityName.key
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(cityName.key)
+    }
+}
+
 extension City {
     /// A sample list of major world cities
     public static let allCases: [City] = [
