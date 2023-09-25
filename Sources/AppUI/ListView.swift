@@ -10,10 +10,6 @@ struct ListNavigationView: View {
         NavigationStack {
             ListView()
                 .navigationTitle(Text(title, bundle: .module))
-                .navigationDestination(for: City.self) { city in
-                    WeatherView(latitude: String(city.location.latitude), longitude: String(city.location.longitude))
-                        .navigationTitle(Text(city.cityName))
-                }
         }
     }
 }
@@ -24,6 +20,10 @@ struct ListView : View {
             NavigationLink(value: city) {
                 rowView(city: city)
             }
+        }
+        .navigationDestination(for: City.self) { city in
+            WeatherView(latitude: String(city.location.latitude), longitude: String(city.location.longitude))
+                .navigationTitle(Text(city.cityName))
         }
     }
 
