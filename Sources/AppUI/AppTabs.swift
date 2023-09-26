@@ -8,7 +8,7 @@ let logger = Logger(subsystem: "app.ui", category: "AppUI")
 /// The tabs for the app.
 enum AppTabs : String, CaseIterable {
     /// The initial default tab shown in the app
-    static let defaultTab = AppTabs.settings
+    static let defaultTab = AppTabs.home
 
     case home
     case content
