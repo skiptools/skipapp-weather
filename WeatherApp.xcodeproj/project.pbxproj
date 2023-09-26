@@ -218,7 +218,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nSRCPKG=${BUILD_ROOT}/../../SourcePackages\necho \"Building APK for: ${PROJECT}\"\n# Add local skip tool path first to use skip executable that matches the plugin version\n# Then for local builds add the BUILT_PRODUCTS_DIR\n# Then fall back to homebrew's paths\nexport PATH=${BUILD_ROOT}/Debug:${SRCPKG}/artifacts/skip/skip/skip.artifactbundle/macos:${PATH}:/opt/homebrew/bin:/usr/local/bin\nexport ANDROID_HOME=${ANDROID_HOME:-${HOME}/Library/Android/sdk}\nwhich skip\nmkdir -p Skip/build/artifacts/\nskip gradle --package \"${PROJECT}\" --module ${PROJECT_NAME}UI assemble${CONFIGURATION}\ncd Skip/build/\nln -sfh ${SRCPKG}/plugins/*.output .\ncd artifacts/\n#ln -f ${SRCPKG}/plugins/*.output/*/skipstone/*/build/outputs/apk/*/*.apk .\nln -f ${SRCPKG}/plugins/*.output/*/skipstone/*/.build/*/outputs/apk/*/*.apk .\n\n# this is the expected output file, so ensure that it exists\nls -lah ${SRCROOT}/Skip/build/artifacts/${PROJECT_NAME}UI-${CONFIGURATION}.apk\n";
+			shellScript = "PLUGIN=${BUILD_ROOT}/../../SourcePackages/artifacts/skip/skip/skip.artifactbundle/macos\nPATH=${BUILD_ROOT}/Debug:${PLUGIN}:${PATH}:${HOMEBREW_PREFIX:-/opt/homebrew}/bin\nPROJECT=$(basename ${PROJECT_DIR})\nSRCPKG=${BUILD_ROOT}/../../SourcePackages\necho \"note: Building APK for: ${PROJECT}\"\nexport ANDROID_HOME=${ANDROID_HOME:-${HOME}/Library/Android/sdk}\nwhich skip\nmkdir -p Skip/build/artifacts/\nskip gradle --package \"${PROJECT}\" --module ${PROJECT_NAME}UI assemble${CONFIGURATION}\ncd Skip/build/\nln -sfh ${SRCPKG}/plugins/*.output .\ncd artifacts/\n#ln -f ${SRCPKG}/plugins/*.output/*/skipstone/*/build/outputs/apk/*/*.apk .\nln -f ${SRCPKG}/plugins/*.output/*/skipstone/*/.build/*/outputs/apk/*/*.apk .\n\n# this is the expected output file, so ensure that it exists\nls -lah ${SRCROOT}/Skip/build/artifacts/${PROJECT_NAME}UI-${CONFIGURATION}.apk\n";
 		};
 		49A3F5D42AB203D8002A4D5F /* Run Android APK */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -237,7 +237,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nPLUGIN=${BUILD_ROOT}/../../SourcePackages/artifacts/skip/skip/skip.artifactbundle/macos\nexport PATH=${BUILD_ROOT}/Debug:${PLUGIN}:${PATH}:/opt/homebrew/bin:/usr/local/bin\necho \"note: Running skip adb install\"\nskip adb install -t -r -d -g Skip/build/artifacts/${PROJECT_NAME}UI-${CONFIGURATION}.apk\necho \"note: Running skip adb am start-activity\"\nskip adb shell am start-activity -S -W -n ${PRODUCT_BUNDLE_IDENTIFIER}/.MainActivity\n";
+			shellScript = "if [ \"${HOST_PLATFORM}\" == \"macosx\" ]; then\n  echo \"note: Not launching for macOS target\"\n  exit 0\nfi\n\nPLUGIN=${BUILD_ROOT}/../../SourcePackages/artifacts/skip/skip/skip.artifactbundle/macos\nPATH=${BUILD_ROOT}/Debug:${PLUGIN}:${PATH}:${HOMEBREW_PREFIX:-/opt/homebrew}/bin\necho \"note: Running skip adb install\"\nskip adb install -t -r -d -g Skip/build/artifacts/${PROJECT_NAME}UI-${CONFIGURATION}.apk\necho \"note: Running skip adb am start-activity\"\nskip adb shell am start-activity -S -W -n ${PRODUCT_BUNDLE_IDENTIFIER}/.MainActivity\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
