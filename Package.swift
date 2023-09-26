@@ -2,14 +2,16 @@
 import PackageDescription
 import Foundation
 
+// This is a Skip App Package for a dual-platform iOS/Android app.
+// It is meant to be paired with an App.xcconfig file  and "ModuleName".xcodeproj folder.
 let modulePrefix = "WeatherApp"
 
 let appUI = modulePrefix + "UI"
-let appUITest = modulePrefix + "UITests"
+let appUITest = appUI + "Tests"
 let appModel = modulePrefix + "Model"
-let appModelTest = modulePrefix + "ModelTests"
+let appModelTest = appModel + "Tests"
 
-let skip = ProcessInfo.processInfo.environment["NOSKIP"] == nil // NOSKIP=1 env disables skip
+let skip = ProcessInfo.processInfo.environment["NOSKIP"] == nil // NOSKIP=1 disables skip
 let skipPlugin = skip ? [Target.PluginUsage.plugin(name: "skipstone", package: "skip")] : []
 let skipTest = skip ? [Target.Dependency.product(name: "SkipTest", package: "skip")] : []
 let skipModel = skip ? [Target.Dependency.product(name: "SkipModel", package: "skip-model")] : []
@@ -21,6 +23,8 @@ let package = Package(
     defaultLocalization: "en",
     platforms: [.macOS("13"), .iOS("16")],
     products: [
+        // The top-level "AppModule" constant must target all the app's modules
+        .library(name: "AppModule", type: .dynamic, targets: [appUI, appModel]),
         .library(name: appUI, targets: [appUI]),
         .library(name: appModel, targets: [appModel]),
     ],

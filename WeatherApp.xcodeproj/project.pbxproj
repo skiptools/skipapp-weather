@@ -23,17 +23,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		49429E432A61DC3C00AA21A8 /* AppDroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49429E422A61DC3C00AA21A8 /* AppDroid.swift */; };
-		49813B532A521AA700612428 /* AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C472A52156300F06D93 /* AppUITests.swift */; };
-		499C08B42AA8004E00C1626F /* AppModel in Frameworks */ = {isa = PBXBuildFile; productRef = 499C08B32AA8004E00C1626F /* AppModel */; };
-		499C08B62AA8004E00C1626F /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 499C08B52AA8004E00C1626F /* AppUI */; };
-		499C08B92AA8B6CF00C1626F /* SkipDrive in Frameworks */ = {isa = PBXBuildFile; productRef = 499C08B82AA8B6CF00C1626F /* SkipDrive */; };
-		49F7D6402ABB43C100141E09 /* WeatherAppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 49F7D63F2ABB43C100141E09 /* WeatherAppUI */; };
-		49F90C2C2A52156200F06D93 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C2B2A52156200F06D93 /* AppMain.swift */; };
+		490FDD962AC22BF100AA780D /* AppModule in Frameworks */ = {isa = PBXBuildFile; productRef = 490FDD952AC22BF100AA780D /* AppModule */; };
+		490FDD972AC22BF100AA780D /* AppModule in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 490FDD952AC22BF100AA780D /* AppModule */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		49F90C2C2A52156200F06D93 /* DarwinAppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C2B2A52156200F06D93 /* DarwinAppMain.swift */; };
 		49F90C302A52156300F06D93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F90C2F2A52156300F06D93 /* Assets.xcassets */; };
-		49F90C342A52156300F06D93 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49F90C332A52156300F06D93 /* Preview Assets.xcassets */; };
-		49F90C3E2A52156300F06D93 /* AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C3D2A52156300F06D93 /* AppTests.swift */; };
-		49F90C4A2A52156300F06D93 /* AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F90C492A52156300F06D93 /* AppUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,38 +37,16 @@
 			remoteGlobalIDString = 49F90C272A52156200F06D93;
 			remoteInfo = App;
 		};
-		49F90C3A2A52156300F06D93 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 49F90C202A52156200F06D93 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 49F90C272A52156200F06D93;
-			remoteInfo = App;
-		};
-		49F90C442A52156300F06D93 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 49F90C202A52156200F06D93 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 49F90C272A52156200F06D93;
-			remoteInfo = App;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		493B47442AB0F59C007F7F3D /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 		493FD7172AB236CD00E08F76 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				490FDD972AC22BF100AA780D /* AppModule in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,66 +54,39 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		493609562A6B7EAE00C401E2 /* skipapp */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = skipapp; path = .; sourceTree = "<group>"; };
-		49429E422A61DC3C00AA21A8 /* AppDroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDroid.swift; sourceTree = "<group>"; };
+		490FDD992AC22C9600AA780D /* skip.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; name = skip.yml; path = Sources/AppUI/Skip/skip.yml; sourceTree = "<group>"; };
+		490FDD9A2AC22C9600AA780D /* AndroidManifest.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = AndroidManifest.xml; path = Sources/AppUI/Skip/AndroidManifest.xml; sourceTree = "<group>"; };
+		490FDD9B2AC2539400AA780D /* WeatherAppUI-debug.apk */ = {isa = PBXFileReference; lastKnownFileType = file; name = "WeatherAppUI-debug.apk"; path = "Skip/build/artifacts/WeatherAppUI-debug.apk"; sourceTree = "<group>"; };
+		493609562A6B7EAE00C401E2 /* AppModule */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AppModule; path = .; sourceTree = "<group>"; };
 		496EB72F2A6AE4DE00C1253B /* App.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = App.xcconfig; sourceTree = "<group>"; };
-		49CC15D42AB209A200AE2718 /* Weather App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		49CC15D52AB209BC00AE2718 /* Weather App */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Weather App"; sourceTree = BUILT_PRODUCTS_DIR; };
-		49CC15D62AB209BC00AE2718 /* AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		49CC15D72AB209BC00AE2718 /* AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		49CC15D82AB209BC00AE2718 /* AndroidRunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AndroidRunner; sourceTree = BUILT_PRODUCTS_DIR; };
-		49F90C2B2A52156200F06D93 /* AppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppMain.swift; path = Sources/App/AppMain.swift; sourceTree = SOURCE_ROOT; };
-		49F90C2F2A52156300F06D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sources/App/Assets.xcassets; sourceTree = "<group>"; };
-		49F90C312A52156300F06D93 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = App.entitlements; path = Sources/App/App.entitlements; sourceTree = "<group>"; };
-		49F90C332A52156300F06D93 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		49F90C3D2A52156300F06D93 /* AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTests.swift; sourceTree = "<group>"; };
-		49F90C472A52156300F06D93 /* AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUITests.swift; sourceTree = "<group>"; };
-		49F90C492A52156300F06D93 /* AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		49CC15D42AB209A200AE2718 /* SkipWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkipWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		49F90C2B2A52156200F06D93 /* DarwinAppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DarwinAppMain.swift; path = Sources/AppMetadata/DarwinAppMain.swift; sourceTree = SOURCE_ROOT; };
+		49F90C2F2A52156300F06D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sources/AppMetadata/Assets.xcassets; sourceTree = "<group>"; };
+		49F90C312A52156300F06D93 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = App.entitlements; path = Sources/AppMetadata/App.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		493B47432AB0F59C007F7F3D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		49429E3D2A61DC3C00AA21A8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				499C08B62AA8004E00C1626F /* AppUI in Frameworks */,
-				499C08B42AA8004E00C1626F /* AppModel in Frameworks */,
-				499C08B92AA8B6CF00C1626F /* SkipDrive in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		49F90C252A52156200F06D93 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49F7D6402ABB43C100141E09 /* WeatherAppUI in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		49F90C362A52156300F06D93 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		49F90C402A52156300F06D93 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				490FDD962AC22BF100AA780D /* AppModule in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		490FDD982AC22C3F00AA780D /* Android App */ = {
+			isa = PBXGroup;
+			children = (
+				490FDD9A2AC22C9600AA780D /* AndroidManifest.xml */,
+				490FDD992AC22C9600AA780D /* skip.yml */,
+				490FDD9B2AC2539400AA780D /* WeatherAppUI-debug.apk */,
+			);
+			name = "Android App";
+			sourceTree = "<group>";
+		};
 		493FD7142AB236CD00E08F76 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,23 +94,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		49429E412A61DC3C00AA21A8 /* AppDroid */ = {
-			isa = PBXGroup;
-			children = (
-				49429E422A61DC3C00AA21A8 /* AppDroid.swift */,
-			);
-			name = AppDroid;
-			path = Sources/AppDroid;
-			sourceTree = SOURCE_ROOT;
-		};
 		49F90C1F2A52156200F06D93 = {
 			isa = PBXGroup;
 			children = (
 				496EB72F2A6AE4DE00C1253B /* App.xcconfig */,
-				493609562A6B7EAE00C401E2 /* skipapp */,
-				49F90C2A2A52156200F06D93 /* App */,
-				49F90C3C2A52156300F06D93 /* AppTests */,
-				49429E412A61DC3C00AA21A8 /* AppDroid */,
+				493609562A6B7EAE00C401E2 /* AppModule */,
+				490FDD982AC22C3F00AA780D /* Android App */,
+				49F90C2A2A52156200F06D93 /* iOS App */,
 				49F90C292A52156200F06D93 /* Products */,
 				493FD7142AB236CD00E08F76 /* Frameworks */,
 			);
@@ -175,95 +109,28 @@
 		49F90C292A52156200F06D93 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				49CC15D42AB209A200AE2718 /* Weather App.app */,
-				49CC15D52AB209BC00AE2718 /* Weather App */,
-				49CC15D62AB209BC00AE2718 /* AppTests.xctest */,
-				49CC15D72AB209BC00AE2718 /* AppUITests.xctest */,
-				49CC15D82AB209BC00AE2718 /* AndroidRunner */,
+				49CC15D42AB209A200AE2718 /* SkipWeather.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		49F90C2A2A52156200F06D93 /* App */ = {
+		49F90C2A2A52156200F06D93 /* iOS App */ = {
 			isa = PBXGroup;
 			children = (
-				49F90C2B2A52156200F06D93 /* AppMain.swift */,
-				49F90C2F2A52156300F06D93 /* Assets.xcassets */,
 				49F90C312A52156300F06D93 /* App.entitlements */,
-				49F90C322A52156300F06D93 /* Preview Content */,
+				49F90C2F2A52156300F06D93 /* Assets.xcassets */,
+				49F90C2B2A52156200F06D93 /* DarwinAppMain.swift */,
 			);
-			name = App;
+			name = "iOS App";
 			sourceTree = "<group>";
-		};
-		49F90C322A52156300F06D93 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				49F90C332A52156300F06D93 /* Preview Assets.xcassets */,
-			);
-			name = "Preview Content";
-			path = "Sources/App/Preview Content";
-			sourceTree = "<group>";
-		};
-		49F90C3C2A52156300F06D93 /* AppTests */ = {
-			isa = PBXGroup;
-			children = (
-				49F90C3D2A52156300F06D93 /* AppTests.swift */,
-				49F90C472A52156300F06D93 /* AppUITests.swift */,
-				49F90C492A52156300F06D93 /* AppUITestsLaunchTests.swift */,
-			);
-			name = AppTests;
-			path = Tests/AppTests;
-			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		493B47452AB0F59C007F7F3D /* AndroidRunner */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 493B474A2AB0F59C007F7F3D /* Build configuration list for PBXNativeTarget "AndroidRunner" */;
-			buildPhases = (
-				493B47422AB0F59C007F7F3D /* Sources */,
-				493B47432AB0F59C007F7F3D /* Frameworks */,
-				493B47442AB0F59C007F7F3D /* CopyFiles */,
-				49FB9E1D2AB1040300695C18 /* Build APK */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				494A0FEE2AB10F52008696B6 /* PBXTargetDependency */,
-			);
-			name = AndroidRunner;
-			productName = AndroidRunner;
-			productReference = 49CC15D82AB209BC00AE2718 /* AndroidRunner */;
-			productType = "com.apple.product-type.tool";
-		};
-		49429E3F2A61DC3C00AA21A8 /* AppDroid */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 49429E462A61DC3C00AA21A8 /* Build configuration list for PBXNativeTarget "AppDroid" */;
-			buildPhases = (
-				49429E3C2A61DC3C00AA21A8 /* Sources */,
-				49429E3D2A61DC3C00AA21A8 /* Frameworks */,
-				49429E4E2A61DD4900AA21A8 /* Build APK */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = AppDroid;
-			packageProductDependencies = (
-				499C08B32AA8004E00C1626F /* AppModel */,
-				499C08B52AA8004E00C1626F /* AppUI */,
-				499C08B82AA8B6CF00C1626F /* SkipDrive */,
-			);
-			productName = AppDroid;
-			productReference = 49CC15D52AB209BC00AE2718 /* Weather App */;
-			productType = "com.apple.product-type.tool";
-		};
 		49F90C272A52156200F06D93 /* App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 49F90C4D2A52156300F06D93 /* Build configuration list for PBXNativeTarget "App" */;
 			buildPhases = (
-				49A3F5D52AB20656002A4D5F /* Show Environment */,
 				49F90C242A52156200F06D93 /* Sources */,
 				49F90C252A52156200F06D93 /* Frameworks */,
 				49F90C262A52156200F06D93 /* Resources */,
@@ -275,47 +142,11 @@
 			);
 			name = App;
 			packageProductDependencies = (
-				49F7D63F2ABB43C100141E09 /* WeatherAppUI */,
+				490FDD952AC22BF100AA780D /* AppModule */,
 			);
 			productName = App;
-			productReference = 49CC15D42AB209A200AE2718 /* Weather App.app */;
+			productReference = 49CC15D42AB209A200AE2718 /* SkipWeather.app */;
 			productType = "com.apple.product-type.application";
-		};
-		49F90C382A52156300F06D93 /* AppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 49F90C502A52156300F06D93 /* Build configuration list for PBXNativeTarget "AppTests" */;
-			buildPhases = (
-				49F90C352A52156300F06D93 /* Sources */,
-				49F90C362A52156300F06D93 /* Frameworks */,
-				49F90C372A52156300F06D93 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				49F90C3B2A52156300F06D93 /* PBXTargetDependency */,
-			);
-			name = AppTests;
-			productName = AppTests;
-			productReference = 49CC15D62AB209BC00AE2718 /* AppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		49F90C422A52156300F06D93 /* AppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 49F90C532A52156300F06D93 /* Build configuration list for PBXNativeTarget "AppUITests" */;
-			buildPhases = (
-				49F90C3F2A52156300F06D93 /* Sources */,
-				49F90C402A52156300F06D93 /* Frameworks */,
-				49F90C412A52156300F06D93 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				49F90C452A52156300F06D93 /* PBXTargetDependency */,
-			);
-			name = AppUITests;
-			productName = AppUITests;
-			productReference = 49CC15D72AB209BC00AE2718 /* AppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -327,25 +158,11 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					493B47452AB0F59C007F7F3D = {
-						CreatedOnToolsVersion = 15.0;
-					};
-					49429E3F2A61DC3C00AA21A8 = {
-						CreatedOnToolsVersion = 14.3.1;
-					};
 					49CAB4F02AB0D6E6009BD60F = {
 						CreatedOnToolsVersion = 15.0;
 					};
 					49F90C272A52156200F06D93 = {
 						CreatedOnToolsVersion = 15.0;
-					};
-					49F90C382A52156300F06D93 = {
-						CreatedOnToolsVersion = 15.0;
-						TestTargetID = 49F90C272A52156200F06D93;
-					};
-					49F90C422A52156300F06D93 = {
-						CreatedOnToolsVersion = 15.0;
-						TestTargetID = 49F90C272A52156200F06D93;
 					};
 				};
 			};
@@ -367,10 +184,6 @@
 			targets = (
 				49F90C272A52156200F06D93 /* App */,
 				49CAB4F02AB0D6E6009BD60F /* SkipApp */,
-				49429E3F2A61DC3C00AA21A8 /* AppDroid */,
-				49F90C382A52156300F06D93 /* AppTests */,
-				49F90C422A52156300F06D93 /* AppUITests */,
-				493B47452AB0F59C007F7F3D /* AndroidRunner */,
 			);
 		};
 /* End PBXProject section */
@@ -380,47 +193,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49F90C342A52156300F06D93 /* Preview Assets.xcassets in Resources */,
 				49F90C302A52156300F06D93 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		49F90C372A52156300F06D93 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		49F90C412A52156300F06D93 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		49429E4E2A61DD4900AA21A8 /* Build APK */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Build APK";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh -e";
-			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nexport ANDROID_HOME=${ANDROID_HOME:-~/Library/Android/sdk}\nSOURCE_PACKAGES=${BUILD_ROOT}/../../SourcePackages\necho \"Running AppDroid script for: ${PROJECT}\"\nmkdir -p Skip/build/artifacts/\n# Add local skip tool path first to use skip executable that matches the plugin version\n# Then for local builds add the BUILT_PRODUCTS_DIR\n# Then fall back to homebrew's paths\nPATH=${SOURCE_PACKAGES}/artifacts/skip/skip/skip.artifactbundle/macos/:${BUILT_PRODUCTS_DIR}:${PATH}:/opt/homebrew/bin/:/usr/local/homebrew/bin\nwhich skip\nskip version\nskip gradle --package \"${PROJECT}\" --module AppUI assemble${CONFIGURATION}\nln -f ${SOURCE_PACKAGES}/plugins/*.output/*/skipstone/*/.build/*/outputs/apk/*/*.apk Skip/build/artifacts/\nln -sfh ${SOURCE_PACKAGES}/plugins/${PROJECT}.output Skip/build/${PROJECT}.output\n";
-		};
 		49A3F5D32AB203B4002A4D5F /* Build Android APK */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -458,85 +237,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nSRCPKG=${BUILD_ROOT}/../../SourcePackages\necho \"Running app: ${PROJECT_NAME}UI-${CONFIGURATION}.apk\"\n# Add local skip tool path first to use skip executable that matches the plugin version\n# Then for local builds add the BUILT_PRODUCTS_DIR\n# Then fall back to homebrew's paths\nexport PATH=${BUILD_ROOT}/Debug:${SRCPKG}/artifacts/skip/skip/skip.artifactbundle/macos:${PATH}:/opt/homebrew/bin:/usr/local/bin\n\n#echo \"/dev/null:0:0: error: Error message\"\necho \"Running: adb install -t -r -d -g Skip/build/artifacts/${PROJECT_NAME}UI-${CONFIGURATION}.apk\"\nskip adb install -t -r -d -g Skip/build/artifacts/${PROJECT_NAME}UI-${CONFIGURATION}.apk\necho \"Running: adb shell am start-activity -S -W -n ${PRODUCT_BUNDLE_IDENTIFIER}/.MainActivity\"\nskip adb shell am start-activity -S -W -n ${PRODUCT_BUNDLE_IDENTIFIER}/.MainActivity\n";
-		};
-		49A3F5D52AB20656002A4D5F /* Show Environment */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Show Environment";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/bin/sh -e";
-			shellScript = "env | sort > /tmp/App.env\n";
-		};
-		49FB9E1D2AB1040300695C18 /* Build APK */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Build APK";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "echo Build APK Script Phase\n";
+			shellScript = "PROJECT=$(basename ${PROJECT_DIR})\nPLUGIN=${BUILD_ROOT}/../../SourcePackages/artifacts/skip/skip/skip.artifactbundle/macos\nexport PATH=${BUILD_ROOT}/Debug:${PLUGIN}:${PATH}:/opt/homebrew/bin:/usr/local/bin\necho \"note: Running skip adb install\"\nskip adb install -t -r -d -g Skip/build/artifacts/${PROJECT_NAME}UI-${CONFIGURATION}.apk\necho \"note: Running skip adb am start-activity\"\nskip adb shell am start-activity -S -W -n ${PRODUCT_BUNDLE_IDENTIFIER}/.MainActivity\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		493B47422AB0F59C007F7F3D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		49429E3C2A61DC3C00AA21A8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				49429E432A61DC3C00AA21A8 /* AppDroid.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		49F90C242A52156200F06D93 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49F90C2C2A52156200F06D93 /* AppMain.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		49F90C352A52156300F06D93 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				49F90C3E2A52156300F06D93 /* AppTests.swift in Sources */,
-				49813B532A521AA700612428 /* AppUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		49F90C3F2A52156300F06D93 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				49F90C4A2A52156300F06D93 /* AppUITestsLaunchTests.swift in Sources */,
+				49F90C2C2A52156200F06D93 /* DarwinAppMain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,71 +258,9 @@
 			target = 49F90C272A52156200F06D93 /* App */;
 			targetProxy = 493B474F2AB0F6B1007F7F3D /* PBXContainerItemProxy */;
 		};
-		494A0FEE2AB10F52008696B6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 494A0FED2AB10F52008696B6 /* AppDroid */;
-		};
-		49F90C3B2A52156300F06D93 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 49F90C272A52156200F06D93 /* App */;
-			targetProxy = 49F90C3A2A52156300F06D93 /* PBXContainerItemProxy */;
-		};
-		49F90C452A52156300F06D93 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 49F90C272A52156200F06D93 /* App */;
-			targetProxy = 49F90C442A52156300F06D93 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		493B474B2AB0F59C007F7F3D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		493B474C2AB0F59C007F7F3D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		49429E442A61DC3C00AA21A8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				ENABLE_TESTING_SEARCH_PATHS = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		49429E452A61DC3C00AA21A8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				ENABLE_TESTING_SEARCH_PATHS = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 		49CAB4F22AB0D6E6009BD60F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -758,9 +406,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Sources/App/App.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Sources/AppMetadata/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Sources/App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -790,9 +438,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Sources/App/App.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Sources/AppMetadata/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Sources/App/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -817,113 +465,9 @@
 			};
 			name = Release;
 		};
-		49F90C512A52156300F06D93 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.AppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/App";
-			};
-			name = Debug;
-		};
-		49F90C522A52156300F06D93 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.AppTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/App";
-			};
-			name = Release;
-		};
-		49F90C542A52156300F06D93 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.AppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = App;
-			};
-			name = Debug;
-		};
-		49F90C552A52156300F06D93 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.AppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = App;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		493B474A2AB0F59C007F7F3D /* Build configuration list for PBXNativeTarget "AndroidRunner" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				493B474B2AB0F59C007F7F3D /* Debug */,
-				493B474C2AB0F59C007F7F3D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		49429E462A61DC3C00AA21A8 /* Build configuration list for PBXNativeTarget "AppDroid" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				49429E442A61DC3C00AA21A8 /* Debug */,
-				49429E452A61DC3C00AA21A8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		49CAB4F12AB0D6E6009BD60F /* Build configuration list for PBXAggregateTarget "SkipApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -951,24 +495,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		49F90C502A52156300F06D93 /* Build configuration list for PBXNativeTarget "AppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				49F90C512A52156300F06D93 /* Debug */,
-				49F90C522A52156300F06D93 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		49F90C532A52156300F06D93 /* Build configuration list for PBXNativeTarget "AppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				49F90C542A52156300F06D93 /* Debug */,
-				49F90C552A52156300F06D93 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -983,25 +509,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		494A0FED2AB10F52008696B6 /* AppDroid */ = {
+		490FDD952AC22BF100AA780D /* AppModule */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = AppDroid;
-		};
-		499C08B32AA8004E00C1626F /* AppModel */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppModel;
-		};
-		499C08B52AA8004E00C1626F /* AppUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AppUI;
-		};
-		499C08B82AA8B6CF00C1626F /* SkipDrive */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SkipDrive;
-		};
-		49F7D63F2ABB43C100141E09 /* WeatherAppUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = WeatherAppUI;
+			productName = AppModule;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

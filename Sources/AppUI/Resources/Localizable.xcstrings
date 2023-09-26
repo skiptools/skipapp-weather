@@ -157,10 +157,10 @@
 
     },
     "Search" : {
-      "comment" : "Search tab title"
+
     },
     "Settings" : {
-      "comment" : "Settings tab title"
+
     },
     "Temperature: %lld°" : {
 
@@ -169,7 +169,7 @@
 
     },
     "Weather" : {
-      "comment" : "Weather tab title"
+
     },
     "Welcome to SkipUI" : {
 

@@ -1,7 +1,17 @@
 // The configuration file for your Skip App (https://skip.tools)
 
-// PRODUCT_NAME is the default title of the app
-PRODUCT_NAME = Weather App
+TARGETED_DEVICE_FAMILY = 1,2
+
+// SKIP_MODULE_NAME must match BOTH the project name AND the `modulePrefix` constant in Package.swift
+SKIP_MODULE_NAME = WeatherApp
+
+// PRODUCT_NAME is the "name" of the product; it can changed to anything
+PRODUCT_NAME = SkipWeather
+
+// The user-visible name of the app (localizable)
+INFOPLIST_KEY_CFBundleDisplayName = Skip Weather
+
+INFOPLIST_KEY_LSApplicationCategoryType = public.app-category.weather
 
 // PRODUCT_BUNDLE_IDENTIFIER is the unique id for the app
 PRODUCT_BUNDLE_IDENTIFIER = weather.app.ui
@@ -18,9 +28,7 @@ MACOSX_DEPLOYMENT_TARGET = 13.0
 // On-device testing may need to override the bundle ID
 // PRODUCT_BUNDLE_IDENTIFIER[config=Debug][sdk=iphoneos*] = myorg.app.App-Name
 
-
 // Development team ID for on-device testing
 //DEVELOPMENT_TEAM = 
 //CODE_SIGNING_IDENTITY = -
 //CODE_SIGNING_REQUIRED = NO
-

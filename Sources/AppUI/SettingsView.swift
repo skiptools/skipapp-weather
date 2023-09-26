@@ -1,4 +1,5 @@
 import SwiftUI
+import Foundation
 
 struct SettingsNavigationView: View {
     let title: LocalizedStringKey
@@ -16,7 +17,10 @@ struct SettingsView : View {
 
     var body: some View {
         VStack {
-            Toggle("Celsius", isOn: $celsius)
+            Toggle(isOn: $celsius) {
+                Text(LocalizedStringKey("Celsius"), bundle: .module)
+            }
+            Divider()
             Spacer()
         }
         .font(.title2)
@@ -24,6 +28,8 @@ struct SettingsView : View {
     }
 }
 
-//#Preview {
-//    SettingsView()
-//}
+#if !SKIP
+#Preview {
+    SettingsView()
+}
+#endif

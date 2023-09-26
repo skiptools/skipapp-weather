@@ -38,6 +38,10 @@ struct ContentView: View {
     }
 }
 
+#Preview {
+    ContentView()
+}
+
 #else
 import android.content.Context
 import androidx.compose.runtime.__

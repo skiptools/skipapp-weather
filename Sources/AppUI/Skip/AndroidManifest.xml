@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Every app project must have an AndroidManifest.xml file components of the app, including all activities, services, broadcast receivers, and content providers, as well as permissions and the hardware and software features the app requires. -->
+<!-- For examples and documentation, see: https://developer.android.com/guide/topics/manifest/manifest-intro#example -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- permissions needed for the weather lookup button -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
@@ -15,7 +17,7 @@
         android:name="${PRODUCT_BUNDLE_IDENTIFIER}.AndroidAppMain"
         android:allowBackup="true">
         <activity
-            android:name="${PRODUCT_BUNDLE_IDENTIFIER}.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
             android:windowSoftInputMode="adjustResize">
