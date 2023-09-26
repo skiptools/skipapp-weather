@@ -1,3 +1,3 @@
 import OSLog
 
-let logger = Logger(subsystem: "app.ui", category: "AppModel")
+let logger = Logger(subsystem: "app.model", category: "AppModel")

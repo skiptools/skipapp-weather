@@ -2,12 +2,12 @@ import SwiftUI
 import WeatherAppModel
 
 struct WeatherNavigationView: View {
-    let title: LocalizedStringKey
+    static let title = "Weather"
 
     var body: some View {
         NavigationStack {
             WeatherView()
-                .navigationTitle(Text(title, bundle: .module))
+                .navigationTitle(Self.title)
         }
     }
 }
@@ -91,8 +91,4 @@ struct WeatherView : View {
         logger.log("fetched weather: \(result)")
         return condition
     }
-}
-
-struct AppError : LocalizedError {
-    var description: String
 }

@@ -4,12 +4,12 @@ import SwiftUI
 import WeatherAppModel
 
 struct ListNavigationView: View {
-    let title: LocalizedStringKey
+    static let title = "Cities"
 
     var body: some View {
         NavigationStack {
             ListView()
-                .navigationTitle(Text(title, bundle: .module))
+                .navigationTitle(Self.title)
         }
     }
 }
@@ -23,7 +23,7 @@ struct ListView : View {
         }
         .navigationDestination(for: City.self) { city in
             WeatherView(latitude: String(city.location.latitude), longitude: String(city.location.longitude))
-                .navigationTitle(Text(city.cityName))
+                .navigationTitle(city.cityName)
         }
     }
 

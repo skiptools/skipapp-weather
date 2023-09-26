@@ -1,6 +1,15 @@
 import Foundation
+import OSLog
 import SwiftUI
 import WeatherAppModel
+
+/// The logger to use for the app. Directs to the oslog on Darwin and logcat on Android.
+let logger = Logger(subsystem: "app.ui", category: "AppUI")
+
+/// Use for application errors.
+struct AppError : LocalizedError {
+    var description: String
+}
 
 #if !SKIP
 public protocol AppUIApp : App {
@@ -15,22 +24,22 @@ public extension AppUIApp {
     }
 }
 #else
-import android.__
-import android.app.__
-import android.content.Context
-import androidx.compose.__
-import androidx.compose.runtime.__
-import androidx.compose.runtime.saveable.__
-import androidx.compose.material3.__
-import androidx.compose.foundation.__
-import androidx.compose.ui.__
-import androidx.compose.ui.unit.__
-import androidx.appcompat.app.__
-import androidx.activity.compose.__
-import androidx.navigation.__
-import androidx.navigation.compose.__
+import android.Manifest
+import android.app.Application
+import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
+import androidx.compose.ui.platform.LocalContext
+import androidx.core.app.ActivityCompat
 
-/// AndroidAppMain is the `android.app.Application` entry point, and must match `application android:name` in the AndroidMainfest.xml file
+/// AndroidAppMain is the `android.app.Application` entry point, and must match `application android:name` in the AndroidMainfest.xml file.
 public class AndroidAppMain : Application {
     public init() {
     }
@@ -43,12 +52,12 @@ public class AndroidAppMain : Application {
     }
 }
 
-/// AndroidAppMain is initial `androidx.appcompat.app.AppCompatActivity`, and must match `activity android:name` in the AndroidMainfest.xml file
+/// AndroidAppMain is initial `androidx.appcompat.app.AppCompatActivity`, and must match `activity android:name` in the AndroidMainfest.xml file.
+@ExperimentalMaterial3Api
 public class MainActivity : AppCompatActivity {
     public init() {
     }
 
-    @ExperimentalMaterial3Api
     public override func onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
         if let savedInstanceState = savedInstanceState {
@@ -59,8 +68,8 @@ public class MainActivity : AppCompatActivity {
 
         setContent {
             let saveableStateHolder = rememberSaveableStateHolder()
-            saveableStateHolder.SaveableStateProvider("ABC") {
-                ContentView()
+            saveableStateHolder.SaveableStateProvider(true) {
+                MaterialThemedContentView()
             }
         }
 
@@ -72,7 +81,7 @@ public class MainActivity : AppCompatActivity {
         )
 
         let requestTag = 1 // TODO: handle with onRequestPermissionsResult
-        androidx.core.app.ActivityCompat.requestPermissions(self, permissions.toTypedArray(), requestTag)
+        ActivityCompat.requestPermissions(self, permissions.toTypedArray(), requestTag)
     }
 
     public override func onSaveInstanceState(bundle: android.os.Bundle) {
@@ -88,7 +97,6 @@ public class MainActivity : AppCompatActivity {
         super.onRestoreInstanceState(bundle)
         logger.log("onRestoreInstanceState: SAMPLE_PROP: \(bundle.getString("SAMPLE_PROP"))")
     }
-
 
     public override func onRestart() {
         logger.log("onRestart")
@@ -125,4 +133,19 @@ public class MainActivity : AppCompatActivity {
     }
 }
 
+@ExperimentalMaterial3Api
+@Composable func MaterialThemedContentView() {
+    let context = LocalContext.current
+    let darkMode = isSystemInDarkTheme()
+    // Dynamic color is available on Android 12+
+    let dynamicColor = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S
+
+    let colorScheme = dynamicColor
+        ? (darkMode ? dynamicDarkColorScheme(context) : dynamicLightColorScheme(context))
+        : (darkMode ? darkColorScheme() : lightColorScheme())
+
+    MaterialTheme(colorScheme: colorScheme) {
+        ContentView().Compose()
+    }
+}
 #endif

@@ -2,12 +2,12 @@ import SwiftUI
 import Foundation
 
 struct SettingsNavigationView: View {
-    let title: LocalizedStringKey
+    static let title = "Settings"
 
     var body: some View {
         NavigationStack {
             SettingsView()
-                .navigationTitle(Text(title, bundle: .module))
+                .navigationTitle(Self.title)
         }
     }
 }

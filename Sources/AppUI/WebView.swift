@@ -10,22 +10,32 @@ import SwiftUI
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 
-@Composable func WebView(url: URL, enableJavaScript: Bool = true, modifier: Modifier) {
-    AndroidView(factory: { ctx in
-        let webView = WebView(ctx)
-        webView.webViewClient = WebViewClient()
-        webView.settings.javaScriptEnabled = enableJavaScript
-        return webView
-    }, modifier: modifier, update: { webView in
-        webView.loadUrl(url.absoluteString)
-    })
+struct WebView: View {
+    let url: URL
+    let enableJavaScript: Bool
+
+    init(url: URL, enableJavaScript: Bool = true) {
+        self.url = url
+        self.enableJavaScript = enableJavaScript
+    }
+
+    @Composable public override func ComposeContent(context: ComposeContext) {
+        AndroidView(factory: { ctx in
+            let webView = WebView(ctx)
+            webView.webViewClient = WebViewClient()
+            webView.settings.javaScriptEnabled = enableJavaScript
+            return webView
+        }, modifier: context.modifier, update: { webView in
+            webView.loadUrl(url.absoluteString)
+        })
+    }
 }
 #else
 // Minimal Swift wrapper for AppKit/UIKit WKWebView
 import WebKit
+
 #if canImport(UIKit)
 typealias ViewRepresentable = UIViewRepresentable
 #elseif canImport(AppKit)
