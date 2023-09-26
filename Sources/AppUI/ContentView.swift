@@ -27,8 +27,6 @@ struct ContentView: View {
     }
 }
 
-#if !SKIP
 #Preview {
     ContentView()
 }
-#endif

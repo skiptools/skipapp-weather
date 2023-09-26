@@ -28,8 +28,6 @@ struct SettingsView : View {
     }
 }
 
-#if !SKIP
 #Preview {
     SettingsView()
 }
-#endif
