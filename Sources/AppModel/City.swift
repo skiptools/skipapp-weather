@@ -489,5 +489,7 @@ extension City {
             averageTempWinter: 9.8,
             sunnyDays: 281
         ),
-    ]
+    ].sorted(by: { c1, c2 in
+        c1.cityName < c2.cityName
+    })
 }
