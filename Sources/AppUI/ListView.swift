@@ -34,7 +34,7 @@ struct ListView : View {
             city.iconView()
 
             VStack(alignment: .leading) {
-                Text(city.cityName).font(.headline)
+                Text(city.cityName).font(.headline).bold()
                 Text(city.countryName).font(.subheadline)
             }
 
