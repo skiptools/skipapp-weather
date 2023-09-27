@@ -55,7 +55,7 @@ struct WeatherView : View {
         #endif
         .padding()
         .task {
-            // Update immediately if we were constructed with a location
+            // update immediately if we were constructed with a location
             if !latitude.isEmpty && !longitude.isEmpty {
                 await updateWeather()
             }

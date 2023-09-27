@@ -17,18 +17,20 @@ struct SettingsView : View {
     @AppStorage("celsius", store: UserDefaults.standard) var celsius: Bool = true
 
     var body: some View {
-        VStack {
-            Toggle("Fahrenheit/Celsius Units", isOn: $celsius)
+        List {
             HStack {
+                Text("Fahrenheit/Celsius Units")
                 Spacer()
                 Text("\(Double(20.2).temperatureString(celsius: celsius))")
                     .font(.caption)
+                Toggle("Fahrenheit/Celsius Units", isOn: $celsius).labelsHidden()
             }
-            Divider()
-            Spacer()
+            NavigationLink("About Skip", value: "skip.tools")
         }
-        .font(.title2)
-        .padding()
+        .navigationDestination(for: String.self) { host in
+            WebView(url: URL(string: "https://\(host)")!)
+                .navigationTitle(host)
+        }
     }
 }
 

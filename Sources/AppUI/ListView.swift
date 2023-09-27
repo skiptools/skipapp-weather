@@ -40,7 +40,7 @@ struct ListView : View {
 
             Spacer()
 
-            VStack(alignment: .trailing) {
+            VStack(alignment: .trailing, spacing: 2.0) {
                 HStack {
                     if city.location.isSummer {
                         Text("🌞")
@@ -60,10 +60,6 @@ struct ListView : View {
             }
             .font(.footnote)
         }
-    }
-
-    private func temperatureRange(for city: City) -> String {
-        return "\(city.averageTempWinter.temperatureString(celsius: celsius)) – \(city.averageTempSummer.temperatureString(celsius: celsius))"
     }
 }
 
