@@ -13,13 +13,11 @@ struct SettingsNavigationView: View {
 }
 
 struct SettingsView : View {
-    @State var celsius: Bool = false
+    @AppStorage("celsius", store: UserDefaults.standard) var celsius: Bool = true
 
     var body: some View {
         VStack {
-            Toggle(isOn: $celsius) {
-                Text(LocalizedStringKey("Celsius"), bundle: .module)
-            }
+            Toggle("Celsius", isOn: $celsius)
             Divider()
             Spacer()
         }
