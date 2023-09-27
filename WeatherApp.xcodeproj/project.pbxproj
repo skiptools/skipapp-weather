@@ -63,6 +63,7 @@
 		49F90C2B2A52156200F06D93 /* DarwinAppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DarwinAppMain.swift; path = Sources/AppMetadata/DarwinAppMain.swift; sourceTree = SOURCE_ROOT; };
 		49F90C2F2A52156300F06D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sources/AppMetadata/Assets.xcassets; sourceTree = "<group>"; };
 		49F90C312A52156300F06D93 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = App.entitlements; path = Sources/AppMetadata/App.entitlements; sourceTree = "<group>"; };
+		49F9353C2AC457C400DFBA6F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +98,7 @@
 		49F90C1F2A52156200F06D93 = {
 			isa = PBXGroup;
 			children = (
+				49F9353C2AC457C400DFBA6F /* README.md */,
 				496EB72F2A6AE4DE00C1253B /* App.xcconfig */,
 				493609562A6B7EAE00C401E2 /* AppModule */,
 				490FDD982AC22C3F00AA780D /* Android App */,
