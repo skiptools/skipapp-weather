@@ -24,6 +24,17 @@ public struct Location : Hashable, Codable {
     }
 }
 
+public extension Double {
+    /// Takes the current temperature (in celsius) and creates string description.
+    func temperatureString(celsius: Bool, withUnit: Bool = true) -> String {
+        // perform conversion if needed
+        let temp = celsius ? self : ((self * 9/5) + 32)
+        // Celsius temperatures are generally formatted with 1 decimal place, whereas Fahrenheit is not
+        let fmt = String(format: "%.\(celsius ? 1 : 0)f", temp)
+        return withUnit ? "\(fmt) °\(celsius ? "C" : "F")" : "\(fmt)°"
+    }
+}
+
 @MainActor public class WeatherCondition : ObservableObject {
     /// The User-Agent header when making requests
     static let userAgent = "Demo App"

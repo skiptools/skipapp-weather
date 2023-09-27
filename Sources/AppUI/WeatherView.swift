@@ -17,28 +17,23 @@ struct WeatherView : View {
     @State var longitude: String = ""
     @State var error: String = ""
     @State var temperature: Double = Double.nan
+    @AppStorage("celsius") var celsius: Bool = true
 
     var body: some View {
         VStack {
             HStack {
-                Text(LocalizedStringKey("Lat:"), bundle: .module)
-                TextField(text: $latitude) {
-                    Text(LocalizedStringKey("Latitude"), bundle: .module)
-                }
+                Text("Lat:")
+                TextField("Latitude", text: $latitude)
             }
             HStack {
-                Text(LocalizedStringKey("Lon:"), bundle: .module)
-                TextField(text: $longitude) {
-                    Text(LocalizedStringKey("Longitude"), bundle: .module)
-                }
+                Text("Lon:")
+                TextField("Longitude", text: $longitude)
             }
 
-            Button {
+            Button("Fetch Weather") {
                 Task {
                     await updateWeather()
                 }
-            } label: {
-                Text(LocalizedStringKey("Fetch Weather"), bundle: .module)
             }
             .buttonStyle(.borderedProminent)
 
@@ -48,9 +43,9 @@ struct WeatherView : View {
                     .foregroundStyle(Color.red)
             } else {
                 if !temperature.isNaN {
-                    Text(LocalizedStringKey("Temperature: \(Int(temperature))°"), bundle: .module)
-                        .font(.largeTitle)
-                        .foregroundStyle(temperature < 15.0 ? Color.blue : temperature > 30.0 ? Color.red : Color.green)
+                    Text("Temperature: \(temperature.temperatureString(celsius: celsius))")
+                        .font(.title)
+                        .foregroundStyle(temperature.temperatureColor)
                 }
             }
             Spacer()

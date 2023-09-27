@@ -1,5 +1,6 @@
 import SwiftUI
 import Foundation
+import WeatherAppModel
 
 struct SettingsNavigationView: View {
     static let title = "Settings"
@@ -17,7 +18,12 @@ struct SettingsView : View {
 
     var body: some View {
         VStack {
-            Toggle("Celsius", isOn: $celsius)
+            Toggle("Fahrenheit/Celsius Units", isOn: $celsius)
+            HStack {
+                Spacer()
+                Text("\(Double(20.2).temperatureString(celsius: celsius))")
+                    .font(.caption)
+            }
             Divider()
             Spacer()
         }
