@@ -4,7 +4,7 @@ import SwiftUI
 import WeatherAppModel
 
 /// The logger to use for the app. Directs to the oslog on Darwin and logcat on Android.
-let logger = Logger(subsystem: "app.ui", category: "AppUI")
+let logger = Logger(subsystem: "weather.app.ui", category: "AppUI")
 
 /// The Android SDK number we are running against, or nil if not on Android
 let androidSDK = ProcessInfo.processInfo.environment["android.os.Build.VERSION.SDK_INT"].flatMap({ Int($0) })

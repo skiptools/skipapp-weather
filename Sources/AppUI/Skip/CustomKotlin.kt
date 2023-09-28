@@ -17,11 +17,13 @@ import kotlin.coroutines.resume
 import skip.lib.*
 import skip.foundation.*
 
-/// An external kotlin function
+/// An example of an external Kotlin function that can be called from Skip
 fun externalKotlinFunction(): String {
     return "External Kotlin Function"
 }
 
+/// An example of using custom Kotlin to perform a location lookup. See WeatherView.swift
+/// Needs AndroidManifest.xml: <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 suspend fun fetchCurrentLocation(context: Context): Pair<Double, Double> = withContext(Dispatchers.IO) {
     suspendCancellableCoroutine<Pair<Double, Double>> { continuation ->
         val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager

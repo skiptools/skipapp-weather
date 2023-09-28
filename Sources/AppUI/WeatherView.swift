@@ -6,7 +6,7 @@ struct WeatherNavigationView: View {
 
     var body: some View {
         NavigationStack {
-            WeatherView()
+            WeatherView(showLocationButton: true)
                 .navigationTitle(Self.title)
         }
     }
@@ -18,12 +18,22 @@ struct WeatherView : View {
     @State var error: String = ""
     @State var temperature: Double = Double.nan
     @AppStorage("celsius") var celsius: Bool = true
+    let showLocationButton: Bool
 
     var body: some View {
         VStack {
             HStack {
                 Text("Lat:")
                 TextField("Latitude", text: $latitude)
+                if showLocationButton {
+                    Button {
+                        Task {
+                            await updateCurrentLocation()
+                        }
+                    } label: {
+                        Image(systemName: "location")
+                    }
+                }
             }
             HStack {
                 Text("Lon:")
@@ -88,5 +98,10 @@ struct WeatherView : View {
         let result = try await condition.fetchWeather()
         logger.log("fetched weather: \(result)")
         return condition
+    }
+
+    func updateCurrentLocation() async {
+        logger.log("location button tapped")
+
     }
 }

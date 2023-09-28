@@ -1,3 +1,7 @@
+# All the skip.yml files in a project are combined to create
+# settings.gradle.kts and build.gradle.kts, which the Gradle build system
+# uses to configure the build. Dependencies, metadata, versions, and configuration
+# settings are all specified here. See https://skip.tools/docs
 build:
   contents:
     - block: 'plugins'

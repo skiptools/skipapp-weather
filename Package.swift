@@ -15,6 +15,7 @@ let skip = ProcessInfo.processInfo.environment["NOSKIP"] == nil // NOSKIP=1 disa
 let skipPlugin = skip ? [Target.PluginUsage.plugin(name: "skipstone", package: "skip")] : []
 let skipTest = skip ? [Target.Dependency.product(name: "SkipTest", package: "skip")] : []
 let skipModel = skip ? [Target.Dependency.product(name: "SkipModel", package: "skip-model")] : []
+let skipFoundation = skip ? [Target.Dependency.product(name: "SkipFoundation", package: "skip-foundation")] : []
 let skipUI = skip ? [Target.Dependency.product(name: "SkipUI", package: "skip-ui")] : []
 let skipDrive = skip ? [Target.Dependency.product(name: "SkipDrive", package: "skip")] : []
 
@@ -30,11 +31,12 @@ let package = Package(
     ],
     dependencies: !skip ? [] : [
         .package(url: "https://source.skip.tools/skip.git", from: "0.6.78"),
+        .package(url: "https://source.skip.tools/skip-foundation.git", from: "0.2.1"),
         .package(url: "https://source.skip.tools/skip-model.git", from: "0.2.1"),
         .package(url: "https://source.skip.tools/skip-ui.git", from: "0.2.11"),
     ],
     targets: [
-        .target(name: appModel, dependencies: skipModel, path: "Sources/AppModel", resources: [.process("Resources")], plugins: skipPlugin),
+        .target(name: appModel, dependencies: skipModel + skipFoundation, path: "Sources/AppModel", resources: [.process("Resources")], plugins: skipPlugin),
         .testTarget(name: appModelTest, dependencies: [.target(name: appModel)] + skipTest, path: "Tests/AppModelTests", plugins: skipPlugin),
         .target(name: appUI, dependencies: [.target(name: appModel)] + skipUI, path: "Sources/AppUI", resources: [.process("Resources")], plugins: skipPlugin),
         .testTarget(name: appUITest, dependencies: [.target(name: appUI)] + skipTest, path: "Tests/AppUITests", plugins: skipPlugin),

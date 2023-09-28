@@ -24,8 +24,8 @@ struct ListView : View {
             }
         }
         .navigationDestination(for: City.self) { city in
-            WeatherView(latitude: String(city.location.latitude), longitude: String(city.location.longitude))
-                .navigationTitle(city.cityName)
+            WeatherView(latitude: String(city.location.latitude), longitude: String(city.location.longitude), showLocationButton: false)
+                .navigationTitle(city.cityName + ", " + city.countryName)
         }
     }
 
@@ -66,7 +66,7 @@ struct ListView : View {
 extension City {
     /// A pseudo-random image and color for a city based on the latitude and longitude
     func iconView() -> some View {
-        Image(systemName: cityIconNames[Int(abs(self.location.longitude * 100.0)) % cityIconNames.count])
+        Image(systemName: self.symbolName)
             .foregroundStyle(cityColors[Int(abs(self.location.latitude * 100.0)) % cityColors.count])
     }
 }
@@ -105,9 +105,6 @@ private func interpolateRGB(fromColor: (r: CGFloat, g: CGFloat, b: CGFloat), toC
 
     return (ir, ig, ib)
 }
-
-
-private let cityIconNames = ["calendar", "calendar.circle.fill", "camera", "lightbulb.fill", "cloud", "cloud.fill", "music.note", "globe.americas", "globe.americas.fill", "sun.max", "sun.max.fill", "moon", "moon.fill", "book", "book.fill", "gamecontroller", "gamecontroller.fill", "flag", "flag.fill", "heart", "heart.fill", "bolt", "bolt.fill", "camera.metering.center.weighted", "bandage", "bandage.fill", "headphones.circle", "headphones.circle.fill", "book", "book.fill", "calendar.circle", "calendar.circle.fill", "car", "square.and.pencil", "person.2", "person.2.fill", "message", "message.fill", "paperplane", "paperplane.fill", "hourglass", "bell.slash", "mic", "mic.fill", "eye.slash", "eye.slash.fill", "car.fill", "cloud", "cloud.fill", "creditcard", "creditcard.fill", "envelope", "envelope.fill", "film", "film.fill", "gift", "heart.slash", "heart.slash.fill", "video", "video.fill", "printer", "printer.fill", "cart", "cart.fill", "wifi.slash", "person.badge.plus", "person.badge.plus.fill", "folder", "folder.fill", "pianokeys", "gamecontroller", "gamecontroller.fill", "sunrise", "sunrise.fill", "lock", "lock.fill", "paperclip.circle", "paperclip.circle.fill", "alarm", "alarm.fill", "arrow.down.circle", "arrow.down.circle.fill", "bell.slash.fill", "house", "house.fill", "gearshape", "gearshape.fill", "star", "star.fill", "person.crop.circle", "person.crop.circle.fill", "gift.fill", "lightbulb", "camera.fill", "magnifyingglass.circle", "magnifyingglass.circle.fill", "music.note", "pencil", "phone", "phone.fill", "trash", "trash.fill", "wrench", "wrench.fill", "info", "house"]
 
 private let cityColors = [Color.blue, Color.red, Color.green, Color.yellow, Color.orange, Color.brown, Color.cyan, Color.indigo, Color.mint, Color.yellow, Color.pink, Color.purple, Color.teal]
 

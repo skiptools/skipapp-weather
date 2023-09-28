@@ -5,7 +5,7 @@ struct ContentView: View {
         TabView {
             ListNavigationView()
                 .tabItem {
-                    Label(ListNavigationView.title, systemImage: "house")
+                    Label(ListNavigationView.title, systemImage: "house.fill")
                 }
             WeatherNavigationView()
                 .tabItem {
@@ -13,7 +13,7 @@ struct ContentView: View {
                 }
             SettingsNavigationView()
                 .tabItem {
-                    Label(SettingsNavigationView.title, systemImage: "gear")
+                    Label(SettingsNavigationView.title, systemImage: "gearshape.fill")
                 }
         }
     }
