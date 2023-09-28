@@ -25,12 +25,12 @@ struct SettingsView : View {
                     .font(.caption)
                 Toggle("Fahrenheit/Celsius Units", isOn: $celsius).labelsHidden()
             }
-            NavigationLink("About Skip", value: "skip.tools")
+            NavigationLink("About Skip", value: URL(string: "https://skip.tools")!)
             NavigationLink("System Info", value: ProcessInfo.processInfo)
         }
-        .navigationDestination(for: String.self) { host in
-            WebView(url: URL(string: "https://\(host)")!)
-                .navigationTitle(host)
+        .navigationDestination(for: URL.self) { url in
+            WebView(url: url)
+                .navigationTitle(url.host ?? "")
         }
         .navigationDestination(for: ProcessInfo.self) { info in
             let env = info.environment.keys.sorted()
