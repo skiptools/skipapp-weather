@@ -26,13 +26,35 @@ struct SettingsView : View {
                 Toggle("Fahrenheit/Celsius Units", isOn: $celsius).labelsHidden()
             }
             NavigationLink("About Skip", value: "skip.tools")
+            NavigationLink("System Info", value: ProcessInfo.processInfo)
         }
         .navigationDestination(for: String.self) { host in
             WebView(url: URL(string: "https://\(host)")!)
                 .navigationTitle(host)
         }
+        .navigationDestination(for: ProcessInfo.self) { info in
+            let env = info.environment.keys.sorted()
+                .map({ Env(key: $0, value: info.environment[$0]) })
+            List(env, id: \.key) { keyValue in
+                HStack(alignment: .top) {
+                    Text(keyValue.key)
+                        .font(.caption)
+                    Spacer()
+                    Text(keyValue.value ?? "")
+                        .font(.footnote)
+                }
+            }
+            .navigationTitle("System Info")
+        }
+    }
+
+    /// An envrionment key/value
+    private struct Env {
+        let key: String
+        let value: String?
     }
 }
+
 
 #Preview {
     SettingsView()

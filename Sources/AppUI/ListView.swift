@@ -1,6 +1,6 @@
+import SwiftUI
 import Foundation
 import Observation
-import SwiftUI
 import WeatherAppModel
 
 struct ListNavigationView: View {

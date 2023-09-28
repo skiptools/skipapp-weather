@@ -37,15 +37,18 @@ struct WeatherView : View {
             }
             .buttonStyle(.borderedProminent)
 
-            if !error.isEmpty {
-                Text("\(error)")
-                    .font(.headline)
-                    .foregroundStyle(Color.red)
-            } else {
-                if !temperature.isNaN {
-                    Text("Temperature: \(temperature.temperatureString(celsius: celsius))")
-                        .font(.title)
-                        .foregroundStyle(temperature.temperatureColor)
+            HStack {
+                Text("Temperature:")
+                if !error.isEmpty {
+                    Text("\(error)")
+                        .font(.headline)
+                        .foregroundStyle(Color.red)
+                } else {
+                    if !temperature.isNaN {
+                        Text(temperature.temperatureString(celsius: celsius))
+                            .font(.headline)
+                            .foregroundStyle(temperature.temperatureColor)
+                    }
                 }
             }
             Spacer()

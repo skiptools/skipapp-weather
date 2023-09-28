@@ -146,7 +146,16 @@
     "Settings" : {
 
     },
-    "Temperature: %@" : {
+    "Skip" : {
+
+    },
+    "SKIP" : {
+
+    },
+    "System Info" : {
+
+    },
+    "Temperature:" : {
 
     },
     "Unable to parse coordinates" : {
