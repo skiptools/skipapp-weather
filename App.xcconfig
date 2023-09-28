@@ -31,6 +31,13 @@ SKIP_BUILD_APK = YES
 // Building the target will lauch the app for iphone* targets
 SKIP_LAUNCH_APK[sdk=iphone*] = YES
 
+// iOS-specific Info.plist property keys
+INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphone*] = YES
+INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphone*] = YES
+INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphone*] = YES
+INFOPLIST_KEY_UIStatusBarStyle[sdk=iphone*] = UIStatusBarStyleDefault
+INFOPLIST_KEY_UISupportedInterfaceOrientations[sdk=iphone*] = UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown
+
 // Development team ID for on-device testing
 //DEVELOPMENT_TEAM = 
 //CODE_SIGNING_IDENTITY = -
