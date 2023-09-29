@@ -24,8 +24,7 @@ let package = Package(
     defaultLocalization: "en",
     platforms: [.macOS("13"), .iOS("16")],
     products: [
-        // The top-level "AppModule" constant must target all the app's modules
-        .library(name: "AppModule", type: .dynamic, targets: [appUI, appModel]),
+        .library(name: modulePrefix, type: .dynamic, targets: [appUI, appModel]),
         .library(name: appUI, targets: [appUI]),
         .library(name: appModel, targets: [appModel]),
     ],

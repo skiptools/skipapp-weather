@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "49CAB4F02AB0D6E6009BD60F"
-               BuildableName = "SkipApp"
-               BlueprintName = "SkipApp"
+               BlueprintIdentifier = "49F90C272A52156200F06D93"
+               BuildableName = "SkipWeather.app"
+               BlueprintName = "App"
                ReferencedContainer = "container:WeatherApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -39,6 +39,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "49F90C272A52156200F06D93"
+            BuildableName = "SkipWeather.app"
+            BlueprintName = "App"
+            ReferencedContainer = "container:WeatherApp.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -46,15 +56,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "49CAB4F02AB0D6E6009BD60F"
-            BuildableName = "SkipApp"
-            BlueprintName = "SkipApp"
+            BlueprintIdentifier = "49F90C272A52156200F06D93"
+            BuildableName = "SkipWeather.app"
+            BlueprintName = "App"
             ReferencedContainer = "container:WeatherApp.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
