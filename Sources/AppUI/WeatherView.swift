@@ -23,8 +23,16 @@ struct WeatherView : View {
     var body: some View {
         VStack {
             HStack {
-                Text("Lat:")
-                TextField("Latitude", text: $latitude)
+                VStack {
+                    HStack {
+                        Text("Lat:")
+                        TextField("Latitude", text: $latitude)
+                    }
+                    HStack {
+                        Text("Lon:")
+                        TextField("Longitude", text: $longitude)
+                    }
+                }
                 if showLocationButton {
                     Button {
                         Task {
@@ -34,10 +42,6 @@ struct WeatherView : View {
                         Image(systemName: "location")
                     }
                 }
-            }
-            HStack {
-                Text("Lon:")
-                TextField("Longitude", text: $longitude)
             }
 
             Button("Fetch Weather") {
