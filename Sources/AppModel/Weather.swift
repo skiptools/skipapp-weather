@@ -1,18 +1,16 @@
 import Foundation
 import Combine
 
-/// A lat/lon location (in degrees), with an optional altitude (in meters).
+/// A lat/lon location (in degrees).
 public struct Location : Hashable, Codable {
     public static let `default` = Location(latitude: 42.36, longitude: -71.05)
 
     public var latitude: Double
     public var longitude: Double
-    public var altitude: Double?
 
-    public init(latitude: Double, longitude: Double, altitude: Double? = nil) {
+    public init(latitude: Double, longitude: Double) {
         self.latitude = latitude
         self.longitude = longitude
-        self.altitude = altitude
     }
 
     func coordinates(fractionalDigits: Int? = nil) -> (latitude: Double, longitude: Double) {
@@ -24,42 +22,36 @@ public struct Location : Hashable, Codable {
     }
 }
 
-public extension Double {
-    /// Takes the current temperature (in celsius) and creates string description.
-    func temperatureString(celsius: Bool, withUnit: Bool = true) -> String {
-        // perform conversion if needed
-        let temp = celsius ? self : ((self * 9/5) + 32)
-        // Celsius temperatures are generally formatted with 1 decimal place, whereas Fahrenheit is not
-        let fmt = String(format: "%.\(celsius ? 1 : 0)f", temp)
-        return withUnit ? "\(fmt) °\(celsius ? "C" : "F")" : "\(fmt)°"
-    }
-}
-
-@MainActor public class WeatherCondition : ObservableObject {
+public class WeatherCondition : ObservableObject {
     /// The User-Agent header when making requests
     static let userAgent = "Demo App"
 
-    @Published public var location: Location
-    @Published public var temperature: Double?
-    @Published public var lastUpdated: Date?
-    @Published public var updateType: String?
+    @Published public private(set) var location: Location?
+    @Published public private(set) var temperature: Double?
+    @Published public private(set) var isFetching = false
 
-    public init(location: Location, temperature: Double? = nil, lastUpdated: Date? = nil) {
-        self.location = location
-        self.temperature = temperature
-        self.lastUpdated = lastUpdated
+    public init() {
     }
 
-    public func fetchWeather() async throws -> Int {
+    @MainActor
+    @discardableResult public func fetchWeather(at location: Location) async throws -> Int {
+        self.location = location
+        temperature = nil
+        isFetching = true
+
         let (lat, lon) = location.coordinates(fractionalDigits: 4)
         let url = URL(string: "https://api.open-meteo.com/v1/forecast?latitude=\(lat)&longitude=\(lon)&current_weather=true")!
         logger.info("fetching URL: \(url.absoluteString)")
         var request = URLRequest(url: url)
         request.setValue(Self.userAgent, forHTTPHeaderField: "User-Agent")
         let (data, response) = try await URLSession.shared.data(for: request)
-        let decoder = JSONDecoder()
-        let info = try decoder.decode(WeatherResponse.self, from: data)
-        self.temperature = info.current_weather.temperature
+        // guard against updating for a concurrent request
+        if location == self.location {
+            let decoder = JSONDecoder()
+            let info = try decoder.decode(WeatherResponse.self, from: data)
+            temperature = info.current_weather.temperature
+            isFetching = false
+        }
         return (response as? HTTPURLResponse)?.statusCode ?? 0
     }
 }

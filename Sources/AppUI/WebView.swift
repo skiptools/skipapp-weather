@@ -33,7 +33,6 @@ struct WebView: View {
     }
 }
 #else
-// Minimal Swift wrapper for AppKit/UIKit WKWebView
 import WebKit
 
 #if canImport(UIKit)

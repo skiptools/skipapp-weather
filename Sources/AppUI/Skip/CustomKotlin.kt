@@ -45,9 +45,8 @@ suspend fun fetchCurrentLocation(context: Context): Pair<Double, Double> = withC
             Manifest.permission.ACCESS_COARSE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
 
-
         if (hasLocationPermission) {
-            locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, locationListener, Looper.getMainLooper())
+            locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, locationListener, Looper.getMainLooper())
         } else {
             logger.warning("no location permission")
             continuation.resume(Pair(0.0, 0.0)) // Return default location values

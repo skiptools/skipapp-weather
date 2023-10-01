@@ -47,7 +47,7 @@ extension City {
              countryName: "Ghana",
              countryCode: "GHA",
              symbolName: "face.smiling",
-             location: Location(latitude: 5.5600, longitude: -0.2050, altitude: 61.0),
+             location: Location(latitude: 5.5600, longitude: -0.2050),
              averageTempSummer: 28.2,
              averageTempWinter: 26.4,
              sunnyDays: 221
@@ -57,7 +57,7 @@ extension City {
              countryName: "Netherlands",
              countryCode: "NLD",
              symbolName: "hand.thumbsup",
-             location: Location(latitude: 52.3676, longitude: 4.9041, altitude: -2.0),
+             location: Location(latitude: 52.3676, longitude: 4.9041),
              averageTempSummer: 18.8,
              averageTempWinter: 2.4,
              sunnyDays: 166
@@ -67,7 +67,7 @@ extension City {
              countryName: "Greece",
              countryCode: "GRC",
              symbolName: "calendar",
-             location: Location(latitude: 37.9838, longitude: 23.7275, altitude: 170.0),
+             location: Location(latitude: 37.9838, longitude: 23.7275),
              averageTempSummer: 30.2,
              averageTempWinter: 10.1,
              sunnyDays: 279
@@ -77,7 +77,7 @@ extension City {
              countryName: "New Zealand",
              countryCode: "NZL",
              symbolName: "checkmark.circle",
-             location: Location(latitude: -36.8485, longitude: 174.7633, altitude: 1.0),
+             location: Location(latitude: -36.8485, longitude: 174.7633),
              averageTempSummer: 22.4,
              averageTempWinter: 15.1,
              sunnyDays: 205
@@ -87,7 +87,7 @@ extension City {
              countryName: "Thailand",
              countryCode: "THA",
              symbolName: "arrow.clockwise.circle",
-             location: Location(latitude: 13.7563, longitude: 100.5018, altitude: 1.5),
+             location: Location(latitude: 13.7563, longitude: 100.5018),
              averageTempSummer: 31.8,
              averageTempWinter: 26.3,
              sunnyDays: 260
@@ -97,7 +97,7 @@ extension City {
              countryName: "Spain",
              countryCode: "ESP",
              symbolName: "envelope.fill",
-             location: Location(latitude: 41.3851, longitude: 2.1734, altitude: 12.0),
+             location: Location(latitude: 41.3851, longitude: 2.1734),
              averageTempSummer: 27.9,
              averageTempWinter: 12.5,
              sunnyDays: 244
@@ -107,7 +107,7 @@ extension City {
              countryName: "Germany",
              countryCode: "DEU",
              symbolName: "star.fill",
-             location: Location(latitude: 52.5200, longitude: 13.4050, altitude: 34.0),
+             location: Location(latitude: 52.5200, longitude: 13.4050),
              averageTempSummer: 23.3,
              averageTempWinter: 1.6,
              sunnyDays: 163
@@ -117,7 +117,7 @@ extension City {
              countryName: "United Kingdom",
              countryCode: "GBR",
              symbolName: "plus.circle.fill",
-             location: Location(latitude: 52.4862, longitude: -1.8904, altitude: 140.0),
+             location: Location(latitude: 52.4862, longitude: -1.8904),
              averageTempSummer: 18.6,
              averageTempWinter: 2.2,
              sunnyDays: 126
@@ -127,7 +127,7 @@ extension City {
              countryName: "United States",
              countryCode: "USA",
              symbolName: "heart.fill",
-             location: Location(latitude: 42.3601, longitude: -71.0589, altitude: 43.0),
+             location: Location(latitude: 42.3601, longitude: -71.0589),
              averageTempSummer: 24.0,
              averageTempWinter: 3.3,
              sunnyDays: 217
@@ -137,7 +137,7 @@ extension City {
              countryName: "Argentina",
              countryCode: "ARG",
              symbolName: "paperplane.fill",
-             location: Location(latitude: -34.6118, longitude: -58.4173, altitude: 25.0),
+             location: Location(latitude: -34.6118, longitude: -58.4173),
              averageTempSummer: 27.5,
              averageTempWinter: 14.4,
              sunnyDays: 199
@@ -147,7 +147,7 @@ extension City {
              countryName: "South Africa",
              countryCode: "ZAF",
              symbolName: "envelope",
-             location: Location(latitude: -33.9249, longitude: 18.4241, altitude: 1.0),
+             location: Location(latitude: -33.9249, longitude: 18.4241),
              averageTempSummer: 23.7,
              averageTempWinter: 14.1,
              sunnyDays: 365
@@ -157,7 +157,7 @@ extension City {
              countryName: "United States",
              countryCode: "USA",
              symbolName: "mappin.circle",
-             location: Location(latitude: 41.8781, longitude: -87.6298, altitude: 181.0),
+             location: Location(latitude: 41.8781, longitude: -87.6298),
              averageTempSummer: 24.4,
              averageTempWinter: -1.2,
              sunnyDays: 186
@@ -167,7 +167,7 @@ extension City {
              countryName: "Denmark",
              countryCode: "DNK",
              symbolName: "person.crop.circle.fill",
-             location: Location(latitude: 55.6761, longitude: 12.5683, altitude: 5.0),
+             location: Location(latitude: 55.6761, longitude: 12.5683),
              averageTempSummer: 20.2,
              averageTempWinter: 1.1,
              sunnyDays: 164
@@ -177,7 +177,7 @@ extension City {
              countryName: "India",
              countryCode: "IND",
              symbolName: "bell.fill",
-             location: Location(latitude: 28.6139, longitude: 77.2090, altitude: 213.0),
+             location: Location(latitude: 28.6139, longitude: 77.2090),
              averageTempSummer: 34.7,
              averageTempWinter: 15.5,
              sunnyDays: 267
@@ -187,7 +187,7 @@ extension City {
              countryName: "Ireland",
              countryCode: "IRL",
              symbolName: "star.fill",
-             location: Location(latitude: 53.3498, longitude: -6.2603, altitude: 20.0),
+             location: Location(latitude: 53.3498, longitude: -6.2603),
              averageTempSummer: 17.5,
              averageTempWinter: 5.2,
              sunnyDays: 147
@@ -197,7 +197,7 @@ extension City {
              countryName: "United Kingdom",
              countryCode: "GBR",
              symbolName: "bell.fill",
-             location: Location(latitude: 55.9533, longitude: -3.1883, altitude: 57.0),
+             location: Location(latitude: 55.9533, longitude: -3.1883),
              averageTempSummer: 16.2,
              averageTempWinter: 4.0,
              sunnyDays: 111
@@ -207,7 +207,7 @@ extension City {
              countryName: "United Kingdom",
              countryCode: "GBR",
              symbolName: "bell.fill",
-             location: Location(latitude: 55.8642, longitude: -4.2518, altitude: 26.0),
+             location: Location(latitude: 55.8642, longitude: -4.2518),
              averageTempSummer: 16.5,
              averageTempWinter: 4.5,
              sunnyDays: 119
@@ -217,7 +217,7 @@ extension City {
              countryName: "Czech Republic",
              countryCode: "CZE",
              symbolName: "location",
-             location: Location(latitude: 50.0755, longitude: 14.4378, altitude: 177.0),
+             location: Location(latitude: 50.0755, longitude: 14.4378),
              averageTempSummer: 21.1,
              averageTempWinter: 0.7,
              sunnyDays: 185
@@ -227,7 +227,7 @@ extension City {
              countryName: "Morocco",
              countryCode: "MAR",
              symbolName: "cart",
-             location: Location(latitude: 31.6295, longitude: -7.9811, altitude: 466.0),
+             location: Location(latitude: 31.6295, longitude: -7.9811),
              averageTempSummer: 37.7,
              averageTempWinter: 12.8,
              sunnyDays: 292
@@ -237,7 +237,7 @@ extension City {
              countryName: "Canada",
              countryCode: "CAN",
              symbolName: "person.crop.square.fill",
-             location: Location(latitude: 45.5017, longitude: -73.5673, altitude: 37.0),
+             location: Location(latitude: 45.5017, longitude: -73.5673),
              averageTempSummer: 24.0,
              averageTempWinter: -4.5,
              sunnyDays: 154
@@ -247,7 +247,7 @@ extension City {
              countryName: "Spain",
              countryCode: "ESP",
              symbolName: "paperplane.fill",
-             location: Location(latitude: 40.4168, longitude: -3.7038, altitude: 667.0),
+             location: Location(latitude: 40.4168, longitude: -3.7038),
              averageTempSummer: 31.6,
              averageTempWinter: 8.0,
              sunnyDays: 281
@@ -257,7 +257,7 @@ extension City {
              countryName: "United Kingdom",
              countryCode: "GBR",
              symbolName: "person.crop.circle.fill",
-             location: Location(latitude: 53.4830, longitude: -2.2441, altitude: 38.0),
+             location: Location(latitude: 53.4830, longitude: -2.2441),
              averageTempSummer: 16.7,
              averageTempWinter: 3.0,
              sunnyDays: 130
@@ -267,7 +267,7 @@ extension City {
              countryName: "India",
              countryCode: "IND",
              symbolName: "mappin.circle",
-             location: Location(latitude: 19.0760, longitude: 72.8777, altitude: 14.0),
+             location: Location(latitude: 19.0760, longitude: 72.8777),
              averageTempSummer: 30.2,
              averageTempWinter: 25.4,
              sunnyDays: 287
@@ -277,7 +277,7 @@ extension City {
              countryName: "Taiwan",
              countryCode: "TWN",
              symbolName: "envelope",
-             location: Location(latitude: 25.0320, longitude: 121.5654, altitude: 9.0),
+             location: Location(latitude: 25.0320, longitude: 121.5654),
              averageTempSummer: 30.7,
              averageTempWinter: 16.1,
              sunnyDays: 189
@@ -287,7 +287,7 @@ extension City {
              countryName: "United Kingdom",
              countryCode: "GBR",
              symbolName: "cart.fill",
-             location: Location(latitude: 51.5074, longitude: -0.1278, altitude: 25.0),
+             location: Location(latitude: 51.5074, longitude: -0.1278),
              averageTempSummer: 19.0,
              averageTempWinter: 4.4,
              sunnyDays: 151
@@ -297,7 +297,7 @@ extension City {
              countryName: "Portugal",
              countryCode: "PRT",
              symbolName: "bell.fill",
-             location: Location(latitude: 41.1579, longitude: -8.6291, altitude: 83.0),
+             location: Location(latitude: 41.1579, longitude: -8.6291),
              averageTempSummer: 21.7,
              averageTempWinter: 9.2,
              sunnyDays: 229
@@ -307,7 +307,7 @@ extension City {
              countryName: "United States",
              countryCode: "USA",
              symbolName: "location",
-             location: Location(latitude: 29.7604, longitude: -95.3698, altitude: 14.0),
+             location: Location(latitude: 29.7604, longitude: -95.3698),
              averageTempSummer: 31.1,
              averageTempWinter: 14.1,
              sunnyDays: 204
@@ -317,7 +317,7 @@ extension City {
              countryName: "France",
              countryCode: "FRA",
              symbolName: "bell.fill",
-             location: Location(latitude: 45.75, longitude: 4.85, altitude: 173.0),
+             location: Location(latitude: 45.75, longitude: 4.85),
              averageTempSummer: 25.8,
              averageTempWinter: 2.3,
              sunnyDays: 213
@@ -327,7 +327,7 @@ extension City {
              countryName: "Colombia",
              countryCode: "COL",
              symbolName: "envelope",
-             location: Location(latitude: 6.2442, longitude: -75.5812, altitude: 1495.0),
+             location: Location(latitude: 6.2442, longitude: -75.5812),
              averageTempSummer: 22.2,
              averageTempWinter: 21.7,
              sunnyDays: 178
@@ -337,7 +337,7 @@ extension City {
              countryName: "Australia",
              countryCode: "AUS",
              symbolName: "paperplane.fill",
-             location: Location(latitude: -37.8136, longitude: 144.9631, altitude: 31.0),
+             location: Location(latitude: -37.8136, longitude: 144.9631),
              averageTempSummer: 23.5,
              averageTempWinter: 14.0,
              sunnyDays: 127
@@ -347,7 +347,7 @@ extension City {
              countryName: "United States",
              countryCode: "USA",
              symbolName: "mappin.circle",
-             location: Location(latitude: 40.7128, longitude: -74.0060, altitude: 14.0),
+             location: Location(latitude: 40.7128, longitude: -74.0060),
              averageTempSummer: 26.9,
              averageTempWinter: 2.6,
              sunnyDays: 234
@@ -357,7 +357,7 @@ extension City {
              countryName: "Sweden",
              countryCode: "SWE",
              symbolName: "person.crop.square.fill",
-             location: Location(latitude: 59.3293, longitude: 18.0686, altitude: 44.0),
+             location: Location(latitude: 59.3293, longitude: 18.0686),
              averageTempSummer: 21.0,
              averageTempWinter: -0.9,
              sunnyDays: 206
@@ -367,7 +367,7 @@ extension City {
              countryName: "United States",
              countryCode: "USA",
              symbolName: "mappin.circle.fill",
-             location: Location(latitude: 37.7749, longitude: -122.4194, altitude: 16.0),
+             location: Location(latitude: 37.7749, longitude: -122.4194),
              averageTempSummer: 17.7,
              averageTempWinter: 11.5,
              sunnyDays: 259
@@ -377,7 +377,7 @@ extension City {
              countryName: "Japan",
              countryCode: "JPN",
              symbolName: "bell.fill",
-             location: Location(latitude: 35.6895, longitude: 139.6917, altitude: 131.0),
+             location: Location(latitude: 35.6895, longitude: 139.6917),
              averageTempSummer: 27.6,
              averageTempWinter: 6.5,
              sunnyDays: 158
@@ -387,7 +387,7 @@ extension City {
              countryName: "Canada",
              countryCode: "CAN",
              symbolName: "location",
-             location: Location(latitude: 43.6532, longitude: -79.3832, altitude: 76.0),
+             location: Location(latitude: 43.6532, longitude: -79.3832),
              averageTempSummer: 22.2,
              averageTempWinter: -0.7,
              sunnyDays: 221
@@ -397,7 +397,7 @@ extension City {
              countryName: "Portugal",
              countryCode: "PRT",
              symbolName: "cart.fill",
-             location: Location(latitude: 38.7223, longitude: -9.1393, altitude: 2.0),
+             location: Location(latitude: 38.7223, longitude: -9.1393),
              averageTempSummer: 27.1,
              averageTempWinter: 11.4,
              sunnyDays: 276
@@ -407,7 +407,7 @@ extension City {
              countryName: "Mexico",
              countryCode: "MEX",
              symbolName: "paperplane.fill",
-             location: Location(latitude: 19.4326, longitude: -99.1332, altitude: 2240.0),
+             location: Location(latitude: 19.4326, longitude: -99.1332),
              averageTempSummer: 19.4,
              averageTempWinter: 13.2,
              sunnyDays: 225
@@ -417,7 +417,7 @@ extension City {
              countryName: "Israel",
              countryCode: "ISR",
              symbolName: "wrench.fill",
-             location: Location(latitude: 32.0853, longitude: 34.7818, altitude: 8.0),
+             location: Location(latitude: 32.0853, longitude: 34.7818),
              averageTempSummer: 29.0,
              averageTempWinter: 15.6,
              sunnyDays: 322
@@ -427,7 +427,7 @@ extension City {
              countryName: "France",
              countryCode: "FRA",
              symbolName: "star.fill",
-             location: Location(latitude: 48.8566, longitude: 2.3522, altitude: 34.0),
+             location: Location(latitude: 48.8566, longitude: 2.3522),
              averageTempSummer: 25.7,
              averageTempWinter: 5.8,
              sunnyDays: 166
@@ -437,7 +437,7 @@ extension City {
              countryName: "Malaysia",
              countryCode: "MYS",
              symbolName: "location",
-             location: Location(latitude: 3.1390, longitude: 101.6869, altitude: 21.0),
+             location: Location(latitude: 3.1390, longitude: 101.6869),
              averageTempSummer: 31.5,
              averageTempWinter: 25.3,
              sunnyDays: 202
@@ -447,7 +447,7 @@ extension City {
              countryName: "Philippines",
              countryCode: "PHL",
              symbolName: "paperplane.fill",
-             location: Location(latitude: 14.5995, longitude: 120.9842, altitude: 16.0),
+             location: Location(latitude: 14.5995, longitude: 120.9842),
              averageTempSummer: 31.9,
              averageTempWinter: 25.9,
              sunnyDays: 213
@@ -457,7 +457,7 @@ extension City {
              countryName: "Brazil",
              countryCode: "BRA",
              symbolName: "phone.fill",
-             location: Location(latitude: -23.5505, longitude: -46.6333, altitude: 760.0),
+             location: Location(latitude: -23.5505, longitude: -46.6333),
              averageTempSummer: 22.4,
              averageTempWinter: 15.5,
              sunnyDays: 186
@@ -467,7 +467,7 @@ extension City {
              countryName: "United States",
              countryCode: "USA",
              symbolName: "person.crop.square.fill",
-             location: Location(latitude: 25.7617, longitude: -80.1918, altitude: 1.0),
+             location: Location(latitude: 25.7617, longitude: -80.1918),
              averageTempSummer: 29.0,
              averageTempWinter: 20.0,
              sunnyDays: 249
@@ -477,7 +477,7 @@ extension City {
              countryName: "Italy",
              countryCode: "ITA",
              symbolName: "location",
-             location: Location(latitude: 41.9028, longitude: 12.4964, altitude: 13.0),
+             location: Location(latitude: 41.9028, longitude: 12.4964),
              averageTempSummer: 27.7,
              averageTempWinter: 8.2,
              sunnyDays: 250
@@ -487,7 +487,7 @@ extension City {
              countryName: "United States",
              countryCode: "USA",
              symbolName: "mappin.circle.fill",
-             location: Location(latitude: 34.0522, longitude: -118.2437, altitude: 71.0),
+             location: Location(latitude: 34.0522, longitude: -118.2437),
              averageTempSummer: 23.9,
              averageTempWinter: 13.8,
              sunnyDays: 284
@@ -497,7 +497,7 @@ extension City {
              countryName: "Singapore",
              countryCode: "SGP",
              symbolName: "cart.fill",
-             location: Location(latitude: 1.3521, longitude: 103.8198, altitude: 15.0),
+             location: Location(latitude: 1.3521, longitude: 103.8198),
              averageTempSummer: 31.0,
              averageTempWinter: 26.5,
              sunnyDays: 170
@@ -507,7 +507,7 @@ extension City {
              countryName: "Australia",
              countryCode: "AUS",
              symbolName: "bell.fill",
-             location: Location(latitude: -33.8688, longitude: 151.2093, altitude: 3.0),
+             location: Location(latitude: -33.8688, longitude: 151.2093),
              averageTempSummer: 25.8,
              averageTempWinter: 14.8,
              sunnyDays: 261
@@ -517,7 +517,7 @@ extension City {
              countryName: "Brazil",
              countryCode: "BRA",
              symbolName: "person.crop.square.fill",
-             location: Location(latitude: -22.9068, longitude: -43.1729, altitude: 6.0),
+             location: Location(latitude: -22.9068, longitude: -43.1729),
              averageTempSummer: 29.8,
              averageTempWinter: 22.6,
              sunnyDays: 218
@@ -527,7 +527,7 @@ extension City {
              countryName: "South Africa",
              countryCode: "ZAF",
              symbolName: "phone.fill",
-             location: Location(latitude: -26.2041, longitude: 28.0473, altitude: 1753.0),
+             location: Location(latitude: -26.2041, longitude: 28.0473),
              averageTempSummer: 24.8,
              averageTempWinter: 13.0,
              sunnyDays: 281
@@ -537,7 +537,7 @@ extension City {
              countryName: "Turkey",
              countryCode: "TUR",
              symbolName: "phone.fill",
-             location: Location(latitude: 41.0082, longitude: 28.9784, altitude: 30.0),
+             location: Location(latitude: 41.0082, longitude: 28.9784),
              averageTempSummer: 26.6,
              averageTempWinter: 9.8,
              sunnyDays: 281

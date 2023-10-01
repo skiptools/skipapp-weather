@@ -14,7 +14,7 @@ struct SettingsNavigationView: View {
 }
 
 struct SettingsView : View {
-    @AppStorage("celsius", store: UserDefaults.standard) var celsius: Bool = true
+    @AppStorage("celsius") var celsius: Bool = true
 
     var body: some View {
         List {
