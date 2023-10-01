@@ -3,8 +3,6 @@ import Combine
 
 /// A lat/lon location (in degrees).
 public struct Location : Hashable, Codable {
-    public static let `default` = Location(latitude: 42.36, longitude: -71.05)
-
     public var latitude: Double
     public var longitude: Double
 

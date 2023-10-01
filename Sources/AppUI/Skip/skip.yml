@@ -33,8 +33,3 @@ build:
                 # reduces WeatherApp.apk from 41.1 MB to 6.13 MB
                 - 'isMinifyEnabled = true'
                 - 'proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")'
-                - block: 'proguardOptions'
-                  contents:
-                    # must preserve all skip.* classes for public API
-                    - 'option("-keep class skip.** { *; }")'
-                    - 'option("-dontobfuscate")'
