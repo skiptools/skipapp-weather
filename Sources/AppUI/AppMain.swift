@@ -64,9 +64,9 @@ public class MainActivity : AppCompatActivity {
     public override func onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
         if let savedInstanceState = savedInstanceState {
-            logger.log("onCreate: SAMPLE_PROP: \(savedInstanceState.getString("SAMPLE_PROP"))")
+            logger.info("onCreate: SAMPLE_PROP: \(savedInstanceState.getString("SAMPLE_PROP"))")
         } else {
-            logger.log("onCreate")
+            logger.info("onCreate")
         }
 
         setContent {
@@ -88,46 +88,46 @@ public class MainActivity : AppCompatActivity {
     }
 
     public override func onSaveInstanceState(bundle: android.os.Bundle) {
-        logger.log("onSaveInstanceState: \(bundle)")
+        logger.info("onSaveInstanceState: \(bundle)")
         bundle.putString("SAMPLE_PROP", Date().description)
-        logger.log("onSaveInstanceState: SAMPLE_PROP: \(bundle.getString("SAMPLE_PROP"))")
+        logger.info("onSaveInstanceState: SAMPLE_PROP: \(bundle.getString("SAMPLE_PROP"))")
         super.onSaveInstanceState(bundle)
     }
 
     public override func onRestoreInstanceState(bundle: android.os.Bundle) {
         // Usually you restore your state in onCreate(). It is possible to restore it in onRestoreInstanceState() as well, but not very common. (onRestoreInstanceState() is called after onStart(), whereas onCreate() is called before onStart().
-        logger.log("onRestoreInstanceState: \(bundle)")
+        logger.info("onRestoreInstanceState: \(bundle)")
         super.onRestoreInstanceState(bundle)
-        logger.log("onRestoreInstanceState: SAMPLE_PROP: \(bundle.getString("SAMPLE_PROP"))")
+        logger.info("onRestoreInstanceState: SAMPLE_PROP: \(bundle.getString("SAMPLE_PROP"))")
     }
 
     public override func onRestart() {
-        logger.log("onRestart")
+        logger.info("onRestart")
         super.onRestart()
     }
 
     public override func onStart() {
-        logger.log("onStart")
+        logger.info("onStart")
         super.onStart()
     }
 
     public override func onResume() {
-        logger.log("onResume")
+        logger.info("onResume")
         super.onResume()
     }
 
     public override func onPause() {
-        logger.log("onPause")
+        logger.info("onPause")
         super.onPause()
     }
 
     public override func onStop() {
-        logger.log("onStop")
+        logger.info("onStop")
         super.onStop()
     }
 
     public override func onDestroy() {
-        logger.log("onDestroy")
+        logger.info("onDestroy")
         super.onDestroy()
     }
 

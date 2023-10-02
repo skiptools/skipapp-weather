@@ -18,6 +18,7 @@ struct WeatherView : View {
     @State var longitude: String = ""
     @State var error: String = ""
     @StateObject var weather = WeatherCondition()
+    @StateObject var currentLocation = CurrentLocation()
     @AppStorage("celsius") var celsius: Bool = true
     var showLocationButton = false
 
@@ -44,13 +45,20 @@ struct WeatherView : View {
                     }
                 }
                 if showLocationButton {
-                    Button {
-                        Task {
-                            await updateCurrentLocation()
+                    ZStack {
+                        Button {
+                            Task {
+                                await updateCurrentLocation()
+                            }
+                        } label: {
+                            Image(systemName: "location")
                         }
-                    } label: {
-                        Image(systemName: "location")
+                        .opacity(currentLocation.isFetching ? 0.0 : 1.0)
+
+                        ProgressView()
+                            .opacity(currentLocation.isFetching ? 1.0 : 0.0)
                     }
+                    .padding(.all, 4.0)
                 }
             }
 
@@ -61,14 +69,14 @@ struct WeatherView : View {
             }
             .buttonStyle(.borderedProminent)
 
-            Divider()
-
             if !error.isEmpty {
                 Text("\(error)")
                     .font(.headline)
                     .foregroundStyle(Color.red)
             } else {
-                if let temperature = weather.temperature {
+                if weather.isFetching {
+                    ProgressView()
+                } else if let temperature = weather.temperature {
                     Text(temperature.temperatureString(celsius: celsius))
                         .font(.largeTitle).bold()
                         .foregroundStyle(temperature.temperatureColor)
@@ -95,12 +103,9 @@ struct WeatherView : View {
 
         self.error = "" // clear the current error
         do {
-            logger.log("fetching weather for lat=\(lat) lon=\(lon)…")
             let location = Location(latitude: lat, longitude: lon)
-            let result = try await weather.fetchWeather(at: location)
-            logger.log("fetched weather: \(result)")
+            try await weather.fetch(at: location)
         } catch {
-            // set the error message label on failure
             self.error = "\(error)"
         }
     }
@@ -108,23 +113,15 @@ struct WeatherView : View {
     func updateCurrentLocation() async {
         self.error = "" // clear the current error
         do {
-            let location = try await fetchLocation()
-            latitude = String(describing: location.latitude)
-            longitude = String(describing: location.longitude)
+            try await currentLocation.fetch()
         } catch {
-            // set the error message label on failure
             self.error = "\(error)"
         }
-    }
-
-    func fetchLocation() async throws -> Location {
-        #if SKIP
-        let context = ProcessInfo.processInfo.androidContext
-        let (latitude, longitude) = fetchCurrentLocation(context) // Defined in CustomKotlin.kt
-        #else
-        let (latitude, longitude) = try await LocationProvider.shared.fetchCurrentLocation()
-        #endif
-        return Location(latitude: latitude, longitude: longitude)
+        if let location = currentLocation.location {
+            latitude = String(describing: location.latitude)
+            longitude = String(describing: location.longitude)
+            await updateWeather()
+        }
     }
 }
 
@@ -155,67 +152,3 @@ func interpolateRGB(fromColor: (r: CGFloat, g: CGFloat, b: CGFloat), toColor: (r
 
     return (ir, ig, ib)
 }
-
-#if !SKIP
-import CoreLocation
-
-class LocationProvider: NSObject {
-    static let shared = LocationProvider()
-
-    private let locationManager = CLLocationManager()
-    private var completions: [(Result<(Double, Double), Error>) -> Void] = []
-
-    override init() {
-        super.init()
-        locationManager.delegate = self
-    }
-
-    func fetchCurrentLocation() async throws -> (latitude: Double, longitude: Double) {
-        return try await withCheckedThrowingContinuation { continuation in
-            requestLocation { result in
-                switch result {
-                case .success(let location):
-                    continuation.resume(returning: location)
-                case .failure(let error):
-                    continuation.resume(throwing: error)
-                }
-            }
-        }
-    }
-
-    private func requestLocation(completion: @escaping (Result<(Double, Double), Error>) -> Void) {
-        completions.append(completion)
-        requestLocationOrAuthorization()
-    }
-
-    private func requestLocationOrAuthorization() {
-        switch locationManager.authorizationStatus {
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        default:
-            locationManager.requestLocation()
-        }
-    }
-}
-
-extension LocationProvider: CLLocationManagerDelegate {
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        if !completions.isEmpty {
-            requestLocationOrAuthorization()
-        }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let completions = self.completions
-        self.completions = []
-        let location = locations.last!
-        completions.forEach { $0(.success((location.coordinate.latitude, location.coordinate.longitude))) }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        let completions = self.completions
-        self.completions = []
-        completions.forEach { $0(.failure(error)) }
-    }
-}
-#endif

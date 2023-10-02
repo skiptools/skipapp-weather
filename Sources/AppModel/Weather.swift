@@ -1,25 +1,6 @@
 import Foundation
 import Combine
 
-/// A lat/lon location (in degrees).
-public struct Location : Hashable, Codable {
-    public var latitude: Double
-    public var longitude: Double
-
-    public init(latitude: Double, longitude: Double) {
-        self.latitude = latitude
-        self.longitude = longitude
-    }
-
-    func coordinates(fractionalDigits: Int? = nil) -> (latitude: Double, longitude: Double) {
-        guard let fractionalDigits = fractionalDigits else {
-            return (latitude, longitude)
-        }
-        let factor = pow(10.0, Double(fractionalDigits))
-        return (latitude: Double(round(latitude * factor)) / factor, longitude: Double(round(longitude * factor)) / factor)
-    }
-}
-
 public class WeatherCondition : ObservableObject {
     /// The User-Agent header when making requests
     static let userAgent = "Demo App"
@@ -27,15 +8,23 @@ public class WeatherCondition : ObservableObject {
     @Published public private(set) var location: Location?
     @Published public private(set) var temperature: Double?
     @Published public private(set) var isFetching = false
+    private var fetchCount = 0 {
+        didSet {
+            isFetching = fetchCount > 0
+        }
+    }
 
     public init() {
     }
 
     @MainActor
-    @discardableResult public func fetchWeather(at location: Location) async throws -> Int {
-        self.location = location
-        temperature = nil
-        isFetching = true
+    @discardableResult public func fetch(at location: Location) async throws -> Int {
+        if location != self.location {
+            self.location = location
+            temperature = nil
+        }
+        fetchCount += 1
+        defer { fetchCount -= 1 }
 
         let (lat, lon) = location.coordinates(fractionalDigits: 4)
         let url = URL(string: "https://api.open-meteo.com/v1/forecast?latitude=\(lat)&longitude=\(lon)&current_weather=true")!
@@ -43,14 +32,15 @@ public class WeatherCondition : ObservableObject {
         var request = URLRequest(url: url)
         request.setValue(Self.userAgent, forHTTPHeaderField: "User-Agent")
         let (data, response) = try await URLSession.shared.data(for: request)
-        // guard against updating for a concurrent request
+        // guard against updating for an old request
         if location == self.location {
             let decoder = JSONDecoder()
             let info = try decoder.decode(WeatherResponse.self, from: data)
             temperature = info.current_weather.temperature
-            isFetching = false
         }
-        return (response as? HTTPURLResponse)?.statusCode ?? 0
+        let statusCode = (response as? HTTPURLResponse)?.statusCode
+        logger.info("response status code: \(String(describing: statusCode))")
+        return statusCode ?? 0
     }
 }
 
@@ -75,4 +65,3 @@ struct WeatherResponse : Hashable, Codable {
         var time: String // "2023-07-30T12:00"
     }
 }
-

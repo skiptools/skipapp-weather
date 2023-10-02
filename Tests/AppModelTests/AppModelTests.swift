@@ -13,7 +13,7 @@ class AppModelTests: XCTestCase {
         let weather = WeatherCondition()
         XCTAssertNil(weather.temperature)
 
-        let response = try await weather.fetchWeather(at: location)
+        let response = try await weather.fetch(at: location)
         XCTAssertEqual(200, response)
         XCTAssertNotNil(weather.temperature)
     }
