@@ -1,4 +1,4 @@
-name: skipapp
+name: skipapp-weather
 on:
   push:
     branches: '*'
