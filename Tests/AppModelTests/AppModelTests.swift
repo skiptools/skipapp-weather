@@ -17,4 +17,10 @@ class AppModelTests: XCTestCase {
         XCTAssertEqual(200, response)
         XCTAssertNotNil(weather.temperature)
     }
+
+    func testCoordinateDistance() throws {
+        XCTAssertEqual("Boston", Location(latitude: 42.36515, longitude: -71.0618).nearestCityString(km: false))
+        XCTAssertEqual("291 miles from Porto", Location(latitude: 45.0, longitude: -11.0).nearestCityString(km: false))
+    }
+
 }

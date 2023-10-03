@@ -20,6 +20,7 @@ struct WeatherView : View {
     @StateObject var weather = WeatherCondition()
     @StateObject var currentLocation = CurrentLocation()
     @AppStorage("celsius") var celsius: Bool = true
+    @AppStorage("kilometers") var kilometers: Bool = true
     var showLocationButton = false
 
     init(location: Location? = nil) {
@@ -44,6 +45,7 @@ struct WeatherView : View {
                         TextField("Longitude", text: $longitude)
                     }
                 }
+
                 if showLocationButton {
                     ZStack {
                         Button {
@@ -60,6 +62,10 @@ struct WeatherView : View {
                     }
                     .padding(.all, 4.0)
                 }
+            }
+
+            if let title = currentLocationTitle() {
+                Text(title).font(.headline)
             }
 
             Button("Fetch Weather") {
@@ -123,6 +129,22 @@ struct WeatherView : View {
             await updateWeather()
         }
     }
+
+    /// The name of the current location, in terms of the distance and heading from the nearest city
+    func currentLocationTitle() -> String? {
+        guard let location = currentLocation.location else {
+            // only display the title if we have a current location
+            return nil
+        }
+
+        let city = location.nearestCity
+        let distance = city.location.distance(from: location)
+        if distance < 2.0 {
+            return city.cityName
+        } else {
+            return distance.distanceString(kilometers: kilometers) + " " + (kilometers ? "kilometers" : "miles") + " from " + city.cityName
+        }
+    }
 }
 
 extension Double {
@@ -133,6 +155,11 @@ extension Double {
         // Celsius temperatures are generally formatted with 1 decimal place, whereas Fahrenheit is not
         let fmt = String(format: "%.\(celsius ? 1 : 0)f", temp)
         return withUnit ? "\(fmt) °\(celsius ? "C" : "F")" : "\(fmt)°"
+    }
+
+    /// Takes the current distance (in kilometers) and creates a string description of miles vs. kilometers
+    func distanceString(kilometers: Bool) -> String {
+        return Int64(kilometers ? (self) : (self / 1.60934)).description
     }
 
     /// Interpolates an RGB 3-tuple based on a parameter expressing the fraction between the colors blue and red.

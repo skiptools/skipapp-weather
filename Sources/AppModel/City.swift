@@ -39,6 +39,15 @@ extension City: Hashable {
     }
 }
 
+extension Location {
+    /// Returns the closest City from the Location
+    public var nearestCity: City {
+        City.allCases.sorted(by: {
+            $0.location.distance(from: self) < $1.location.distance(from: self)
+        }).first!
+    }
+}
+
 extension City {
     /// A sample list of major world cities
     public static let allCases: [City] = [

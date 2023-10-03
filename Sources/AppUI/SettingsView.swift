@@ -15,6 +15,7 @@ struct SettingsNavigationView: View {
 
 struct SettingsView : View {
     @AppStorage("celsius") var celsius: Bool = true
+    @AppStorage("kilometers") var kilometers: Bool = true
 
     var body: some View {
         List {
@@ -24,6 +25,14 @@ struct SettingsView : View {
                 Text("\(Double(20.2).temperatureString(celsius: celsius))")
                     .font(.caption)
                 Toggle("Fahrenheit/Celsius Units", isOn: $celsius).labelsHidden()
+            }
+
+            HStack {
+                Text("Miles/Kilometers Units")
+                Spacer()
+                Text("\(Double(16.0).distanceString(kilometers: kilometers)) \(kilometers ? "km" : "mi")")
+                    .font(.caption)
+                Toggle("Miles/Kilometers Units", isOn: $kilometers).labelsHidden()
             }
             NavigationLink("About Skip", value: URL(string: "https://skip.tools")!)
             NavigationLink("System Info", value: ProcessInfo.processInfo)

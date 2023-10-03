@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "49F90C272A52156200F06D93"
-               BuildableName = "SkipWeather.app"
-               BlueprintName = "App"
+               BlueprintIdentifier = "49231BB02AC6038C00F98ADF"
+               BuildableName = "App+.app"
+               BlueprintName = "App+"
                ReferencedContainer = "container:WeatherApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -43,9 +43,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "49F90C272A52156200F06D93"
-            BuildableName = "SkipWeather.app"
-            BlueprintName = "App"
+            BlueprintIdentifier = "49231BB02AC6038C00F98ADF"
+            BuildableName = "App+.app"
+            BlueprintName = "App+"
             ReferencedContainer = "container:WeatherApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -60,9 +60,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "49F90C272A52156200F06D93"
-            BuildableName = "SkipWeather.app"
-            BlueprintName = "App"
+            BlueprintIdentifier = "49231BB02AC6038C00F98ADF"
+            BuildableName = "App+.app"
+            BlueprintName = "App+"
             ReferencedContainer = "container:WeatherApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
