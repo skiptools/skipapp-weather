@@ -4,7 +4,7 @@ import Foundation
 
 // Run with NOSKIP=1 environment to exclude Skip libraries
 let noskip = ProcessInfo.processInfo.environment["NOSKIP"] != nil
-let skip: TargetDependencyCondition? = noskip ? nil : .when(platforms: [.android])
+let skip: TargetDependencyCondition? = noskip ? .when(platforms: [.android]) : nil
 let plugin: [Target.PluginUsage] = noskip ? [] : [.plugin(name: "skipstone", package: "skip")]
 
 let package = Package(
