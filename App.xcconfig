@@ -29,6 +29,12 @@ MACOSX_DEPLOYMENT_TARGET = 13.0
 // On-device testing may need to override the bundle ID
 // PRODUCT_BUNDLE_IDENTIFIER[config=Debug][sdk=iphoneos*] = myorg.app.App-Name
 
+// Assemble the APK as part of the build process
+SKIP_BUILD_APK = YES
+
+// Building the target will lauch the app for iphone* targets
+SKIP_LAUNCH_APK[sdk=iphone*] = YES
+
 //SKIP_TEST_PROP[config=Debug] = XXXDebugXXX
 //SKIP_TEST_PROP[config=Release] = XXXReleaseXXX
 //SKIP_TEST_PROP[config=Skippy] = XXXSkippyXXX
