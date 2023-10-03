@@ -90,9 +90,7 @@ struct WeatherView : View {
             }
             Spacer()
         }
-        #if !SKIP
         .textFieldStyle(.roundedBorder)
-        #endif
         .padding()
         .task {
             if !latitude.isEmpty && !longitude.isEmpty {
