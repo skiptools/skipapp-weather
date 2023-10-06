@@ -1,6 +1,5 @@
 import SwiftUI
 import Foundation
-import Observation
 import WeatherAppModel
 
 struct ListNavigationView: View {
@@ -15,8 +14,6 @@ struct ListNavigationView: View {
 }
 
 struct ListView : View {
-    @AppStorage("celsius") var celsius: Bool = true
-
     var body: some View {
         List(City.allCases, id: \.location.latitude) { city in
             NavigationLink(value: city) {
@@ -30,7 +27,7 @@ struct ListView : View {
     }
 
     private func rowView(city: City) -> some View {
-        HStack(alignment: .center) {
+        HStack {
             city.iconView()
 
             VStack(alignment: .leading) {

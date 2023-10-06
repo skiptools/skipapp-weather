@@ -1,5 +1,3 @@
-import Foundation
-
 public struct City {
     /// The localized name of the city
     public let cityName: String

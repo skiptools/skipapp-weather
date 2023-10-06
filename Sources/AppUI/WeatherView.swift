@@ -38,10 +38,12 @@ struct WeatherView : View {
                 VStack {
                     HStack {
                         Text("Lat:")
+                            .frame(width: 50.0)
                         TextField("Latitude", text: $latitude)
                     }
                     HStack {
                         Text("Lon:")
+                            .frame(width: 50.0)
                         TextField("Longitude", text: $longitude)
                     }
                 }
