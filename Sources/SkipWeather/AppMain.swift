@@ -15,11 +15,11 @@ struct AppError : LocalizedError {
 }
 
 #if !SKIP
-public protocol AppUIApp : App {
+public protocol SkipWeatherApp : App {
 }
 
 /// The entry point to the app, which simply loads the `ContentView` from the `AppUI` module.
-public extension AppUIApp {
+public extension SkipWeatherApp {
     var body: some Scene {
         WindowGroup {
             ContentView()
