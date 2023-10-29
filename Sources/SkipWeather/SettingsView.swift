@@ -1,6 +1,6 @@
 import SwiftUI
 import Foundation
-import WeatherAppModel
+import SkipWeatherModel
 
 struct SettingsNavigationView: View {
     static let title = "Settings"
@@ -57,7 +57,7 @@ struct SettingsView : View {
         }
     }
 
-    /// An envrionment key/value
+    /// An environment key/value
     private struct Env {
         let key: String
         let value: String?

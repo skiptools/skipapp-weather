@@ -1,5 +1,5 @@
 import SwiftUI
-import WeatherAppUI
+import SkipWeather
 
 /// The `@main` entry point to the app simply uses the implementation from `AppModule`.
 ///

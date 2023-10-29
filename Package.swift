@@ -2,19 +2,18 @@
 import PackageDescription
 import Foundation
 
-// Run with NOSKIP=1 environment to exclude Skip libraries
-let noskip = ProcessInfo.processInfo.environment["NOSKIP"] != nil
-let skip: TargetDependencyCondition? = noskip ? .when(platforms: [.android]) : nil
-let plugin: [Target.PluginUsage] = noskip ? [] : [.plugin(name: "skipstone", package: "skip")]
+// Set SKIP_ZERO=1 to build without Skip libraries
+let zero = ProcessInfo.processInfo.environment["SKIP_ZERO"] != nil
+let skip = zero ? TargetDependencyCondition.when(platforms: [.android]) : .none
+let plugin = !zero ? [Target.PluginUsage.plugin(name: "skipstone", package: "skip")] : []
 
 let package = Package(
-    name: "WeatherApp",
+    name: "skipapp-weather",
     defaultLocalization: "en",
     platforms: [.macOS("13"), .iOS("16")],
     products: [
-        .library(name: "WeatherApp", targets: ["WeatherAppUI", "WeatherAppModel"]),
-        .library(name: "WeatherAppUI", targets: ["WeatherAppUI"]),
-        .library(name: "WeatherAppModel", targets: ["WeatherAppModel"]),
+        .library(name: "SkipWeather", targets: ["SkipWeather"]),
+        .library(name: "SkipWeatherModel", targets: ["SkipWeatherModel"]),
     ],
     dependencies: [
         .package(url: "https://source.skip.tools/skip.git", from: "0.6.78"),
@@ -23,22 +22,22 @@ let package = Package(
         .package(url: "https://source.skip.tools/skip-ui.git", from: "0.2.11"),
     ],
     targets: [
-        .target(name: "WeatherAppUI", dependencies: [
-            "WeatherAppModel",
+        .target(name: "SkipWeather", dependencies: [
+            "SkipWeatherModel",
             .product(name: "SkipUI", package: "skip-ui", condition: skip)
-        ], path: "Sources/AppUI", resources: [.process("Resources")], plugins: plugin),
-        .testTarget(name: "WeatherAppUITests", dependencies: [
-            "WeatherAppUI",
+        ], resources: [.process("Resources")], plugins: plugin),
+        .testTarget(name: "SkipWeatherTests", dependencies: [
+            "SkipWeather",
             .product(name: "SkipTest", package: "skip", condition: skip)
-        ], path: "Tests/AppUITests", plugins: plugin),
+        ], plugins: plugin),
 
-        .target(name: "WeatherAppModel", dependencies: [
+        .target(name: "SkipWeatherModel", dependencies: [
             .product(name: "SkipModel", package: "skip-model", condition: skip),
             .product(name: "SkipFoundation", package: "skip-foundation", condition: skip)
-        ], path: "Sources/AppModel", resources: [.process("Resources")], plugins: plugin),
-        .testTarget(name: "WeatherAppModelTests", dependencies: [
-            "WeatherAppModel",
+        ], resources: [.process("Resources")], plugins: plugin),
+        .testTarget(name: "SkipWeatherModelTests", dependencies: [
+            "SkipWeatherModel",
             .product(name: "SkipTest", package: "skip", condition: skip)
-        ], path: "Tests/AppModelTests", plugins: plugin),
+        ], plugins: plugin),
     ]
 )

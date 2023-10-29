@@ -1,6 +1,6 @@
 import Foundation
 import SwiftUI
-import WeatherAppModel
+import SkipWeatherModel
 
 struct WeatherNavigationView: View {
     static let title = "Weather"

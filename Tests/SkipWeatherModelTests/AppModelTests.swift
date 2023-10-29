@@ -1,5 +1,5 @@
 import XCTest
-@testable import WeatherAppModel
+@testable import SkipWeatherModel
 
 class AppModelTests: XCTestCase {
     func testCoordinateRounding() throws {

@@ -1,7 +1,7 @@
 import Foundation
 import OSLog
 import SwiftUI
-import WeatherAppModel
+import SkipWeatherModel
 
 /// The logger to use for the app. Directs to the oslog on Darwin and logcat on Android.
 let logger = Logger(subsystem: "weather.app.ui", category: "AppUI")

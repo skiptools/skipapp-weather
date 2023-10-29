@@ -1,6 +1,6 @@
 import XCTest
-@testable import WeatherAppUI
-import WeatherAppModel
+@testable import SkipWeather
+import SkipWeatherModel
 
 class AppUITests: XCTestCase {
     func testAppUI() throws {
