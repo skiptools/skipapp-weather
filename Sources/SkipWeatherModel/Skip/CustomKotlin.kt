@@ -1,4 +1,4 @@
-package weather.app.model
+package skip.weather.model
 
 import android.content.Context
 import android.location.Location

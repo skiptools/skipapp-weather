@@ -2,6 +2,9 @@ import Foundation
 import OSLog
 import SwiftUI
 
+let androidSDK = ProcessInfo.processInfo.environment["android.os.Build.VERSION.SDK_INT"].flatMap({ Int($0) })
+let logger = Logger(subsystem: "skip.weather", category: "SkipWeather")
+
 /// The shared top-level view for the app, loaded from the platform-specific App delegates below.
 ///
 /// The default implementation merely loads the `ContentView` for the app and logs a message.
@@ -16,12 +19,12 @@ struct RootView : View {
 }
 
 #if !SKIP
-public protocol ShowWeatherApp : App {
+public protocol SkipWeatherApp : App {
 }
 
-/// The entry point to the ShowWeather app.
-/// The concrete implementation is in the ShowWeatherApp module.
-public extension ShowWeatherApp {
+/// The entry point to the SkipWeather app.
+/// The concrete implementation is in the SkipWeatherApp module.
+public extension SkipWeatherApp {
     var body: some Scene {
         WindowGroup {
             RootView()
