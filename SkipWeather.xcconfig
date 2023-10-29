@@ -26,7 +26,7 @@ MACOSX_DEPLOYMENT_TARGET = 13.0
 // PRODUCT_BUNDLE_IDENTIFIER[config=Debug][sdk=iphoneos*] = skip.hello.App
 
 // The package name for the Android entry point, referenced by the AndroidManifest.xml
-ANDROID_PACKAGE_NAME = showcase.module
+ANDROID_PACKAGE_NAME = skip.weather
 
 // Assemble the APK as part of the build process
 SKIP_BUILD_APK = YES
