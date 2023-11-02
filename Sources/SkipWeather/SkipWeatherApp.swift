@@ -3,7 +3,7 @@ import OSLog
 import SwiftUI
 
 let androidSDK = ProcessInfo.processInfo.environment["android.os.Build.VERSION.SDK_INT"].flatMap({ Int($0) })
-let logger = Logger(subsystem: "skip.weather", category: "SkipWeather")
+let logger = Logger(subsystem: "skip.weather.App", category: "SkipWeather")
 
 /// The shared top-level view for the app, loaded from the platform-specific App delegates below.
 ///

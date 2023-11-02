@@ -7,7 +7,7 @@ SKIP_MODULE_NAME = SkipWeather
 PRODUCT_NAME = SkipWeather
 
 // PRODUCT_BUNDLE_IDENTIFIER is the unique id for both the iOS and Android app
-PRODUCT_BUNDLE_IDENTIFIER = skip.weather
+PRODUCT_BUNDLE_IDENTIFIER = skip.weather.App
 
 // The user-visible name of the app (localizable)
 INFOPLIST_KEY_CFBundleDisplayName = Skip Weather
