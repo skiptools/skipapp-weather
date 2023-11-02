@@ -5,6 +5,7 @@ that uses the Open-Meteo to show the weather in a location.
 This is that app that is demonstrated in
 the [Skip Tour](https://skip.tools/tour) video.
 
+![Screenshot](https://assets.skip.tools/skipapp-weather-dev-screenshot.png)
 
 ## Building
 
