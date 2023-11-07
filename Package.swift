@@ -12,8 +12,8 @@ let package = Package(
     defaultLocalization: "en",
     platforms: [.macOS("13"), .iOS("16")],
     products: [
-        .library(name: "SkipWeather", targets: ["SkipWeather"]),
-        .library(name: "SkipWeatherModel", targets: ["SkipWeatherModel"]),
+        .library(name: "SkipWeather", type: .dynamic, targets: ["SkipWeather"]),
+        .library(name: "SkipWeatherModel", type: .dynamic, targets: ["SkipWeatherModel"]),
     ],
     dependencies: [
         .package(url: "https://source.skip.tools/skip.git", from: "0.6.78"),
