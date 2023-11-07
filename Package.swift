@@ -4,8 +4,7 @@ import Foundation
 
 // Set SKIP_ZERO=1 to build without Skip libraries
 let zero = ProcessInfo.processInfo.environment["SKIP_ZERO"] != nil
-let skip = zero ? TargetDependencyCondition.when(platforms: [.android]) : .none
-let plugin = !zero ? [Target.PluginUsage.plugin(name: "skipstone", package: "skip")] : []
+let skipstone = !zero ? [Target.PluginUsage.plugin(name: "skipstone", package: "skip")] : []
 
 let package = Package(
     name: "skipapp-weather",
@@ -23,21 +22,23 @@ let package = Package(
     ],
     targets: [
         .target(name: "SkipWeather", dependencies: [
-            "SkipWeatherModel",
-            .product(name: "SkipUI", package: "skip-ui", condition: skip)
-        ], resources: [.process("Resources")], plugins: plugin),
+            "SkipWeatherModel"
+            ] + (zero ? [] : [.product(name: "SkipUI", package: "skip-ui")]),
+        resources: [.process("Resources")], plugins: skipstone),
         .testTarget(name: "SkipWeatherTests", dependencies: [
-            "SkipWeather",
-            .product(name: "SkipTest", package: "skip", condition: skip)
-        ], plugins: plugin),
+            "SkipWeather"
+        ] + (zero ? [] : [
+            .product(name: "SkipTest", package: "skip")
+        ]), plugins: skipstone),
 
-        .target(name: "SkipWeatherModel", dependencies: [
-            .product(name: "SkipModel", package: "skip-model", condition: skip),
-            .product(name: "SkipFoundation", package: "skip-foundation", condition: skip)
-        ], resources: [.process("Resources")], plugins: plugin),
+        .target(name: "SkipWeatherModel", dependencies: (zero ? [] : [
+            .product(name: "SkipModel", package: "skip-model"),
+            .product(name: "SkipFoundation", package: "skip-foundation")
+        ]), resources: [.process("Resources")], plugins: skipstone),
         .testTarget(name: "SkipWeatherModelTests", dependencies: [
-            "SkipWeatherModel",
-            .product(name: "SkipTest", package: "skip", condition: skip)
-        ], plugins: plugin),
+            "SkipWeatherModel"
+        ] + (zero ? [] : [
+            .product(name: "SkipTest", package: "skip")
+        ]), plugins: skipstone),
     ]
 )
