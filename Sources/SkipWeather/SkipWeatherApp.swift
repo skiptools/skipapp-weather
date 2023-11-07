@@ -12,7 +12,7 @@ struct RootView : View {
     var body: some View {
         ContentView()
             .task {
-                logger.log("Welcome to Skip on \(androidSDK != nil ? "Android" : "Darwin")!")
+                logger.log("Welcome to Skip on \(androidSDK != nil ? "Android" : "iOS")!")
                 logger.warning("Skip app logs are viewable in the Xcode console for iOS; Android logs can be viewed in Studio or using adb logcat")
             }
     }
