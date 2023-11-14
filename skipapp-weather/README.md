@@ -1,11 +1,7 @@
+# SkipWeather
 
-The SkipApp weather is a demonstration of a useful Skip App
-that uses the Open-Meteo to show the weather in a location.
-
-This is that app that is demonstrated in
-the [Skip Tour](https://skip.tools/tour) video.
-
-![Screenshot](https://assets.skip.tools/skipapp-weather-dev-screenshot.png)
+This is a [Skip](https://skip.tools) dual-platform app project.
+It builds a native app for both iOS and Android.
 
 ## Building
 
@@ -19,7 +15,7 @@ Building the module requires that Skip be installed using
 This will also install the necessary transpiler prerequisites:
 Kotlin, Gradle, and the Android build tools.
 
-Installation requirements can be confirmed by running `skip checkup`.
+Installation prerequisites can be confirmed by running `skip checkup`.
 
 ## Testing
 
@@ -39,19 +35,8 @@ An Android emulator must already be running, which can be launched from
 Android Stuido's Device Manager.
 
 To run both the Swift and Kotlin apps simultaneously, 
-launch the HelloSkipApp target from Xcode.
+launch the SkipWeatherApp target from Xcode.
 A build phases runs the "Launch Android APK" script that
 will deploy the transpiled app a running Android emulator or connected device.
 Logging output for the iOS app can be viewed in the Xcode console, and in
 Android Studio's logcat tab for the transpiled Kotlin app.
-
-## Package
-
-This package was initialized with the command:
-
-```
-skip init --appid=skip.weather.App --icon-color="16a085" skipapp-weather SkipWeather SkipWeatherModel
-```
-
-
-

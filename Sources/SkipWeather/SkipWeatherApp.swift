@@ -8,8 +8,11 @@ let logger = Logger(subsystem: "skip.weather.App", category: "SkipWeather")
 /// The shared top-level view for the app, loaded from the platform-specific App delegates below.
 ///
 /// The default implementation merely loads the `ContentView` for the app and logs a message.
-struct RootView : View {
-    var body: some View {
+public struct RootView : View {
+    public init() {
+    }
+
+    public var body: some View {
         ContentView()
             .task {
                 logger.log("Welcome to Skip on \(androidSDK != nil ? "Android" : "iOS")!")
