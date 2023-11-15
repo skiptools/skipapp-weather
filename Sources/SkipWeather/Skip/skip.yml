@@ -4,18 +4,3 @@
 # settings are all specified here. See https://skip.tools/docs
 build:
   contents:
-    - block: 'android'
-      contents:
-        - block: 'buildFeatures'
-          contents:
-            - 'buildConfig = true'
-        - block: 'buildTypes'
-          contents:
-            - block: 'release'
-              contents:
-                # by default we sign with the debug key; for publishing to an app store, the developer key will need to be supplied
-                - 'signingConfig = signingConfigs.getByName("debug")'
-                # enabling minification reduces compose dependency classe size ~85%
-                # reduces WeatherApp.apk from 41.1 MB to 6.13 MB
-                - 'isMinifyEnabled = true'
-                - 'proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")'
