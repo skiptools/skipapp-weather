@@ -20,7 +20,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				49231BAD2AC5BCEF00F98ADF /* SkipWeather in Embed Frameworks */,
+				49231BAD2AC5BCEF00F98ADF /* SkipWeatherApp in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -29,14 +29,14 @@
 
 /* Begin PBXFileReference section */
 		493609562A6B7EAE00C401E2 /* SkipWeather */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SkipWeather; path = ..; sourceTree = "<group>"; };
-		496EB72F2A6AE4DE00C1253A /* ../Skip.env */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Skip.env; path = ../Skip.env; sourceTree = "<group>"; };
+		496EB72F2A6AE4DE00C1253A /* Skip.env */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Skip.env; path = ../Skip.env; sourceTree = "<group>"; };
 		496EB72F2A6AE4DE00C1253B /* SkipWeather.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SkipWeather.xcconfig; sourceTree = "<group>"; };
-		496EB72F2A6AE4DE00C1253C /* README.md */ = {isa = PBXFileReference; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		4990AB3B2A91AFC5005777FD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/MacOSX.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		499CD4442AC5B799001AE8D8 /* SkipWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkipWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		496EB72F2A6AE4DE00C1253C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		499C901E2B064B3F00B5C21B /* SkipWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkipWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		499C90292B0652F400B5C21B /* skipstone */ = {isa = PBXFileReference; lastKnownFileType = folder; name = skipstone; path = ../../../SourcePackages/plugins; sourceTree = BUILT_PRODUCTS_DIR; };
 		49F90C2B2A52156200F06D93 /* SkipWeatherAppMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SkipWeatherAppMain.swift; path = Sources/SkipWeatherAppMain.swift; sourceTree = SOURCE_ROOT; };
-		49F90C2F2A52156300F06D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Assets.xcassets; sourceTree = "<group>"; };
-		49F90C312A52156300F06D93 /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Entitlements.plist; path = Entitlements.plist; sourceTree = "<group>"; };
+		49F90C2F2A52156300F06D93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		49F90C312A52156300F06D93 /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Entitlements.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,21 +44,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49231BAC2AC5BCEF00F98ADF /* SkipWeather in Frameworks */,
+				49231BAC2AC5BCEF00F98ADF /* SkipWeatherApp in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		499C901F2B064B3F00B5C21B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				499C901E2B064B3F00B5C21B /* SkipWeather.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		49F90C1F2A52156200F06D93 = {
 			isa = PBXGroup;
 			children = (
 				496EB72F2A6AE4DE00C1253C /* README.md */,
-				496EB72F2A6AE4DE00C1253A /* ../Skip.env */,
+				496EB72F2A6AE4DE00C1253A /* Skip.env */,
 				496EB72F2A6AE4DE00C1253B /* SkipWeather.xcconfig */,
 				493609562A6B7EAE00C401E2 /* SkipWeather */,
 				49F90C2A2A52156200F06D93 /* App */,
+				499C90292B0652F400B5C21B /* skipstone */,
+				499C901F2B064B3F00B5C21B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,7 +104,7 @@
 				49231BAB2AC5BCEF00F98ADF /* SkipWeatherApp */,
 			);
 			productName = App;
-			productReference = 499CD4442AC5B799001AE8D8 /* SkipWeather.app */;
+			productReference = 499C901E2B064B3F00B5C21B /* SkipWeather.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -118,7 +128,7 @@
 			mainGroup = 49F90C1F2A52156200F06D93;
 			packageReferences = (
 			);
-			productRefGroup = 49F90C292A52156200F06D93 /* Products */;
+			productRefGroup = 499C901F2B064B3F00B5C21B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -156,7 +166,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/sh -e";
-			shellScript = "if [ \"${SKIP_ZERO}\" != \"\" -o \"${ACTION}\" = \"install\" ]; then\n	echo \"note: skipping skip due to SKIP_ZERO\"\n	exit 0\nfi\nSKIP_ACTION=\"${SKIP_ACTION:-launch}\"\nPATH=${BUILD_ROOT}/Debug:${BUILD_ROOT}/../../SourcePackages/artifacts/skip/skip/skip.artifactbundle/macos:${PATH}:/opt/homebrew/bin:/usr/local/bin\necho \"note: running gradle build with: $(which skip) gradle -p ${PWD}/../Android ${SKIP_ACTION:-launch}Debug\"\nskip gradle -p ../Android ${SKIP_ACTION:-launch}${CONFIGURATION:-Debug}\n\nif [ \"${SKIP_ZERO}\" != \"\" ]; then\n	echo \"note: skipping skip due to SKIP_ZERO\"\n	exit 0\nfi\nif [ \"${ACTION}\" = \"install\" ]; then\n	SKIP_ACTION=\"build\"\nelse\n	SKIP_ACTION=\"${SKIP_ACTION:-launch}\"\nfi\nPATH=${BUILD_ROOT}/Debug:${BUILD_ROOT}/../../SourcePackages/artifacts/skip/skip/skip.artifactbundle/macos:${PATH}:${HOMEBREW_PREFIX:-/opt/homebrew}/bin\necho \"note: running gradle build with: $(which skip) gradle -p ${PWD}/../Android ${SKIP_ACTION:-launch}Debug\"\nskip gradle -p ../Android ${SKIP_ACTION:-launch}${CONFIGURATION:-Debug}\n";
+			shellScript = "if [ \"${SKIP_ZERO}\" != \"\" ]; then\n    echo \"note: skipping skip due to SKIP_ZERO\"\n    exit 0\nfi\nif [ \"${ACTION}\" = \"install\" ]; then\n    SKIP_ACTION=\"build\"\nelse\n    SKIP_ACTION=\"${SKIP_ACTION:-launch}\"\nfi\nPATH=${BUILD_ROOT}/Debug:${BUILD_ROOT}/../../SourcePackages/artifacts/skip/skip/skip.artifactbundle/macos:${PATH}:${HOMEBREW_PREFIX:-/opt/homebrew}/bin\necho \"note: running gradle build with: $(which skip) gradle -p ${PWD}/../Android ${SKIP_ACTION:-launch}${CONFIGURATION:-Debug}\"\nskip gradle -p ../Android ${SKIP_ACTION:-launch}${CONFIGURATION:-Debug}\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
