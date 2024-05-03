@@ -159,7 +159,10 @@ extension Double {
 
     /// Takes the current distance (in kilometers) and creates a string description of miles vs. kilometers
     func distanceString(kilometers: Bool) -> String {
-        return Int64(kilometers ? (self) : (self / 1.60934)).description
+        let fmt = NumberFormatter()
+        fmt.numberStyle = .decimal
+        let numstr = fmt.string(from: Int(kilometers ? (self) : (self / 1.60934)) as NSNumber)!
+        return numstr + (kilometers ? " km" : " mi")
     }
 
     /// Interpolates an RGB 3-tuple based on a parameter expressing the fraction between the colors blue and red.
