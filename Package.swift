@@ -20,10 +20,10 @@ let package = Package(
         .library(name: "SkipWeatherModel", type: .dynamic, targets: ["SkipWeatherModel"]),
     ],
     dependencies: [
-        .package(url: "https://source.skip.tools/skip.git", from: "0.8.25"),
-        .package(url: "https://source.skip.tools/skip-ui.git", from: "0.5.19"),
-        .package(url: "https://source.skip.tools/skip-foundation.git", from: "0.5.14"),
-        .package(url: "https://source.skip.tools/skip-model.git", from: "0.5.4")
+        .package(url: "https://source.skip.tools/skip.git", from: "0.9.2"),
+        .package(url: "https://source.skip.tools/skip-ui.git", from: "0.10.0"),
+        .package(url: "https://source.skip.tools/skip-foundation.git", from: "0.7.0"),
+        .package(url: "https://source.skip.tools/skip-model.git", from: "0.8.0")
     ],
     targets: [
         .target(name: "SkipWeather", dependencies: ["SkipWeatherModel"] + (zero ? [] : [.product(name: "SkipUI", package: "skip-ui")]), resources: [.process("Resources")], plugins: skipstone),
