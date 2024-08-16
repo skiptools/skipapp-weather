@@ -17,13 +17,13 @@ let package = Package(
     platforms: [.iOS(.v16), .macOS(.v13), .tvOS(.v16), .watchOS(.v9), .macCatalyst(.v16)],
     products: [
         .library(name: "SkipWeatherApp", type: .dynamic, targets: ["SkipWeather"]),
-        .library(name: "SkipWeatherModel", type: .dynamic, targets: ["SkipWeatherModel"]),
+        .library(name: "SkipWeatherModel", targets: ["SkipWeatherModel"]),
     ],
     dependencies: [
-        .package(url: "https://source.skip.tools/skip.git", from: "0.9.2"),
-        .package(url: "https://source.skip.tools/skip-ui.git", from: "0.10.0"),
-        .package(url: "https://source.skip.tools/skip-foundation.git", from: "0.7.0"),
-        .package(url: "https://source.skip.tools/skip-model.git", from: "0.8.0")
+        .package(url: "https://source.skip.tools/skip.git", from: "1.0.4"),
+        .package(url: "https://source.skip.tools/skip-ui.git", from: "1.0.0"),
+        .package(url: "https://source.skip.tools/skip-foundation.git", from: "1.0.0"),
+        .package(url: "https://source.skip.tools/skip-model.git", from: "1.0.0")
     ],
     targets: [
         .target(name: "SkipWeather", dependencies: ["SkipWeatherModel"] + (zero ? [] : [.product(name: "SkipUI", package: "skip-ui")]), resources: [.process("Resources")], plugins: skipstone),
