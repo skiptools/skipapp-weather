@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import SkipDevice
 
 public class WeatherCondition : ObservableObject {
     /// The User-Agent header when making requests

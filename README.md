@@ -7,6 +7,8 @@ the [Skip Tour](https://skip.tools/tour) video.
 
 ![Screenshot](https://assets.skip.tools/skipapp-weather-dev-screenshot.png)
 
+This app uses the [SkipDevice](https://github.com/skiptools/skip-device) framework to access the current location.
+
 ## Building
 
 This project is both a stand-alone Swift Package Manager module,
