@@ -1,3 +1,6 @@
+import Foundation
+import SkipDevice
+
 public struct City {
     /// The localized name of the city
     public let cityName: String
@@ -37,12 +40,53 @@ extension City: Hashable {
     }
 }
 
-extension Location {
+
+public struct Location {
+    public let latitude: Double
+    public let longitude: Double
+
+    public init(latitude: Double, longitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+    
     /// Returns the closest City from the Location
     public var nearestCity: City {
         City.allCases.sorted(by: {
             $0.location.distance(from: self) < $1.location.distance(from: self)
         }).first!
+    }
+
+    public func coordinates(fractionalDigits: Int? = nil) -> (latitude: Double, longitude: Double) {
+        guard let fractionalDigits = fractionalDigits else {
+            return (latitude, longitude)
+        }
+        let factor = pow(10.0, Double(fractionalDigits))
+        return (latitude: Double(round(latitude * factor)) / factor, longitude: Double(round(longitude * factor)) / factor)
+    }
+
+    /// Calculate the distance from another Location using the Haversine formula and returns the distance in kilometers
+    public func distance(from location: Location) -> Double {
+        let lat1 = self.latitude
+        let lon1 = self.longitude
+        let lat2 = location.latitude
+        let lon2 = location.longitude
+
+        let dLat = (lat2 - lat1).toRadians
+        let dLon = (lon2 - lon1).toRadians
+
+        let slat: Double = sin(dLat / 2.0)
+        let slon: Double = sin(dLon / 2.0)
+        let a: Double = slat * slat + cos(lat1.toRadians) * cos(lat2.toRadians) * slon * slon
+        let c: Double = 2.0 * atan2(sqrt(a), sqrt(1.0 - a))
+
+        return c * 6371.0 // earthRadiusKilometers
+    }
+}
+
+extension Double {
+    var toRadians: Double {
+        return self * .pi / 180.0
     }
 }
 

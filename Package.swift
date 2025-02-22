@@ -7,10 +7,6 @@
 import PackageDescription
 import Foundation
 
-// Set SKIP_ZERO=1 to build without Skip libraries
-let zero = ProcessInfo.processInfo.environment["SKIP_ZERO"] != nil
-let skipstone = !zero ? [Target.PluginUsage.plugin(name: "skipstone", package: "skip")] : []
-
 let package = Package(
     name: "skipapp-weather",
     defaultLocalization: "en",
@@ -23,12 +19,29 @@ let package = Package(
         .package(url: "https://source.skip.tools/skip.git", from: "1.0.4"),
         .package(url: "https://source.skip.tools/skip-ui.git", from: "1.0.0"),
         .package(url: "https://source.skip.tools/skip-foundation.git", from: "1.0.0"),
-        .package(url: "https://source.skip.tools/skip-model.git", from: "1.0.0")
+        .package(url: "https://source.skip.tools/skip-model.git", from: "1.0.0"),
+        .package(url: "https://source.skip.tools/skip-device.git", "0.0.0"..<"1.0.0"),
+        .package(url: "https://source.skip.tools/skip-kit.git", "0.0.0"..<"1.0.0")
     ],
     targets: [
-        .target(name: "SkipWeather", dependencies: ["SkipWeatherModel"] + (zero ? [] : [.product(name: "SkipUI", package: "skip-ui")]), resources: [.process("Resources")], plugins: skipstone),
-        .testTarget(name: "SkipWeatherTests", dependencies: ["SkipWeather"] + (zero ? [] : [.product(name: "SkipTest", package: "skip")]), resources: [.process("Resources")], plugins: skipstone),
-        .target(name: "SkipWeatherModel", dependencies: (zero ? [] : [.product(name: "SkipFoundation", package: "skip-foundation"), .product(name: "SkipModel", package: "skip-model")]), resources: [.process("Resources")], plugins: skipstone),
-        .testTarget(name: "SkipWeatherModelTests", dependencies: ["SkipWeatherModel"] + (zero ? [] : [.product(name: "SkipTest", package: "skip")]), resources: [.process("Resources")], plugins: skipstone),
+        .target(name: "SkipWeather", dependencies: [
+            "SkipWeatherModel",
+            .product(name: "SkipUI", package: "skip-ui"),
+            .product(name: "SkipKit", package: "skip-kit")
+        ], resources: [.process("Resources")], plugins: [.plugin(name: "skipstone", package: "skip")]),
+        .testTarget(name: "SkipWeatherTests", dependencies: [
+            "SkipWeather",
+            .product(name: "SkipTest", package: "skip"),
+        ], resources: [.process("Resources")], plugins: [.plugin(name: "skipstone", package: "skip")]),
+
+        .target(name: "SkipWeatherModel", dependencies: [
+            .product(name: "SkipFoundation", package: "skip-foundation"),
+            .product(name: "SkipModel", package: "skip-model"),
+            .product(name: "SkipDevice", package: "skip-device")
+        ], resources: [.process("Resources")], plugins: [.plugin(name: "skipstone", package: "skip")]),
+        .testTarget(name: "SkipWeatherModelTests", dependencies: [
+            "SkipWeatherModel",
+            .product(name: "SkipTest", package: "skip"),
+        ], resources: [.process("Resources")], plugins: [.plugin(name: "skipstone", package: "skip")]),
     ]
 )

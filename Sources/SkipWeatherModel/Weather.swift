@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import SkipDevice
 
 public class WeatherCondition : ObservableObject {
     /// The User-Agent header when making requests
@@ -17,9 +18,15 @@ public class WeatherCondition : ObservableObject {
     public init() {
     }
 
+    func locationEquals(_ l1: Location?, _ l2: Location?) -> Bool {
+        if l1?.latitude != l2?.latitude { return false }
+        if l1?.longitude != l2?.longitude { return false }
+        return true
+    }
+
     @MainActor
     @discardableResult public func fetch(at location: Location) async throws -> Int {
-        if location != self.location {
+        if !locationEquals(location, self.location) {
             self.location = location
             temperature = nil
         }
@@ -33,7 +40,7 @@ public class WeatherCondition : ObservableObject {
         request.setValue(Self.userAgent, forHTTPHeaderField: "User-Agent")
         let (data, response) = try await URLSession.shared.data(for: request)
         // guard against updating for an old request
-        if location == self.location {
+        if locationEquals(location, self.location) {
             let decoder = JSONDecoder()
             let info = try decoder.decode(WeatherResponse.self, from: data)
             temperature = info.current_weather.temperature

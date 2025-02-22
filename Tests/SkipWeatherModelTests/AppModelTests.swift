@@ -1,4 +1,5 @@
 import XCTest
+import SkipDevice
 @testable import SkipWeatherModel
 
 class AppModelTests: XCTestCase {
