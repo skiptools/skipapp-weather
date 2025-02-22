@@ -19,6 +19,7 @@ public class CurrentLocation : ObservableObject {
         guard !isFetching else { return }
         isFetching = true
         defer { isFetching = false }
-        self.location = try await locationProvider.fetchCurrentLocation()
+        let locationEvent = try await locationProvider.fetchCurrentLocation()
+        self.location = Location(latitude: locationEvent.latitude, longitude: locationEvent.longitude)
     }
 }

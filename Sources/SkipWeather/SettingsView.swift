@@ -1,6 +1,7 @@
 import SwiftUI
 import Foundation
 import SkipWeatherModel
+import SkipDevice
 
 struct SettingsNavigationView: View {
     static let title = "Settings"
@@ -35,11 +36,15 @@ struct SettingsView : View {
                 Toggle("Miles/Kilometers Units", isOn: $kilometers).labelsHidden()
             }
             NavigationLink("About Skip", value: URL(string: "https://skip.tools")!)
+            NavigationLink("Sensor Calibration", value: 0.0)
             NavigationLink("System Info", value: ProcessInfo.processInfo)
         }
         .navigationDestination(for: URL.self) { url in
             WebView(url: url)
                 .navigationTitle(url.host ?? "")
+        }
+        .navigationDestination(for: Double.self) { view in
+            SensorCalibrationView()
         }
         .navigationDestination(for: ProcessInfo.self) { info in
             let env = info.environment.keys.sorted()
@@ -65,6 +70,112 @@ struct SettingsView : View {
 }
 
 
-#Preview {
-    SettingsView()
+struct SensorCalibrationView : View {
+    var body: some View {
+        Form {
+            Section("Accelerometer") {
+                AccelerometerView()
+            }
+            Section("Gyroscope") {
+                GyroscopeView()
+            }
+            Section("Magnetometer") {
+                MagnetometerView()
+            }
+            Section("Barometer") {
+                BarometerView()
+            }
+        }
+    }
+}
+
+struct AccelerometerView : View {
+    @State var event: AccelerometerEvent?
+
+    var body: some View {
+        VStack {
+            if let event = event {
+                Text("x: \(event.x)")
+                Text("y: \(event.y)")
+                Text("z: \(event.z)")
+            }
+        }
+        .font(Font.body.monospaced())
+        .task {
+            let provider = AccelerometerProvider() // must retain reference
+            for await event in provider.monitor() {
+                self.event = event
+                // if cancelled { break }
+            }
+            provider.stop()
+        }
+    }
+}
+
+struct GyroscopeView : View {
+    @State var event: GyroscopeEvent?
+
+    var body: some View {
+        VStack {
+            if let event = event {
+                Text("x: \(event.x)")
+                Text("y: \(event.y)")
+                Text("z: \(event.z)")
+            }
+        }
+        .font(Font.body.monospaced())
+        .task {
+            let provider = GyroscopeProvider() // must retain reference
+            for await event in provider.monitor() {
+                self.event = event
+                // if cancelled { break }
+            }
+            provider.stop()
+        }
+    }
+}
+
+struct MagnetometerView : View {
+    @State var event: MagnetometerEvent?
+
+    var body: some View {
+        VStack {
+            if let event = event {
+                Text("x: \(event.x)")
+                Text("y: \(event.y)")
+                Text("z: \(event.z)")
+            }
+        }
+        .font(Font.body.monospaced())
+        .task {
+            let provider = MagnetometerProvider() // must retain reference
+            for await event in provider.monitor() {
+                self.event = event
+                // if cancelled { break }
+            }
+            provider.stop()
+        }
+    }
+}
+
+struct BarometerView : View {
+    @State var event: BarometerEvent?
+
+    var body: some View {
+        VStack {
+            if let event = event {
+                Text("pressure: \(event.pressure)")
+                Text("relativeAltitude: \(event.relativeAltitude)")
+            }
+        }
+        .font(Font.body.monospaced())
+        .task {
+            let provider = BarometerProvider() // must retain reference
+            for await event in provider.monitor() {
+                self.event = event
+                // if cancelled { break }
+            }
+            provider.stop()
+        }
+    }
 }

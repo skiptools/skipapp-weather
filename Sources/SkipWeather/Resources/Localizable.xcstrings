@@ -23,6 +23,12 @@
     "About Skip" : {
 
     },
+    "Accelerometer" : {
+
+    },
+    "Barometer" : {
+
+    },
     "Done" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -82,6 +88,9 @@
     "Fetch Weather" : {
 
     },
+    "Gyroscope" : {
+
+    },
     "Lat:" : {
 
     },
@@ -94,7 +103,13 @@
     "Longitude" : {
 
     },
+    "Magnetometer" : {
+
+    },
     "Miles/Kilometers Units" : {
+
+    },
+    "pressure: %lf" : {
 
     },
     "Recent" : {
@@ -150,6 +165,12 @@
         }
       }
     },
+    "relativeAltitude: %lf" : {
+
+    },
+    "Sensor Calibration" : {
+
+    },
     "Settings" : {
 
     },
@@ -160,6 +181,15 @@
 
     },
     "Weather" : {
+
+    },
+    "x: %lf" : {
+
+    },
+    "y: %lf" : {
+
+    },
+    "z: %lf" : {
 
     }
   },

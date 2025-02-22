@@ -21,7 +21,10 @@ INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphone*] = YES
 INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphone*] = YES
 INFOPLIST_KEY_UIStatusBarStyle[sdk=iphone*] = UIStatusBarStyleDefault
 INFOPLIST_KEY_UISupportedInterfaceOrientations[sdk=iphone*] = UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown
+
 INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Skip Weather uses your location to get weather information near you"
+INFOPLIST_KEY_NSMotionUsageDescription = "Skip Weather uses your motion information for sensor calibration"
+
 
 IPHONEOS_DEPLOYMENT_TARGET = 16.0
 MACOSX_DEPLOYMENT_TARGET = 13.0
@@ -39,4 +42,4 @@ CODE_SIGNING_REQUIRED = NO
 CODE_SIGN_STYLE = Automatic
 CODE_SIGN_ENTITLEMENTS = Entitlements.plist
 //CODE_SIGNING_IDENTITY = -
-//DEVELOPMENT_TEAM = 25KG25YA3R
+DEVELOPMENT_TEAM = 25KG25YA3R
