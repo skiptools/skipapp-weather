@@ -26,7 +26,13 @@
     "Accelerometer" : {
 
     },
+    "altitude: %lf" : {
+
+    },
     "Barometer" : {
+
+    },
+    "course: %lf" : {
 
     },
     "Done" : {
@@ -97,10 +103,19 @@
     "Latitude" : {
 
     },
+    "latitude: %lf" : {
+
+    },
+    "Location" : {
+
+    },
     "Lon:" : {
 
     },
     "Longitude" : {
+
+    },
+    "longitude: %lf" : {
 
     },
     "Magnetometer" : {
@@ -174,6 +189,9 @@
     "Settings" : {
 
     },
+    "speed: %lf" : {
+
+    },
     "System Info" : {
 
     },
@@ -183,10 +201,19 @@
     "Weather" : {
 
     },
+    "X" : {
+
+    },
     "x: %lf" : {
 
     },
+    "Y" : {
+
+    },
     "y: %lf" : {
+
+    },
+    "Z" : {
 
     },
     "z: %lf" : {

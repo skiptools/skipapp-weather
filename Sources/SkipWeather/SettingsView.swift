@@ -2,6 +2,7 @@ import SwiftUI
 import Foundation
 import SkipWeatherModel
 import SkipDevice
+import SkipKit
 
 struct SettingsNavigationView: View {
     static let title = "Settings"
@@ -73,6 +74,12 @@ struct SettingsView : View {
 struct SensorCalibrationView : View {
     var body: some View {
         Form {
+            Section("Location") {
+                LocationView()
+            }
+            Section("Barometer") {
+                BarometerView()
+            }
             Section("Accelerometer") {
                 AccelerometerView()
             }
@@ -82,76 +89,41 @@ struct SensorCalibrationView : View {
             Section("Magnetometer") {
                 MagnetometerView()
             }
-            Section("Barometer") {
-                BarometerView()
-            }
         }
     }
 }
 
-struct AccelerometerView : View {
-    @State var event: AccelerometerEvent?
+struct LocationView : View {
+    @State var event: LocationEvent?
+    //@State var permissionManager = PermissionManager.permissionRequestor()
 
     var body: some View {
         VStack {
             if let event = event {
-                Text("x: \(event.x)")
-                Text("y: \(event.y)")
-                Text("z: \(event.z)")
+                Text("latitude: \(event.latitude)")
+                Text("longitude: \(event.longitude)")
+                Text("altitude: \(event.altitude)")
+                Text("course: \(event.course)")
+                Text("speed: \(event.speed)")
             }
         }
         .font(Font.body.monospaced())
         .task {
-            let provider = AccelerometerProvider() // must retain reference
-            for await event in provider.monitor() {
-                self.event = event
-                // if cancelled { break }
+            if await PermissionManager.requestLocationPermission(precise: true, always: false).isAuthorized == false {
+                logger.warning("permission refused for ACCESS_FINE_LOCATION")
+                return
             }
-            provider.stop()
-        }
-    }
-}
 
-struct GyroscopeView : View {
-    @State var event: GyroscopeEvent?
-
-    var body: some View {
-        VStack {
-            if let event = event {
-                Text("x: \(event.x)")
-                Text("y: \(event.y)")
-                Text("z: \(event.z)")
-            }
-        }
-        .font(Font.body.monospaced())
-        .task {
-            let provider = GyroscopeProvider() // must retain reference
-            for await event in provider.monitor() {
-                self.event = event
-                // if cancelled { break }
-            }
-            provider.stop()
-        }
-    }
-}
-
-struct MagnetometerView : View {
-    @State var event: MagnetometerEvent?
-
-    var body: some View {
-        VStack {
-            if let event = event {
-                Text("x: \(event.x)")
-                Text("y: \(event.y)")
-                Text("z: \(event.z)")
-            }
-        }
-        .font(Font.body.monospaced())
-        .task {
-            let provider = MagnetometerProvider() // must retain reference
-            for await event in provider.monitor() {
-                self.event = event
-                // if cancelled { break }
+            let provider = LocationProvider() // must retain reference
+            //provider.updateInterval = 0.1
+            do {
+                // SkipKit provided PermissionManager, which creates a user-interface to request individual permissions
+                for try await event in provider.monitor() {
+                    self.event = event
+                    // if cancelled { break }
+                }
+            } catch {
+                logger.error("error updating location: \(error)")
             }
             provider.stop()
         }
@@ -171,9 +143,122 @@ struct BarometerView : View {
         .font(Font.body.monospaced())
         .task {
             let provider = BarometerProvider() // must retain reference
-            for await event in provider.monitor() {
-                self.event = event
-                // if cancelled { break }
+            provider.updateInterval = 0.1
+            do {
+                for try await event in provider.monitor() {
+                    self.event = event
+                    // if cancelled { break }
+                }
+            } catch {
+                logger.error("error updating barometer: \(error)")
+            }
+            provider.stop()
+        }
+    }
+}
+
+func clamp(_ value: Double) -> Double {
+    min(1.0, max(0.0, value))
+}
+
+struct AccelerometerView : View {
+    @State var event: AccelerometerEvent?
+
+    var body: some View {
+        VStack {
+            if let event = event {
+                ProgressView("X", value: clamp((1.0 + event.x) / 2.0)).tint(Color.red)
+                ProgressView("Y", value: clamp((1.0 + event.y) / 2.0)).tint(Color.blue)
+                ProgressView("Z", value: clamp((1.0 + event.z) / 2.0)).tint(Color.green)
+                HStack {
+                    Text("x: \(event.x)")
+                    Text("y: \(event.y)")
+                    Text("z: \(event.z)")
+                }
+                .font(Font.caption.monospaced())
+                .lineLimit(1)
+            }
+        }
+        .task {
+            let provider = AccelerometerProvider() // must retain reference
+            provider.updateInterval = 0.1
+            do {
+                for try await event in provider.monitor() {
+                    self.event = event
+                    // if cancelled { break }
+                }
+            } catch {
+                logger.error("error updating accelerometer: \(error)")
+            }
+            provider.stop()
+        }
+    }
+}
+
+struct GyroscopeView : View {
+    @State var event: GyroscopeEvent?
+
+    var body: some View {
+        VStack {
+            if let event = event {
+                ProgressView("X", value: clamp((1.0 + event.x) / 2.0)).tint(Color.red)
+                ProgressView("Y", value: clamp((1.0 + event.y) / 2.0)).tint(Color.blue)
+                ProgressView("Z", value: clamp((1.0 + event.z) / 2.0)).tint(Color.green)
+                HStack {
+                    Text("x: \(event.x)")
+                    Text("y: \(event.y)")
+                    Text("z: \(event.z)")
+                }
+                .font(Font.caption.monospaced())
+                .lineLimit(1)
+            }
+        }
+        .font(Font.body.monospaced())
+        .task {
+            let provider = GyroscopeProvider() // must retain reference
+            provider.updateInterval = 0.1
+            do {
+                for try await event in provider.monitor() {
+                    self.event = event
+                    // if cancelled { break }
+                }
+            } catch {
+                logger.error("error updating gyroscope: \(error)")
+            }
+            provider.stop()
+        }
+    }
+}
+
+struct MagnetometerView : View {
+    @State var event: MagnetometerEvent?
+
+    var body: some View {
+        VStack {
+            if let event = event {
+                ProgressView("X", value: clamp((100.0 + event.x) / 200.0)).tint(Color.red)
+                ProgressView("Y", value: clamp((100.0 + event.y) / 200.0)).tint(Color.blue)
+                ProgressView("Z", value: clamp((100.0 + event.z) / 200.0)).tint(Color.green)
+                HStack {
+                    Text("x: \(event.x)")
+                    Text("y: \(event.y)")
+                    Text("z: \(event.z)")
+                }
+                .font(Font.caption.monospaced())
+                .lineLimit(1)
+            }
+        }
+        .font(Font.body.monospaced())
+        .task {
+            let provider = MagnetometerProvider() // must retain reference
+            provider.updateInterval = 0.1
+            do {
+                for try await event in provider.monitor() {
+                    self.event = event
+                    // if cancelled { break }
+                }
+            } catch {
+                logger.error("error updating magnetometer: \(error)")
             }
             provider.stop()
         }

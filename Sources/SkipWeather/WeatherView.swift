@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import SkipWeatherModel
+import SkipKit
 import SkipDevice
 
 struct WeatherNavigationView: View {
@@ -119,6 +120,18 @@ struct WeatherView : View {
 
     func updateCurrentLocation() async {
         self.error = "" // clear the current error
+        let authorized = PermissionManager.queryLocationPermission(precise: true, always: false)
+        logger.info("location authorized: \(authorized.rawValue)")
+        if authorized.isAuthorized != true {
+            logger.info("requesting location permission…")
+            let authorized = await PermissionManager.requestLocationPermission(precise: false, always: false)
+            guard authorized.isAuthorized != false else {
+                logger.warning("permission denied for ACCESS_FINE_LOCATION")
+                self.error = "Permission denied"
+                return
+            }
+            logger.info("requested location permission: \(authorized.rawValue)")
+        }
         do {
             try await currentLocation.fetch()
         } catch {

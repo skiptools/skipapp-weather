@@ -23,8 +23,8 @@ INFOPLIST_KEY_UIStatusBarStyle[sdk=iphone*] = UIStatusBarStyleDefault
 INFOPLIST_KEY_UISupportedInterfaceOrientations[sdk=iphone*] = UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown
 
 INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Skip Weather uses your location to get weather information near you"
+INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Skip Weather uses your location to get weather information near you"
 INFOPLIST_KEY_NSMotionUsageDescription = "Skip Weather uses your motion information for sensor calibration"
-
 
 IPHONEOS_DEPLOYMENT_TARGET = 16.0
 MACOSX_DEPLOYMENT_TARGET = 13.0
