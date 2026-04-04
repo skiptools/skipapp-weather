@@ -36,7 +36,7 @@ struct SettingsView : View {
                     .font(.caption)
                 Toggle("Miles/Kilometers Units", isOn: $kilometers).labelsHidden()
             }
-            NavigationLink("About Skip", value: URL(string: "https://skip.tools")!)
+            NavigationLink("About Skip", value: URL(string: "https://skip.dev")!)
             NavigationLink("Sensor Calibration", value: 0.0)
             NavigationLink("System Info", value: ProcessInfo.processInfo)
         }

@@ -1,5 +1,5 @@
 // swift-tools-version: 5.9
-// This is a Skip (https://skip.tools) package,
+// This is a Skip (https://skip.dev) package,
 // containing a Swift Package Manager project
 // that will use the Skip build plugin to transpile the
 // Swift Package, Sources, and Tests into an
@@ -21,7 +21,7 @@ let package = Package(
         .package(url: "https://source.skip.tools/skip-foundation.git", from: "1.0.0"),
         .package(url: "https://source.skip.tools/skip-model.git", from: "1.0.0"),
         .package(url: "https://source.skip.tools/skip-device.git", "0.0.0"..<"1.0.0"),
-        .package(url: "https://source.skip.tools/skip-kit.git", "0.0.0"..<"1.0.0")
+        .package(url: "https://source.skip.tools/skip-kit.git", from: "1.0.0")
     ],
     targets: [
         .target(name: "SkipWeather", dependencies: [
